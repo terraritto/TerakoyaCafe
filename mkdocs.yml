@@ -1,0 +1,18 @@
+site_name: Terakoya Cafe Terrace
+theme:
+  name: material
+  language: ja
+
+  nav:
+    - Movie:
+      - DirectX: Movie/DirectX.md
+      - DXR: Movie/DXR.md
+      - Unreal Engine: Movie/UE.md
+      - Siv3D: Movie/Siv3D.md
+      - GameProgrammingC++: Movie/GP.md
+      - OS: Movie/OS.md
+    - Implementation: Implementation/Implemantation.md
+    - Hobby:
+      - Anime: Hobby/Anime.md
+      - Movie: Hobby/movie.md
+      - Book: Hobby/book.md
