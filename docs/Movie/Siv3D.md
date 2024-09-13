@@ -19,3 +19,10 @@ AtProtoで遊びたかっただけ:
 <div>
 <iframe src="https://www.youtube.com/embed/FekIw8S8thc"></iframe>
 </div>
+
+## モンテカルロ法で円周率を求める！
+よくある球の中に点を打つあれ: 
+[link](https://youtu.be/C5bOtOeS8Fs)
+<div>
+<iframe src="https://www.youtube.com/embed/C5bOtOeS8Fs"></iframe>
+</div>
