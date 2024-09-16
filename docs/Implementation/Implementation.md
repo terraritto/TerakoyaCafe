@@ -138,6 +138,11 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/MonteCarloPI.h)
     movie: [link](https://youtu.be/C5bOtOeS8Fs)
 
+* 平均値法  
+    平均値の定理にモンテカルロ法を適用して、積分を解く  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/AverageMethod.h)
+    movie: まだ
+
 ## AI
 ### 基礎的な？
 * StateMachine  
