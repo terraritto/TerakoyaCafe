@@ -85,6 +85,11 @@
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Shadow/ShadowCommon.hlsli)
     movie: まだ
 
+* PCF   
+    CalculatePCFShadowの部分  
+    Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Shadow/ShadowCommon.hlsli)
+    movie: まだ
+
 ### Intersection
 * Sphere  
     球の交差  
@@ -175,7 +180,7 @@
 * Dijkstra  
     DijkstraComponentが実装  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/GameProgrammingC%2B%2B/Example_04/ForGraph)
-    movie: [movie](https://youtu.be/vEvdewXai-s)  
+    movie: [link](https://youtu.be/vEvdewXai-s)  
 
 ## ゲーム木
 * Min-Max法  

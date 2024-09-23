@@ -54,3 +54,10 @@ KBCを弄っていく:
 <div>
 <iframe src="https://www.youtube.com/embed/Kz6NJ98AABQ"></iframe>
 </div>
+
+## プロテクトモードへ移行する！OS自作Part.9
+プロテクトモードへ移行まで、ここがひと段落ポイント:
+[link](https://youtu.be/EJdiFECgOw8)
+<div>
+<iframe src="https://www.youtube.com/embed/EJdiFECgOw8"></iframe>
+</div>
