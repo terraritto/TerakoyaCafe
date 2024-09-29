@@ -75,3 +75,10 @@ FXAAを1から実装:
 <div>
 <iframe src="https://www.youtube.com/embed/dHEjkMiliB0"></iframe>
 </div>
+
+## デプスシャドウをやってみよう！
+深度を考慮したShadow:
+[link](https://youtu.be/X9DUtOVK-Vg)
+<div>
+<iframe src="https://www.youtube.com/embed/X9DUtOVK-Vg"></iframe>
+</div>

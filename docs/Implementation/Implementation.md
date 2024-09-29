@@ -83,7 +83,7 @@
 * Depth Shadow  
     CalculateDepthShadowの部分  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Shadow/ShadowCommon.hlsli)
-    movie: まだ
+    movie: [link](https://youtu.be/X9DUtOVK-Vg)
 
 * PCF   
     CalculatePCFShadowの部分  
@@ -146,6 +146,16 @@
 * 平均値法  
     平均値の定理にモンテカルロ法を適用して、積分を解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/AverageMethod.h)
+    movie: まだ
+
+* 逆関数法  
+    指数分布に基づいた分布を逆関数法でサンプルする  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/InverseMethod.h)
+    movie: まだ
+
+* ボックス＝ミュラー法  
+    正規分布を一様分布から生成する  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/BoxMuller.h)
     movie: まだ
 
 ## AI
