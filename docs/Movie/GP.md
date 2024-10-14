@@ -54,3 +54,10 @@ GBFS/A*の探索アルゴリズムを実装:
 <div>
 <iframe src="https://www.youtube.com/embed/vEvdewXai-s"></iframe>
 </div>
+
+## ゲーム木で探索する！！  
+Min-Max法とAlpha-Beta法を三目並べでやる:
+[link](https://youtu.be/xKIU9grhNlI)
+<div>
+<iframe src="https://www.youtube.com/embed/xKIU9grhNlI"></iframe>
+</div>

@@ -141,12 +141,12 @@
 * MonteCarlo PI  
     球でのモンテカルロ法  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/MonteCarloPI.h)
-    movie: [link](https://youtu.be/C5bOtOeS8Fs)
+    movie: [link](https://youtu.be/C5bOtOeS8Fs)  
 
 * 平均値法  
     平均値の定理にモンテカルロ法を適用して、積分を解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/AverageMethod.h)
-    movie: まだ
+    movie: [link](https://youtu.be/2OpPPZhzwOs)  
 
 * 逆関数法  
     指数分布に基づいた分布を逆関数法でサンプルする  
@@ -196,12 +196,12 @@
 * Min-Max法  
     MinMaxComponentが実装  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/GameProgrammingC%2B%2B/Example_04/ForGraph)
-    movie: まだ
+    movie: [link](https://youtu.be/xKIU9grhNlI)  
 
 * Alpha-Beta法  
     AlphaBetaComponentが実装  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/GameProgrammingC%2B%2B/Example_04/ForGraph)
-    movie: まだ
+    movie: [link](https://youtu.be/xKIU9grhNlI)  
 
 ## 迷路アルゴリズム
 * 穴掘り法  

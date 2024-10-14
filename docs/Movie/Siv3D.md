@@ -26,3 +26,10 @@ AtProtoで遊びたかっただけ:
 <div>
 <iframe src="https://www.youtube.com/embed/C5bOtOeS8Fs"></iframe>
 </div>
+
+## 平均値法をやってみる！
+まずは積分値を平均値の定理で解いてく: 
+[link](https://youtu.be/2OpPPZhzwOs)
+<div>
+<iframe src="https://www.youtube.com/embed/2OpPPZhzwOs"></iframe>
+</div>
