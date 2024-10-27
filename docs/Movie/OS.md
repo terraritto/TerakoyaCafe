@@ -61,3 +61,10 @@ KBCを弄っていく:
 <div>
 <iframe src="https://www.youtube.com/embed/EJdiFECgOw8"></iframe>
 </div>
+
+## プロテクトモードでも文字を出そう！OS自作Part.10
+プロテクトモードで文字入力関係で肩慣らし:
+[link](https://youtu.be/evEZgfiSS4g)
+<div>
+<iframe src="https://www.youtube.com/embed/evEZgfiSS4g"></iframe>
+</div>

@@ -21,6 +21,11 @@
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Light.hlsli) 
     movie: やるかも？
 
+* Rim Light  
+    RimThreshold部分
+    Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Light.hlsli) 
+    movie: まだ
+
 ### BRDF
 * Lambert  
     LambertBRDF部分  
@@ -41,6 +46,11 @@
     BlinnSample,EvaluateBlinnの部分  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/BRDF/CalculateBRDF.hlsli)
     movie: [link](https://youtu.be/IbfRRJ68hEA)
+
+* Cook-Torrance   
+    CookTorranceSample,EvaluateCookTorranceの部分  
+    Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/BRDF/CalculateBRDF.hlsli)
+    movie: まだ
 
 ### Filter
 * Mean Filter  
@@ -88,7 +98,7 @@
 * PCF   
     CalculatePCFShadowの部分  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Shadow/ShadowCommon.hlsli)
-    movie: まだ
+    movie: [link](https://www.youtube.com/embed/PGFffnGFsGk)
 
 ### Intersection
 * Sphere  

@@ -82,3 +82,10 @@ FXAAを1から実装:
 <div>
 <iframe src="https://www.youtube.com/embed/X9DUtOVK-Vg"></iframe>
 </div>
+
+## PCFをやってみよう！
+Filteringを影にかけるだけ、Filteringが分かれば簡単:
+[link](https://youtu.be/PGFffnGFsGk)
+<div>
+<iframe src="https://www.youtube.com/embed/PGFffnGFsGk"></iframe>
+</div>
