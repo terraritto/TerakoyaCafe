@@ -6,6 +6,7 @@
 * `Implementation` - 実装したものまとめ、アルゴリズムとか手法とかツールとか
 * `Movie` - 動画関係の分類
 * `Hobby` - 趣味で見たものとか読んだものとか、いろいろまとめ
+* `GameStatistics` - ゲームのグラフィックス設定の個人的まとめ
 
 ## Contact
 Blueskyにどうぞ -> [Bsky](https://bsky.app/profile/terraritto.bsky.social)

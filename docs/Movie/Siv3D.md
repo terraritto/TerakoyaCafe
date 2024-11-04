@@ -33,3 +33,10 @@ AtProtoで遊びたかっただけ:
 <div>
 <iframe src="https://www.youtube.com/embed/2OpPPZhzwOs"></iframe>
 </div>
+
+## 逆関数法をやってみる！
+CDFから欲しいサンプリング関数を生成する奴: 
+[link](https://youtu.be/mylfKB2XLWk)
+<div>
+<iframe src="https://www.youtube.com/embed/mylfKB2XLWk"></iframe>
+</div>

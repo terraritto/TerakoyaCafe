@@ -22,7 +22,12 @@
     movie: やるかも？
 
 * Rim Light  
-    RimThreshold部分
+    RimThreshold部分  
+    Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Light.hlsli) 
+    movie: まだ
+
+* 半球ライティング  
+    CalculateHemisphereLightの部分  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Light.hlsli) 
     movie: まだ
 
@@ -161,7 +166,7 @@
 * 逆関数法  
     指数分布に基づいた分布を逆関数法でサンプルする  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/InverseMethod.h)
-    movie: まだ
+    movie: [link](https://youtu.be/mylfKB2XLWk)
 
 * ボックス＝ミュラー法  
     正規分布を一様分布から生成する  
