@@ -89,3 +89,10 @@ Filteringを影にかけるだけ、Filteringが分かれば簡単:
 <div>
 <iframe src="https://www.youtube.com/embed/PGFffnGFsGk"></iframe>
 </div>
+
+## リムライトを実装してみた！
+リムライトの実装、内積を計算するだけ:
+[link](https://youtu.be/tsWAQKoMb1w)
+<div>
+<iframe src="https://www.youtube.com/embed/tsWAQKoMb1w"></iframe>
+</div>

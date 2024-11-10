@@ -24,7 +24,7 @@
 * Rim Light  
     RimThreshold部分  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Light.hlsli) 
-    movie: まだ
+    movie: [link](https://youtu.be/tsWAQKoMb1w)
 
 * 半球ライティング  
     CalculateHemisphereLightの部分  
@@ -171,6 +171,11 @@
 * ボックス＝ミュラー法  
     正規分布を一様分布から生成する  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/BoxMuller.h)
+    movie: まだ
+
+* 棄却サンプリング  
+    提案分布を用意することで、欲しい分布を得る  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/RejectionSampling.h)
     movie: まだ
 
 ## AI
