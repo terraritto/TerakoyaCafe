@@ -40,3 +40,10 @@ CDFから欲しいサンプリング関数を生成する奴:
 <div>
 <iframe src="https://www.youtube.com/embed/mylfKB2XLWk"></iframe>
 </div>
+
+## ボックス＝ミュラー法をやってみる！
+標準正規分布なサンプルを疑似的に生成: 
+[link](https://youtu.be/AAUwBuFAEH4)
+<div>
+<iframe src="https://www.youtube.com/embed/AAUwBuFAEH4"></iframe>
+</div>

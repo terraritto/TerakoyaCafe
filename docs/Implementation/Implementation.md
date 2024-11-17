@@ -171,7 +171,7 @@
 * ボックス＝ミュラー法  
     正規分布を一様分布から生成する  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/BoxMuller.h)
-    movie: まだ
+    movie: [link](https://youtu.be/AAUwBuFAEH4)
 
 * 棄却サンプリング  
     提案分布を用意することで、欲しい分布を得る  
@@ -245,7 +245,7 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/GameProgrammingC%2B%2B)
     movie: 多すぎるので略
 
-* OS Series
+* OS Series  
     動画シリーズで進めてるやつ  
     Impl: [link](https://github.com/terraritto/OSProject)
     movie: 多すぎるので略
