@@ -47,3 +47,10 @@ CDFから欲しいサンプリング関数を生成する奴:
 <div>
 <iframe src="https://www.youtube.com/embed/AAUwBuFAEH4"></iframe>
 </div>
+
+## 棄却サンプリングをやってみる！
+いらない部分を省くことでサンプル生成: 
+[link](https://youtu.be/r-bzF5f4Nnk)
+<div>
+<iframe src="https://www.youtube.com/embed/r-bzF5f4Nnk"></iframe>
+</div>

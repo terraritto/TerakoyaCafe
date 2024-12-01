@@ -61,3 +61,10 @@ Blinnの論文に載ってるBRDFを書いてみる(Blinn-Phongではないよ�
 <div>
 <iframe src="https://www.youtube.com/embed/IbfRRJ68hEA"></iframe>
 </div>
+
+## Cook-Torranceを実装してみた！
+Cook-Torranceの論文に載ってるBRDFを書いてみる:
+[link](https://youtu.be/yJQ5WTc43Ik)
+<div>
+<iframe src="https://www.youtube.com/embed/yJQ5WTc43Ik"></iframe>
+</div>

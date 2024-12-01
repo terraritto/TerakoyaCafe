@@ -55,7 +55,7 @@
 * Cook-Torrance   
     CookTorranceSample,EvaluateCookTorranceの部分  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/BRDF/CalculateBRDF.hlsli)
-    movie: まだ
+    movie: [link](https://youtu.be/yJQ5WTc43Ik)
 
 ### Filter
 * Mean Filter  
@@ -72,6 +72,11 @@
     `case 2`の部分  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/PostProcess/CommonBlurPS.hlsl)
     movie: [link](https://youtu.be/zm-NbJyQamg)
+
+* Bilateral Filter  
+    Sigma2つ/iter/FilterSizeを設定して適用  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BilateralFilter.h)
+    movie: まだ
 
 ### AntiAliasing
 * SSAA  
@@ -176,7 +181,7 @@
 * 棄却サンプリング  
     提案分布を用意することで、欲しい分布を得る  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/RejectionSampling.h)
-    movie: まだ
+    movie: [link](https://youtu.be/r-bzF5f4Nnk)
 
 ## AI
 ### 基礎的な？
