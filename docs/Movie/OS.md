@@ -68,3 +68,10 @@ KBCを弄っていく:
 <div>
 <iframe src="https://www.youtube.com/embed/evEZgfiSS4g"></iframe>
 </div>
+
+## 線や図形を書いてみよう！OS自作Part.11
+ピクセル描画や線を引いたり:
+[link](https://youtu.be/u0AnlgbbZCI)
+<div>
+<iframe src="https://www.youtube.com/embed/u0AnlgbbZCI"></iframe>
+</div>

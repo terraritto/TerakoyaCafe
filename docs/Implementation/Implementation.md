@@ -78,6 +78,12 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BilateralFilter.h)
     movie: まだ
 
+* Kuwahara Filter  
+    油絵っぽいものを作るフィルタ  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/KuwaharaFilter.h)
+    movie: まだ
+
+
 ### AntiAliasing
 * SSAA  
     `isUseSSAA`の部分を参照  

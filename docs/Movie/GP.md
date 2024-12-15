@@ -61,3 +61,10 @@ Min-Max法とAlpha-Beta法を三目並べでやる:
 <div>
 <iframe src="https://www.youtube.com/embed/xKIU9grhNlI"></iframe>
 </div>
+
+## ShaderやTransformの準備をしていこう！  
+3Dに向けての準備、Shader用意したりTransform用意したり:
+[link](https://youtu.be/N6lq3pNLt9Y)
+<div>
+<iframe src="https://www.youtube.com/embed/N6lq3pNLt9Y"></iframe>
+</div>
