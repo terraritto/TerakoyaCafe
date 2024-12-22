@@ -96,3 +96,10 @@ Filteringを影にかけるだけ、Filteringが分かれば簡単:
 <div>
 <iframe src="https://www.youtube.com/embed/tsWAQKoMb1w"></iframe>
 </div>
+
+## 半球ライトを実装してみた！
+半球ライトの実装、天と地に分けるshading:
+[link](https://youtu.be/AOJtVQ2EHlQ)
+<div>
+<iframe src="https://www.youtube.com/embed/AOJtVQ2EHlQ"></iframe>
+</div>

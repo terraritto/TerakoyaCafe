@@ -29,7 +29,7 @@
 * 半球ライティング  
     CalculateHemisphereLightの部分  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Light.hlsli) 
-    movie: まだ
+    movie: [link](https://youtu.be/AOJtVQ2EHlQ)
 
 ### BRDF
 * Lambert  
@@ -260,3 +260,8 @@
     動画シリーズで進めてるやつ  
     Impl: [link](https://github.com/terraritto/OSProject)
     movie: 多すぎるので略
+
+* PRML  
+    PRML関係の実装、1章~4章の内容となります。  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/PRML)
+    movie: まだ
