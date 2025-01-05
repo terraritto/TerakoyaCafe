@@ -1,5 +1,11 @@
 # 実装まとめ
 ## Rendering
+### Basic
+* Bresenham's Algorithm  
+    ブレゼンハムのアルゴリズム、直線を引いていく  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/BresenhamSample.h) 
+    movie: まだ
+
 ### Light
 * Directional Light  
     EvaluateDirectional部分  

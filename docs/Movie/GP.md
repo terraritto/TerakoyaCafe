@@ -68,3 +68,10 @@ Min-Max法とAlpha-Beta法を三目並べでやる:
 <div>
 <iframe src="https://www.youtube.com/embed/N6lq3pNLt9Y"></iframe>
 </div>
+
+## Quaternionの準備と3D描画への対応をしていこう！  
+3D描画まで駆け抜ける:
+[link](https://youtu.be/NaYeZPYKDp8)
+<div>
+<iframe src="https://www.youtube.com/embed/NaYeZPYKDp8"></iframe>
+</div>

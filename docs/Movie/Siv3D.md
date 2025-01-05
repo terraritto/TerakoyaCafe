@@ -54,3 +54,17 @@ CDFから欲しいサンプリング関数を生成する奴:
 <div>
 <iframe src="https://www.youtube.com/embed/r-bzF5f4Nnk"></iframe>
 </div>
+
+## 棄却サンプリングをやってみる！
+いらない部分を省くことでサンプル生成: 
+[link](https://youtu.be/r-bzF5f4Nnk)
+<div>
+<iframe src="https://www.youtube.com/embed/r-bzF5f4Nnk"></iframe>
+</div>
+
+## Siv3DでPRMLの内容を可視化してみよう！！
+PRMLの1~4章の実装をしたものを動画にまとめた: 
+[link](https://youtu.be/auwMFMSbz-M)
+<div>
+<iframe src="https://www.youtube.com/embed/auwMFMSbz-M"></iframe>
+</div>
