@@ -6,6 +6,21 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/BresenhamSample.h) 
     movie: まだ
 
+* Edge Function(Triangle)  
+    Edge Functionを利用して三角形を塗りつぶす.パターン1の部分を参照  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h) 
+    movie: まだ
+
+* Edge Function(多角形)  
+    Edge Functionを利用して多角形を塗りつぶす  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/PentagonEdgeFunctionSample.h) 
+    movie: まだ
+
+* Edge Function(Triangle)  
+    塗りつぶしの計算量を減らすために賢く探索.パターン3の部分を参照  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h) 
+    movie: まだ
+
 ### Light
 * Directional Light  
     EvaluateDirectional部分  
@@ -82,7 +97,7 @@
 * Bilateral Filter  
     Sigma2つ/iter/FilterSizeを設定して適用  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BilateralFilter.h)
-    movie: まだ
+    movie: [link](https://youtu.be/WwVQfapRkXw)
 
 * Kuwahara Filter  
     油絵っぽいものを作るフィルタ  

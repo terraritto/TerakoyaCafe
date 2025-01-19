@@ -9,6 +9,7 @@ theme:
       - DXR: Movie/DXR.md
       - Unreal Engine: Movie/UE.md
       - Siv3D: Movie/Siv3D.md
+      - SRP: Movie/SRP.md
       - GameProgrammingC++: Movie/GP.md
       - OS: Movie/OS.md
     - Implementation: Implementation/Implemantation.md

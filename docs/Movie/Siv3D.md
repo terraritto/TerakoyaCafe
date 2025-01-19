@@ -68,3 +68,10 @@ PRMLの1~4章の実装をしたものを動画にまとめた:
 <div>
 <iframe src="https://www.youtube.com/embed/auwMFMSbz-M"></iframe>
 </div>
+
+## バイラテラルフィルタを実装してみよう！
+愚直にバイラテラルフィルタの実装をやってく: 
+[link](https://youtu.be/WwVQfapRkXw)
+<div>
+<iframe src="https://www.youtube.com/embed/WwVQfapRkXw"></iframe>
+</div>
