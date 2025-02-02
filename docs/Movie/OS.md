@@ -75,3 +75,10 @@ KBCを弄っていく:
 <div>
 <iframe src="https://www.youtube.com/embed/u0AnlgbbZCI"></iframe>
 </div>
+
+## 割り込み処理に入門していこう！OS自作Part.12
+RTCと割り込み入門:
+[link](https://youtu.be/_2lQuHez9nA)
+<div>
+<iframe src="https://www.youtube.com/embed/_2lQuHez9nA"></iframe>
+</div>
