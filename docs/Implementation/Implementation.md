@@ -21,6 +21,11 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h) 
     movie: まだ
 
+* CG座標変換  
+    座標変換、モデル座標系->ワールド座標系->ビュー座標系->投影座標系->スクリーン座標系の流れ  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/VertexProcess.h) 
+    movie: まだ
+
 ### Light
 * Directional Light  
     EvaluateDirectional部分  
@@ -102,7 +107,7 @@
 * Kuwahara Filter  
     油絵っぽいものを作るフィルタ  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/KuwaharaFilter.h)
-    movie: まだ
+    movie:[link](https://youtu.be/po2Lr4QWV3E)
 
 
 ### AntiAliasing
