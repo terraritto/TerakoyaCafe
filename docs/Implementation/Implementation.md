@@ -4,7 +4,7 @@
 * Bresenham's Algorithm  
     ブレゼンハムのアルゴリズム、直線を引いていく  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/BresenhamSample.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/mRRQs_vFNXk)
 
 * Edge Function(Triangle)  
     Edge Functionを利用して三角形を塗りつぶす.パターン1の部分を参照  
@@ -214,6 +214,12 @@
     提案分布を用意することで、欲しい分布を得る  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/RejectionSampling.h)
     movie: [link](https://youtu.be/r-bzF5f4Nnk)
+
+## 数値計算
+* 前進オイラー法  
+    前進オイラー法でdx/dt=xを解く  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/ForwardEulerMethod.h) 
+    movie: まだ
 
 ## AI
 ### 基礎的な？

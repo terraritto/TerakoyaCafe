@@ -75,3 +75,17 @@ PRMLの1~4章の実装をしたものを動画にまとめた:
 <div>
 <iframe src="https://www.youtube.com/embed/WwVQfapRkXw"></iframe>
 </div>
+
+## Kuwaharaフィルタを実装してみよう！
+Kuwahara Filterの実装: 
+[link](https://youtu.be/po2Lr4QWV3E)
+<div>
+<iframe src="https://www.youtube.com/embed/po2Lr4QWV3E"></iframe>
+</div>
+
+## ブレゼンハムのアルゴリズムで直線を引こう！
+ブレゼンハムのアルゴリズムを実装: 
+[link](https://youtu.be/mRRQs_vFNXk)
+<div>
+<iframe src="https://www.youtube.com/embed/mRRQs_vFNXk"></iframe>
+</div>

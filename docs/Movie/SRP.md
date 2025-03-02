@@ -19,3 +19,10 @@ SRP Batcher周り:
 <div>
 <iframe src="https://www.youtube.com/embed/r4sOx-QrgTU"></iframe>
 </div>
+
+## GPU Instancingについて考えよう！~SRP Part.4~
+GPU InstancingとDynamic Batching:
+[link](https://youtu.be/esh_ImyvmIM)
+<div>
+<iframe src="https://www.youtube.com/embed/esh_ImyvmIM"></iframe>
+</div>
