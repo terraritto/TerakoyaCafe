@@ -104,11 +104,20 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BilateralFilter.h)
     movie: [link](https://youtu.be/WwVQfapRkXw)
 
+* Sobel Filter  
+    エッジ検出フィルタ、中心に近いほど重みが大きい  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/SobelFilter.h)
+    movie: まだ
+
 * Kuwahara Filter  
     油絵っぽいものを作るフィルタ  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/KuwaharaFilter.h)
     movie:[link](https://youtu.be/po2Lr4QWV3E)
 
+* SNN Filter  
+    絵画調フィルタ、対称にピクセル比較を行っていく  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/SNNFilter.h)
+    movie:まだ
 
 ### AntiAliasing
 * SSAA  

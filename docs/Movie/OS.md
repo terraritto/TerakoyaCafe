@@ -82,3 +82,10 @@ RTCと割り込み入門:
 <div>
 <iframe src="https://www.youtube.com/embed/_2lQuHez9nA"></iframe>
 </div>
+
+## ゼロ除算割り込みとPICの初期化をしていこう！OS自作Part.13
+ゼロ除算割り込みの実装とPICの初期化まとめ:
+[link](https://youtu.be/ncBirMe4KDk)
+<div>
+<iframe src="https://www.youtube.com/embed/ncBirMe4KDk"></iframe>
+</div>

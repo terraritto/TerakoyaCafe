@@ -26,3 +26,10 @@ GPU InstancingとDynamic Batching:
 <div>
 <iframe src="https://www.youtube.com/embed/esh_ImyvmIM"></iframe>
 </div>
+
+## 透過とアルファクリッピングに対応しよう~SRP Part.5~
+最適化周りとUnlitをひとまず終わらせる:
+[link](https://youtu.be/Wdi3qSW_Poo)
+<div>
+<iframe src="https://www.youtube.com/embed/Wdi3qSW_Poo"></iframe>
+</div>
