@@ -89,3 +89,10 @@ RTCと割り込み入門:
 <div>
 <iframe src="https://www.youtube.com/embed/ncBirMe4KDk"></iframe>
 </div>
+
+## RTCとキーボードの割り込みをやっていこう！OS自作Part.14
+RTC割り込みちキーボード割り込みの実装:
+[link](https://youtu.be/y8fWlAH3O50)
+<div>
+<iframe src="https://www.youtube.com/embed/y8fWlAH3O50"></iframe>
+</div>

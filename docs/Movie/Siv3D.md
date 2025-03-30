@@ -89,3 +89,24 @@ Kuwahara Filterの実装:
 <div>
 <iframe src="https://www.youtube.com/embed/mRRQs_vFNXk"></iframe>
 </div>
+
+## SNNフィルタを実装してみよう！
+SNNフィルタを実装: 
+[link](https://youtu.be/39c-2kxq8YE)
+<div>
+<iframe src="https://www.youtube.com/embed/39c-2kxq8YE"></iframe>
+</div>
+
+## 三角形を塗りつぶすラスタライズを実装してみよう！
+三角形を塗りつぶすだけ: 
+[link](https://youtu.be/uHUEoTq2w10)
+<div>
+<iframe src="https://www.youtube.com/embed/uHUEoTq2w10"></iframe>
+</div>
+
+## 三角形塗りつぶしを最適化しよう！
+三角形塗りつぶしを最適化する: 
+[link](https://youtu.be/k8z1MI6KRX8)
+<div>
+<iframe src="https://www.youtube.com/embed/k8z1MI6KRX8"></iframe>
+</div>

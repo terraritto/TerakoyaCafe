@@ -9,19 +9,24 @@
 * Edge Function(Triangle)  
     Edge Functionを利用して三角形を塗りつぶす.パターン1の部分を参照  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/uHUEoTq2w10)
 
 * Edge Function(多角形)  
     Edge Functionを利用して多角形を塗りつぶす  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/PentagonEdgeFunctionSample.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/uHUEoTq2w10)
 
 * Edge Function(Triangle)  
     塗りつぶしの計算量を減らすために賢く探索.パターン3の部分を参照  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/k8z1MI6KRX8)
 
 * CG座標変換  
+    座標変換、モデル座標系->ワールド座標系->ビュー座標系->投影座標系->スクリーン座標系の流れ  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/VertexProcess.h) 
+    movie: まだ
+
+* 法線ベクトル法  
     座標変換、モデル座標系->ワールド座標系->ビュー座標系->投影座標系->スクリーン座標系の流れ  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/VertexProcess.h) 
     movie: まだ
@@ -117,7 +122,7 @@
 * SNN Filter  
     絵画調フィルタ、対称にピクセル比較を行っていく  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/SNNFilter.h)
-    movie:まだ
+    movie:[link](https://youtu.be/39c-2kxq8YE)
 
 ### AntiAliasing
 * SSAA  
