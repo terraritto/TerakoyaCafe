@@ -33,3 +33,10 @@ GPU InstancingとDynamic Batching:
 <div>
 <iframe src="https://www.youtube.com/embed/Wdi3qSW_Poo"></iframe>
 </div>
+
+## ディレクショナルライトに対応しよう！~SRP Part.6~
+LitのためにDirectional Lightを用意する:
+[link](https://youtu.be/nBcxHfGVW48)
+<div>
+<iframe src="https://www.youtube.com/embed/nBcxHfGVW48"></iframe>
+</div>

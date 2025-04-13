@@ -110,3 +110,10 @@ SNNフィルタを実装:
 <div>
 <iframe src="https://www.youtube.com/embed/k8z1MI6KRX8"></iframe>
 </div>
+
+## 3D座標変換をやってみよう！
+座標変換して頂点を表示してみる: 
+[link](https://youtu.be/Ut00Yn21Ohk)
+<div>
+<iframe src="https://www.youtube.com/embed/Ut00Yn21Ohk"></iframe>
+</div>

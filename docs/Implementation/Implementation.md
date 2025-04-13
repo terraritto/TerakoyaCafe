@@ -24,7 +24,7 @@
 * CG座標変換  
     座標変換、モデル座標系->ワールド座標系->ビュー座標系->投影座標系->スクリーン座標系の流れ  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/VertexProcess.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/Ut00Yn21Ohk)
 
 * 法線ベクトル法  
     座標変換、モデル座標系->ワールド座標系->ビュー座標系->投影座標系->スクリーン座標系の流れ  
@@ -233,6 +233,12 @@
 * 前進オイラー法  
     前進オイラー法でdx/dt=xを解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/ForwardEulerMethod.h) 
+    movie: まだ
+
+## CV
+* Canny Edge Detection
+    Canny法の実装、OpenCVを使わずに実装してみる  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/CannyEdgeDetector.h) 
     movie: まだ
 
 ## AI
