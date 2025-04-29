@@ -88,6 +88,11 @@
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/BRDF/CalculateBRDF.hlsli)
     movie: [link](https://youtu.be/yJQ5WTc43Ik)
 
+* Mobile for URP   
+    モバイル用のBRDFで使われてるやつ、URPに採用されてるのを書いただけ  
+    Impl: あとで書く
+    まだ
+
 ### Filter
 * Mean Filter  
     `case 0`の部分  

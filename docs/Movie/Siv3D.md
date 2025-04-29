@@ -117,3 +117,10 @@ SNNフィルタを実装:
 <div>
 <iframe src="https://www.youtube.com/embed/Ut00Yn21Ohk"></iframe>
 </div>
+
+## リリースノート0.6.16の新機能を見ていく！
+リリースノート0.6.16を見るだけ: 
+[link](https://youtu.be/Ne31_ypwrVg)
+<div>
+<iframe src="https://www.youtube.com/embed/Ne31_ypwrVg"></iframe>
+</div>

@@ -91,8 +91,15 @@ RTCと割り込み入門:
 </div>
 
 ## RTCとキーボードの割り込みをやっていこう！OS自作Part.14
-RTC割り込みちキーボード割り込みの実装:
+RTC割り込みとキーボード割り込みの実装:
 [link](https://youtu.be/y8fWlAH3O50)
 <div>
 <iframe src="https://www.youtube.com/embed/y8fWlAH3O50"></iframe>
+</div>
+
+## マルチタスクに入門しよう！OS自作Part.15
+割り込みを終わらせてマルチタスクへ:
+[link](https://youtu.be/Ql3wVl72G18)
+<div>
+<iframe src="https://www.youtube.com/embed/Ql3wVl72G18"></iframe>
 </div>
