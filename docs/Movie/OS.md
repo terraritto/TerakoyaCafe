@@ -103,3 +103,10 @@ RTC割り込みとキーボード割り込みの実装:
 <div>
 <iframe src="https://www.youtube.com/embed/Ql3wVl72G18"></iframe>
 </div>
+
+## マルチタスクで処理を分割しよう！OS自作Part.16
+マルチタスクを実装して、複数のタスクを走らせる:
+[link](https://youtu.be/UnU7eBIRZNs)
+<div>
+<iframe src="https://www.youtube.com/embed/UnU7eBIRZNs"></iframe>
+</div>

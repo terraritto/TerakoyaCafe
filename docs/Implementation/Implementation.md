@@ -88,10 +88,15 @@
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/BRDF/CalculateBRDF.hlsli)
     movie: [link](https://youtu.be/yJQ5WTc43Ik)
 
+* Ward  
+    WardのBRDFをSRPで実装,GetWardBRDFの部分  
+    Impl: [link](https://github.com/terraritto/TerakoyaRP/blob/main/Assets/ShaderLibrary/BRDF.hlsl)
+    movie: [link](https://youtu.be/QhytVEdFidU)
+
 * Mobile for URP   
-    モバイル用のBRDFで使われてるやつ、URPに採用されてるのを書いただけ  
-    Impl: あとで書く
-    まだ
+    モバイル用のBRDFで使われてるやつ、URPに採用されてるのを書いただけ,GetBRDFの部分から  
+    Impl: [link](https://github.com/terraritto/TerakoyaRP/blob/main/Assets/ShaderLibrary/BRDF.hlsl)
+    movie: [link](https://youtu.be/4-BdB3r9Ayg)
 
 ### Filter
 * Mean Filter  
@@ -117,7 +122,7 @@
 * Sobel Filter  
     エッジ検出フィルタ、中心に近いほど重みが大きい  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/SobelFilter.h)
-    movie: まだ
+    movie: [link](https://youtu.be/rXzaPR2FDGY)
 
 * Kuwahara Filter  
     油絵っぽいものを作るフィルタ  
@@ -208,6 +213,11 @@
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/CommonDXR.hlsli)
     movie: [link](https://youtu.be/yh4wj61TDvw)
 
+* glTF Loader
+    Tinygltfを使って色々読み込みしてみた  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/Loader/GLTFLoader.cpp)
+    movie: まだ
+
 ## Sampling
 * MonteCarlo PI  
     球でのモンテカルロ法  
@@ -244,7 +254,7 @@
 * Canny Edge Detection
     Canny法の実装、OpenCVを使わずに実装してみる  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/CannyEdgeDetector.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/38h_y5aEnK4)
 
 ## AI
 ### 基礎的な？

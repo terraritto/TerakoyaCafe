@@ -40,3 +40,17 @@ LitのためにDirectional Lightを用意する:
 <div>
 <iframe src="https://www.youtube.com/embed/nBcxHfGVW48"></iframe>
 </div>
+
+## URPのBRDFを実装しよう！~SRP Part.7~
+URPで実装されているものと同等のBRDFを実装:
+[link](https://youtu.be/4-BdB3r9Ayg)
+<div>
+<iframe src="https://www.youtube.com/embed/4-BdB3r9Ayg"></iframe>
+</div>
+
+## WardのBRDFを実装してみよう！
+WardのBRDFを実装、異方性反射が考慮されてる:
+[link](https://youtu.be/QhytVEdFidU)
+<div>
+<iframe src="https://www.youtube.com/embed/QhytVEdFidU"></iframe>
+</div>

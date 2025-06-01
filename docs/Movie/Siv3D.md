@@ -124,3 +124,17 @@ SNNフィルタを実装:
 <div>
 <iframe src="https://www.youtube.com/embed/Ne31_ypwrVg"></iframe>
 </div>
+
+## ソーベルフィルタでエッジを検出してみよう！
+ソーベルフィルタを実装、力技実装: 
+[link](https://youtu.be/rXzaPR2FDGY)
+<div>
+<iframe src="https://www.youtube.com/embed/rXzaPR2FDGY"></iframe>
+</div>
+
+## Canny法を1から実装しよう！
+Canny法の実装、手順まとめるのが大変: 
+[link](https://youtu.be/38h_y5aEnK4)
+<div>
+<iframe src="https://www.youtube.com/embed/38h_y5aEnK4"></iframe>
+</div>
