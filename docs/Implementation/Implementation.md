@@ -27,9 +27,9 @@
     movie: [link](https://youtu.be/Ut00Yn21Ohk)
 
 * 法線ベクトル法  
-    座標変換、モデル座標系->ワールド座標系->ビュー座標系->投影座標系->スクリーン座標系の流れ  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/VertexProcess.h) 
-    movie: まだ
+    dot計算で省くだけ  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/HiddenSurfaceRemovalNormal.h) 
+    movie: [link](https://youtu.be/ubP8RBPaGCg)
 
 ### Light
 * Directional Light  
@@ -248,6 +248,16 @@
 * 前進オイラー法  
     前進オイラー法でdx/dt=xを解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/ForwardEulerMethod.h) 
+    movie: まだ
+
+* ルンゲクッタ(4段)
+    るんげくったの実装、単振り子を解いてます  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/RKSample.h) 
+    movie: まだ
+
+* ランダムウォーク(2D)  
+    格子上のランダムウォーク  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/RandomWork2D.h) 
     movie: まだ
 
 ## CV

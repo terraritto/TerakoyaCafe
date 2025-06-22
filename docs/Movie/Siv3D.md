@@ -138,3 +138,10 @@ Canny法の実装、手順まとめるのが大変:
 <div>
 <iframe src="https://www.youtube.com/embed/38h_y5aEnK4"></iframe>
 </div>
+
+## 法線ベクトル法で隠面消去をしてみよう！
+見えない場所は描画しないようにしてく: 
+[link](https://youtu.be/ubP8RBPaGCg)
+<div>
+<iframe src="https://www.youtube.com/embed/ubP8RBPaGCg"></iframe>
+</div>
