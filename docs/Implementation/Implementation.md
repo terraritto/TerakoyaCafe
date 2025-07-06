@@ -216,7 +216,7 @@
 * glTF Loader
     Tinygltfを使って色々読み込みしてみた  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/Loader/GLTFLoader.cpp)
-    movie: まだ
+    movie: [link](https://youtu.be/B_O0Y2OnAtM)
 
 ## Sampling
 * MonteCarlo PI  
@@ -248,16 +248,21 @@
 * 前進オイラー法  
     前進オイラー法でdx/dt=xを解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/ForwardEulerMethod.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/LWEyAsr9sZ4)
 
-* ルンゲクッタ(4段)
-    るんげくったの実装、単振り子を解いてます  
+* ルンゲクッタ(4段)  
+    ルンゲクッタの実装、単振り子を解いてます  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/RKSample.h) 
     movie: まだ
 
 * ランダムウォーク(2D)  
     格子上のランダムウォーク  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/RandomWork2D.h) 
+    movie: まだ
+
+* 二重振り子  
+    ルンゲクッタで二重振り子を解いて可視化  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/DoublePendulum.h) 
     movie: まだ
 
 ## CV

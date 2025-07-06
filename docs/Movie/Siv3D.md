@@ -145,3 +145,17 @@ Canny法の実装、手順まとめるのが大変:
 <div>
 <iframe src="https://www.youtube.com/embed/ubP8RBPaGCg"></iframe>
 </div>
+
+## glTFフォーマットのモデルを読み込んでみよう！
+glTFをTinyGltfを利用して読み込みをして、描画をする: 
+[link](https://youtu.be/B_O0Y2OnAtM)
+<div>
+<iframe src="https://www.youtube.com/embed/B_O0Y2OnAtM"></iframe>
+</div>
+
+## 前進オイラー法をやってみよう！
+前進オイラー法で簡単な微分方程式を解く: 
+[link](https://youtu.be/LWEyAsr9sZ4)
+<div>
+<iframe src="https://www.youtube.com/embed/LWEyAsr9sZ4"></iframe>
+</div>
