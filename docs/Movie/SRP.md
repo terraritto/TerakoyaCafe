@@ -61,3 +61,10 @@ WardのBRDFを実装、異方性反射が考慮されてる:
 <div>
 <iframe src="https://www.youtube.com/embed/cHtaOw7UpnQ"></iframe>
 </div>
+
+## シャドウを実際に描画しよう！~SRP Part.9~
+シャドウマップに書き込んだものを実際に描画していく:
+[link](https://youtu.be/fyh8PUBp074)
+<div>
+<iframe src="https://www.youtube.com/embed/fyh8PUBp074"></iframe>
+</div>

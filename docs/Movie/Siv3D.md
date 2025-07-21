@@ -159,3 +159,10 @@ glTFをTinyGltfを利用して読み込みをして、描画をする:
 <div>
 <iframe src="https://www.youtube.com/embed/LWEyAsr9sZ4"></iframe>
 </div>
+
+## ルンゲクッタ法で単振り子を解いてみよう！
+4段4次のルンゲクッタで単振り子を解く: 
+[link](https://youtu.be/yp_wBw-Xlac)
+<div>
+<iframe src="https://www.youtube.com/embed/yp_wBw-Xlac"></iframe>
+</div>

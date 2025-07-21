@@ -27,6 +27,12 @@
 * 高島屋
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d919.4413719159305!2d138.83744911374188!3d37.73703444675648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff4e927e5ed3033%3A0x313821f3f8823151!2z6auY5bO25bGL!5e0!3m2!1sja!2sjp!4v1751803849558!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
+* 道の駅 燕三条地場産センター
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6318.090653314505!2d138.9343809!3d37.6481384!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff4e395e66588cd%3A0x5bda22717ed03d1!2z6YGT44Gu6aeFIOeHleS4ieadoeWcsOWgtOeUo-OCu-ODs-OCv-ODvA!5e0!3m2!1sja!2sjp!4v1753063074880!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* らーめん勝 燕三条店
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6318.090653314505!2d138.9343809!3d37.6481384!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff4e39595d624f9%3A0x52ad16cc070c7aa4!2z44KJ44O844KB44KT5YudIOeHleS4ieadoeW6lw!5e0!3m2!1sja!2sjp!4v1753063110541!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
 ## 福島
 * 四季彩 一力  
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3166.0615523114175!2d140.26602867597558!3d37.482873828920816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60200c03010f71f3%3A0x3710e7c73451d354!2z5Zub5a2j5b2pIOS4gOWKmw!5e0!3m2!1sja!2sjp!4v1751802906572!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -58,3 +64,19 @@
 
 * 二宮温泉
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.2755263441113!2d135.19332547586853!3d34.69822988334524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008ee5fd059ae7%3A0xc847e17894cf8846!2z5LqM5a6u5rip5rOJ!5e0!3m2!1sja!2sjp!4v1751803701491!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+## 茨城
+* 里海邸 金波楼本邸
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3214.8986062272193!2d140.58596477581605!3d36.314765572389504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x602231507dba7c41%3A0xb87fc52a38dea512!2z6YeM5rW36YK4IOmHkeazoualvOacrOmCuA!5e0!3m2!1sja!2sjp!4v1753063208008!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 神磯の鳥居
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1699.9526868995372!2d140.58708327220668!3d36.31494229375252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x602231509082ac95%3A0xba1b41cec060948d!2z56We56Ov44Gu6bOl5bGF!5e0!3m2!1sja!2sjp!4v1753063250466!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 大洗美術館
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d633.5262246090973!2d140.58806553068408!3d36.31510144952944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6022315be1e1a36d%3A0xd5fae85e50fcc3ea!2z5aSn5rSX576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1753063281241!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 大洗磯前神社
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1878.830988914712!2d140.58811597529441!3d36.3146407991014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6022315aeaad769f%3A0xbc06f4377cefb7f4!2z5aSn5rSX56Ov5YmN56We56S-!5e0!3m2!1sja!2sjp!4v1753063320575!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 大洗マリンタワー
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.7265298890406!2d140.5715297005566!3d36.30884168026948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x602231397f9881ff%3A0xe1ff5daa7a62ea66!2z5aSn5rSX44Oe44Oq44Oz44K_44Ov44O8!5e0!3m2!1sja!2sjp!4v1753063365377!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
