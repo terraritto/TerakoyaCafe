@@ -124,3 +124,10 @@ RTC割り込みとキーボード割り込みの実装:
 <div>
 <iframe src="https://www.youtube.com/embed/LC5iMJEUOe4"></iframe>
 </div>
+
+## 小数演算のためにFPUの準備をしよう！OS自作Part.18
+FPUを使うための初期化をしていく:
+[link](https://youtu.be/luqsgs-4ZuM)
+<div>
+<iframe src="https://www.youtube.com/embed/luqsgs-4ZuM"></iframe>
+</div>
