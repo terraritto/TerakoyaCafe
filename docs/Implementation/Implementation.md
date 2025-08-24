@@ -134,6 +134,11 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/SNNFilter.h)
     movie:[link](https://youtu.be/39c-2kxq8YE)
 
+* Bayar Filter  
+    カメラで使われているベイヤーフィルター  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BayarFilter.h)
+    movie: まだ
+
 ### AntiAliasing
 * SSAA  
     `isUseSSAA`の部分を参照  
@@ -245,6 +250,11 @@
     movie: [link](https://youtu.be/r-bzF5f4Nnk)
 
 ## 数値計算
+* ニュートン法  
+    ニュートン法で簡単な式を解く  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/ForwardEulerMethod.h) 
+    movie: [link](https://youtu.be/LWEyAsr9sZ4)
+
 * 前進オイラー法  
     前進オイラー法でdx/dt=xを解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/ForwardEulerMethod.h) 
@@ -263,18 +273,18 @@
 * 二重振り子  
     ルンゲクッタで二重振り子を解いて可視化  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/DoublePendulum.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/6imLz_0Z0JQ)
 
 ## 分子動力学シミュレーション
 * Lennard-Jones potential  
     分子間の力を可視化してみようの会  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/LennardJonesSample.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/_mZgFhwCjI8)
 
 * Maxwell-Boltzmann分布  
     速度の分布を可視化してみようの会  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/MaxwellBoltzmann%20.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/zjPBheeGWSU)
 
 * 速度ベルレ法  
     粒子の移動計算を解く際の便利な方法  
@@ -336,6 +346,12 @@
 * 穴掘り法  
     Dig関数が実装  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/GameProgrammingC%2B%2B/Example_04/ForGraph/SearchGrid.cpp) 
+    movie: 特になし
+
+## 強化学習
+* Greedy法  
+    貪欲にバンディットしていこう！  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BanditGreedy.h) 
     movie: 特になし
 
 ## お遊び

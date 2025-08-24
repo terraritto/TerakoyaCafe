@@ -173,3 +173,24 @@ glTFをTinyGltfを利用して読み込みをして、描画をする:
 <div>
 <iframe src="https://www.youtube.com/embed/e5vXMGqfKyM"></iframe>
 </div>
+
+## 二重振り子を実装してみよう！
+ルンゲクッタで二重振り子を解く: 
+[link](https://youtu.be/6imLz_0Z0JQ)
+<div>
+<iframe src="https://www.youtube.com/embed/6imLz_0Z0JQ"></iframe>
+</div>
+
+## Lennard-Jones potentialを図示しよう！
+Lennard-Jones potentialを可視化: 
+[link](https://youtu.be/_mZgFhwCjI8)
+<div>
+<iframe src="https://www.youtube.com/embed/_mZgFhwCjI8"></iframe>
+</div>
+
+## 分子動力学シミュレーションのために、マクスウェル分布を考えよう！
+マクスウェル分布を可視化: 
+[link](https://youtu.be/zjPBheeGWSU)
+<div>
+<iframe src="https://www.youtube.com/embed/zjPBheeGWSU"></iframe>
+</div>
