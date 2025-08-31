@@ -289,7 +289,7 @@
 * 速度ベルレ法  
     粒子の移動計算を解く際の便利な方法  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/MolecularDynamics.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/xqL4QVXaBEs)
 
 ## CV
 * Canny Edge Detection
@@ -352,7 +352,12 @@
 * Greedy法  
     貪欲にバンディットしていこう！  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BanditGreedy.h) 
-    movie: 特になし
+    movie: まだ
+
+* ε-Greedy法  
+    たまには別のものも選ぼう  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BunditEpsilonGreedy.h) 
+    movie: まだ
 
 ## お遊び
 * SynthWave  
