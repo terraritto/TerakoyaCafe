@@ -131,3 +131,10 @@ FPUを使うための初期化をしていく:
 <div>
 <iframe src="https://www.youtube.com/embed/luqsgs-4ZuM"></iframe>
 </div>
+
+## FPUを使ってsinとcosを計算しよう！OS自作Part.19
+FPUを使ってsinとcosを計算する:
+[link](https://youtu.be/UoTAxwZdlzU)
+<div>
+<iframe src="https://www.youtube.com/embed/UoTAxwZdlzU"></iframe>
+</div>

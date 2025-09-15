@@ -6,6 +6,11 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/BresenhamSample.h) 
     movie: [link](https://youtu.be/mRRQs_vFNXk)
 
+* Cohen-Sutherland Algorithm  
+    クリッピング、矩形限定  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CohenSutherlandSample.h) 
+    movie: まだ
+
 * Edge Function(Triangle)  
     Edge Functionを利用して三角形を塗りつぶす.パターン1の部分を参照  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h) 
@@ -137,7 +142,7 @@
 * Bayar Filter  
     カメラで使われているベイヤーフィルター  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BayarFilter.h)
-    movie: まだ
+    movie: [link](https://youtu.be/JyxDIZewrMI)
 
 ### AntiAliasing
 * SSAA  
@@ -252,8 +257,8 @@
 ## 数値計算
 * ニュートン法  
     ニュートン法で簡単な式を解く  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/ForwardEulerMethod.h) 
-    movie: [link](https://youtu.be/LWEyAsr9sZ4)
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/NewtonSample.h) 
+    movie: まだ
 
 * 前進オイラー法  
     前進オイラー法でdx/dt=xを解く  
@@ -357,6 +362,16 @@
 * ε-Greedy法  
     たまには別のものも選ぼう  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BunditEpsilonGreedy.h) 
+    movie: まだ
+
+* 楽観的初期値  
+    初期値は寛容にするとよいらしい  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/OptimisticInitial.h) 
+    movie: まだ
+
+* 上限信頼区間(UCB)  
+    ステップ数をうまくlogオーダーで組み込む  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/UCB.h) 
     movie: まだ
 
 ## お遊び

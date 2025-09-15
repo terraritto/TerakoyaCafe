@@ -201,3 +201,10 @@ Lennard-Jones potentialを可視化:
 <div>
 <iframe src="https://www.youtube.com/embed/xqL4QVXaBEs"></iframe>
 </div>
+
+## べイヤーフィルタを実装してみよう！
+カメラで使われるベイヤーフィルターを再現: 
+[link](https://youtu.be/JyxDIZewrMI)
+<div>
+<iframe src="https://www.youtube.com/embed/JyxDIZewrMI"></iframe>
+</div>

@@ -7,6 +7,8 @@
 * `Movie` - 動画関係の分類
 * `Hobby` - 趣味で見たものとか読んだものとか、いろいろまとめ
 * `GameStatistics` - ゲームのグラフィックス設定の個人的まとめ
+* `Trip` - 行ったところのまとめ
+* `Onsen` - 温泉むすめのパネルまとめ
 
 ## Contact
 Blueskyにどうぞ -> [Bsky](https://bsky.app/profile/terraritto.bsky.social)

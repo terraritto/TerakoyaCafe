@@ -18,6 +18,7 @@ theme:
       - Movie: Hobby/movie.md
       - Book: Hobby/book.md
       - Trip: Hobby/Trip.md
+      - Onsen: Hobby/Onsen.md
     - GameStatistics:
       - MHWilds: GameStatistics/MHWilds.md
       - MHRise: GameStatistics/MHRise.md

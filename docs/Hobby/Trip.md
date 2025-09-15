@@ -175,6 +175,18 @@
 * 西武渋谷店
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d447.1287824612638!2d139.70003142237366!3d35.65991368049515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca86b3740b9%3A0x5d0968ff236330a0!2z6KW_5q2m5riL6LC35bqX!5e0!3m2!1sja!2sjp!4v1756040276226!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
+* 東大 赤門
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d809.9085543742453!2d139.7591637991974!3d35.710617899999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188da133a217b3%3A0x363d5cf0cdaecf14!2z6LWk6ZaA!5e0!3m2!1sja!2sjp!4v1757913703244!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 弥生美術館
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496.35434654580735!2d139.76290411411722!3d35.71463040575637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c2e33a9f6fd%3A0xf4490e56b45225d4!2z5byl55Sf576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1757913840895!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 竹久夢二美術館
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496.35434654580735!2d139.76290411411722!3d35.71463040575637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c2e333e5d69%3A0xa8f1ae1e32cf57e5!2z56u55LmF5aSi5LqM576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1757913863184!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 御菓子処 扇屋
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d419.7561946223071!2d139.75958889522954!3d35.710570164055234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c3a636e0221%3A0x66462b914fd5e2e8!2z5b6h6I-T5a2Q5YemIOaJh-Wxiw!5e0!3m2!1sja!2sjp!4v1757913765257!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
 * 上野の森さくらテラス
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202.4733551155431!2d139.77437048857132!3d35.71210722453622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188e9e76c00001%3A0xb0af7dad81f82978!2z5LiK6YeO44Gu5qOu44GV44GP44KJ44OG44Op44K5!5e0!3m2!1sja!2sjp!4v1756039996679!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
