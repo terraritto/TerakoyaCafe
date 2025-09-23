@@ -1,4 +1,29 @@
 # 旅行
+行きたいところメモ、行ったら消す予定  
+| 場所 | 県 |
+| :--- | :--- |
+| 御神神社 | 滋賀 |
+| 近江八幡市立資料館| 滋賀 |
+| 高野山金剛峯寺 | 和歌山 |
+| 京都府立京都学・歴彩館 | 京都 |
+| 平等院 | 京都 |
+| 知恩院 | 京都 |
+| 建仁寺 | 京都 |
+| 永平寺 | 福井 |
+| 久遠寺 | 山梨 |
+| 旧見付学校 | 静岡 |
+| 旧開智学校 | 長野 |
+| 松本市立博物館 | 長野 |
+| 国文学研究資料館 | 東京 |
+| 聖徳記念絵画館 | 東京 |
+| 豪徳寺 | 東京 |
+| 玉泉寺 | 東京 |
+| 船の科学館 | 東京 |
+| 西坂公園 | 長崎 |
+| 円徳寺 | 岐阜 |
+| 清浄光寺 | 神奈川 |
+| 和泉市久保惣記念美術館 | 大阪 |
+
 行ったところのメモ
 
 ## 静岡
@@ -166,6 +191,9 @@
 * 国立西洋美術館
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5495.206466834998!2d139.77337006996672!3d35.71930628319109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188e9cfa41cc7f%3A0xbb23dcd494e13c8b!2z5Zu956uL6KW_5rSL576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1756039929545!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
+* 東京都美術館
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.3412005635714!2d139.77120149488775!3d35.71620446848227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c281e3bfa6f%3A0x8418dfeeb8bcab50!2z5p2x5Lqs6YO9576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1758625124413!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
 * 古代オリエント博物館
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1612.534863530131!2d139.71834891371975!3d35.72823808656523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d6e14443107%3A0xe5cfa97a8911c04e!2z5Y-k5Luj44Kq44Oq44Ko44Oz44OI5Y2a54mp6aSo!5e0!3m2!1sja!2sjp!4v1756040135880!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
@@ -201,3 +229,49 @@
 
 * TurnTable Restaurant～ターンテーブルレストラン～
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202.61749751680424!2d139.69298640456907!3d35.65532903586602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b62046a9fff%3A0x2911a639a2ca5404!2zVHVyblRhYmxlIFJlc3RhdXJhbnTvvZ7jgr_jg7zjg7Pjg4bjg7zjg5bjg6vjg6zjgrnjg4jjg6njg7PvvZ4!5e0!3m2!1sja!2sjp!4v1756040543359!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 上野 藪そば
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6479.302783831268!2d139.77239940329454!3d35.71019535762251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188e9f00990001%3A0xe5712d18d31d5ab!2z5LiK6YeOIOiXquOBneOBsA!5e0!3m2!1sja!2sjp!4v1758625251582!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+## 岐阜
+* 照蓮寺
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11189.997956935775!2d137.25278365132974!3d36.14154109762866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bad05bd12bab%3A0x740ce6a7bc5eeede!2z54Wn6JOu5a-6!5e0!3m2!1sja!2sjp!4v1758587034786!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 飛騨高山まちの博物館
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1836.6733917161073!2d137.25813934882186!3d36.14160633427348!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002badae6f1d1e1%3A0x96aa3b39e1383532!2z6aOb6aio6auY5bGx44G-44Gh44Gu5Y2a54mp6aSo!5e0!3m2!1sja!2sjp!4v1758587158089!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* たま井や
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d303.7993216574384!2d137.26008564560257!3d36.14387770252199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bad08038ac37%3A0xbda17ae4f535489!2z44Gf44G-5LqV44KE!5e0!3m2!1sja!2sjp!4v1758587231426!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 舩坂酒造店
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d483.3284410292276!2d137.2591848226549!3d36.141009565903154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002badbba0a579f%3A0xd29ac2497563af25!2z6Iip5Z2C6YWS6YCg5bqX!5e0!3m2!1sja!2sjp!4v1758587326663!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 中橋観光案内所（飛騨・高山観光コンベンション協会）
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d426.77520442932183!2d137.25794348307224!3d36.14007021980568!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bad8033eb95f%3A0xf5c3bbabd1072b83!2z5Lit5qmL6Kaz5YWJ5qGI5YaF5omA77yI6aOb6aio44O76auY5bGx6Kaz5YWJ44Kz44Oz44OZ44Oz44K344On44Oz5Y2U5Lya77yJ!5e0!3m2!1sja!2sjp!4v1758587560341!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 津田彫刻
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d449.5140992440386!2d137.2579386996307!3d36.14036078416043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002badbd1b0ab57%3A0xa08f6b059c264c46!2z5rSl55Sw5b2r5Yi7!5e0!3m2!1sja!2sjp!4v1758587712847!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* おみやげ処三川屋本店
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805.4978509885351!2d137.2590056029116!3d36.142422568324534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bada11304853%3A0x37f9f60558e99f20!2z44GK44G_44KE44GS5Yem5LiJ5bed5bGL5pys5bqX!5e0!3m2!1sja!2sjp!4v1758587887904!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 高山陣屋
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d835.9259522730199!2d137.25724120521338!3d36.1398739363713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bad95e446f8f%3A0x98f5f71172f591e1!2z6auY5bGx6Zmj5bGL!5e0!3m2!1sja!2sjp!4v1758587760049!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 飛騨高山の画廊 絵画 骨董 渋草焼 ギャラリー斐山
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3222.029844315187!2d137.2533834174438!3d36.14148660000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bad9cb0ba897%3A0xcbe02e5700a07fcc!2z6aOb6aio6auY5bGx44Gu55S75buKIOe1teeUuyDpqqjokaMg5riL6I2J54S8IOOCruODo-ODqeODquODvOaWkOWxsQ!5e0!3m2!1sja!2sjp!4v1758624984399!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 高山濃飛バスセンター
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d273.93574067250273!2d137.25122005842704!3d36.14180643228688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bb28520dc741%3A0xcff381ffcdac0b66!2z6auY5bGx5r-D6aOb44OQ44K544K744Oz44K_44O8!5e0!3m2!1sja!2sjp!4v1758587998079!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 和田
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d718.0876196136812!2d137.25628825087665!3d36.14339490335308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bad711091661%3A0x1b036e38d3749431!2z5ZKM55Sw!5e0!3m2!1sja!2sjp!4v1758587469001!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 志田
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d201.37596416904103!2d137.259419317984!3d36.14183765084133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bada48813eb3%3A0x6280c69010dc2b3e!2z5b-X55Sw!5e0!3m2!1sja!2sjp!4v1758587820271!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* イノマル商店
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805.4823121298239!2d137.2553945289888!3d36.14393592080346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bb47ab397ccb%3A0x24204bad5fa6d1ec!2z44Kk44OO44Oe44Or5ZWG5bqX!5e0!3m2!1sja!2sjp!4v1758587515154!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+* 高山桜庵
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2116.930885857523!2d137.25276657678802!3d36.13890663830502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6002bb27bc38cd71%3A0x705da5e7d586ae4f!2z6auY5bGx5qGc5bq1!5e0!3m2!1sja!2sjp!4v1758587674013!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

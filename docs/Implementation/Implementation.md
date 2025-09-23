@@ -258,7 +258,7 @@
 * ニュートン法  
     ニュートン法で簡単な式を解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/NewtonSample.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/2eWT7Tvc_TA)
 
 * 前進オイラー法  
     前進オイラー法でdx/dt=xを解く  

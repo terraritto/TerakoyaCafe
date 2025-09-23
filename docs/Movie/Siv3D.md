@@ -208,3 +208,10 @@ Lennard-Jones potentialを可視化:
 <div>
 <iframe src="https://www.youtube.com/embed/JyxDIZewrMI"></iframe>
 </div>
+
+## ニュートン法で方程式を解いてみよう！
+ニュートン法で簡単な式を解く: 
+[link](https://youtu.be/2eWT7Tvc_TA)
+<div>
+<iframe src="https://www.youtube.com/embed/2eWT7Tvc_TA"></iframe>
+</div>
