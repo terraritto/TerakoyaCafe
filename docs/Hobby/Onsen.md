@@ -16,3 +16,11 @@
 ![onsen_0004_0001](img/onsen_0004_0001.jpeg)  
 ![onsen_0004_0002](img/onsen_0004_0002.jpeg)  
 ![onsen_0004_0003](img/onsen_0004_0003.jpeg)  
+
+## 石和紅
+![onsen_0005_0001](img/onsen_0005_0001.jpeg)  
+![onsen_0005_0002](img/onsen_0005_0002.jpeg)  
+![onsen_0005_0003](img/onsen_0005_0003.jpeg)  
+![onsen_0005_0004](img/onsen_0005_0004.jpeg)  
+![onsen_0005_0005](img/onsen_0005_0005.jpeg)  
+![onsen_0005_0006](img/onsen_0005_0006.jpeg)  

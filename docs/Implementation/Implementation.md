@@ -11,6 +11,11 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CohenSutherlandSample.h) 
     movie: まだ
 
+* Cyrus-Beck Algorithm  
+    クリッピング、多角形もいける！  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CyrusBeckSample.h) 
+    movie: まだ
+
 * Edge Function(Triangle)  
     Edge Functionを利用して三角形を塗りつぶす.パターン1の部分を参照  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h) 
@@ -254,6 +259,11 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/RejectionSampling.h)
     movie: [link](https://youtu.be/r-bzF5f4Nnk)
 
+* Walker's Alias法  
+    重み付きのサンプルをO(1)でやる  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/WalkerAlias.h)
+    movie: なし
+
 ## 数値計算
 * ニュートン法  
     ニュートン法で簡単な式を解く  
@@ -357,7 +367,7 @@
 * Greedy法  
     貪欲にバンディットしていこう！  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BanditGreedy.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/NuEzgazAwPY)
 
 * ε-Greedy法  
     たまには別のものも選ぼう  

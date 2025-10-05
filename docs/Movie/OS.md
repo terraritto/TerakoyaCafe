@@ -138,3 +138,10 @@ FPUを使ってsinとcosを計算する:
 <div>
 <iframe src="https://www.youtube.com/embed/UoTAxwZdlzU"></iframe>
 </div>
+
+## FPUを使ってバラ曲線を表示しよう！OS自作Part.20
+FPUを使ってバラ曲線を計算して描画:
+[link](https://youtu.be/hWEM5uuStKc)
+<div>
+<iframe src="https://www.youtube.com/embed/hWEM5uuStKc"></iframe>
+</div>

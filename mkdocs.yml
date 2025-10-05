@@ -12,6 +12,7 @@ theme:
       - SRP: Movie/SRP.md
       - GameProgrammingC++: Movie/GP.md
       - OS: Movie/OS.md
+      - RL: Movie/RL.md
     - Implementation: Implementation/Implemantation.md
     - Hobby:
       - Anime: Hobby/Anime.md
