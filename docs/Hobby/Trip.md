@@ -13,6 +13,7 @@
 | 永平寺 | 福井 |
 | 久遠寺 | 山梨 |
 | 旧見付学校 | 静岡 |
+| 登呂遺跡 | 静岡 |
 | 旧開智学校 | 長野 |
 | 松本市立博物館 | 長野 |
 | 国文学研究資料館 | 東京 |
@@ -20,10 +21,24 @@
 | 豪徳寺 | 東京 |
 | 玉泉寺 | 東京 |
 | 船の科学館 | 東京 |
+| 大森貝塚 | 東京 |
+| 品川歴史館 | 東京 |
+| 夏島貝塚 | 神奈川 |
 | 西坂公園 | 長崎 |
 | 円徳寺 | 岐阜 |
 | 清浄光寺 | 神奈川 |
 | 和泉市久保惣記念美術館 | 大阪 |
+| 高千穂神社 | 宮崎 |
+| 熊野大社 | 島根 |
+| 出雲大社 | 島根 |
+| 真福寺貝塚 | 埼玉 |
+| 藤井寺市国府遺跡 | 大阪 |
+| 岩宿遺跡 | 群馬 |
+| 早水台遺跡 | 大分 |
+| 丹生遺跡 | 大分 |
+| 福井洞窟 | 長崎 |
+| 福井洞窟ミュージアム | 長崎 |
+| 大串貝塚 | 茨城 |
 
 行ったところのメモ
 
@@ -183,56 +198,26 @@
 
 
 ## 東京
-* 東京国立博物館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.300014855233!2d139.7739465759069!3d35.718839427906964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188e8314d77d11%3A0x232fd618bd4977dd!2z5p2x5Lqs5Zu956uL5Y2a54mp6aSo!5e0!3m2!1sja!2sjp!4v1756039876396!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 国立科学博物館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4379.24050512054!2d139.77412780443288!3d35.71892066025638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188e9ceba15bf1%3A0x89884580e40b3eca!2z5Zu956uL56eR5a2m5Y2a54mp6aSo!5e0!3m2!1sja!2sjp!4v1756039911779!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 国立西洋美術館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5495.206466834998!2d139.77337006996672!3d35.71930628319109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188e9cfa41cc7f%3A0xbb23dcd494e13c8b!2z5Zu956uL6KW_5rSL576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1756039929545!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 東京都美術館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.3412005635714!2d139.77120149488775!3d35.71620446848227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c281e3bfa6f%3A0x8418dfeeb8bcab50!2z5p2x5Lqs6YO9576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1758625124413!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 古代オリエント博物館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1612.534863530131!2d139.71834891371975!3d35.72823808656523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d6e14443107%3A0xe5cfa97a8911c04e!2z5Y-k5Luj44Kq44Oq44Ko44Oz44OI5Y2a54mp6aSo!5e0!3m2!1sja!2sjp!4v1756040135880!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* ギャラリー・ルデコ
-<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d51869.52864237719!2d139.70515800000004!3d35.656177!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b5bc20cc5af%3A0x25eb06262ee7942a!2z44Ku44Oj44Op44Oq44O844O744Or44OH44Kz!5e0!3m2!1sja!2sus!4v1756040391119!5m2!1sja!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 西武渋谷店
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d447.1287824612638!2d139.70003142237366!3d35.65991368049515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca86b3740b9%3A0x5d0968ff236330a0!2z6KW_5q2m5riL6LC35bqX!5e0!3m2!1sja!2sjp!4v1756040276226!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 東大 赤門
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d809.9085543742453!2d139.7591637991974!3d35.710617899999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188da133a217b3%3A0x363d5cf0cdaecf14!2z6LWk6ZaA!5e0!3m2!1sja!2sjp!4v1757913703244!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 弥生美術館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496.35434654580735!2d139.76290411411722!3d35.71463040575637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c2e33a9f6fd%3A0xf4490e56b45225d4!2z5byl55Sf576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1757913840895!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 竹久夢二美術館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496.35434654580735!2d139.76290411411722!3d35.71463040575637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c2e333e5d69%3A0xa8f1ae1e32cf57e5!2z56u55LmF5aSi5LqM576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1757913863184!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 御菓子処 扇屋
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d419.7561946223071!2d139.75958889522954!3d35.710570164055234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c3a636e0221%3A0x66462b914fd5e2e8!2z5b6h6I-T5a2Q5YemIOaJh-Wxiw!5e0!3m2!1sja!2sjp!4v1757913765257!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 上野の森さくらテラス
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202.4733551155431!2d139.77437048857132!3d35.71210722453622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188e9e76c00001%3A0xb0af7dad81f82978!2z5LiK6YeO44Gu5qOu44GV44GP44KJ44OG44Op44K5!5e0!3m2!1sja!2sjp!4v1756039996679!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* WINE SHOP nico 渋谷店
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7881665707328!2d139.7001518!3d35.657590400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188be9349867fb%3A0xce316f71eb2bc699!2zV0lORSBTSE9QIG5pY28g5riL6LC35bqX!5e0!3m2!1sja!2sjp!4v1756040499393!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 鉄板焼・お好み焼 ごっつい池袋店
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d306.94513760948024!2d139.71017677364932!3d35.731705642830136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d5de7fe60ad%3A0x5562165016f60e65!2z6YmE5p2_54S844O744GK5aW944G_54S8IOOBlOOBo-OBpOOBhOaxoOiii-W6lw!5e0!3m2!1sja!2sjp!4v1756040052379!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 池袋 十割蕎麦 鴨料理 ならや
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2357.716281453611!2d139.71285357276696!3d35.73099037329438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d665f52b6d1%3A0xcada646b04db70bc!2z5rGg6KKLIOWNgeWJsuiVjum6piDptKjmlpnnkIYg44Gq44KJ44KE!5e0!3m2!1sja!2sjp!4v1756040089425!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* TurnTable Restaurant～ターンテーブルレストラン～
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d202.61749751680424!2d139.69298640456907!3d35.65532903586602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b62046a9fff%3A0x2911a639a2ca5404!2zVHVyblRhYmxlIFJlc3RhdXJhbnTvvZ7jgr_jg7zjg7Pjg4bjg7zjg5bjg6vjg6zjgrnjg4jjg6njg7PvvZ4!5e0!3m2!1sja!2sjp!4v1756040543359!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 上野 藪そば
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6479.302783831268!2d139.77239940329454!3d35.71019535762251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188e9f00990001%3A0xe5712d18d31d5ab!2z5LiK6YeOIOiXquOBneOBsA!5e0!3m2!1sja!2sjp!4v1758625251582!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+| 場所 | リンク |
+| :--- | :--- |
+| 東京国立博物館 | [GoogleMap](https://maps.app.goo.gl/AnFx5NWVhx7ZJWEz8) |
+| 国立科学博物館 | [GoogleMap](https://maps.app.goo.gl/iHdpLtFCszHqRwgi9) |
+| 国立西洋美術館 | [GoogleMap](https://maps.app.goo.gl/5iAkWNhMeqdZmBSs7) |
+| 東京都美術館 | [GoogleMap](https://maps.app.goo.gl/rh99t8VSEVey9dnQA) |
+| 古代オリエント博物館 | [GoogleMap](https://maps.app.goo.gl/bomVS3H42uXew7Jw6) |
+| 自由学園明日館 | [GoogleMap](https://maps.app.goo.gl/nppNXPoFh28Cu8X67) |
+| ギャラリー・ルデコ | [GoogleMap](https://maps.app.goo.gl/cmxJNhL1MsAVoLT69) |
+| 西武渋谷店 | [GoogleMap](https://maps.app.goo.gl/iaUetZ1AKyyVqt5q8) |
+| 東大 赤門 | [GoogleMap](https://maps.app.goo.gl/VzfKoZbcwxhVYMVu5) |
+| 弥生美術館 | [GoogleMap](https://maps.app.goo.gl/gY5CvaYzTzypuG9v9) |
+| 竹久夢二美術館 | [GoogleMap](https://maps.app.goo.gl/QJWwxijCNXx2bWRb7) |
+| 御菓子処 扇屋 | [GoogleMap](https://maps.app.goo.gl/RxbhwJdyf2Wzyonj7) |
+| 上野の森さくらテラス | [GoogleMap](https://maps.app.goo.gl/tWhvysRbDzgBGpjk8) |
+| WINE SHOP nico 渋谷店 | [GoogleMap](https://maps.app.goo.gl/gL6Gm7kUzmUaXh4r6) |
+| 鉄板焼・お好み焼 ごっつい池袋店 | [GoogleMap](https://maps.app.goo.gl/DBh4sFDVJMKqcoLF7) |
+| 池袋 十割蕎麦 鴨料理 ならや | [GoogleMap](https://maps.app.goo.gl/AG4DHHekVKoNzixh7) |
+| TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
+| 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
 
 ## 岐阜
 | 場所 | リンク |
@@ -268,3 +253,20 @@
 | 清月 石和駅前店 | [GoogleMap](https://maps.app.goo.gl/P3PNktHz9Uo1zm4G9) |
 | 里の駅いちのみや | [GoogleMap](https://maps.app.goo.gl/UWg3zYBNUoqsuPkc9) |
 | 釈迦堂遺跡群 | [GoogleMap](https://maps.app.goo.gl/DKqNGzwybAoQe3JQ6) |
+
+## 奈良
+| 場所 | リンク |
+| :--- | :--- |
+| 行基菩薩像 | [GoogleMap](https://maps.app.goo.gl/9jfSu59zxgmS9PnAA) |
+| 江戸三 | [GoogleMap](https://maps.app.goo.gl/HmCsRP7dUS2Pd6gL7) |
+| 浮見堂 | [GoogleMap](https://maps.app.goo.gl/cRBST2DuAGZMsnH26) |
+| 世界遺産碑（古都奈良の文化財 春日大社） | [GoogleMap](https://maps.app.goo.gl/rQvNUiBc8raoKyLK9) |
+| 春日大社 二之鳥居 | [GoogleMap](https://maps.app.goo.gl/9LyPAwQ4RYkNNQag9) |
+| 春日大社 | [GoogleMap](https://maps.app.goo.gl/6JSqXVffmjAiiHmJ9) |
+| 奈良国立博物館 仏像館 | [GoogleMap](https://maps.app.goo.gl/zu1nPdjR6LKeB6SZ9) |
+| 青銅器館 | [GoogleMap](https://maps.app.goo.gl/zTePphSWeNZMDdyF9) |
+| 東大寺ミュージアム | [GoogleMap](https://maps.app.goo.gl/AbRMxA4D8ENuALSr5) |
+| 東大寺 | [GoogleMap](https://maps.app.goo.gl/AxWjFTyLedgJdRDw7) |
+| 奈良公園バスターミナル | [GoogleMap](https://maps.app.goo.gl/ojdw7Cu9eMUdg6bo9) |
+| 和食とお酒 やまと庵 近鉄奈良駅前店 | [GoogleMap](https://maps.app.goo.gl/TTWvUKGZRM9hY5dg6) |
+| YAMATO Craft Beer Table 近鉄奈良駅前店 | [GoogleMap](https://maps.app.goo.gl/D9gSaGb8VFeG4Kjx5) |

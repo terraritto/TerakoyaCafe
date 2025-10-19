@@ -215,3 +215,10 @@ Lennard-Jones potentialを可視化:
 <div>
 <iframe src="https://www.youtube.com/embed/2eWT7Tvc_TA"></iframe>
 </div>
+
+## Cohen-Sutherlandのアルゴリズムを実装しよう！
+まずは矩形のクリッピングから: 
+[link](https://youtu.be/g4Ix0TcBJ-Q)
+<div>
+<iframe src="https://www.youtube.com/embed/g4Ix0TcBJ-Q"></iframe>
+</div>

@@ -5,3 +5,11 @@
 <div>
 <iframe src="https://www.youtube.com/embed/NuEzgazAwPY"></iframe>
 </div>
+
+## ε-グリーディ法でバンディット問題を解こう！
+εという小さい確率を入れるのが大事:
+[link](https://youtu.be/KZ6SZULXBxM)
+<div>
+<iframe src="https://www.youtube.com/embed/KZ6SZULXBxM"></iframe>
+</div>
+

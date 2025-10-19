@@ -9,11 +9,16 @@
 * Cohen-Sutherland Algorithm  
     クリッピング、矩形限定  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CohenSutherlandSample.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/g4Ix0TcBJ-Q)
 
 * Cyrus-Beck Algorithm  
     クリッピング、多角形もいける！  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CyrusBeckSample.h) 
+    movie: まだ
+
+* Surtherland-Hodgman Algorithm  
+    三角形を矩形内に収まるようにクリッピング  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/SurtherlandHodgemanApp.cpp) 
     movie: まだ
 
 * Edge Function(Triangle)  
@@ -372,7 +377,7 @@
 * ε-Greedy法  
     たまには別のものも選ぼう  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BunditEpsilonGreedy.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/KZ6SZULXBxM)
 
 * 楽観的初期値  
     初期値は寛容にするとよいらしい  
