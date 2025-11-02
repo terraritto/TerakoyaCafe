@@ -39,6 +39,11 @@
 | 福井洞窟 | 長崎 |
 | 福井洞窟ミュージアム | 長崎 |
 | 大串貝塚 | 茨城 |
+| 花輪台貝塚 | 茨城 |
+| 長岡市立科学博物館 | 新潟 |
+| 姥山貝塚 | 千葉 |
+| 堀之内貝塚 | 千葉 |
+| 加曾利貝塚 | 千葉 |
 
 行ったところのメモ
 
@@ -184,18 +189,12 @@
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d267.5101482160462!2d141.17350106215832!3d39.406642595670945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f6084f4aa6bfd%3A0x5f15731456bb8fcc!2z44GQ44KL44Gj44Go6YGKIOaWsOiKseW3u-mnheW6lw!5e0!3m2!1sja!2sjp!4v1754221500669!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 ## 神奈川
-* 横浜美術館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3249.91244755738!2d139.63064749999998!3d35.456961899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185c5d4d114559%3A0xe74cafa40a78ac06!2z5qiq5rWc576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1756039603541!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 日本郵船氷川丸
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3469.1814904279927!2d139.6489116452553!3d35.444396629679815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185d1d4c010511%3A0x693366f1e53b2017!2z5pel5pys6YO16Ii55rC35bed5Li4!5e0!3m2!1sja!2sjp!4v1756039714997!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 大さん橋ホール
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2314.697954125695!2d139.64352874238818!3d35.45230129077646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185cffb2d826f7%3A0x9f88529083fb131a!2z5aSn44GV44KT5qmL44Ob44O844Or!5e0!3m2!1sja!2sjp!4v1756039768229!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 横浜大飯店
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1477.584442804596!2d139.64365229238862!3d35.442871436597606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185ce4b917dc21%3A0xb2e62ec580c068eb!2z5qiq5rWc5aSn6aOv5bqX!5e0!3m2!1sja!2sjp!4v1756039679229!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
+| 場所 | リンク |
+| :--- | :--- |
+| 横浜美術館 | [GoogleMap](https://maps.app.goo.gl/f2NhbncQyK58zz4y9) |
+| 日本郵船氷川丸 | [GoogleMap](https://maps.app.goo.gl/c9wYG6kS89t69s2n7) |
+| 大さん橋ホール | [GoogleMap](https://maps.app.goo.gl/cyLjz2iA58e1vWQB6) |
+| 横浜大飯店 | [GoogleMap](https://maps.app.goo.gl/7BjMSsSy3kf3FAvQ7) |
 
 ## 東京
 | 場所 | リンク |
@@ -270,3 +269,17 @@
 | 奈良公園バスターミナル | [GoogleMap](https://maps.app.goo.gl/ojdw7Cu9eMUdg6bo9) |
 | 和食とお酒 やまと庵 近鉄奈良駅前店 | [GoogleMap](https://maps.app.goo.gl/TTWvUKGZRM9hY5dg6) |
 | YAMATO Craft Beer Table 近鉄奈良駅前店 | [GoogleMap](https://maps.app.goo.gl/D9gSaGb8VFeG4Kjx5) |
+
+## 埼玉
+| 場所 | リンク |
+| :--- | :--- |
+| 時の鐘 | [GoogleMap](https://maps.app.goo.gl/sNUvNE2e3uSE7eG7A) |
+| 川越氷川神社 | [GoogleMap](https://maps.app.goo.gl/UDa7hPuHtHakigR79) |
+| 弁天横丁 | [GoogleMap](https://maps.app.goo.gl/21pmm9HR3SQkqspW9) |
+| 菓子屋横丁 | [GoogleMap](https://maps.app.goo.gl/V8xEX7fKoeRCanqa8) |
+| ちいかわもぐもぐ本舗 川越店 | [GoogleMap](https://maps.app.goo.gl/XCv31mLCTBH3ojsT7) |
+| 大沢家住宅 | [GoogleMap](https://maps.app.goo.gl/o4fw43nn3dRgLEAN6) |
+| 川越まつり会館 | [GoogleMap](https://maps.app.goo.gl/zd9knjrKCnponEfx9) |
+| BurgerCafe honohono | [GoogleMap](https://maps.app.goo.gl/9k9sXBkXo3RZHUsG8) |
+| スターバックス コーヒー 西武本川越駅店 | [GoogleMap](https://maps.app.goo.gl/NK5LeXwzjcHvrzUw5) |
+| 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |

@@ -382,11 +382,16 @@
 * 楽観的初期値  
     初期値は寛容にするとよいらしい  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/OptimisticInitial.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/toW90NjTVsQ)
 
 * 上限信頼区間(UCB)  
     ステップ数をうまくlogオーダーで組み込む  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/UCB.h) 
+    movie: [link](https://youtu.be/unzkWQ8fZo8)
+
+* 勾配バンディットアルゴリズム  
+    ソフトマックスを使ってうまく学習をしていく  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/GradientBaseline.h) 
     movie: まだ
 
 ## お遊び
