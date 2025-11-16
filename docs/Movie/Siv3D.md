@@ -222,3 +222,17 @@ Lennard-Jones potentialを可視化:
 <div>
 <iframe src="https://www.youtube.com/embed/g4Ix0TcBJ-Q"></iframe>
 </div>
+
+## Cyrus-Beckのアルゴリズムを実装しよう！
+次は多角形のクリッピング: 
+[link](https://youtu.be/DpWlDtt9D2s)
+<div>
+<iframe src="https://www.youtube.com/embed/DpWlDtt9D2s"></iframe>
+</div>
+
+## Walker's Alias法でサンプリングをしてみよう！
+次は多角形のクリッピング: 
+[link](https://youtu.be/lYdXCFzLeZ8)
+<div>
+<iframe src="https://www.youtube.com/embed/lYdXCFzLeZ8"></iframe>
+</div>

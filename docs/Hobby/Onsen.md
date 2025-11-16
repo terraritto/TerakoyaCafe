@@ -24,3 +24,8 @@
 ![onsen_0005_0004](img/onsen_0005_0004.jpeg)  
 ![onsen_0005_0005](img/onsen_0005_0005.jpeg)  
 ![onsen_0005_0006](img/onsen_0005_0006.jpeg)  
+
+## 箱根彩耶
+![onsen_0006_0001](img/onsen_0006_0001.jpeg)
+![onsen_0006_0002](img/onsen_0006_0002.jpeg)
+![onsen_0006_0003](img/onsen_0006_0003.jpeg)

@@ -14,7 +14,7 @@
 * Cyrus-Beck Algorithm  
     クリッピング、多角形もいける！  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CyrusBeckSample.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/DpWlDtt9D2s)
 
 * Surtherland-Hodgman Algorithm  
     三角形を矩形内に収まるようにクリッピング  
@@ -202,6 +202,11 @@
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/Intersection/chsTriangle.hlsl)
     movie: [link](https://youtu.be/Y6dpiL0erKk)
 
+* Quad
+    矩形の交差、平面に近いもの  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/QuadTrace.h)
+    movie: まだ
+
 ### Ray Tracing
 * PathTracing  
     PTの実装  
@@ -267,7 +272,7 @@
 * Walker's Alias法  
     重み付きのサンプルをO(1)でやる  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Sampling/WalkerAlias.h)
-    movie: なし
+    movie: [link](https://youtu.be/lYdXCFzLeZ8)
 
 ## 数値計算
 * ニュートン法  

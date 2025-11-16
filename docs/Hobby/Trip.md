@@ -195,6 +195,18 @@
 | 日本郵船氷川丸 | [GoogleMap](https://maps.app.goo.gl/c9wYG6kS89t69s2n7) |
 | 大さん橋ホール | [GoogleMap](https://maps.app.goo.gl/cyLjz2iA58e1vWQB6) |
 | 横浜大飯店 | [GoogleMap](https://maps.app.goo.gl/7BjMSsSy3kf3FAvQ7) |
+| 麺処 彩 |  [GoogleMap](https://maps.app.goo.gl/YGpWSsVVWwJ53iBn7) |
+| 箱根湯本温泉 河鹿荘 | [GoogleMap](https://maps.app.goo.gl/Hjf7owc6YroKpwnf8) |
+| 茶房うちだ | [GoogleMap](https://maps.app.goo.gl/iv7JLKywHkPkPrb86) |
+| 箱根ラスク | [GoogleMap](https://maps.app.goo.gl/Yrq41jUSaUc7AXY87) |
+| 茶屋本陣 畔屋 | [GoogleMap](https://maps.app.goo.gl/KC2d5qiBnq4bk1Cc9) |
+| 箱根駅伝ミュージアム | [GoogleMap](https://maps.app.goo.gl/RgSTMH2sg3mBdJqU7) |
+| 箱根関所 | [GoogleMap](https://maps.app.goo.gl/v3sNW91jfQDD5kuk8) |
+| 箱根関所 旅物語館 | [GoogleMap](https://maps.app.goo.gl/ikq5SpdtZXoBrBPu6) |
+| 箱根関所資料館 | [GoogleMap](https://maps.app.goo.gl/4Mt2JXA3p7iZ9Lfx8) |
+| 箱根恩賜公園湖畔展望館 | [GoogleMap](https://maps.app.goo.gl/jmvy5pUAc7miZ3kR7) |
+| 仙石原温泉 仙郷楼 | [GoogleMap](https://maps.app.goo.gl/pv5AKBqZGLnoebv79) |
+| 仙石原すすき草原 | [GoogleMap](https://maps.app.goo.gl/PRUv9G5BaCbqto3F6) |
 
 ## 東京
 | 場所 | リンク |
@@ -283,3 +295,7 @@
 | BurgerCafe honohono | [GoogleMap](https://maps.app.goo.gl/9k9sXBkXo3RZHUsG8) |
 | スターバックス コーヒー 西武本川越駅店 | [GoogleMap](https://maps.app.goo.gl/NK5LeXwzjcHvrzUw5) |
 | 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |
+
+## 千葉
+| 東京ドイツ村 | [GoogleMap](https://maps.app.goo.gl/beXuKdGjPF2ZQVTb7) |
+| 南風堂珈琲店 | [GoogleMap](https://maps.app.goo.gl/fBvBt3E3NNGBHdsb6) |
