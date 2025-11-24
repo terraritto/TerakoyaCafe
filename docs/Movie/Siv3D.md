@@ -236,3 +236,10 @@ Lennard-Jones potentialを可視化:
 <div>
 <iframe src="https://www.youtube.com/embed/lYdXCFzLeZ8"></iframe>
 </div>
+
+## Sutherland–Hodgmanのアルゴリズムでポリゴンをクリッピングしよう
+三角形のクリッピングで終了！: 
+[link](https://youtu.be/ttAN5tCy8_8)
+<div>
+<iframe src="https://www.youtube.com/embed/ttAN5tCy8_8"></iframe>
+</div>

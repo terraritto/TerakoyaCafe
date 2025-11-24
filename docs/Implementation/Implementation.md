@@ -19,7 +19,7 @@
 * Surtherland-Hodgman Algorithm  
     三角形を矩形内に収まるようにクリッピング  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/SurtherlandHodgemanApp.cpp) 
-    movie: まだ
+    movie: [link](https://youtu.be/ttAN5tCy8_8)
 
 * Edge Function(Triangle)  
     Edge Functionを利用して三角形を塗りつぶす.パターン1の部分を参照  
@@ -205,6 +205,11 @@
 * Quad
     矩形の交差、平面に近いもの  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/QuadTrace.h)
+    movie: まだ
+
+* Disk
+    円の交差、平面をうまく使ってく  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/DiskTrace.h)
     movie: まだ
 
 ### Ray Tracing

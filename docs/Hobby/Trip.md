@@ -1,49 +1,53 @@
 # 旅行
 行きたいところメモ、行ったら消す予定  
 
-| 場所 | 県 |
-| :--- | :--- |
-| 御神神社 | 滋賀 |
-| 近江八幡市立資料館| 滋賀 |
-| 高野山金剛峯寺 | 和歌山 |
-| 京都府立京都学・歴彩館 | 京都 |
-| 平等院 | 京都 |
-| 知恩院 | 京都 |
-| 建仁寺 | 京都 |
-| 永平寺 | 福井 |
-| 久遠寺 | 山梨 |
-| 旧見付学校 | 静岡 |
-| 登呂遺跡 | 静岡 |
-| 旧開智学校 | 長野 |
-| 松本市立博物館 | 長野 |
-| 国文学研究資料館 | 東京 |
-| 聖徳記念絵画館 | 東京 |
-| 豪徳寺 | 東京 |
-| 玉泉寺 | 東京 |
-| 船の科学館 | 東京 |
-| 大森貝塚 | 東京 |
-| 品川歴史館 | 東京 |
-| 夏島貝塚 | 神奈川 |
-| 西坂公園 | 長崎 |
-| 円徳寺 | 岐阜 |
-| 清浄光寺 | 神奈川 |
-| 和泉市久保惣記念美術館 | 大阪 |
-| 高千穂神社 | 宮崎 |
-| 熊野大社 | 島根 |
-| 出雲大社 | 島根 |
-| 真福寺貝塚 | 埼玉 |
-| 藤井寺市国府遺跡 | 大阪 |
-| 岩宿遺跡 | 群馬 |
-| 早水台遺跡 | 大分 |
-| 丹生遺跡 | 大分 |
-| 福井洞窟 | 長崎 |
-| 福井洞窟ミュージアム | 長崎 |
-| 大串貝塚 | 茨城 |
-| 花輪台貝塚 | 茨城 |
-| 長岡市立科学博物館 | 新潟 |
-| 姥山貝塚 | 千葉 |
-| 堀之内貝塚 | 千葉 |
-| 加曾利貝塚 | 千葉 |
+| 場所 | 県 | 備考 |
+| :--- | :--- | :--- |
+| 御神神社 | 滋賀 ||
+| 近江八幡市立資料館| 滋賀 ||
+| 高野山金剛峯寺 | 和歌山 ||
+| 京都府立京都学・歴彩館 | 京都 ||
+| 平等院 | 京都 ||
+| 知恩院 | 京都 ||
+| 建仁寺 | 京都 ||
+| 永平寺 | 福井 ||
+| 久遠寺 | 山梨 ||
+| 旧見付学校 | 静岡 ||
+| 登呂遺跡 | 静岡 ||
+| 旧開智学校 | 長野 ||
+| 松本市立博物館 | 長野 ||
+| 井戸尻史跡公園 | 長野 | 縄文時代の遺跡 |
+| 尖石石器時代遺跡 | 長野 | 縄文時代の遺跡 |
+| 国文学研究資料館 | 東京 ||
+| 聖徳記念絵画館 | 東京 ||
+| 豪徳寺 | 東京 ||
+| 玉泉寺 | 東京 ||
+| 船の科学館 | 東京 ||
+| 大森貝塚 | 東京 ||
+| 品川歴史館 | 東京 ||
+| 弥生町遺跡 | 東京 | これが見つかった頃はまだ弥生時代の区分がなかったらしい |
+| 夏島貝塚 | 神奈川 ||
+| 西坂公園 | 長崎 ||
+| 円徳寺 | 岐阜 ||
+| 清浄光寺 | 神奈川 ||
+| 和泉市久保惣記念美術館 | 大阪 ||
+| 高千穂神社 | 宮崎 ||
+| 熊野大社 | 島根 ||
+| 出雲大社 | 島根 ||
+| 真福寺貝塚 | 埼玉 ||
+| 藤井寺市国府遺跡 | 大阪 ||
+| 岩宿遺跡 | 群馬 ||
+| 早水台遺跡 | 大分 ||
+| 丹生遺跡 | 大分 ||
+| 福井洞窟 | 長崎 ||
+| 福井洞窟ミュージアム | 長崎 ||
+| シーボルト宅跡 | 長崎 | 鳴滝塾のこと |
+| 大串貝塚 | 茨城 ||
+| 花輪台貝塚 | 茨城 ||
+| 長岡市立科学博物館 | 新潟 ||
+| 姥山貝塚 | 千葉 ||
+| 堀之内貝塚 | 千葉 ||
+| 加曾利貝塚 | 千葉 ||
 
 行ったところのメモ
 
@@ -155,38 +159,19 @@
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.7265298890406!2d140.5715297005566!3d36.30884168026948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x602231397f9881ff%3A0xe1ff5daa7a62ea66!2z5aSn5rSX44Oe44Oq44Oz44K_44Ov44O8!5e0!3m2!1sja!2sjp!4v1753063365377!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 ## 岩手
-* 花巻温泉 佳松園
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d167479.86256142135!2d141.14213421614565!3d39.441702921573714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f6395a6baa3a9%3A0xfdb5ba5ce57f4b2c!2z6Iqx5be75rip5rOJIOS9s-advuWckg!5e0!3m2!1sja!2sjp!4v1754221047985!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 釜淵の滝
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6299.673451613047!2d141.05941994909804!3d39.45349162377814!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f63951d942163%3A0x2d837c386e1cffb4!2z6Yec5re144Gu5rud!5e0!3m2!1sja!2sjp!4v1754221101886!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 花巻温泉稲荷神社
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3716.668055668827!2d141.0656804688383!3d39.452150673901436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f6331ef98f543%3A0xd24efb7202b164c8!2z6Iqx5be75rip5rOJ56iy6I2356We56S-!5e0!3m2!1sja!2sjp!4v1754221160122!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 花巻温泉 温泉ベーカリー
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d320.4745600976042!2d141.07025711969686!3d39.45134543793431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f6397595aea13%3A0x751c34993d43c154!2z6Iqx5be75rip5rOJIOa4qeazieODmeODvOOCq-ODquODvA!5e0!3m2!1sja!2sjp!4v1754221200220!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 花巻温泉ストアー
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d279.6066468723734!2d141.07051628580612!3d39.4514552702845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f63ebaf41c09b%3A0x85029a47e0d19ad2!2z6Iqx5be75rip5rOJ44K544OI44Ki44O8!5e0!3m2!1sja!2sjp!4v1754221252537!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 宮沢賢治記念館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6809.265140831336!2d141.16223817686452!3d39.397704701386324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f60a1df7e3215%3A0x7619220368e9cca4!2z5a6u5rKi6LOi5rK76KiY5b-16aSo!5e0!3m2!1sja!2sjp!4v1754221309870!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* Wildcat House 山猫軒
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d271.3401784437361!2d141.16420662290068!3d39.39927872534922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f609f0e375105%3A0x641a4b0cdcbfa281!2zV2lsZGNhdCBIb3VzZSDlsbHnjKvou5I!5e0!3m2!1sja!2sjp!4v1754221334720!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 宮沢賢治童話村
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d625.2525885047519!2d141.16824779263118!3d39.39762584009855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f5e2081fc1431%3A0x619c00c6ab3cc2c6!2z5a6u5rKi6LOi5rK756ul6Kmx5p2R!5e0!3m2!1sja!2sjp!4v1754221389601!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 花巻市博物館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1391.0688480478195!2d141.1675108386585!3d39.398726941214214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f609e6a850041%3A0x3d33a446d6cd37db!2z6Iqx5be75biC5Y2a54mp6aSo!5e0!3m2!1sja!2sjp!4v1754221416387!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 花巻観光センター
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d220.57227250505622!2d141.173545004839!3d39.406650736756944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f60848ad5da1d%3A0x25e4fb46bb5d1dba!2z6Iqx5be76Kaz5YWJ44K744Oz44K_44O8!5e0!3m2!1sja!2sjp!4v1754221470936!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* ぐるっと遊 新花巻駅店
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d267.5101482160462!2d141.17350106215832!3d39.406642595670945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8f6084f4aa6bfd%3A0x5f15731456bb8fcc!2z44GQ44KL44Gj44Go6YGKIOaWsOiKseW3u-mnheW6lw!5e0!3m2!1sja!2sjp!4v1754221500669!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+| 場所 | リンク |
+| :--- | :--- |
+| 釜淵の滝 | [GoogleMap](https://maps.app.goo.gl/uovvmU2VcJXWhHEB7) |
+| 花巻温泉稲荷神社 | [GoogleMap](https://maps.app.goo.gl/4Nh9wbPAbxoUE7XUA) |
+| 花巻温泉 温泉ベーカリー | [GoogleMap](https://maps.app.goo.gl/bwLXzeWjFfmYDKCv9) |
+| 花巻温泉ストアー | [GoogleMap](https://maps.app.goo.gl/vidqyCettcumTmRG7) |
+| 宮沢賢治記念館 | [GoogleMap](https://maps.app.goo.gl/x6ugeZjHf4x3PYNH7) |
+| Wildcat House 山猫軒 | [GoogleMap](https://maps.app.goo.gl/4mGEjZ7xU1vv3jzX9) |
+| 宮沢賢治童話村 | [GoogleMap](https://maps.app.goo.gl/a7bLGXvLTBRT6PF77) |
+| 花巻市博物館 | [GoogleMap](https://maps.app.goo.gl/5VUkWyCDggs5hHEh9) |
+| 花巻観光センター | [GoogleMap](https://maps.app.goo.gl/HWnoqkWi5y3FTjpw5) |
+| ぐるっと遊 新花巻駅店 | [GoogleMap](https://maps.app.goo.gl/B4vMzy9Nr7eSpHue8) |
+| 花巻温泉 佳松園 | [GoogleMap](https://maps.app.goo.gl/gEmnPNDNHEDHa98B9) |
 
 ## 神奈川
 | 場所 | リンク |
@@ -292,10 +277,16 @@
 | ちいかわもぐもぐ本舗 川越店 | [GoogleMap](https://maps.app.goo.gl/XCv31mLCTBH3ojsT7) |
 | 大沢家住宅 | [GoogleMap](https://maps.app.goo.gl/o4fw43nn3dRgLEAN6) |
 | 川越まつり会館 | [GoogleMap](https://maps.app.goo.gl/zd9knjrKCnponEfx9) |
+| 権現山古墳群 | [GoogleMap](https://maps.app.goo.gl/uRaKjARKkpULjZfe8) |
+| 長宮氷川神社 | [GoogleMap](https://maps.app.goo.gl/gw4dvkWaA7drFPum9) |
+| ふじみ野市立上福岡歴史民俗資料館 | [GoogleMap](https://maps.app.goo.gl/FGsMrzFaRGRmFz4s6) |
 | BurgerCafe honohono | [GoogleMap](https://maps.app.goo.gl/9k9sXBkXo3RZHUsG8) |
 | スターバックス コーヒー 西武本川越駅店 | [GoogleMap](https://maps.app.goo.gl/NK5LeXwzjcHvrzUw5) |
 | 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |
+| 蔵ふと 本店 | [GoogleMap](https://maps.app.goo.gl/fRfm6hZfSzivc9RV6) |
 
 ## 千葉
+| 場所 | リンク |
+| :--- | :--- |
 | 東京ドイツ村 | [GoogleMap](https://maps.app.goo.gl/beXuKdGjPF2ZQVTb7) |
 | 南風堂珈琲店 | [GoogleMap](https://maps.app.goo.gl/fBvBt3E3NNGBHdsb6) |
