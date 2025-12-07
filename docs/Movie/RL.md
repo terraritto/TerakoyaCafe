@@ -26,3 +26,11 @@
 <div>
 <iframe src="https://www.youtube.com/embed/unzkWQ8fZo8"></iframe>
 </div>
+
+## ソフトマックスを使った勾配バンディットアルゴリズムを実装してみよう！
+ソフトマックスは確率として見やすくてよいね、という話:
+[link](https://youtu.be/BvYcs_WCL9c)
+<div>
+<iframe src="https://www.youtube.com/embed/BvYcs_WCL9c"></iframe>
+</div>
+

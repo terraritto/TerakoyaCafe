@@ -209,11 +209,14 @@
 | 竹久夢二美術館 | [GoogleMap](https://maps.app.goo.gl/QJWwxijCNXx2bWRb7) |
 | 御菓子処 扇屋 | [GoogleMap](https://maps.app.goo.gl/RxbhwJdyf2Wzyonj7) |
 | 上野の森さくらテラス | [GoogleMap](https://maps.app.goo.gl/tWhvysRbDzgBGpjk8) |
+| サンパークダーツ本館 | [GoogleMap](https://maps.app.goo.gl/Hguc2ehGsjSF8EJP6) |
+| 東京都庁第一本庁舎 北展望室 | [GoogleMap](https://maps.app.goo.gl/wAXL8FfJY9LwkoSf8) |
 | WINE SHOP nico 渋谷店 | [GoogleMap](https://maps.app.goo.gl/gL6Gm7kUzmUaXh4r6) |
 | 鉄板焼・お好み焼 ごっつい池袋店 | [GoogleMap](https://maps.app.goo.gl/DBh4sFDVJMKqcoLF7) |
 | 池袋 十割蕎麦 鴨料理 ならや | [GoogleMap](https://maps.app.goo.gl/AG4DHHekVKoNzixh7) |
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
+| お多幸 新宿店 | [GoogleMap](https://maps.app.goo.gl/7La9ak7xAKwCWWPS6) |
 
 ## 岐阜
 | 場所 | リンク |
@@ -280,6 +283,7 @@
 | 権現山古墳群 | [GoogleMap](https://maps.app.goo.gl/uRaKjARKkpULjZfe8) |
 | 長宮氷川神社 | [GoogleMap](https://maps.app.goo.gl/gw4dvkWaA7drFPum9) |
 | ふじみ野市立上福岡歴史民俗資料館 | [GoogleMap](https://maps.app.goo.gl/FGsMrzFaRGRmFz4s6) |
+| 山王塚古墳 | [GoogleMap](https://maps.app.goo.gl/xpcmVP2ud1Jr2woLA) |
 | BurgerCafe honohono | [GoogleMap](https://maps.app.goo.gl/9k9sXBkXo3RZHUsG8) |
 | スターバックス コーヒー 西武本川越駅店 | [GoogleMap](https://maps.app.goo.gl/NK5LeXwzjcHvrzUw5) |
 | 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |
@@ -289,4 +293,9 @@
 | 場所 | リンク |
 | :--- | :--- |
 | 東京ドイツ村 | [GoogleMap](https://maps.app.goo.gl/beXuKdGjPF2ZQVTb7) |
+| 芝山古墳・はにわ博物館 | [GoogleMap](https://maps.app.goo.gl/CNETApKPMXHmTCsj9) |
+| 中里海水浴場 | [GoogleMap](https://maps.app.goo.gl/nvx92pHENkk1naJz6) |
+| たぶん…世界一小さいチョコレート工場 | [GoogleMap](https://maps.app.goo.gl/hoNauP7PqJR6vrdP8) |
+| ホテルカアナパリ | [GoogleMap](https://maps.app.goo.gl/nu3sMMu7P9BAFsJy9) |
 | 南風堂珈琲店 | [GoogleMap](https://maps.app.goo.gl/fBvBt3E3NNGBHdsb6) |
+| 煮込みカツカレーの店本店 | [GoogleMap](https://maps.app.goo.gl/6DSqjnNh7kyhTVts5) |

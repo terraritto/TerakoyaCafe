@@ -46,6 +46,11 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/HiddenSurfaceRemovalNormal.h) 
     movie: [link](https://youtu.be/ubP8RBPaGCg)
 
+* ガウシアンスプラッティング可視化  
+    ガウシアンスプラッティングを可視化していく、SH以外はできてるはず  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/GS/GSVertexApp.cpp) 
+    movie: [link](https://youtu.be/GjpH0YqK9Fs)
+
 ### Light
 * Directional Light  
     EvaluateDirectional部分  
@@ -402,7 +407,7 @@
 * 勾配バンディットアルゴリズム  
     ソフトマックスを使ってうまく学習をしていく  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/GradientBaseline.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/BvYcs_WCL9c)
 
 ## お遊び
 * SynthWave  

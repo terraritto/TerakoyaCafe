@@ -29,3 +29,6 @@
 ![onsen_0006_0001](img/onsen_0006_0001.jpeg)
 ![onsen_0006_0002](img/onsen_0006_0002.jpeg)
 ![onsen_0006_0003](img/onsen_0006_0003.jpeg)
+
+## 白子ひまり
+![onsen_0007_0001](img/onsen_0007_0001.jpeg)

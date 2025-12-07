@@ -243,3 +243,10 @@ Lennard-Jones potentialを可視化:
 <div>
 <iframe src="https://www.youtube.com/embed/ttAN5tCy8_8"></iframe>
 </div>
+
+## ガウシアンをスプラッシュしよう！
+ガウシアンスプラッティングの可視化をするだけ: 
+[link](https://youtu.be/GjpH0YqK9Fs)
+<div>
+<iframe src="https://www.youtube.com/embed/GjpH0YqK9Fs"></iframe>
+</div>
