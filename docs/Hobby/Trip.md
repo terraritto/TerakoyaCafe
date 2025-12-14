@@ -143,20 +143,13 @@
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.2755263441113!2d135.19332547586853!3d34.69822988334524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008ee5fd059ae7%3A0xc847e17894cf8846!2z5LqM5a6u5rip5rOJ!5e0!3m2!1sja!2sjp!4v1751803701491!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
 ## 茨城
-* 里海邸 金波楼本邸
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3214.8986062272193!2d140.58596477581605!3d36.314765572389504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x602231507dba7c41%3A0xb87fc52a38dea512!2z6YeM5rW36YK4IOmHkeazoualvOacrOmCuA!5e0!3m2!1sja!2sjp!4v1753063208008!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 神磯の鳥居
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1699.9526868995372!2d140.58708327220668!3d36.31494229375252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x602231509082ac95%3A0xba1b41cec060948d!2z56We56Ov44Gu6bOl5bGF!5e0!3m2!1sja!2sjp!4v1753063250466!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 大洗美術館
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d633.5262246090973!2d140.58806553068408!3d36.31510144952944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6022315be1e1a36d%3A0xd5fae85e50fcc3ea!2z5aSn5rSX576O6KGT6aSo!5e0!3m2!1sja!2sjp!4v1753063281241!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 大洗磯前神社
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1878.830988914712!2d140.58811597529441!3d36.3146407991014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6022315aeaad769f%3A0xbc06f4377cefb7f4!2z5aSn5rSX56Ov5YmN56We56S-!5e0!3m2!1sja!2sjp!4v1753063320575!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-* 大洗マリンタワー
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.7265298890406!2d140.5715297005566!3d36.30884168026948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x602231397f9881ff%3A0xe1ff5daa7a62ea66!2z5aSn5rSX44Oe44Oq44Oz44K_44Ov44O8!5e0!3m2!1sja!2sjp!4v1753063365377!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+| 場所 | リンク |
+| :--- | :--- |
+| 里海邸 金波楼本邸 | [GoogleMap](https://maps.app.goo.gl/rTJhN495sWeHD3cJ9) |
+| 神磯の鳥居 | [GoogleMap](https://maps.app.goo.gl/VLXKVkyFS5zMGFuD7) |
+| 大洗美術館 | [GoogleMap](https://maps.app.goo.gl/HrZTjRaNh5kBm4GR9) |
+| 大洗磯前神社 | [GoogleMap](https://maps.app.goo.gl/VuSbGzKitroZK36n9) |
+| 大洗マリンタワー | [GoogleMap](https://maps.app.goo.gl/fqSL2Va4hGRUMwRY6) |
 
 ## 岩手
 | 場所 | リンク |
@@ -207,6 +200,13 @@
 | 東大 赤門 | [GoogleMap](https://maps.app.goo.gl/VzfKoZbcwxhVYMVu5) |
 | 弥生美術館 | [GoogleMap](https://maps.app.goo.gl/gY5CvaYzTzypuG9v9) |
 | 竹久夢二美術館 | [GoogleMap](https://maps.app.goo.gl/QJWwxijCNXx2bWRb7) |
+| 葛西臨海公園 | [GoogleMap](https://maps.app.goo.gl/o7cRoseANVeCiEVS8) |
+| 展望レストハウス クリスタルビュー | [GoogleMap](https://maps.app.goo.gl/M5uEZMZCnfx2RQnM7) |
+| 展望デッキ | [GoogleMap](https://maps.app.goo.gl/juvd37Z1ZrJQjou97) |
+| 葛西臨海水族園 | [GoogleMap](https://maps.app.goo.gl/bVfahKRFyb92JwNj8) |
+| ダイヤと花の大観覧車 | [GoogleMap](https://maps.app.goo.gl/TMCTXcT96r2Kmj3B6) |
+| 江戸東京たてもの園 | [GoogleMap](https://maps.app.goo.gl/7vpGX2JHNzpuft1N8) |
+| そば茶屋さくら | [GoogleMap](https://maps.app.goo.gl/FCb4fJdznqQY8SzL9) |
 | 御菓子処 扇屋 | [GoogleMap](https://maps.app.goo.gl/RxbhwJdyf2Wzyonj7) |
 | 上野の森さくらテラス | [GoogleMap](https://maps.app.goo.gl/tWhvysRbDzgBGpjk8) |
 | サンパークダーツ本館 | [GoogleMap](https://maps.app.goo.gl/Hguc2ehGsjSF8EJP6) |
@@ -217,6 +217,7 @@
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
 | お多幸 新宿店 | [GoogleMap](https://maps.app.goo.gl/7La9ak7xAKwCWWPS6) |
+| PARKLIFE CAFE & RESTAURANT | [GoogleMap](https://maps.app.goo.gl/gy9y6zwyCeqpKWX17) |
 
 ## 岐阜
 | 場所 | リンク |

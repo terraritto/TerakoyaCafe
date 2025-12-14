@@ -46,6 +46,11 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/HiddenSurfaceRemovalNormal.h) 
     movie: [link](https://youtu.be/ubP8RBPaGCg)
 
+* Z-Sort法  
+    Z軸の位置をソートして、画家のアルゴリズムをやるだけ  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/RemovalFace/RemovalFaceZSort.cpp) 
+    movie: なし
+
 * ガウシアンスプラッティング可視化  
     ガウシアンスプラッティングを可視化していく、SH以外はできてるはず  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/GS/GSVertexApp.cpp) 
@@ -210,7 +215,7 @@
 * Quad
     矩形の交差、平面に近いもの  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/QuadTrace.h)
-    movie: まだ
+    movie: [link](https://youtu.be/aMzaBILTPk4)
 
 * Disk
     円の交差、平面をうまく使ってく  
@@ -365,6 +370,11 @@
     DijkstraComponentが実装  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/GameProgrammingC%2B%2B/Example_04/ForGraph)
     movie: [link](https://youtu.be/vEvdewXai-s)  
+
+* ベルマンフォード法  
+    DijkstraComponentが実装  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/ShortestPath/BellmanFordSample.h)
+    movie: なし  
 
 ## ゲーム木
 * Min-Max法  
