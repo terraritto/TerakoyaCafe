@@ -372,9 +372,9 @@
     movie: [link](https://youtu.be/vEvdewXai-s)  
 
 * ベルマンフォード法  
-    DijkstraComponentが実装  
+    負もいける最短経路探索  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/ShortestPath/BellmanFordSample.h)
-    movie: なし  
+    movie: [link](https://youtu.be/Qn4Teb4eSpY)  
 
 ## ゲーム木
 * Min-Max法  

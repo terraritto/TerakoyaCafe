@@ -257,3 +257,10 @@ Lennard-Jones potentialを可視化:
 <div>
 <iframe src="https://www.youtube.com/embed/aMzaBILTPk4"></iframe>
 </div>
+
+## ベルマンフォード法を試してみよう！
+負の経路も探索できる優れもの: 
+[link](https://youtu.be/Qn4Teb4eSpY)
+<div>
+<iframe src="https://www.youtube.com/embed/Qn4Teb4eSpY"></iframe>
+</div>
