@@ -138,6 +138,11 @@
 | 横浜美術館 | [GoogleMap](https://maps.app.goo.gl/f2NhbncQyK58zz4y9) |
 | 日本郵船氷川丸 | [GoogleMap](https://maps.app.goo.gl/c9wYG6kS89t69s2n7) |
 | 大さん橋ホール | [GoogleMap](https://maps.app.goo.gl/cyLjz2iA58e1vWQB6) |
+| 外交官の家（旧内田定槌邸） | [GoogleMap](https://maps.app.goo.gl/a1rP4zue2Kb8vMZKA) |
+| ブラフ１８番館 | [GoogleMap](https://maps.app.goo.gl/DpbAHYzi9hwwbKdq8) |
+| ベーリック・ホール | [GoogleMap](https://maps.app.goo.gl/3xvWAa7dKEtBHu5r8) |
+| 高級寿司食べ放題 祭雛ヨドバシ横浜（旧雛鮨） | [GoogleMap](https://maps.app.goo.gl/6JaUwYTCqhBCFicy9) |
+| 魚と酒 はなたれ 野毛本店 | [GoogleMap](https://maps.app.goo.gl/GXwwfHizDDHx4P2K8) |
 | 横浜大飯店 | [GoogleMap](https://maps.app.goo.gl/7BjMSsSy3kf3FAvQ7) |
 | 麺処 彩 |  [GoogleMap](https://maps.app.goo.gl/YGpWSsVVWwJ53iBn7) |
 | 箱根湯本温泉 河鹿荘 | [GoogleMap](https://maps.app.goo.gl/Hjf7owc6YroKpwnf8) |
@@ -251,10 +256,16 @@
 | 長宮氷川神社 | [GoogleMap](https://maps.app.goo.gl/gw4dvkWaA7drFPum9) |
 | ふじみ野市立上福岡歴史民俗資料館 | [GoogleMap](https://maps.app.goo.gl/FGsMrzFaRGRmFz4s6) |
 | 山王塚古墳 | [GoogleMap](https://maps.app.goo.gl/xpcmVP2ud1Jr2woLA) |
+| 野本将軍塚古墳 | [GoogleMap](https://maps.app.goo.gl/UywRQWJGC6KMhUva8) |
+| 野本館跡 | [GoogleMap](https://maps.app.goo.gl/dcpssrUZcsLgQpS77) |
+| 下唐子3号墳（若宮八幡古墳） | [GoogleMap](https://maps.app.goo.gl/gVz9pSXnMdJ2Crih9) |
+| 吉見百穴 | [GoogleMap](https://maps.app.goo.gl/jCWS8AaHiRuEFKc8A) |
+| 東松山市観光案内所 | [GoogleMap](https://maps.app.goo.gl/C15mb7ogSveskseU6) |
 | BurgerCafe honohono | [GoogleMap](https://maps.app.goo.gl/9k9sXBkXo3RZHUsG8) |
 | スターバックス コーヒー 西武本川越駅店 | [GoogleMap](https://maps.app.goo.gl/NK5LeXwzjcHvrzUw5) |
 | 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |
 | 蔵ふと 本店 | [GoogleMap](https://maps.app.goo.gl/fRfm6hZfSzivc9RV6) |
+| TENOHA東松山 | [GoogleMap](https://maps.app.goo.gl/KYjvi6zjkc6R3Q5Q9) |
 
 ## 千葉
 | 場所 | リンク |

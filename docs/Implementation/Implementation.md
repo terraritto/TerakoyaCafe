@@ -220,7 +220,7 @@
 * Disk
     円の交差、平面をうまく使ってく  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/DiskTrace.h)
-    movie: まだ
+    movie: [link](https://youtu.be/deryOZpNaec)
 
 ### Ray Tracing
 * PathTracing  
@@ -418,6 +418,11 @@
     ソフトマックスを使ってうまく学習をしていく  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/GradientBaseline.h) 
     movie: [link](https://youtu.be/BvYcs_WCL9c)
+
+* ベルマン方程式  
+    ベルマン方程式を使ってグリッドワールドを解く  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorld.h) 
+    movie: まだ
 
 ## お遊び
 * SynthWave  

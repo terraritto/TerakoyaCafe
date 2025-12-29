@@ -264,3 +264,10 @@ Lennard-Jones potentialを可視化:
 <div>
 <iframe src="https://www.youtube.com/embed/Qn4Teb4eSpY"></iframe>
 </div>
+
+## レイトレで四角形と交差をしてみよう！
+円の交差をするだけ: 
+[link](https://youtu.be/deryOZpNaec)
+<div>
+<iframe src="https://www.youtube.com/embed/deryOZpNaec"></iframe>
+</div>

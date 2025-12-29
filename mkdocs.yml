@@ -20,6 +20,8 @@ theme:
       - Book: Hobby/book.md
       - Trip: Hobby/Trip.md
       - Onsen: Hobby/Onsen.md
+    - Future:
+      - 2026: Future/future_2026.md
     - GameStatistics:
       - MHWilds: GameStatistics/MHWilds.md
       - MHRise: GameStatistics/MHRise.md
