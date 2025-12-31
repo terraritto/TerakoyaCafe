@@ -13,7 +13,9 @@ theme:
       - GameProgrammingC++: Movie/GP.md
       - OS: Movie/OS.md
       - RL: Movie/RL.md
-    - Implementation: Implementation/Implemantation.md
+    - Implementation:
+      - 実装: Implementation/Implemantation.md
+      - Todo: Implemantation/Todo.md
     - Hobby:
       - Anime: Hobby/Anime.md
       - Movie: Hobby/movie.md
