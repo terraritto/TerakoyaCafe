@@ -49,12 +49,28 @@
 * Z-Sort法  
     Z軸の位置をソートして、画家のアルゴリズムをやるだけ  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/RemovalFace/RemovalFaceZSort.cpp) 
+    movie: [link](https://youtu.be/XhdNgjRiu3k)
+
+* DepthBuffer法  
+    メモリは消費するが、上手くデプスを解決  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/RemovalFace/RemovalFaceDepthBuffer.cpp) 
     movie: なし
 
 * ガウシアンスプラッティング可視化  
     ガウシアンスプラッティングを可視化していく、SH以外はできてるはず  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/GS/GSVertexApp.cpp) 
     movie: [link](https://youtu.be/GjpH0YqK9Fs)
+
+### Fractal
+* コッホ曲線  
+    線分分割しつつ、回転を繰り返す  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/KochCurve.h) 
+    movie: なし
+
+* コッホ雪片  
+    三角形にコッホ曲線を適用すると...？  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/KochSnowflake.h) 
+    movie: なし
 
 ### Light
 * Directional Light  

@@ -96,7 +96,7 @@
 * シェルピンスキの三角形
 * pentagonal gasket
 * fractal swiss flag
-* koch snowflake
+* ~~koch snowflake~~
 * C-curve
 * fractal hangman
 * fractal bush

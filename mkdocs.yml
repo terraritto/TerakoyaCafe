@@ -22,6 +22,10 @@ theme:
       - Book: Hobby/book.md
       - Trip: Hobby/Trip.md
       - Onsen: Hobby/Onsen.md
+    - Dialy:
+      - 2026:
+        - 1月:
+          - 01/01~01/04: Diary/2026/01/2026_0101_0104.md
     - Future:
       - 2026: Future/future_2026.md
     - GameStatistics:

@@ -271,3 +271,10 @@ Lennard-Jones potentialを可視化:
 <div>
 <iframe src="https://www.youtube.com/embed/deryOZpNaec"></iframe>
 </div>
+
+## Z-Sort法でポリゴンをソートしていこう！
+Z-Sort法による隠面消去: 
+[link](https://youtu.be/XhdNgjRiu3k)
+<div>
+<iframe src="https://www.youtube.com/embed/XhdNgjRiu3k"></iframe>
+</div>
