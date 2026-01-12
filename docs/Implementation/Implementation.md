@@ -56,6 +56,16 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/RemovalFace/RemovalFaceDepthBuffer.cpp) 
     movie: なし
 
+* グローシェーディング  
+    頂点でライティングをしておこう  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/GourandShadingApp.cpp) 
+    movie: なし
+
+* フォンシェーディング  
+    ピクセルシェーダの礎  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/PhongShadingApp.cpp) 
+    movie: なし
+
 * ガウシアンスプラッティング可視化  
     ガウシアンスプラッティングを可視化していく、SH以外はできてるはず  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/GS/GSVertexApp.cpp) 

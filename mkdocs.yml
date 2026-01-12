@@ -26,8 +26,15 @@ theme:
       - 2026:
         - 1月:
           - 01/01~01/04: Diary/2026/01/2026_0101_0104.md
+    - Derive:
+      - Optics:
     - Future:
       - 2026: Future/future_2026.md
     - GameStatistics:
       - MHWilds: GameStatistics/MHWilds.md
       - MHRise: GameStatistics/MHRise.md
+
+markdown_extensions:
+  - markdown_katex:
+      no_inline_svg: True
+      insert_fonts_css: True

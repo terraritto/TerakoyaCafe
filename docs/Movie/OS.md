@@ -145,3 +145,10 @@ FPUを使ってバラ曲線を計算して描画:
 <div>
 <iframe src="https://www.youtube.com/embed/hWEM5uuStKc"></iframe>
 </div>
+
+## ページングで複数コードを走らせよう！OS自作Part.21
+ページングを頑張る回:
+[link](https://youtu.be/8O_nI5adS84)
+<div>
+<iframe src="https://www.youtube.com/embed/8O_nI5adS84"></iframe>
+</div>

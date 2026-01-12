@@ -260,12 +260,38 @@
 | 野本館跡 | [GoogleMap](https://maps.app.goo.gl/dcpssrUZcsLgQpS77) |
 | 下唐子3号墳（若宮八幡古墳） | [GoogleMap](https://maps.app.goo.gl/gVz9pSXnMdJ2Crih9) |
 | 吉見百穴 | [GoogleMap](https://maps.app.goo.gl/jCWS8AaHiRuEFKc8A) |
+| 小見真観寺古墳 | [GoogleMap](https://maps.app.goo.gl/i5KpwB2vaq2y7KR57) |
+| 地蔵塚古墳 | [GoogleMap](https://maps.app.goo.gl/bjsLNhKdUHQStnQs5) |
+| 八幡山古墳 | [GoogleMap](https://maps.app.goo.gl/5i1xLrviDVNtypCQ7) |
+| 真名板高山古墳 | [GoogleMap](https://maps.app.goo.gl/n1cAj1LJr6WxqCQd8) |
+| 真名板薬師堂 | [GoogleMap](https://maps.app.goo.gl/KaRQJrk9a7wRDwzu5) |
+| 真名板薬師堂の公孫樹 | [GoogleMap](https://maps.app.goo.gl/7prgrPJy84noJwt78) |
+| 阿弥陀一尊種子板碑 | [GoogleMap](https://maps.app.goo.gl/i3EH2HA1G86xsCuEA) |
+| 浅間塚古墳 | [GoogleMap](https://maps.app.goo.gl/U1ZTEk3uZpPQujk79) |
+| 浅間神社（行田市埼玉） | [GoogleMap](https://maps.app.goo.gl/SKGirDwDo6M3donY6) |
+| 稲荷山古墳 | [GoogleMap](https://maps.app.goo.gl/7RU4mmCZkTxhFVqA9) |
+| 丸墓山古墳 | [GoogleMap](https://maps.app.goo.gl/K3U4b3zMBMj4wXKQ8) |
+| 愛宕山古墳 | [GoogleMap](https://maps.app.goo.gl/qvENgCzqdRTBjaSJA) |
+| 将軍山古墳 | [GoogleMap](https://maps.app.goo.gl/BsgebjdBwLVqRmcEA) |
+| 将軍山古墳展示館 | [GoogleMap](https://maps.app.goo.gl/gWkk7Fv1EA1UKKrMA) |
+| 二子山古墳 | [GoogleMap](https://maps.app.goo.gl/1uK1CjUy66BEQJsp8) |
+| 瓦塚古墳 | [GoogleMap](https://maps.app.goo.gl/odbXcn92Cpe5fuGs7) |
+| 奥の山古墳 | [GoogleMap](https://maps.app.goo.gl/FPnH7bXYxcmZZxF77) |
+| 鉄砲山古墳 | [GoogleMap](https://maps.app.goo.gl/VSY5D4VdiZGAnFwP7) |
+| 中の山古墳 | [GoogleMap](https://maps.app.goo.gl/humFjMGnK4KkRzfP8) |
+| 埼玉県立さきたま史跡の博物館 | [GoogleMap](https://maps.app.goo.gl/SvBLeyTpSbNpmGsL7) |
 | 東松山市観光案内所 | [GoogleMap](https://maps.app.goo.gl/C15mb7ogSveskseU6) |
+| ＪＲ行田駅前観光案内所 | [GoogleMap](https://maps.app.goo.gl/9U9xfwRZekNCRp4HA) |
+| 観光物産館ぶらっと♪ぎょうだ | [GoogleMap](https://maps.app.goo.gl/9B59y59KLSq7U2wZ6) |
+| 観光物産館さきたまテラス | [GoogleMap](https://maps.app.goo.gl/Q5ztNXzrT4jSxFBdA) |
 | BurgerCafe honohono | [GoogleMap](https://maps.app.goo.gl/9k9sXBkXo3RZHUsG8) |
 | スターバックス コーヒー 西武本川越駅店 | [GoogleMap](https://maps.app.goo.gl/NK5LeXwzjcHvrzUw5) |
 | 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |
 | 蔵ふと 本店 | [GoogleMap](https://maps.app.goo.gl/fRfm6hZfSzivc9RV6) |
+| カラオケマック川越店 | [GoogleMap](https://maps.app.goo.gl/T4ckD4Hx5sFFMD5k9) |
 | TENOHA東松山 | [GoogleMap](https://maps.app.goo.gl/KYjvi6zjkc6R3Q5Q9) |
+| 古代蓮うどん店 | [GoogleMap](https://maps.app.goo.gl/xQVUjYrhMHP9byG78) |
+|| [GoogleMap]() |
 
 ## 千葉
 | 場所 | リンク |
