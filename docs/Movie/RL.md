@@ -34,3 +34,9 @@
 <iframe src="https://www.youtube.com/embed/BvYcs_WCL9c"></iframe>
 </div>
 
+## グリッドワールドをベルマン方程式で解いてみよう！！  
+グリッドワールドという簡易環境で、ベルマン方程式を解いてみる:
+[link](https://youtu.be/5HTBPTLxkCQ)
+<div>
+<iframe src="https://www.youtube.com/embed/5HTBPTLxkCQ"></iframe>
+</div>

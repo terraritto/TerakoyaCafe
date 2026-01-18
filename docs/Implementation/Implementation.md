@@ -448,7 +448,7 @@
 * ベルマン方程式  
     ベルマン方程式を使ってグリッドワールドを解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorld.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/5HTBPTLxkCQ)
 
 ## お遊び
 * SynthWave  

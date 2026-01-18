@@ -131,6 +131,29 @@
 | 花巻観光センター | [GoogleMap](https://maps.app.goo.gl/HWnoqkWi5y3FTjpw5) |
 | ぐるっと遊 新花巻駅店 | [GoogleMap](https://maps.app.goo.gl/B4vMzy9Nr7eSpHue8) |
 | 花巻温泉 佳松園 | [GoogleMap](https://maps.app.goo.gl/gEmnPNDNHEDHa98B9) |
+| 斉藤うどん店 平泉 | [GoogleMap](https://maps.app.goo.gl/mJX6UbzKNEceLakWA) |
+| 伽羅御所城跡 | [GoogleMap](https://maps.app.goo.gl/DASsKnDz14kFycJQ9) |
+| 道の駅 平泉 | [GoogleMap](https://maps.app.goo.gl/Q1NNf9aVEty6XwZf6) |
+| 岩手県立平泉世界遺産ガイダンスセンター | [GoogleMap](https://maps.app.goo.gl/pXxax6FT73dFG69X9) |
+| 柳之御所遺跡 | [GoogleMap](https://maps.app.goo.gl/L86zXhRZJchjMuGy5) |
+| 無量光院跡 | [GoogleMap](https://maps.app.goo.gl/yWvj9y1M1R1yHPf36) |
+| 平泉文化遺産センター | [GoogleMap](https://maps.app.goo.gl/Zh8AWgK9h6DXg72JA) |
+| 熊野三社 | [GoogleMap](https://maps.app.goo.gl/MABfKPQXoxtr2CBWA) |
+| 衣関屋 | [GoogleMap](https://maps.app.goo.gl/GormEYSrcERDTiYB9) |
+| 平泉 木彫工芸館 | [GoogleMap](https://maps.app.goo.gl/X2Fn4ZCzofGsv1z87) |
+| 武蔵坊弁慶大墓碑(源義経公郎党筆頭の墓) | [GoogleMap](https://maps.app.goo.gl/yiumP8hgJ7KDq2jZA) |
+| 中尊寺参道 | [GoogleMap](https://maps.app.goo.gl/jDxpdP2garSS3AR38) |
+| 月見坂 | [GoogleMap](https://maps.app.goo.gl/6ieLBBHrYB6znGLb9) |
+| 東物見台 | [GoogleMap](https://maps.app.goo.gl/oeQHU1Lw13udL2jQ8) |
+| 中尊寺 本堂 | [GoogleMap](https://maps.app.goo.gl/XwqF7HjVzLfHxtVm9) |
+| 中尊寺ハス池 | [GoogleMap](https://maps.app.goo.gl/rxQeJQzZQKykUbUaA) |
+| 宝物館 讃衡蔵 | [GoogleMap](https://maps.app.goo.gl/rR5rctnYk73Y9UYg7) |
+| おみやげ処 | [GoogleMap](https://maps.app.goo.gl/9Q16dASANVcWViwCA) |
+| 金色堂 | [GoogleMap](https://maps.app.goo.gl/BNh1jtvB2JS5iVBg7) |
+| 中尊寺鎮守 白山神社 | [GoogleMap](https://maps.app.goo.gl/adVetrwxgRpaLoTG6) |
+| かんざん亭 | [GoogleMap](https://maps.app.goo.gl/LdjGcpNEqBRxHidy7) |
+| 奥州衣川歴史ふれあい館 | [GoogleMap](https://maps.app.goo.gl/reU1KqsCx9S7tJSp8) |
+| 奥州・平泉温泉旅館 ITSUMU | [GoogleMap](https://maps.app.goo.gl/Wq6SpDneiijEdwHE7) |
 
 ## 神奈川
 | 場所 | リンク |
