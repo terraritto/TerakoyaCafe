@@ -54,7 +54,7 @@
 * DepthBuffer法  
     メモリは消費するが、上手くデプスを解決  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/RemovalFace/RemovalFaceDepthBuffer.cpp) 
-    movie: なし
+    movie: [link](https://youtu.be/syPKq6gL8wQ)
 
 * グローシェーディング  
     頂点でライティングをしておこう  
@@ -391,6 +391,11 @@
     AStarComponentが実装  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/GameProgrammingC%2B%2B/Example_04/ForGraph)
     movie: [link](https://youtu.be/mpksUzLGSUE)
+
+* Weighted A\*  
+    WeightedAStarComponentが実装  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/GameProgrammingC%2B%2B/Example_04/ForGraph/WeightedAStarComponent.cpp)  
+    movie: まだ  
 
 * Dijkstra  
     DijkstraComponentが実装  

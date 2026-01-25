@@ -278,3 +278,10 @@ Z-Sort法による隠面消去:
 <div>
 <iframe src="https://www.youtube.com/embed/XhdNgjRiu3k"></iframe>
 </div>
+
+## デプスバッファ法でポリゴンを描画していこう！
+Depth Buffer法による隠面消去: 
+[link](https://youtu.be/syPKq6gL8wQ)
+<div>
+<iframe src="https://www.youtube.com/embed/syPKq6gL8wQ"></iframe>
+</div>

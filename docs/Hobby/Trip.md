@@ -303,8 +303,12 @@
 | 鉄砲山古墳 | [GoogleMap](https://maps.app.goo.gl/VSY5D4VdiZGAnFwP7) |
 | 中の山古墳 | [GoogleMap](https://maps.app.goo.gl/humFjMGnK4KkRzfP8) |
 | 埼玉県立さきたま史跡の博物館 | [GoogleMap](https://maps.app.goo.gl/SvBLeyTpSbNpmGsL7) |
+| 甲山古墳 | [GoogleMap](https://maps.app.goo.gl/eEwTxXEFYt37awN76) |
+| 野原古墳群 | [GoogleMap](https://maps.app.goo.gl/pPNo8WFYa61x1Xax5) |
+| 宮塚古墳 | [GoogleMap](https://maps.app.goo.gl/ocQ3m7tKi4pUVAng6) |
 | 東松山市観光案内所 | [GoogleMap](https://maps.app.goo.gl/C15mb7ogSveskseU6) |
 | ＪＲ行田駅前観光案内所 | [GoogleMap](https://maps.app.goo.gl/9U9xfwRZekNCRp4HA) |
+| 熊谷駅観光案内所 | [GoogleMap](https://maps.app.goo.gl/FsqZAJyqtaXK8hEK8) |
 | 観光物産館ぶらっと♪ぎょうだ | [GoogleMap](https://maps.app.goo.gl/9B59y59KLSq7U2wZ6) |
 | 観光物産館さきたまテラス | [GoogleMap](https://maps.app.goo.gl/Q5ztNXzrT4jSxFBdA) |
 | BurgerCafe honohono | [GoogleMap](https://maps.app.goo.gl/9k9sXBkXo3RZHUsG8) |
@@ -314,7 +318,6 @@
 | カラオケマック川越店 | [GoogleMap](https://maps.app.goo.gl/T4ckD4Hx5sFFMD5k9) |
 | TENOHA東松山 | [GoogleMap](https://maps.app.goo.gl/KYjvi6zjkc6R3Q5Q9) |
 | 古代蓮うどん店 | [GoogleMap](https://maps.app.goo.gl/xQVUjYrhMHP9byG78) |
-|| [GoogleMap]() |
 
 ## 千葉
 | 場所 | リンク |
