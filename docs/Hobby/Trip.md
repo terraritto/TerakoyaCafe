@@ -200,6 +200,7 @@
 | 葛西臨海水族園 | [GoogleMap](https://maps.app.goo.gl/bVfahKRFyb92JwNj8) |
 | ダイヤと花の大観覧車 | [GoogleMap](https://maps.app.goo.gl/TMCTXcT96r2Kmj3B6) |
 | 江戸東京たてもの園 | [GoogleMap](https://maps.app.goo.gl/7vpGX2JHNzpuft1N8) |
+| 不忍池 | [GoogleMap](https://maps.app.goo.gl/zceabdXYJudNcEbC8) |
 | そば茶屋さくら | [GoogleMap](https://maps.app.goo.gl/FCb4fJdznqQY8SzL9) |
 | 御菓子処 扇屋 | [GoogleMap](https://maps.app.goo.gl/RxbhwJdyf2Wzyonj7) |
 | 上野の森さくらテラス | [GoogleMap](https://maps.app.goo.gl/tWhvysRbDzgBGpjk8) |
@@ -212,6 +213,8 @@
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
 | お多幸 新宿店 | [GoogleMap](https://maps.app.goo.gl/7La9ak7xAKwCWWPS6) |
 | PARKLIFE CAFE & RESTAURANT | [GoogleMap](https://maps.app.goo.gl/gy9y6zwyCeqpKWX17) |
+| 夢二カフェ 港や | [GoogleMap](https://maps.app.goo.gl/jnwPUK6mUDDaebcYA) |
+| どまん中 | [GoogleMap](https://maps.app.goo.gl/qiS9TQBTzWZujGmk6) |
 
 ## 岐阜
 | 場所 | リンク |

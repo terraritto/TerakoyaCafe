@@ -75,12 +75,12 @@
 * コッホ曲線  
     線分分割しつつ、回転を繰り返す  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/KochCurve.h) 
-    movie: なし
+    movie: [link](https://youtu.be/yY6GhZ8SMX4)
 
 * コッホ雪片  
     三角形にコッホ曲線を適用すると...？  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/KochSnowflake.h) 
-    movie: なし
+    movie: [link](https://youtu.be/yY6GhZ8SMX4)
 
 ### Light
 * Directional Light  

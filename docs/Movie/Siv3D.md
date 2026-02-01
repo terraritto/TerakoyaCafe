@@ -285,3 +285,10 @@ Depth Buffer法による隠面消去:
 <div>
 <iframe src="https://www.youtube.com/embed/syPKq6gL8wQ"></iframe>
 </div>
+
+## コッホ曲線で遊ぼう！
+雪の結晶みたいなフラクタル: 
+[link](https://youtu.be/yY6GhZ8SMX4)
+<div>
+<iframe src="https://www.youtube.com/embed/yY6GhZ8SMX4"></iframe>
+</div>
