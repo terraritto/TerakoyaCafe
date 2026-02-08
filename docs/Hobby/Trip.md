@@ -94,7 +94,23 @@
 | 場所 | リンク |
 | :--- | :--- |
 | 四季彩 一力 | [GoogleMap](https://maps.app.goo.gl/XTwW6AAen69WSJxSA) |
+| 原瀧 | [GoogleMap](https://maps.app.goo.gl/ifgbzESa5njBSfto7) |
 | 磐梯熱海 日本きもの美術館 Japan Kimono Museum | [GoogleMap](https://maps.app.goo.gl/pGCM8EN7evZxrscX9) |
+| 白虎隊十九士の御廟所 |[GoogleMap](https://maps.app.goo.gl/GCwcRAA67GSdVjV17) |
+| 会津さざえ堂 (円通三匝堂) | [GoogleMap](https://maps.app.goo.gl/5oWoCwiCfPBbAfiS6) |
+| 会津飯盛山戸ノ口堰の洞穴 | [GoogleMap](https://maps.app.goo.gl/UmXFLNUk3KndXPVy8) |
+| 会津白虎隊記念館 | [GoogleMap](https://maps.app.goo.gl/EBHh1nxhqAo788ZS7) |
+| 鶴ヶ城 | [GoogleMap](https://maps.app.goo.gl/7jDazn3Pyy5pHQS16) |
+| 麟閣（茶室） | [GoogleMap](https://maps.app.goo.gl/SEonee97XsenkWtn9) |
+| 福島県立博物館 | [GoogleMap](https://maps.app.goo.gl/vVDDueR31YjxRVuB8) |
+| 羽黒山湯上神社 | [GoogleMap](https://maps.app.goo.gl/1NfamNvMzCJRsqGh8) |
+| 末廣クラシックカメラ博物館 | [GoogleMap](https://maps.app.goo.gl/HJ9vufxp9ubixcuX8) |
+| 野口英世青春館 | [GoogleMap](https://maps.app.goo.gl/HCzgeNcGFoDBA8QB7) |
+| 松本家本店 | [GoogleMap](https://maps.app.goo.gl/zeRkgB8jDP6Hv9yr8) |
+| （社）会津東山温泉観光協会 | [GoogleMap](https://maps.app.goo.gl/q4bNq4BNq2y3X9t46) |
+| 鶴ヶ城観光案内所 | [GoogleMap](https://maps.app.goo.gl/fLm8HghgTRZbtkJD6) |
+| 鶴ヶ城会館 | [GoogleMap](https://maps.app.goo.gl/xiaw9sPjbLDpNMEv6) |
+| お食事処二の丸 | [GoogleMap](https://maps.app.goo.gl/8PSqxiQQNnsAkyB9A) |
 
 ## 兵庫  
 | 場所 | リンク |
@@ -201,6 +217,7 @@
 | ダイヤと花の大観覧車 | [GoogleMap](https://maps.app.goo.gl/TMCTXcT96r2Kmj3B6) |
 | 江戸東京たてもの園 | [GoogleMap](https://maps.app.goo.gl/7vpGX2JHNzpuft1N8) |
 | 不忍池 | [GoogleMap](https://maps.app.goo.gl/zceabdXYJudNcEbC8) |
+| 「弥生式土器ゆかりの地」碑 | [参考](https://www.city.bunkyo.lg.jp/b014/p003754.html) |
 | そば茶屋さくら | [GoogleMap](https://maps.app.goo.gl/FCb4fJdznqQY8SzL9) |
 | 御菓子処 扇屋 | [GoogleMap](https://maps.app.goo.gl/RxbhwJdyf2Wzyonj7) |
 | 上野の森さくらテラス | [GoogleMap](https://maps.app.goo.gl/tWhvysRbDzgBGpjk8) |

@@ -59,7 +59,7 @@
 * グローシェーディング  
     頂点でライティングをしておこう  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/GourandShadingApp.cpp) 
-    movie: なし
+    movie: [link](https://youtu.be/3nEc-kAhi64)
 
 * フォンシェーディング  
     ピクセルシェーダの礎  

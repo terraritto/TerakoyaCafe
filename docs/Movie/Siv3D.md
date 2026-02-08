@@ -292,3 +292,10 @@ Depth Buffer法による隠面消去:
 <div>
 <iframe src="https://www.youtube.com/embed/yY6GhZ8SMX4"></iframe>
 </div>
+
+## グローシェーディングで滑らかにしていこう！
+シェーディングシリーズ、まずはグローシェーディングから: 
+[link](https://youtu.be/3nEc-kAhi64)
+<div>
+<iframe src="https://www.youtube.com/embed/3nEc-kAhi64"></iframe>
+</div>

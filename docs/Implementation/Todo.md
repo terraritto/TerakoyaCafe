@@ -33,8 +33,8 @@
 * depth test(階層化あり)
 * stencil test
 * depth bounds test
-* ~~グローシェーディング~~
-* ~~フォンシェーディング~~
+* ~~ グローシェーディング ~~
+* ~~ フォンシェーディング ~~
 * スキャンライン法
 * warnockのアルゴリズム
 
@@ -96,7 +96,7 @@
 * シェルピンスキの三角形
 * pentagonal gasket
 * fractal swiss flag
-* ~~koch snowflake~~
+* ~~ koch snowflake ~~
 * C-curve
 * fractal hangman
 * fractal bush
@@ -328,7 +328,7 @@
 * アスキーアート風
 
 ## 探索
-* ~~重みつきA*~~
+* ~~ 重みつきA* ~~
 * anytime repairing A*
 * 山登り法(HC)
 * 強制山登り法(EHC)

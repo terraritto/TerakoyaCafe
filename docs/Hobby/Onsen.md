@@ -38,3 +38,7 @@
 
 ## 伊東椿月
 ![onsen_0009_0001](img/onsen_0009_0001.jpeg)
+
+## 東山季利花
+![onsen_00010_0001](img/onsen_0010_0001.jpeg)
+![onsen_00010_0002](img/onsen_0010_0002.jpeg)
