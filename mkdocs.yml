@@ -35,6 +35,7 @@ theme:
       - MHRise: GameStatistics/MHRise.md
 
 markdown_extensions:
+  - pymdownx.tilde
   - markdown_katex:
       no_inline_svg: True
       insert_fonts_css: True
