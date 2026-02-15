@@ -180,6 +180,7 @@
 | 外交官の家（旧内田定槌邸） | [GoogleMap](https://maps.app.goo.gl/a1rP4zue2Kb8vMZKA) |
 | ブラフ１８番館 | [GoogleMap](https://maps.app.goo.gl/DpbAHYzi9hwwbKdq8) |
 | ベーリック・ホール | [GoogleMap](https://maps.app.goo.gl/3xvWAa7dKEtBHu5r8) |
+| 大黒ＰＡ | [GoogleMap](https://maps.app.goo.gl/eTcSQ2HPa1Pzd3QD6) |
 | 高級寿司食べ放題 祭雛ヨドバシ横浜（旧雛鮨） | [GoogleMap](https://maps.app.goo.gl/6JaUwYTCqhBCFicy9) |
 | 魚と酒 はなたれ 野毛本店 | [GoogleMap](https://maps.app.goo.gl/GXwwfHizDDHx4P2K8) |
 | 横浜大飯店 | [GoogleMap](https://maps.app.goo.gl/7BjMSsSy3kf3FAvQ7) |
@@ -218,6 +219,7 @@
 | 江戸東京たてもの園 | [GoogleMap](https://maps.app.goo.gl/7vpGX2JHNzpuft1N8) |
 | 不忍池 | [GoogleMap](https://maps.app.goo.gl/zceabdXYJudNcEbC8) |
 | 「弥生式土器ゆかりの地」碑 | [参考](https://www.city.bunkyo.lg.jp/b014/p003754.html) |
+| 平和島PA(下り) | [GoogleMap](https://maps.app.goo.gl/MEyr7LdfrZ6iZVqo7) |
 | そば茶屋さくら | [GoogleMap](https://maps.app.goo.gl/FCb4fJdznqQY8SzL9) |
 | 御菓子処 扇屋 | [GoogleMap](https://maps.app.goo.gl/RxbhwJdyf2Wzyonj7) |
 | 上野の森さくらテラス | [GoogleMap](https://maps.app.goo.gl/tWhvysRbDzgBGpjk8) |
@@ -232,6 +234,7 @@
 | PARKLIFE CAFE & RESTAURANT | [GoogleMap](https://maps.app.goo.gl/gy9y6zwyCeqpKWX17) |
 | 夢二カフェ 港や | [GoogleMap](https://maps.app.goo.gl/jnwPUK6mUDDaebcYA) |
 | どまん中 | [GoogleMap](https://maps.app.goo.gl/qiS9TQBTzWZujGmk6) |
+| デニーズ 墨田堤通り店 | [GoogleMap](https://maps.app.goo.gl/GFSj32zmbVJBa6BbA) |
 
 ## 岐阜
 | 場所 | リンク |

@@ -233,6 +233,19 @@
 * Jittered
 * Multi-Jitterd
 * Poisson disk
+* メトロポリス法
+* ジャックナイフ法
+* 再重み付け法
+* HMC法
+* RHMC法
+* ギブスサンプリング法(熱浴法)
+* メトロポリス・ヘイスティングス法
+* wolffアルゴリズム
+* レプリカ交換法
+* 多重ステップ法
+* 共役勾配法(CG法)
+* BiCG法
+* mulyi-map CG法
 
 ## QMC列
 * Hammersley
@@ -321,6 +334,7 @@
 
 ## 乱数
 * LCG
+* メルセンヌツイスター
 
 ## PostProcess
 * fullscreen pass(三角形で全描画)
@@ -375,3 +389,4 @@
 * Structured Duplicate Detection
 * Batch A*
 * Expectiminimax法
+* 最急降下法

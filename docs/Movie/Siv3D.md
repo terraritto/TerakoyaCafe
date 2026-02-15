@@ -299,3 +299,10 @@ Depth Buffer法による隠面消去:
 <div>
 <iframe src="https://www.youtube.com/embed/3nEc-kAhi64"></iframe>
 </div>
+
+## Weighted A*で経路探索してみよう！
+Weighted A*の実装、重みを足すだけで簡単: 
+[link](https://youtu.be/lQbSRfq32P0)
+<div>
+<iframe src="https://www.youtube.com/embed/lQbSRfq32P0"></iframe>
+</div>

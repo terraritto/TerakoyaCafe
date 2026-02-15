@@ -64,7 +64,12 @@
 * フォンシェーディング  
     ピクセルシェーダの礎  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/PhongShadingApp.cpp) 
-    movie: なし
+    movie: まだ
+
+* Perspective Correct  
+    貼り付けるときはパースも考慮しようね  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/Renderer/App/UVTest/002)
+    movie: まだ
 
 * ガウシアンスプラッティング可視化  
     ガウシアンスプラッティングを可視化していく、SH以外はできてるはず  
@@ -259,6 +264,12 @@
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/BRDF/CalculatePT.hlsli)
     movie: [link](https://youtu.be/kMtRVntRqr0)
 
+### Mesh Shader  
+* Triangle  
+    とりあえず三角形を出すところまで  
+    Impl: [link](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_001)  
+    movie: まだ
+
 ### Shader Techniques
 * 集中線  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/PostProcess/ConcentrationLinePS.hlsl)
@@ -395,7 +406,7 @@
 * Weighted A\*  
     WeightedAStarComponentが実装  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/GameProgrammingC%2B%2B/Example_04/ForGraph/WeightedAStarComponent.cpp)  
-    movie: まだ  
+    movie: [link](https://youtu.be/lQbSRfq32P0)  
 
 * Dijkstra  
     DijkstraComponentが実装  
@@ -454,6 +465,11 @@
     ベルマン方程式を使ってグリッドワールドを解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorld.h) 
     movie: [link](https://youtu.be/5HTBPTLxkCQ)
+
+* ベルマン最適方程式  
+    ベルマン最適方程式でグリッドワールドの最大化を可視化  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorldNext.h) 
+    movie: まだ
 
 ## お遊び
 * SynthWave  
