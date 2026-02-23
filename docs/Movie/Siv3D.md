@@ -306,3 +306,10 @@ Weighted A*の実装、重みを足すだけで簡単:
 <div>
 <iframe src="https://www.youtube.com/embed/lQbSRfq32P0"></iframe>
 </div>
+
+## フォンシェーディングで滑らかにしていこう！
+シェーディングシリーズ、つぎはフォンシェーディングから: 
+[link](https://youtu.be/uW9xnKbCRAk)
+<div>
+<iframe src="https://www.youtube.com/embed/uW9xnKbCRAk"></iframe>
+</div>

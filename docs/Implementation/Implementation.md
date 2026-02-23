@@ -64,7 +64,7 @@
 * フォンシェーディング  
     ピクセルシェーダの礎  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/PhongShadingApp.cpp) 
-    movie: まだ
+    movie: [link](https://youtu.be/uW9xnKbCRAk)
 
 * Perspective Correct  
     貼り付けるときはパースも考慮しようね  
@@ -481,6 +481,11 @@
     AtProtoで遊んだ奴、Pythonを無理やりSiv3Dで呼び寄せた(強引)  
     Impl: [link](https://github.com/terraritto/BSApp)
     movie: [link](https://youtu.be/T6GnyOzj0A8)
+
+* 量子ビットデモ  
+    科博の「量子の世紀」にあったデモを再現してみるだけ  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Zoo/QuantumBitDemo.h)
+    movie: まだ
 
 * GameProgrammingC++ Series  
     動画シリーズで進めてるやつ  

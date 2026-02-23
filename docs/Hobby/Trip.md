@@ -235,6 +235,7 @@
 | 夢二カフェ 港や | [GoogleMap](https://maps.app.goo.gl/jnwPUK6mUDDaebcYA) |
 | どまん中 | [GoogleMap](https://maps.app.goo.gl/qiS9TQBTzWZujGmk6) |
 | デニーズ 墨田堤通り店 | [GoogleMap](https://maps.app.goo.gl/GFSj32zmbVJBa6BbA) |
+| Chef's Theatre | [GoogleMap](https://maps.app.goo.gl/M4FVBLKPJwXEhe4n7) |
 
 ## 岐阜
 | 場所 | リンク |
@@ -329,11 +330,14 @@
 | 甲山古墳 | [GoogleMap](https://maps.app.goo.gl/eEwTxXEFYt37awN76) |
 | 野原古墳群 | [GoogleMap](https://maps.app.goo.gl/pPNo8WFYa61x1Xax5) |
 | 宮塚古墳 | [GoogleMap](https://maps.app.goo.gl/ocQ3m7tKi4pUVAng6) |
+| 鹿島古墳群 | [GoogleMap](https://maps.app.goo.gl/GhHAunsZhywYGBuB8) |
 | 東松山市観光案内所 | [GoogleMap](https://maps.app.goo.gl/C15mb7ogSveskseU6) |
 | ＪＲ行田駅前観光案内所 | [GoogleMap](https://maps.app.goo.gl/9U9xfwRZekNCRp4HA) |
 | 熊谷駅観光案内所 | [GoogleMap](https://maps.app.goo.gl/FsqZAJyqtaXK8hEK8) |
 | 観光物産館ぶらっと♪ぎょうだ | [GoogleMap](https://maps.app.goo.gl/9B59y59KLSq7U2wZ6) |
 | 観光物産館さきたまテラス | [GoogleMap](https://maps.app.goo.gl/Q5ztNXzrT4jSxFBdA) |
+| 深谷宿屋台村 ふっかちゃん横丁 | [GoogleMap](https://maps.app.goo.gl/tJq4gq1WCPkCT4gRA) |
+| 道の駅 かわもと | [GoogleMap](https://maps.app.goo.gl/VjwodnaYHUHj1n4Y7) |
 | BurgerCafe honohono | [GoogleMap](https://maps.app.goo.gl/9k9sXBkXo3RZHUsG8) |
 | スターバックス コーヒー 西武本川越駅店 | [GoogleMap](https://maps.app.goo.gl/NK5LeXwzjcHvrzUw5) |
 | 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |
@@ -352,3 +356,11 @@
 | ホテルカアナパリ | [GoogleMap](https://maps.app.goo.gl/nu3sMMu7P9BAFsJy9) |
 | 南風堂珈琲店 | [GoogleMap](https://maps.app.goo.gl/fBvBt3E3NNGBHdsb6) |
 | 煮込みカツカレーの店本店 | [GoogleMap](https://maps.app.goo.gl/6DSqjnNh7kyhTVts5) |
+
+## 群馬
+| 場所 | リンク |
+| :--- | :--- |
+| 群馬県立歴史博物館 | [GoogleMap](https://maps.app.goo.gl/UywJeTeTEUo976MZ7) |
+| 群馬いろは | [GoogleMap](https://maps.app.goo.gl/hJqUBs2cZ9fRxhnb6) |
+| タリーズコーヒー 高崎モントレー店 | [GoogleMap](https://maps.app.goo.gl/iMv6kRZkPvHqGzDy7) |
+| 松屋 高崎駅前店 | [GoogleMap](https://maps.app.goo.gl/5rQZNnusqo5krhg67) |
