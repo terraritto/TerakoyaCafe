@@ -268,7 +268,7 @@
 * Triangle  
     とりあえず三角形を出すところまで  
     Impl: [link](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_001)  
-    movie: まだ
+    movie: [link](https://youtu.be/fhdpNOXFf3I)
 
 ### Shader Techniques
 * 集中線  

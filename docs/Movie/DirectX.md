@@ -103,3 +103,10 @@ Filteringを影にかけるだけ、Filteringが分かれば簡単:
 <div>
 <iframe src="https://www.youtube.com/embed/AOJtVQ2EHlQ"></iframe>
 </div>
+
+## まずは三角形を出してみよう！～Mesh Shader Series Part.1～  
+ついに始まったMesh Shader Series,まずは三角形を出すHello World:
+[link](https://youtu.be/fhdpNOXFf3I)
+<div>
+<iframe src="https://www.youtube.com/embed/fhdpNOXFf3I"></iframe>
+</div>

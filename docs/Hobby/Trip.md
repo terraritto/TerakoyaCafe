@@ -1,55 +1,5 @@
 # 旅行
-行きたいところメモ、行ったら消す予定  
-
-| 場所 | 県 | 備考 |
-| :--- | :--- | :--- |
-| 御神神社 | 滋賀 ||
-| 近江八幡市立資料館| 滋賀 ||
-| 高野山金剛峯寺 | 和歌山 ||
-| 京都府立京都学・歴彩館 | 京都 ||
-| 平等院 | 京都 ||
-| 知恩院 | 京都 ||
-| 建仁寺 | 京都 ||
-| 永平寺 | 福井 ||
-| 久遠寺 | 山梨 ||
-| 旧見付学校 | 静岡 ||
-| 登呂遺跡 | 静岡 ||
-| 旧開智学校 | 長野 ||
-| 松本市立博物館 | 長野 ||
-| 井戸尻史跡公園 | 長野 | 縄文時代の遺跡 |
-| 尖石石器時代遺跡 | 長野 | 縄文時代の遺跡 |
-| 国文学研究資料館 | 東京 ||
-| 聖徳記念絵画館 | 東京 ||
-| 豪徳寺 | 東京 ||
-| 玉泉寺 | 東京 ||
-| 船の科学館 | 東京 ||
-| 大森貝塚 | 東京 ||
-| 品川歴史館 | 東京 ||
-| 弥生町遺跡 | 東京 | これが見つかった頃はまだ弥生時代の区分がなかったらしい |
-| 夏島貝塚 | 神奈川 ||
-| 西坂公園 | 長崎 ||
-| 円徳寺 | 岐阜 ||
-| 清浄光寺 | 神奈川 ||
-| 和泉市久保惣記念美術館 | 大阪 ||
-| 高千穂神社 | 宮崎 ||
-| 熊野大社 | 島根 ||
-| 出雲大社 | 島根 ||
-| 真福寺貝塚 | 埼玉 ||
-| 藤井寺市国府遺跡 | 大阪 ||
-| 岩宿遺跡 | 群馬 ||
-| 早水台遺跡 | 大分 ||
-| 丹生遺跡 | 大分 ||
-| 福井洞窟 | 長崎 ||
-| 福井洞窟ミュージアム | 長崎 ||
-| シーボルト宅跡 | 長崎 | 鳴滝塾のこと |
-| 大串貝塚 | 茨城 ||
-| 花輪台貝塚 | 茨城 ||
-| 長岡市立科学博物館 | 新潟 ||
-| 姥山貝塚 | 千葉 ||
-| 堀之内貝塚 | 千葉 ||
-| 加曾利貝塚 | 千葉 ||
-
-行ったところのメモ
+行ったところメモ  
 
 ## 静岡
 | 場所 | リンク |
@@ -177,14 +127,17 @@
 | 横浜美術館 | [GoogleMap](https://maps.app.goo.gl/f2NhbncQyK58zz4y9) |
 | 日本郵船氷川丸 | [GoogleMap](https://maps.app.goo.gl/c9wYG6kS89t69s2n7) |
 | 大さん橋ホール | [GoogleMap](https://maps.app.goo.gl/cyLjz2iA58e1vWQB6) |
+| パシフィコ横浜 | [GoogleMap](https://maps.app.goo.gl/U43xGUSosR28FCH99) |
 | 外交官の家（旧内田定槌邸） | [GoogleMap](https://maps.app.goo.gl/a1rP4zue2Kb8vMZKA) |
 | ブラフ１８番館 | [GoogleMap](https://maps.app.goo.gl/DpbAHYzi9hwwbKdq8) |
 | ベーリック・ホール | [GoogleMap](https://maps.app.goo.gl/3xvWAa7dKEtBHu5r8) |
+| 横浜みなと博物館 | [GoogleMap](https://maps.app.goo.gl/62m81CtpdZmkoAZ2A) |
 | 大黒ＰＡ | [GoogleMap](https://maps.app.goo.gl/eTcSQ2HPa1Pzd3QD6) |
 | 高級寿司食べ放題 祭雛ヨドバシ横浜（旧雛鮨） | [GoogleMap](https://maps.app.goo.gl/6JaUwYTCqhBCFicy9) |
 | 魚と酒 はなたれ 野毛本店 | [GoogleMap](https://maps.app.goo.gl/GXwwfHizDDHx4P2K8) |
 | 横浜大飯店 | [GoogleMap](https://maps.app.goo.gl/7BjMSsSy3kf3FAvQ7) |
 | 麺処 彩 |  [GoogleMap](https://maps.app.goo.gl/YGpWSsVVWwJ53iBn7) |
+| 椿屋カフェ みなとみらいクロスパティオ店 | [GoogleMap](https://maps.app.goo.gl/vnd2yurMbvEuUJDL8) |
 | 箱根湯本温泉 河鹿荘 | [GoogleMap](https://maps.app.goo.gl/Hjf7owc6YroKpwnf8) |
 | 茶房うちだ | [GoogleMap](https://maps.app.goo.gl/iv7JLKywHkPkPrb86) |
 | 箱根ラスク | [GoogleMap](https://maps.app.goo.gl/Yrq41jUSaUc7AXY87) |
@@ -236,6 +189,8 @@
 | どまん中 | [GoogleMap](https://maps.app.goo.gl/qiS9TQBTzWZujGmk6) |
 | デニーズ 墨田堤通り店 | [GoogleMap](https://maps.app.goo.gl/GFSj32zmbVJBa6BbA) |
 | Chef's Theatre | [GoogleMap](https://maps.app.goo.gl/M4FVBLKPJwXEhe4n7) |
+| 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
+| 武蔵野アブラ学会 吉祥寺店 | [GoogleMap](https://maps.app.goo.gl/Y5oxquS8JeBXeJV17) |
 
 ## 岐阜
 | 場所 | リンク |

@@ -89,6 +89,11 @@
 * Schlickモデル
 * Ashikhmin&Shirley
 * Oren-Nayar
+* GGX
+
+## IBL
+diffuse IBL
+specular IBL
 
 ## fractal
 * シェルピンスキの三角形
@@ -219,6 +224,8 @@
 * 輝度スケーリング演算子
 * Reinhard Tone Mapping
 * Extended Reinhard Tone Mapping
+* ACES Filmic Tonemap
+* PBR neural Tonemapper
 
 ## サンプリング
 * importance Sampling
