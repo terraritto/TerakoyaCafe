@@ -286,6 +286,11 @@
 | 野原古墳群 | [GoogleMap](https://maps.app.goo.gl/pPNo8WFYa61x1Xax5) |
 | 宮塚古墳 | [GoogleMap](https://maps.app.goo.gl/ocQ3m7tKi4pUVAng6) |
 | 鹿島古墳群 | [GoogleMap](https://maps.app.goo.gl/GhHAunsZhywYGBuB8) |
+| 天王山塚古墳 | [GoogleMap](https://maps.app.goo.gl/RfrLAUujoxxLBceF8) |
+| 御諸塚古墳 | [GoogleMap](https://maps.app.goo.gl/siTuaTCiBE2JKfyF6) |
+| 永明寺古墳 | [GoogleMap](https://maps.app.goo.gl/ecBun5uhcAp8u7nU6) |
+| 正法院 | [GoogleMap](https://maps.app.goo.gl/4r4Kv1KM5mGaSa6R9) |
+| 加須未来館 | [GoogleMap](https://maps.app.goo.gl/Q2bBknvACZNBpNi27) |
 | 東松山市観光案内所 | [GoogleMap](https://maps.app.goo.gl/C15mb7ogSveskseU6) |
 | ＪＲ行田駅前観光案内所 | [GoogleMap](https://maps.app.goo.gl/9U9xfwRZekNCRp4HA) |
 | 熊谷駅観光案内所 | [GoogleMap](https://maps.app.goo.gl/FsqZAJyqtaXK8hEK8) |
@@ -293,6 +298,8 @@
 | 観光物産館さきたまテラス | [GoogleMap](https://maps.app.goo.gl/Q5ztNXzrT4jSxFBdA) |
 | 深谷宿屋台村 ふっかちゃん横丁 | [GoogleMap](https://maps.app.goo.gl/tJq4gq1WCPkCT4gRA) |
 | 道の駅 かわもと | [GoogleMap](https://maps.app.goo.gl/VjwodnaYHUHj1n4Y7) |
+| 加須市 樋遣川コミュニティセンター | [GoogleMap](https://maps.app.goo.gl/SJ3wtrpJBVqSgtAk6) |
+| 羽生市 市民プラザ | [GoogleMap](https://maps.app.goo.gl/SGQStL6NvFrWNxYE6) |
 | BurgerCafe honohono | [GoogleMap](https://maps.app.goo.gl/9k9sXBkXo3RZHUsG8) |
 | スターバックス コーヒー 西武本川越駅店 | [GoogleMap](https://maps.app.goo.gl/NK5LeXwzjcHvrzUw5) |
 | 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |
@@ -300,6 +307,8 @@
 | カラオケマック川越店 | [GoogleMap](https://maps.app.goo.gl/T4ckD4Hx5sFFMD5k9) |
 | TENOHA東松山 | [GoogleMap](https://maps.app.goo.gl/KYjvi6zjkc6R3Q5Q9) |
 | 古代蓮うどん店 | [GoogleMap](https://maps.app.goo.gl/xQVUjYrhMHP9byG78) |
+| 喫茶サリュート | [GoogleMap](https://maps.app.goo.gl/u2ZbU1Vyuk2bLu5g6) |
+| あまがさ | [GoogleMap](https://maps.app.goo.gl/CNSRuW3us4Km6fjn6) |
 
 ## 千葉
 | 場所 | リンク |

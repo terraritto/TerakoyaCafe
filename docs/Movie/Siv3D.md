@@ -313,3 +313,10 @@ Weighted A*の実装、重みを足すだけで簡単:
 <div>
 <iframe src="https://www.youtube.com/embed/uW9xnKbCRAk"></iframe>
 </div>
+
+## パースペクティブコレクトでUVを張り付けていこう！！
+UVを貼り付けていこう: 
+[link](https://youtu.be/wFNU9X65dd8)
+<div>
+<iframe src="https://www.youtube.com/embed/wFNU9X65dd8"></iframe>
+</div>
