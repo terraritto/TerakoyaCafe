@@ -191,6 +191,7 @@
 | Chef's Theatre | [GoogleMap](https://maps.app.goo.gl/M4FVBLKPJwXEhe4n7) |
 | 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
 | 武蔵野アブラ学会 吉祥寺店 | [GoogleMap](https://maps.app.goo.gl/Y5oxquS8JeBXeJV17) |
+| ビヤホールライオン 銀座七丁目店 | [GoogleMap](https://maps.app.goo.gl/b9ZCodj1vbKLYtnh6) |
 
 ## 岐阜
 | 場所 | リンク |

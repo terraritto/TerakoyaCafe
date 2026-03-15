@@ -471,6 +471,12 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorldNext.h) 
     movie: まだ
 
+## Optics  
+* 近似光線追跡  
+    3章の内容を実装しただけ.  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/Optics/ExcelOptics/Ex_03)
+    movie: まだ
+
 ## お遊び
 * SynthWave  
     synthwaveを適当に書くだけ,30分で書いてみた  
