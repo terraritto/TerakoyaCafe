@@ -173,6 +173,7 @@
 | 不忍池 | [GoogleMap](https://maps.app.goo.gl/zceabdXYJudNcEbC8) |
 | 「弥生式土器ゆかりの地」碑 | [参考](https://www.city.bunkyo.lg.jp/b014/p003754.html) |
 | 平和島PA(下り) | [GoogleMap](https://maps.app.goo.gl/MEyr7LdfrZ6iZVqo7) |
+| ふくい食の國 291（福井アンテナショップ） | [GoogleMap](https://maps.app.goo.gl/8wnLTqKPsDteafY89) |
 | そば茶屋さくら | [GoogleMap](https://maps.app.goo.gl/FCb4fJdznqQY8SzL9) |
 | 御菓子処 扇屋 | [GoogleMap](https://maps.app.goo.gl/RxbhwJdyf2Wzyonj7) |
 | 上野の森さくらテラス | [GoogleMap](https://maps.app.goo.gl/tWhvysRbDzgBGpjk8) |
@@ -192,6 +193,7 @@
 | 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
 | 武蔵野アブラ学会 吉祥寺店 | [GoogleMap](https://maps.app.goo.gl/Y5oxquS8JeBXeJV17) |
 | ビヤホールライオン 銀座七丁目店 | [GoogleMap](https://maps.app.goo.gl/b9ZCodj1vbKLYtnh6) |
+| 福とほまれ（福井アンテナショップ） | [GoogleMap](https://maps.app.goo.gl/c81f26WUSnNqVPFP6) |
 
 ## 岐阜
 | 場所 | リンク |
@@ -329,3 +331,19 @@
 | 群馬いろは | [GoogleMap](https://maps.app.goo.gl/hJqUBs2cZ9fRxhnb6) |
 | タリーズコーヒー 高崎モントレー店 | [GoogleMap](https://maps.app.goo.gl/iMv6kRZkPvHqGzDy7) |
 | 松屋 高崎駅前店 | [GoogleMap](https://maps.app.goo.gl/5rQZNnusqo5krhg67) |
+
+## 栃木
+| 場所 | リンク |
+| :--- | :--- |
+| 摩利支天塚古墳 | [GoogleMap](https://maps.app.goo.gl/tdJoWzw7RX1nLHxD9) |
+| 琵琶塚古墳 | [GoogleMap](https://maps.app.goo.gl/ZvhvNAF98okfVTQeA) |
+| 摩利支天塚・琵琶塚古墳 資料館 | [GoogleMap](https://maps.app.goo.gl/ks54qAGBGs5GYxWk6) |
+| しもつけ風土記の丘資料館 | [GoogleMap](https://maps.app.goo.gl/xn2D12Hi9a6tT1Uz6) |
+| 下野淡墨桜 | [GoogleMap](https://maps.app.goo.gl/8ofYhHtxzDeYGELw6) |
+| 龍興寺 | [GoogleMap](https://maps.app.goo.gl/4gt6FPwcSZiXsDiN8) |
+| 下野薬師寺歴史館 | [GoogleMap](https://maps.app.goo.gl/nKsy9kudToy8HMaa8) |
+| 下野薬師寺跡 | [GoogleMap](https://maps.app.goo.gl/fTuDN1bbjzV98eMY7) |
+| 10 picnic tables（テンピクニックテーブル） | [GoogleMap](https://maps.app.goo.gl/G2u3AiBxxMnxiPXJ6) |
+| おやま本場結城紬クラフト館 | [GoogleMap](https://maps.app.goo.gl/eHm2B7Qp5EfBa8Nz8) |
+| 下野市観光案内所 オアシスポッポ館 | [GoogleMap](https://maps.app.goo.gl/MzjhYRBpZ5oHdZ8u8) |
+| 御菓子司 松屋 | [GoogleMap](https://maps.app.goo.gl/1i64GpH5VREdH8jv5) |

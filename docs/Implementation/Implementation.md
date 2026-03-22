@@ -270,6 +270,26 @@
     Impl: [link](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_001)  
     movie: [link](https://youtu.be/fhdpNOXFf3I)
 
+* MeshOptimizerによるMeshlet構築  
+    ConstructMeshletFromOptimizerを参照  
+    Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
+    movie: まだ
+
+* DirectX MeshによるMeshlet構築  
+    ConstructMeshletFromDirectXを参照  
+    Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
+    movie: まだ
+
+* Greedy法によるMeshlet構築  
+    ConstructMeshletGreedyを参照  
+    Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
+    movie: まだ
+
+* BoundingSphereによるMeshlet構築  
+    ConstructMeshletBoundingSphereを参照  
+    Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
+    movie: まだ
+
 ### Shader Techniques
 * 集中線  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/PostProcess/ConcentrationLinePS.hlsl)
@@ -469,7 +489,7 @@
 * ベルマン最適方程式  
     ベルマン最適方程式でグリッドワールドの最大化を可視化  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorldNext.h) 
-    movie: まだ
+    movie: [link](https://youtu.be/FvRFekLwlz4)
 
 ## Optics  
 * 近似光線追跡  

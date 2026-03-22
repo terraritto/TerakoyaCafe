@@ -40,3 +40,10 @@
 <div>
 <iframe src="https://www.youtube.com/embed/5HTBPTLxkCQ"></iframe>
 </div>
+
+## ベルマン最適方程式で最適な方向を可視化しよう！！  
+グリッドワールドでベルマン最適方程式で方向を可視化:
+[link](https://youtu.be/FvRFekLwlz4)
+<div>
+<iframe src="https://www.youtube.com/embed/FvRFekLwlz4"></iframe>
+</div>
