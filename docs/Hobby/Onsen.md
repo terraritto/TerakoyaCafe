@@ -42,3 +42,6 @@
 ## 東山季利花
 ![onsen_00010_0001](img/onsen_0010_0001.jpeg)
 ![onsen_00010_0002](img/onsen_0010_0002.jpeg)
+
+## 大手町梨稟
+![onsen_00011_0001](img/onsen_0011_0001.jpeg)

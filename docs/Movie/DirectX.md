@@ -117,3 +117,10 @@ Meshletをまとめてみようか:
 <div>
 <iframe src="https://www.youtube.com/embed/IXtlb3OTPFE"></iframe>
 </div>
+
+## Meshletでモデルを描画しよう！～Mesh Shader Series Part.3～
+Mesh OptimizerとDirectX Meshを使ってやってみる:
+[link](https://youtu.be/9i3mjXuW_NU)
+<div>
+<iframe src="https://www.youtube.com/embed/9i3mjXuW_NU"></iframe>
+</div>

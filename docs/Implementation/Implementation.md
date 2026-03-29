@@ -491,6 +491,11 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorldNext.h) 
     movie: [link](https://youtu.be/FvRFekLwlz4)
 
+* 動的計画法(DP)  
+    DPによるグリッドワールドの計算  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_04/04_01_GridWorld.h) 
+    movie: なし
+
 ## Optics  
 * 近似光線追跡  
     3章の内容を実装しただけ.  

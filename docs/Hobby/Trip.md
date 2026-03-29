@@ -172,6 +172,8 @@
 | 江戸東京たてもの園 | [GoogleMap](https://maps.app.goo.gl/7vpGX2JHNzpuft1N8) |
 | 不忍池 | [GoogleMap](https://maps.app.goo.gl/zceabdXYJudNcEbC8) |
 | 「弥生式土器ゆかりの地」碑 | [参考](https://www.city.bunkyo.lg.jp/b014/p003754.html) |
+| 旧岩崎邸庭園 | [GoogleMap](https://maps.app.goo.gl/Jc6ZrGbXZA6EXwWK8) |
+| 屋形船 鈴木屋 | [GoogleMap](https://maps.app.goo.gl/TxKiY1FRRuWo66w18) |
 | 平和島PA(下り) | [GoogleMap](https://maps.app.goo.gl/MEyr7LdfrZ6iZVqo7) |
 | ふくい食の國 291（福井アンテナショップ） | [GoogleMap](https://maps.app.goo.gl/8wnLTqKPsDteafY89) |
 | そば茶屋さくら | [GoogleMap](https://maps.app.goo.gl/FCb4fJdznqQY8SzL9) |
@@ -194,6 +196,8 @@
 | 武蔵野アブラ学会 吉祥寺店 | [GoogleMap](https://maps.app.goo.gl/Y5oxquS8JeBXeJV17) |
 | ビヤホールライオン 銀座七丁目店 | [GoogleMap](https://maps.app.goo.gl/b9ZCodj1vbKLYtnh6) |
 | 福とほまれ（福井アンテナショップ） | [GoogleMap](https://maps.app.goo.gl/c81f26WUSnNqVPFP6) |
+| ドトールコーヒーショップ 浅草橋南店 | [GoogleMap](https://maps.app.goo.gl/Nkv7aqbZMv8NXht28) |
+| ドン・キホーテ 秋葉原店 | [GoogleMap](https://maps.app.goo.gl/NX3cB9nF7RgWdYRv5) |
 
 ## 岐阜
 | 場所 | リンク |
