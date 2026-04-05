@@ -320,3 +320,10 @@ UVを貼り付けていこう:
 <div>
 <iframe src="https://www.youtube.com/embed/wFNU9X65dd8"></iframe>
 </div>
+
+## 「量子の世紀」の量子ビットのデモを再現してみよう！
+量子ビットを確率で選ぶだけ: 
+[link](https://youtu.be/gy-_Hcs76-E)
+<div>
+<iframe src="https://www.youtube.com/embed/gy-_Hcs76-E"></iframe>
+</div>

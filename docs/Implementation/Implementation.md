@@ -516,7 +516,7 @@
 * 量子ビットデモ  
     科博の「量子の世紀」にあったデモを再現してみるだけ  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Zoo/QuantumBitDemo.h)
-    movie: まだ
+    movie: [link](https://youtu.be/gy-_Hcs76-E)
 
 * GameProgrammingC++ Series  
     動画シリーズで進めてるやつ  

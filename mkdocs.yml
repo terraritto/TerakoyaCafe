@@ -14,6 +14,7 @@ theme:
       - OS: Movie/OS.md
       - RL: Movie/RL.md
     - Implementation:
+      - データ構造: Implementation/DataStructure.md
       - 実装: Implementation/Implemantation.md
       - Todo: Implemantation/Todo.md
     - Hobby:

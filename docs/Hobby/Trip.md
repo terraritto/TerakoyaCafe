@@ -132,6 +132,8 @@
 | ブラフ１８番館 | [GoogleMap](https://maps.app.goo.gl/DpbAHYzi9hwwbKdq8) |
 | ベーリック・ホール | [GoogleMap](https://maps.app.goo.gl/3xvWAa7dKEtBHu5r8) |
 | 横浜みなと博物館 | [GoogleMap](https://maps.app.goo.gl/62m81CtpdZmkoAZ2A) |
+| 横浜赤レンガ倉庫 | [GoogleMap](https://maps.app.goo.gl/axwQCvUVxQKqNqLe9) |
+| 横浜ハンマーヘッド | [GoogleMap](https://maps.app.goo.gl/U88EocLasY8Kp6ys9) |
 | 大黒ＰＡ | [GoogleMap](https://maps.app.goo.gl/eTcSQ2HPa1Pzd3QD6) |
 | 高級寿司食べ放題 祭雛ヨドバシ横浜（旧雛鮨） | [GoogleMap](https://maps.app.goo.gl/6JaUwYTCqhBCFicy9) |
 | 魚と酒 はなたれ 野毛本店 | [GoogleMap](https://maps.app.goo.gl/GXwwfHizDDHx4P2K8) |
@@ -142,6 +144,8 @@
 | 茶房うちだ | [GoogleMap](https://maps.app.goo.gl/iv7JLKywHkPkPrb86) |
 | 箱根ラスク | [GoogleMap](https://maps.app.goo.gl/Yrq41jUSaUc7AXY87) |
 | 茶屋本陣 畔屋 | [GoogleMap](https://maps.app.goo.gl/KC2d5qiBnq4bk1Cc9) |
+| カフェ 象の鼻テラス | [GoogleMap](https://maps.app.goo.gl/wTKZvYPHEa5WSLCV7) |
+| ハングリータイガー 横浜ハンマーヘッド店 | [GoogleMap](https://maps.app.goo.gl/vA8hbw3WmrREH4xk8) |
 | 箱根駅伝ミュージアム | [GoogleMap](https://maps.app.goo.gl/RgSTMH2sg3mBdJqU7) |
 | 箱根関所 | [GoogleMap](https://maps.app.goo.gl/v3sNW91jfQDD5kuk8) |
 | 箱根関所 旅物語館 | [GoogleMap](https://maps.app.goo.gl/ikq5SpdtZXoBrBPu6) |
@@ -157,6 +161,7 @@
 | 国立科学博物館 | [GoogleMap](https://maps.app.goo.gl/iHdpLtFCszHqRwgi9) |
 | 国立西洋美術館 | [GoogleMap](https://maps.app.goo.gl/5iAkWNhMeqdZmBSs7) |
 | 東京都美術館 | [GoogleMap](https://maps.app.goo.gl/rh99t8VSEVey9dnQA) |
+| 東京国立近代美術館 | [GoogleMap](https://maps.app.goo.gl/qeVFwQXTwfbXcAAv8) |
 | 古代オリエント博物館 | [GoogleMap](https://maps.app.goo.gl/bomVS3H42uXew7Jw6) |
 | 自由学園明日館 | [GoogleMap](https://maps.app.goo.gl/nppNXPoFh28Cu8X67) |
 | ギャラリー・ルデコ | [GoogleMap](https://maps.app.goo.gl/cmxJNhL1MsAVoLT69) |
