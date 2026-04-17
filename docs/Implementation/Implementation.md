@@ -273,17 +273,17 @@
 * MeshOptimizerによるMeshlet構築  
     ConstructMeshletFromOptimizerを参照  
     Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
-    movie: まだ
+    movie: [link](https://youtu.be/9i3mjXuW_NU)
 
 * DirectX MeshによるMeshlet構築  
     ConstructMeshletFromDirectXを参照  
     Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
-    movie: まだ
+    movie: [link](https://youtu.be/9i3mjXuW_NU)
 
 * Greedy法によるMeshlet構築  
     ConstructMeshletGreedyを参照  
     Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
-    movie: まだ
+    movie: [link](https://youtu.be/b8cRv2MZgI0)
 
 * BoundingSphereによるMeshlet構築  
     ConstructMeshletBoundingSphereを参照  
@@ -500,6 +500,11 @@
 * 近似光線追跡  
     3章の内容を実装しただけ.  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/Optics/ExcelOptics/Ex_03)
+    movie: まだ
+
+* 非球面レンズ  
+    GELTEC社の特許を参考に描画.  
+    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Optics/ExcelOptics/Ex_04/Example04_NonSpherical.h)
     movie: まだ
 
 ## お遊び

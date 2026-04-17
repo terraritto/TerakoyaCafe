@@ -11,8 +11,6 @@
 * S-Video(YC)
 
 ## UV関係
-* Texture mapping
-* perspective correct
 * cube texture mapping
 * tangent space
 * bump mapping
@@ -399,3 +397,5 @@ specular IBL
 * フォンシェーディング
 * 重みつきA*
 * koch snowflake
+* Texture mapping
+* perspective correct

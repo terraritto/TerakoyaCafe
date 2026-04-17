@@ -124,3 +124,10 @@ Mesh OptimizerとDirectX Meshを使ってやってみる:
 <div>
 <iframe src="https://www.youtube.com/embed/9i3mjXuW_NU"></iframe>
 </div>
+
+## Greedy法でMeshletを構築してみよう！～Mesh Shader Series Part.4～
+Mesh OptimizerとDirectX Meshを使ってやってみる:
+[link](https://youtu.be/b8cRv2MZgI0)
+<div>
+<iframe src="https://www.youtube.com/embed/b8cRv2MZgI0"></iframe>
+</div>
