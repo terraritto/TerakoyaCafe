@@ -13,8 +13,11 @@ theme:
       - GameProgrammingC++: Movie/GP.md
       - OS: Movie/OS.md
       - RL: Movie/RL.md
+      - Optics: Movie/Optics.md
     - Implementation:
       - データ構造: Implementation/DataStructure.md
+      - 光学設計: Implemantation/Optics.md
+      - 強化学習: Implemantation/RL.md
       - 実装: Implementation/Implemantation.md
       - Todo: Implemantation/Todo.md
     - Hobby:
