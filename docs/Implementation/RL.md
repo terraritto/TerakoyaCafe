@@ -1,4 +1,4 @@
-## 強化学習周りの実装  
+# 強化学習周りの実装  
 * Greedy法  
     貪欲にバンディットしていこう！  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BanditGreedy.h) 

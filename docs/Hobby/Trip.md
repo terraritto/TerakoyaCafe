@@ -163,6 +163,8 @@
 | 東京都美術館 | [GoogleMap](https://maps.app.goo.gl/rh99t8VSEVey9dnQA) |
 | 東京国立近代美術館 | [GoogleMap](https://maps.app.goo.gl/qeVFwQXTwfbXcAAv8) |
 | 古代オリエント博物館 | [GoogleMap](https://maps.app.goo.gl/bomVS3H42uXew7Jw6) |
+| 三菱一号館美術館 | [GoogleMap](https://maps.app.goo.gl/xuxhYYYBawAxwprp8) |
+| SOMPO美術館 | [GoogleMap](https://maps.app.goo.gl/u1m1Ue9m9ksKacWX6) |
 | 自由学園明日館 | [GoogleMap](https://maps.app.goo.gl/nppNXPoFh28Cu8X67) |
 | ギャラリー・ルデコ | [GoogleMap](https://maps.app.goo.gl/cmxJNhL1MsAVoLT69) |
 | 西武渋谷店 | [GoogleMap](https://maps.app.goo.gl/iaUetZ1AKyyVqt5q8) |
