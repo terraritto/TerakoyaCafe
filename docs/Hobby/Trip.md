@@ -124,6 +124,7 @@
 ## 神奈川
 | 場所 | リンク |
 | :--- | :--- |
+| レモン社 横浜店 | [GoogleMap](https://maps.app.goo.gl/3q2Qsvzd5pE7SyTM6) |
 | 横浜美術館 | [GoogleMap](https://maps.app.goo.gl/f2NhbncQyK58zz4y9) |
 | 日本郵船氷川丸 | [GoogleMap](https://maps.app.goo.gl/c9wYG6kS89t69s2n7) |
 | 大さん橋ホール | [GoogleMap](https://maps.app.goo.gl/cyLjz2iA58e1vWQB6) |
@@ -134,9 +135,12 @@
 | 横浜みなと博物館 | [GoogleMap](https://maps.app.goo.gl/62m81CtpdZmkoAZ2A) |
 | 横浜赤レンガ倉庫 | [GoogleMap](https://maps.app.goo.gl/axwQCvUVxQKqNqLe9) |
 | 横浜ハンマーヘッド | [GoogleMap](https://maps.app.goo.gl/U88EocLasY8Kp6ys9) |
+| 三溪園 | [GoogleMap](https://maps.app.goo.gl/NbtRyUgWsBYzbhzT6) |
 | 大黒ＰＡ | [GoogleMap](https://maps.app.goo.gl/eTcSQ2HPa1Pzd3QD6) |
 | 高級寿司食べ放題 祭雛ヨドバシ横浜（旧雛鮨） | [GoogleMap](https://maps.app.goo.gl/6JaUwYTCqhBCFicy9) |
 | 魚と酒 はなたれ 野毛本店 | [GoogleMap](https://maps.app.goo.gl/GXwwfHizDDHx4P2K8) |
+| 横浜西口 炭火やきとり 伝兵衛本店 | [GoogleMap](https://maps.app.goo.gl/X4DPWUDe5niinezG7) |
+| IZAKAYA さがみ | [GoogleMap](https://maps.app.goo.gl/o9DpLUcyXsEmkJeMA) |
 | 横浜大飯店 | [GoogleMap](https://maps.app.goo.gl/7BjMSsSy3kf3FAvQ7) |
 | 麺処 彩 |  [GoogleMap](https://maps.app.goo.gl/YGpWSsVVWwJ53iBn7) |
 | 椿屋カフェ みなとみらいクロスパティオ店 | [GoogleMap](https://maps.app.goo.gl/vnd2yurMbvEuUJDL8) |
