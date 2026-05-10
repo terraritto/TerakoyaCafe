@@ -210,6 +210,13 @@
 | ドトールコーヒーショップ 浅草橋南店 | [GoogleMap](https://maps.app.goo.gl/Nkv7aqbZMv8NXht28) |
 | ドン・キホーテ 秋葉原店 | [GoogleMap](https://maps.app.goo.gl/NX3cB9nF7RgWdYRv5) |
 
+## 愛知
+| 場所 | リンク |
+| :--- | :--- |
+| 断夫山古墳 | [GoogleMap](https://maps.app.goo.gl/JwngD92d9ZKeGbfq9) |
+| ヤキトリ＆焼キトン ナゴム 名駅南店 | [GoogleMap](https://maps.app.goo.gl/3szZfvv5dj7Fukjd9) |
+| 東横INN名古屋名駅南 | [GoogleMap](https://maps.app.goo.gl/hCsAhiq82vELA6w16) |
+
 ## 岐阜
 | 場所 | リンク |
 | :--- | :--- |
@@ -224,9 +231,21 @@
 | 志田 | [GoogleMap](https://maps.app.goo.gl/bNAbkeiJ5QZFgw3B6) |
 | 飛騨高山の画廊 絵画 骨董 渋草焼 ギャラリー斐山 | [GoogleMap](https://maps.app.goo.gl/rn3DNAKN2ztdKgeDA) |
 | 高山濃飛バスセンター | [GoogleMap](https://maps.app.goo.gl/HibFmyLQMtP9qN3k6) |
+| トヨタレンタカー ＪＲ岐阜駅前店 | [GoogleMap](https://maps.app.goo.gl/pkYtPjgF9h7XnqVo8) |
+| 富加町郷土資料館 | [GoogleMap](https://maps.app.goo.gl/15Kk5ytSVtxwwAWD8) |
+| 国史跡夕田墳墓群「夕田茶臼山古墳」 | [GoogleMap](https://maps.app.goo.gl/3WuCz5UZN1cfuLM97) |
+| ぎふ金華山ロープウェー山麓駅 | [GoogleMap](https://maps.app.goo.gl/YUCUGPUWL77npV6E8) |
+| 岐阜城 | [GoogleMap](https://maps.app.goo.gl/ZTdK79J732crNToh8) |
+| 長良川うかいミュージアム | [GoogleMap](https://maps.app.goo.gl/zbaWFh3GL6iPSNC56) |
+| 古墳と柿の館 | [GoogleMap](https://maps.app.goo.gl/W2LiaQGpD7XV4VH18) |
+| 御菓子司 玉井屋本舗 | [GoogleMap](https://maps.app.goo.gl/zXn9JeXYDbHv8KsD6) |
 | 和田 | [GoogleMap](https://maps.app.goo.gl/fPfCShopWiPy5wfj8) |
 | イノマル商店 | [GoogleMap](https://maps.app.goo.gl/Ha7sDGJq8FvSAe37A) |
+| カフェ・ド・クリエ JR岐阜駅前店 | [GoogleMap](https://maps.app.goo.gl/kZBPfkgDzCDjSLF3A) |
+| 酒肆肴処やまなみ | [GoogleMap](https://maps.app.goo.gl/1bQ7DgkRsgxjyuzg6) |
+| 岐阜県のおいしいお酒とお料理 くらうど | [GoogleMap](https://maps.app.goo.gl/RsEgHWqrm6FDkucs8) |
 | 高山桜庵 | [GoogleMap](https://maps.app.goo.gl/QKysEeubX8mWAfuF9) |
+| 十八楼 | [GoogleMap](https://maps.app.goo.gl/PAPrZ9DzMdGysyNp9) |
 
 ## 山梨
 | 場所 | リンク |
