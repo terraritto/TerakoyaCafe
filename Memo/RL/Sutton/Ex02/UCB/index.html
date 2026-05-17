@@ -12,7 +12,7 @@
         <link rel="prev" href="../OptimisticInitial/">
       
       
-        <link rel="next" href="../../../../../Movie/DXR/">
+        <link rel="next" href="../../Ex03/BellmanEquation/">
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
@@ -1155,6 +1155,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Diary/2026/05/2026_0511_0517/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/05/11 ~ 2026/05/17
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2265,7 +2286,7 @@
         
   
   <span class="md-ellipsis">
-    BunditGreedy
+    BunditEpsilonGreedy
   </span>
   
 
@@ -2287,6 +2308,27 @@
   
   <span class="md-ellipsis">
     BunditGreedy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GradientBaseline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GradientBaseline
   </span>
   
 
@@ -2343,6 +2385,70 @@
 
       </a>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2_1_2" id="__nav_8_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ex03
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ex03
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Ex03/BellmanEquation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BellmanEauation
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2728,7 +2834,7 @@ cはハイパーパラメータのようなもので、大きければ試行回�
 計算をしたら後は最大値を選ぶだけなので、特に難しくない.<br />
 さて、今回は平均報酬で結果を見てみよう.<br />
 <img alt="UCB" src="../Image/UCB.png" /><br />
-緑は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>=</mo><mn>0.1</mn></mrow><annotation encoding="application/x-tex">\epsilon=0.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ϵ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.1</span></span></span></span>のEpsilon Greedy法,赤は$$<code>c=2</code>のUCBである.<br />
+緑は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϵ</mi><mo>=</mo><mn>0.1</mn></mrow><annotation encoding="application/x-tex">\epsilon=0.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">ϵ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.1</span></span></span></span>のEpsilon Greedy法,赤は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">c=2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>のUCBである.<br />
 今回の場合UCBの方がよい性能となっている.  </p>
 
 
