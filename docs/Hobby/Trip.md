@@ -137,6 +137,7 @@
 | 横浜ハンマーヘッド | [GoogleMap](https://maps.app.goo.gl/U88EocLasY8Kp6ys9) |
 | 三溪園 | [GoogleMap](https://maps.app.goo.gl/NbtRyUgWsBYzbhzT6) |
 | 大黒ＰＡ | [GoogleMap](https://maps.app.goo.gl/eTcSQ2HPa1Pzd3QD6) |
+| 横浜市歴史博物館 | [GoogleMap](https://maps.app.goo.gl/8ZgnzctQJW3jp3k4A) |
 | 高級寿司食べ放題 祭雛ヨドバシ横浜（旧雛鮨） | [GoogleMap](https://maps.app.goo.gl/6JaUwYTCqhBCFicy9) |
 | 魚と酒 はなたれ 野毛本店 | [GoogleMap](https://maps.app.goo.gl/GXwwfHizDDHx4P2K8) |
 | 横浜西口 炭火やきとり 伝兵衛本店 | [GoogleMap](https://maps.app.goo.gl/X4DPWUDe5niinezG7) |
@@ -150,6 +151,7 @@
 | 茶屋本陣 畔屋 | [GoogleMap](https://maps.app.goo.gl/KC2d5qiBnq4bk1Cc9) |
 | カフェ 象の鼻テラス | [GoogleMap](https://maps.app.goo.gl/wTKZvYPHEa5WSLCV7) |
 | ハングリータイガー 横浜ハンマーヘッド店 | [GoogleMap](https://maps.app.goo.gl/vA8hbw3WmrREH4xk8) |
+| 鳥みき | [GoogleMap](https://maps.app.goo.gl/taveWCbNcjscZ282A) |
 | 箱根駅伝ミュージアム | [GoogleMap](https://maps.app.goo.gl/RgSTMH2sg3mBdJqU7) |
 | 箱根関所 | [GoogleMap](https://maps.app.goo.gl/v3sNW91jfQDD5kuk8) |
 | 箱根関所 旅物語館 | [GoogleMap](https://maps.app.goo.gl/ikq5SpdtZXoBrBPu6) |

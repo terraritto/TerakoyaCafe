@@ -72,5 +72,5 @@ double ucbParam = m_estimates[i] +
 計算をしたら後は最大値を選ぶだけなので、特に難しくない.  
 さて、今回は平均報酬で結果を見てみよう.  
 ![UCB](Image/UCB.png)  
-緑は$`\epsilon=0.1`$のEpsilon Greedy法,赤は$$`c=2`のUCBである.  
+緑は$`\epsilon=0.1`$のEpsilon Greedy法,赤は$`c=2`$のUCBである.  
 今回の場合UCBの方がよい性能となっている.  

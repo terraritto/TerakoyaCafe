@@ -27,11 +27,13 @@
     ソフトマックスを使ってうまく学習をしていく  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/GradientBaseline.h) 
     movie: [link](https://youtu.be/BvYcs_WCL9c)
+    memo: [link](../Memo/RL/Sutton/Ex02/GradientBaseline.md)
 
 * ベルマン方程式  
     ベルマン方程式を使ってグリッドワールドを解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorld.h) 
     movie: [link](https://youtu.be/5HTBPTLxkCQ)
+    memo: [link](../Memo/RL/Sutton/Ex03/BellmanEquation.md)
 
 * ベルマン最適方程式  
     ベルマン最適方程式でグリッドワールドの最大化を可視化  

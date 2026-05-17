@@ -1,4 +1,4 @@
-# BunditGreedy  
+# BunditEpsilonGreedy  
 バンディット問題のActionを見直そう.  
 ```c++
 int Action() const
