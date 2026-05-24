@@ -1,4 +1,4 @@
-# BellmanEauation  
+# BellmanEquation  
 まずはベルマン方程式に入る前に有限マルコフ決定過程を見ていこう.  
 ![Bellman_01](Image/bellman_01.webp)  
 これのやりたいことは非常に簡単である.  

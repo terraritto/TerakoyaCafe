@@ -39,11 +39,12 @@
     ベルマン最適方程式でグリッドワールドの最大化を可視化  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorldNext.h) 
     movie: [link](https://youtu.be/FvRFekLwlz4)
+    memo: [link](../Memo/RL/Sutton/Ex03/BellmanOptimalityEquation.md)
 
 * 動的計画法(DP)  
     DPによるグリッドワールドの計算  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_04/04_01_GridWorld.h) 
-    movie: まだ
+    memo: [link](../Memo/RL/Sutton/Ex04/PolicyEvaluation.md)
 
 * Jack's Car Rental Probrem  
     DPによるグリッドワールドの計算  
