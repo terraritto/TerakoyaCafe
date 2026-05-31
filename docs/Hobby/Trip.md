@@ -196,6 +196,8 @@
 | 上野の森さくらテラス | [GoogleMap](https://maps.app.goo.gl/tWhvysRbDzgBGpjk8) |
 | サンパークダーツ本館 | [GoogleMap](https://maps.app.goo.gl/Hguc2ehGsjSF8EJP6) |
 | 東京都庁第一本庁舎 北展望室 | [GoogleMap](https://maps.app.goo.gl/wAXL8FfJY9LwkoSf8) |
+| 東京芸術大学大学美術館 上野館 | [GoogleMap](https://maps.app.goo.gl/igTopVkxHn6wTgAz8) |
+| 恩賜上野動物園 | [GoogleMap](https://maps.app.goo.gl/drg3WFZCCMTYBiTw5) |
 | WINE SHOP nico 渋谷店 | [GoogleMap](https://maps.app.goo.gl/gL6Gm7kUzmUaXh4r6) |
 | 鉄板焼・お好み焼 ごっつい池袋店 | [GoogleMap](https://maps.app.goo.gl/DBh4sFDVJMKqcoLF7) |
 | 池袋 十割蕎麦 鴨料理 ならや | [GoogleMap](https://maps.app.goo.gl/AG4DHHekVKoNzixh7) |
@@ -215,6 +217,7 @@
 | ドン・キホーテ 秋葉原店 | [GoogleMap](https://maps.app.goo.gl/NX3cB9nF7RgWdYRv5) |
 | 銀座すし嘉 | [GoogleMap](https://maps.app.goo.gl/5fcUDUpKdVjC4LeQ6) |
 | 正しい晩ごはん 白‐はく‐ | [GoogleMap](https://maps.app.goo.gl/xWgU7mBst7xaWRrg9) |
+| EVERYONEs CAFE 上野恩賜公園 | [GoogleMap](https://maps.app.goo.gl/AY2tUrWgioDrghMC9) |
 
 ## 愛知
 | 場所 | リンク |
