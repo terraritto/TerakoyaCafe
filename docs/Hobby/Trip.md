@@ -361,11 +361,16 @@
 | :--- | :--- |
 | 東京ドイツ村 | [GoogleMap](https://maps.app.goo.gl/beXuKdGjPF2ZQVTb7) |
 | 芝山古墳・はにわ博物館 | [GoogleMap](https://maps.app.goo.gl/CNETApKPMXHmTCsj9) |
+| 千葉県立中央博物館 | [GoogleMap](https://maps.app.goo.gl/iaWDKChjnFqf7eX38) |
+| 千葉市立郷土博物館 | [GoogleMap](https://maps.app.goo.gl/17pWtsoQs1s8ebWb7) |
+| 亥鼻城跡 | [GoogleMap](https://maps.app.goo.gl/BGGvG3JsLoWvfZwCA) |
 | 中里海水浴場 | [GoogleMap](https://maps.app.goo.gl/nvx92pHENkk1naJz6) |
 | たぶん…世界一小さいチョコレート工場 | [GoogleMap](https://maps.app.goo.gl/hoNauP7PqJR6vrdP8) |
 | ホテルカアナパリ | [GoogleMap](https://maps.app.goo.gl/nu3sMMu7P9BAFsJy9) |
+| スポーツウェーブ鉃腕24 稲毛長沼店 | [GoogleMap](https://maps.app.goo.gl/oGQnEqQtE1AoBkph8) |
 | 南風堂珈琲店 | [GoogleMap](https://maps.app.goo.gl/fBvBt3E3NNGBHdsb6) |
 | 煮込みカツカレーの店本店 | [GoogleMap](https://maps.app.goo.gl/6DSqjnNh7kyhTVts5) |
+| カレー屋 久.山（ひさ.やま） | [GoogleMap](https://maps.app.goo.gl/PzcDKn164bX3PH71A) |
 
 ## 群馬
 | 場所 | リンク |

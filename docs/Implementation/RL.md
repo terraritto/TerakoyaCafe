@@ -47,6 +47,6 @@
     memo: [link](../Memo/RL/Sutton/Ex04/PolicyEvaluation.md)
 
 * Jack's Car Rental Probrem  
-    DPによるグリッドワールドの計算  
+    ジャックのカーレンタル問題を解く  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_04/04_02_JacksCarRental.h) 
-    movie: まだ
+    memo: [link](../Memo/RL/Sutton/Ex04/JacksCarRentalProblem.md)
