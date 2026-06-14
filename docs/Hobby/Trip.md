@@ -132,16 +132,19 @@
 | 外交官の家（旧内田定槌邸） | [GoogleMap](https://maps.app.goo.gl/a1rP4zue2Kb8vMZKA) |
 | ブラフ１８番館 | [GoogleMap](https://maps.app.goo.gl/DpbAHYzi9hwwbKdq8) |
 | ベーリック・ホール | [GoogleMap](https://maps.app.goo.gl/3xvWAa7dKEtBHu5r8) |
+| 横浜イングリッシュガーデン | [GoogleMap](https://maps.app.goo.gl/44gsDJhz1Gs23JR17) |
 | 横浜みなと博物館 | [GoogleMap](https://maps.app.goo.gl/62m81CtpdZmkoAZ2A) |
 | 横浜赤レンガ倉庫 | [GoogleMap](https://maps.app.goo.gl/axwQCvUVxQKqNqLe9) |
 | 横浜ハンマーヘッド | [GoogleMap](https://maps.app.goo.gl/U88EocLasY8Kp6ys9) |
 | 三溪園 | [GoogleMap](https://maps.app.goo.gl/NbtRyUgWsBYzbhzT6) |
 | 大黒ＰＡ | [GoogleMap](https://maps.app.goo.gl/eTcSQ2HPa1Pzd3QD6) |
 | 横浜市歴史博物館 | [GoogleMap](https://maps.app.goo.gl/8ZgnzctQJW3jp3k4A) |
+| そごう美術館 | [GoogleMap](https://maps.app.goo.gl/EPBnyVW6BVWbZ3br8) |
 | 高級寿司食べ放題 祭雛ヨドバシ横浜（旧雛鮨） | [GoogleMap](https://maps.app.goo.gl/6JaUwYTCqhBCFicy9) |
 | 魚と酒 はなたれ 野毛本店 | [GoogleMap](https://maps.app.goo.gl/GXwwfHizDDHx4P2K8) |
 | 横浜西口 炭火やきとり 伝兵衛本店 | [GoogleMap](https://maps.app.goo.gl/X4DPWUDe5niinezG7) |
 | IZAKAYA さがみ | [GoogleMap](https://maps.app.goo.gl/o9DpLUcyXsEmkJeMA) |
+| 居酒屋 和來 | [GoogleMap](https://maps.app.goo.gl/wedzFqK8dvwqM5ds9) |
 | 横浜大飯店 | [GoogleMap](https://maps.app.goo.gl/7BjMSsSy3kf3FAvQ7) |
 | 麺処 彩 |  [GoogleMap](https://maps.app.goo.gl/YGpWSsVVWwJ53iBn7) |
 | 椿屋カフェ みなとみらいクロスパティオ店 | [GoogleMap](https://maps.app.goo.gl/vnd2yurMbvEuUJDL8) |

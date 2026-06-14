@@ -2,14 +2,17 @@
 * Array  
     固定配列  
     Impl: [link](https://github.com/terraritto/DataStructurePractice/blob/main/Ex_02/TArray.h) 
+    memo: [link](../Memo/ODS/Ex02/001_Array.md)
 
 * ArrayStack  
     動的配列、なくなったら2倍のサイズで確保  
     Impl: [link](https://github.com/terraritto/DataStructurePractice/blob/main/Ex_02/ArrayStack.h) 
+    memo: [link](../Memo/ODS/Ex02/002_ArrayStack.md)
 
 * FastArrayStack  
     std::copyで書き換えただけ  
     Impl: [link](https://github.com/terraritto/DataStructurePractice/blob/main/Ex_02/FastArrayStack.h) 
+    memo: [link](../Memo/ODS/Ex02/003_FastArrayStack.md)
 
 * ArrayQueue  
     リングバッファによる管理  
