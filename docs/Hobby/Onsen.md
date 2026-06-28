@@ -45,3 +45,9 @@
 
 ## 大手町梨稟
 ![onsen_00011_0001](img/onsen_0011_0001.jpeg)
+
+## 修善寺透子
+![onsen_00012_0001](img/onsen_0012_0001.webp)
+![onsen_00012_0002](img/onsen_0012_0002.webp)
+![onsen_00012_0003](img/onsen_0012_0003.webp)
+![onsen_00012_0004](img/onsen_0012_0004.webp)

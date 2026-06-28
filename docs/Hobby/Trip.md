@@ -7,12 +7,14 @@
 | 新井旅館 | [GoogleMap](https://maps.app.goo.gl/ytkoyD2U2qJPgrN8A) |
 | ホテルニューアカオ | [GoogleMap](https://maps.app.goo.gl/fUtgPqrfRmPDmyAa7) |
 | 望水 | [GoogleMap](https://maps.app.goo.gl/7UMeCxHoKCJo8mqB7) |
-| 修禅寺 | [GoogleMap](https://maps.app.goo.gl/CcZJutnD4BZAqAvi8) |
+| 修善寺 | [GoogleMap](https://maps.app.goo.gl/CcZJutnD4BZAqAvi8) |
+| 宝物殿 | [GoogleMap](https://maps.app.goo.gl/toR3bSCmFkvYt37N8) |
 | 指月殿 | [GoogleMap](https://maps.app.goo.gl/p8hw1bKNrh22hBMu5) |
 | 源頼家の墓 | [GoogleMap](https://maps.app.goo.gl/RdHGDrjwsJpftxqi6) |
 | 十三士の墓 | [GoogleMap](https://maps.app.goo.gl/f9v1YTv2DUFdDp3v7) |
 | おしゃぶり婆さんの像 | [GoogleMap](https://maps.app.goo.gl/Xn8zstApS2gKsb8g9) |
 | 源義経の像 | [GoogleMap](https://maps.app.goo.gl/TH51kjbwvNkUu76MA) |
+| 新井旅館銀座金澤翔子美術館 | [GoogleMap](https://maps.app.goo.gl/YdYE5v7zpK8n1Kpk6) |
 | 静岡県熱海港船客待合所 | [GoogleMap](https://maps.app.goo.gl/qv1o3eg3BEq2KKAG9) |
 | アタミロープウェイ山麓駅(後楽園駅) | [GoogleMap](https://maps.app.goo.gl/X4HbJLXYoq3jxztN8) |
 | 熱海城 | [GoogleMap](https://maps.app.goo.gl/TdUnjK7ZYzMiNedJ8) |
@@ -32,6 +34,8 @@
 | いずちゅう 伊東駅店 | [GoogleMap](https://maps.app.goo.gl/DJ9o6SboC6DJ5nD79) |
 | 石舟庵 伊東駅店 | [GoogleMap](https://maps.app.goo.gl/1d1uPCzY2DxKdm8m6) |
 | BECK'S COFFEE SHOP 伊東 | [GoogleMap](https://maps.app.goo.gl/tiaRMmL3x6qDqXpC7) |
+| 修善寺 亀屋 甘泉楼 | [GoogleMap](https://maps.app.goo.gl/jUZ8mzBebnENtMFS6) |
+| イズーラ修善寺 | [GoogleMap](https://maps.app.goo.gl/9w4TacfJjfktJUD68) |
 
 ## 新潟
 | 場所 | リンク |
