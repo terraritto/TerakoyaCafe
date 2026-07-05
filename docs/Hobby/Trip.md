@@ -184,6 +184,9 @@
 | 東大 赤門 | [GoogleMap](https://maps.app.goo.gl/VzfKoZbcwxhVYMVu5) |
 | 弥生美術館 | [GoogleMap](https://maps.app.goo.gl/gY5CvaYzTzypuG9v9) |
 | 竹久夢二美術館 | [GoogleMap](https://maps.app.goo.gl/QJWwxijCNXx2bWRb7) |
+| 太田記念美術館 | [GoogleMap](https://maps.app.goo.gl/EtHAMRkBtH775dY3A) |
+| 戸栗美術館 | [GoogleMap](https://maps.app.goo.gl/NB1UmJT5pGBYLp7J8) |
+| 渋谷区立松濤美術館 | [GoogleMap](https://maps.app.goo.gl/UdjAidecwm4uxX2G9) |
 | 葛西臨海公園 | [GoogleMap](https://maps.app.goo.gl/o7cRoseANVeCiEVS8) |
 | 展望レストハウス クリスタルビュー | [GoogleMap](https://maps.app.goo.gl/M5uEZMZCnfx2RQnM7) |
 | 展望デッキ | [GoogleMap](https://maps.app.goo.gl/juvd37Z1ZrJQjou97) |
@@ -208,6 +211,7 @@
 | WINE SHOP nico 渋谷店 | [GoogleMap](https://maps.app.goo.gl/gL6Gm7kUzmUaXh4r6) |
 | 鉄板焼・お好み焼 ごっつい池袋店 | [GoogleMap](https://maps.app.goo.gl/DBh4sFDVJMKqcoLF7) |
 | 池袋 十割蕎麦 鴨料理 ならや | [GoogleMap](https://maps.app.goo.gl/AG4DHHekVKoNzixh7) |
+| 炭市場 どんどこ 西池袋店 | [GoogleMap](https://maps.app.goo.gl/gtq7NMaga1gr2TkU9) |
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
 | お多幸 新宿店 | [GoogleMap](https://maps.app.goo.gl/7La9ak7xAKwCWWPS6) |

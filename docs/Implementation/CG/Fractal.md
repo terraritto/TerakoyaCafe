@@ -1,5 +1,4 @@
 # フラクタル周りの実装  
-### Fractal
 * コッホ曲線  
     線分分割しつつ、回転を繰り返す  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/KochCurve.h) 

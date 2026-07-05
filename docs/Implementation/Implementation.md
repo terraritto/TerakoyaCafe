@@ -175,32 +175,6 @@
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/Shadow/ShadowCommon.hlsli)
     movie: [link](https://www.youtube.com/embed/PGFffnGFsGk)
 
-### Intersection
-* Sphere  
-    球の交差  
-    Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/Intersection/chsSphere.hlsl)
-    movie: [link](https://youtu.be/5d0wgHcvQfA)
-
-* Plane
-    平面の交差  
-    Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/Intersection/chsPlane.hlsl)
-    movie: [link](https://youtu.be/lA3_zsVZJ-M)
-
-* Triangle(クラメル)  
-    三角形の交差(クラメルで係数を強引に計算)  
-    Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/Intersection/chsTriangle.hlsl)
-    movie: [link](https://youtu.be/Y6dpiL0erKk)
-
-* Quad
-    矩形の交差、平面に近いもの  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/QuadTrace.h)
-    movie: [link](https://youtu.be/aMzaBILTPk4)
-
-* Disk
-    円の交差、平面をうまく使ってく  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/DiskTrace.h)
-    movie: [link](https://youtu.be/deryOZpNaec)
-
 ### Ray Tracing
 * PathTracing  
     PTの実装  
