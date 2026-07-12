@@ -40,13 +40,13 @@ constexpr double RENTAL_CREDIT = 10.0; // レンタルした際の報酬
 ```
 これがポアソン分布.  
 今回はポアソン分布がどんなものかは置いといて、この確率分布に沿って人が来るんだなくらいで考えとく.  
-このポアソン分布は$`\lambda`$で決まるが、今回はそれぞれ$\lambda_{1}=3, \lambda_{2}=4$とする.  
+このポアソン分布は$`\lambda`$で決まるが、今回はそれぞれ$`\lambda_{1}=3, \lambda_{2}=4`$とする.  
 ```c++
 constexpr int RENTAL_REQUEST_FIRST_LOCATION = 3; // 最初の位置でのレンタル要望の期待値
 constexpr int RENTAL_REQUEST_SECOND_LOCATION = 4; // 次の位置でのレンタル要望の期待値
 ```
 借りに来る人数はポアソン分布だが、その日に返しにくる人数もポアソン分布に従うとする.  
-こちらはそれぞれ$\lambda_{1}=3, \lambda_{2}=2$とする.  
+こちらはそれぞれ$`\lambda_{1}=3, \lambda_{2}=2`$とする.  
 ```c++
 constexpr int RETURN_FIRST_LOCATION = 3; // 最初の位置での車返却の期待値
 constexpr int RETURN_SECOND_LOCATION = 2; // 次の位置での車返却の期待値

@@ -406,3 +406,17 @@
 | おやま本場結城紬クラフト館 | [GoogleMap](https://maps.app.goo.gl/eHm2B7Qp5EfBa8Nz8) |
 | 下野市観光案内所 オアシスポッポ館 | [GoogleMap](https://maps.app.goo.gl/MzjhYRBpZ5oHdZ8u8) |
 | 御菓子司 松屋 | [GoogleMap](https://maps.app.goo.gl/1i64GpH5VREdH8jv5) |
+
+## 宮城
+| 場所 | リンク |
+| :--- | :--- |
+| 松島観光協会 | [GoogleMap](https://maps.app.goo.gl/ZpHo9P6NGiZoCK1ZA) |
+| 松島博物館 | [GoogleMap](https://maps.app.goo.gl/Y8mZVLmngLQZYjg46) |
+| 福浦島 | [GoogleMap](https://maps.app.goo.gl/E6YkReAJJ4FnS3sn6) |
+| 瑞巌寺 本堂 | [GoogleMap](https://maps.app.goo.gl/hvap7AjpUDpaABPX9) |
+| 円通院 | [GoogleMap](https://maps.app.goo.gl/aU5mmXaSVLFJRZWe8) |
+| 寿司処 こうや 仙台すし通り店 | [GoogleMap](https://maps.app.goo.gl/N6wcUKJGpiXgswmu5) |
+| うみねこや | [GoogleMap](https://maps.app.goo.gl/EGysXpkVpsASLXAMA) |
+| 牡蠣屋フライ亭 | [GoogleMap](https://maps.app.goo.gl/JdLvwKmBQd6UV1d47) |
+| お食事とおみやげ処 洗心庵 | [GoogleMap](https://maps.app.goo.gl/K1XwG1QGaa1CHwui7) |
+| 松島温泉 小松館 好風亭 | [GoogleMap](https://maps.app.goo.gl/jNGtxg1Avd5S7F87A) |
