@@ -51,3 +51,9 @@
 ![onsen_00012_0002](img/onsen_0012_0002.webp)
 ![onsen_00012_0003](img/onsen_0012_0003.webp)
 ![onsen_00012_0004](img/onsen_0012_0004.webp)
+
+## 松島名月
+![onsen_00013_0001](img/onsen_0013_0001.webp)
+![onsen_00013_0002](img/onsen_0013_0002.webp)
+![onsen_00013_0003](img/onsen_0013_0003.webp)
+![onsen_00013_0004](img/onsen_0013_0004.webp)
