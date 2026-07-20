@@ -17,10 +17,12 @@
 * ArrayQueue  
     リングバッファによる管理  
     Impl: [link](https://github.com/terraritto/DataStructurePractice/blob/main/Ex_02/ArrayQueue.h) 
+    memo: [link](../Memo/ODS/Ex02/004_ArrayQueue.md)
 
 * ArrayDeque  
     前後でずらして追加してく方式  
     Impl: [link](https://github.com/terraritto/DataStructurePractice/blob/main/Ex_02/ArrayDeque.h) 
+    memo: [link](../Memo/ODS/Ex02/005_ArrayDeque.md)
 
 * DualArrayDeque  
     2つのArrayStackをくっつけて追加していく  

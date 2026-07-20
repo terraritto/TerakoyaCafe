@@ -3,7 +3,7 @@
     球の交差  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/Intersection/chsSphere.hlsl)
     movie: [link](https://youtu.be/5d0wgHcvQfA)
-    memo: [link]()
+    memo: [link](../../Memo/CG/Intersection/Sphere.md)
 
 * Plane
     平面の交差  

@@ -105,3 +105,49 @@ void Resize()
 }
 ```
 最後に削除を見よう.  
+消すIndexはわかってるので、そこをなくすように左にずらすだけ.  
+```c++
+    // 配列内を左シフトして消す
+    for (int j = i; j < m_size - 1; j++)
+    {
+        m_data[j] = m_data[j + 1];
+    }
+```
+消したのでデータサイズを縮めておく.  
+```c++
+    m_size--;
+```
+最後に配列がある程度小さくなってたら、配列を縮めておく.  
+```c++
+    // 余りにも小さい場合は無駄を減らすためshrink
+    if (m_data.m_length >= 3 * m_size)
+    {
+        Resize();
+    }
+```
+すべてまとめると以下の感じ.  
+```c++
+T Remove(int i)
+{
+    T current = m_data[i];
+
+    // 配列内を左シフトして消す
+    for (int j = i; j < m_size - 1; j++)
+    {
+        m_data[j] = m_data[j + 1];
+    }
+
+    // データ数をCountDown
+    m_size--;
+
+    // 余りにも小さい場合は無駄を減らすためshrink
+    if (m_data.m_length >= 3 * m_size)
+    {
+        Resize();
+    }
+
+    // 消したものを返す
+    return current;
+}
+```
+これでStackも終わり.  

@@ -147,9 +147,11 @@
 | 高級寿司食べ放題 祭雛ヨドバシ横浜（旧雛鮨） | [GoogleMap](https://maps.app.goo.gl/6JaUwYTCqhBCFicy9) |
 | 魚と酒 はなたれ 野毛本店 | [GoogleMap](https://maps.app.goo.gl/GXwwfHizDDHx4P2K8) |
 | 横浜西口 炭火やきとり 伝兵衛本店 | [GoogleMap](https://maps.app.goo.gl/X4DPWUDe5niinezG7) |
+| 朝獲れ鮮魚の大漁舟盛り×牛タン×日本酒 はじめや 横浜駅 | [GoogleMap](https://maps.app.goo.gl/5kEgaPoYRun2nqQ38) |
 | IZAKAYA さがみ | [GoogleMap](https://maps.app.goo.gl/o9DpLUcyXsEmkJeMA) |
 | 居酒屋 和來 | [GoogleMap](https://maps.app.goo.gl/wedzFqK8dvwqM5ds9) |
 | 横浜大飯店 | [GoogleMap](https://maps.app.goo.gl/7BjMSsSy3kf3FAvQ7) |
+| 鵬天閣 新館 | [GoogleMap](https://maps.app.goo.gl/4LfeF7MDSq6kUrJP6) |
 | 麺処 彩 |  [GoogleMap](https://maps.app.goo.gl/YGpWSsVVWwJ53iBn7) |
 | 椿屋カフェ みなとみらいクロスパティオ店 | [GoogleMap](https://maps.app.goo.gl/vnd2yurMbvEuUJDL8) |
 | 箱根湯本温泉 河鹿荘 | [GoogleMap](https://maps.app.goo.gl/Hjf7owc6YroKpwnf8) |
@@ -222,6 +224,7 @@
 | Chef's Theatre | [GoogleMap](https://maps.app.goo.gl/M4FVBLKPJwXEhe4n7) |
 | 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
 | 武蔵野アブラ学会 吉祥寺店 | [GoogleMap](https://maps.app.goo.gl/Y5oxquS8JeBXeJV17) |
+| 時屋 | [GoogleMap](https://maps.app.goo.gl/Sy4VtHggyTx8B3948) |
 | ビヤホールライオン 銀座七丁目店 | [GoogleMap](https://maps.app.goo.gl/b9ZCodj1vbKLYtnh6) |
 | 福とほまれ（福井アンテナショップ） | [GoogleMap](https://maps.app.goo.gl/c81f26WUSnNqVPFP6) |
 | ドトールコーヒーショップ 浅草橋南店 | [GoogleMap](https://maps.app.goo.gl/Nkv7aqbZMv8NXht28) |
