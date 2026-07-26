@@ -214,6 +214,9 @@
 | 鉄板焼・お好み焼 ごっつい池袋店 | [GoogleMap](https://maps.app.goo.gl/DBh4sFDVJMKqcoLF7) |
 | 池袋 十割蕎麦 鴨料理 ならや | [GoogleMap](https://maps.app.goo.gl/AG4DHHekVKoNzixh7) |
 | 炭市場 どんどこ 西池袋店 | [GoogleMap](https://maps.app.goo.gl/gtq7NMaga1gr2TkU9) |
+| あおもり屋 池袋本店 | [GoogleMap](https://maps.app.goo.gl/Hw8WiQSg7txsLhme9) |
+| 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
+| 正しい晩ごはん 白‐はく‐ | [GoogleMap](https://maps.app.goo.gl/xWgU7mBst7xaWRrg9) |
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
 | お多幸 新宿店 | [GoogleMap](https://maps.app.goo.gl/7La9ak7xAKwCWWPS6) |
@@ -222,7 +225,6 @@
 | どまん中 | [GoogleMap](https://maps.app.goo.gl/qiS9TQBTzWZujGmk6) |
 | デニーズ 墨田堤通り店 | [GoogleMap](https://maps.app.goo.gl/GFSj32zmbVJBa6BbA) |
 | Chef's Theatre | [GoogleMap](https://maps.app.goo.gl/M4FVBLKPJwXEhe4n7) |
-| 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
 | 武蔵野アブラ学会 吉祥寺店 | [GoogleMap](https://maps.app.goo.gl/Y5oxquS8JeBXeJV17) |
 | 時屋 | [GoogleMap](https://maps.app.goo.gl/Sy4VtHggyTx8B3948) |
 | ビヤホールライオン 銀座七丁目店 | [GoogleMap](https://maps.app.goo.gl/b9ZCodj1vbKLYtnh6) |
@@ -230,7 +232,6 @@
 | ドトールコーヒーショップ 浅草橋南店 | [GoogleMap](https://maps.app.goo.gl/Nkv7aqbZMv8NXht28) |
 | ドン・キホーテ 秋葉原店 | [GoogleMap](https://maps.app.goo.gl/NX3cB9nF7RgWdYRv5) |
 | 銀座すし嘉 | [GoogleMap](https://maps.app.goo.gl/5fcUDUpKdVjC4LeQ6) |
-| 正しい晩ごはん 白‐はく‐ | [GoogleMap](https://maps.app.goo.gl/xWgU7mBst7xaWRrg9) |
 | EVERYONEs CAFE 上野恩賜公園 | [GoogleMap](https://maps.app.goo.gl/AY2tUrWgioDrghMC9) |
 
 ## 愛知
