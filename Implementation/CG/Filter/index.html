@@ -12,7 +12,7 @@
         <link rel="prev" href="../../Todo/">
       
       
-        <link rel="next" href="../Fractal/">
+        <link rel="next" href="../Intersection/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -1959,27 +1959,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RL/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    強化学習周りの実装
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../Todo/" class="md-nav__link">
         
   
@@ -2010,10 +1989,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2024,8 +2003,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_5">
             <span class="md-nav__icon md-icon"></span>
             CG
           </label>
@@ -2057,27 +2036,6 @@
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Fractal/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    フラクタル周りの実装
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -2590,6 +2548,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Memo/CG/Intersection/Disk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Disk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Memo/CG/Intersection/Plane/" class="md-nav__link">
         
   
@@ -2828,6 +2807,48 @@
   
   <span class="md-ellipsis">
     ArrayDeque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Memo/ODS/Ex02/006_DualArrayDeque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DualArrayDeque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Memo/ODS/Ex02/007_RootishArrayStack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RootishArrayStack
   </span>
   
 
@@ -3320,6 +3341,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Memo/TIPS/DefaultTexture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デフォルトテクスチャを作る機能
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Memo/TIPS/Obj_dump/" class="md-nav__link">
         
   
@@ -3615,62 +3657,11 @@
 
 <h1 id="_1">フィルタ周りの実装</h1>
 <ul>
-<li>
-<p>Mean Filter<br />
-<code>case 0</code>の部分<br />
-    Impl: <a href="https://github.com/terraritto/DXLab/blob/main/Shader/PostProcess/CommonBlurPS.hlsl">link</a>
-    movie: <a href="https://youtu.be/zm-NbJyQamg">link</a>
-    memo: <a href="../../../Memo/CG/Filter/MeanFilter/">link</a></p>
-</li>
-<li>
-<p>Median Filter<br />
+<li>Median Filter<br />
 <code>case 1</code>の部分<br />
     Impl: <a href="https://github.com/terraritto/DXLab/blob/main/Shader/PostProcess/CommonBlurPS.hlsl">link</a>
     movie: <a href="https://youtu.be/zm-NbJyQamg">link</a>
-    memo: todo</p>
-</li>
-<li>
-<p>1-Pass Gaussian<br />
-<code>case 2</code>の部分<br />
-    Impl: <a href="https://github.com/terraritto/DXLab/blob/main/Shader/PostProcess/CommonBlurPS.hlsl">link</a>
-    movie: <a href="https://youtu.be/zm-NbJyQamg">link</a>
-    memo: <a href="../../../Memo/CG/Filter/OnePassGaussianFilter/">link</a></p>
-</li>
-<li>
-<p>Bilateral Filter<br />
-    Sigma2つ/iter/FilterSizeを設定して適用<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BilateralFilter.h">link</a>
-    movie: <a href="https://youtu.be/WwVQfapRkXw">link</a>
-    memo: <a href="../../../Memo/CG/Filter/BilateralFilter/">link</a></p>
-</li>
-<li>
-<p>Sobel Filter<br />
-    エッジ検出フィルタ、中心に近いほど重みが大きい<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/SobelFilter.h">link</a>
-    movie: <a href="https://youtu.be/rXzaPR2FDGY">link</a>
-    memo: <a href="../../../Memo/CG/Filter/SobelFilter/">link</a></p>
-</li>
-<li>
-<p>Kuwahara Filter<br />
-    油絵っぽいものを作るフィルタ<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/KuwaharaFilter.h">link</a>
-    movie:<a href="https://youtu.be/po2Lr4QWV3E">link</a>
-    memo: <a href="../../../Memo/CG/Filter/KuwaharaFilter/">link</a></p>
-</li>
-<li>
-<p>SNN Filter<br />
-    絵画調フィルタ、対称にピクセル比較を行っていく<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/SNNFilter.h">link</a>
-    movie:<a href="https://youtu.be/39c-2kxq8YE">link</a>
-    memo: <a href="../../../Memo/CG/Filter/SNNFilter/">link</a></p>
-</li>
-<li>
-<p>Bayar Filter<br />
-    カメラで使われているベイヤーフィルター<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BayarFilter.h">link</a>
-    movie: <a href="https://youtu.be/JyxDIZewrMI">link</a>
-    memo: <a href="../../../Memo/CG/Filter/BayarFilter/">link</a></p>
-</li>
+    memo: todo</li>
 </ul>
 
 

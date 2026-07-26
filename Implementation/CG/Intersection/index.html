@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../Fractal/">
+        <link rel="prev" href="../Filter/">
       
       
         <link rel="next" href="../../../Memo/Main/">
@@ -1959,27 +1959,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../RL/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    強化学習周りの実装
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../Todo/" class="md-nav__link">
         
   
@@ -2010,10 +1989,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2024,8 +2003,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_5">
             <span class="md-nav__icon md-icon"></span>
             CG
           </label>
@@ -2043,27 +2022,6 @@
   
   <span class="md-ellipsis">
     フィルタ周りの実装
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../Fractal/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    フラクタル周りの実装
   </span>
   
 
@@ -2625,6 +2583,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Memo/CG/Intersection/Disk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Disk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Memo/CG/Intersection/Plane/" class="md-nav__link">
         
   
@@ -2863,6 +2842,48 @@
   
   <span class="md-ellipsis">
     ArrayDeque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Memo/ODS/Ex02/006_DualArrayDeque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DualArrayDeque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Memo/ODS/Ex02/007_RootishArrayStack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RootishArrayStack
   </span>
   
 
@@ -3355,6 +3376,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Memo/TIPS/DefaultTexture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デフォルトテクスチャを作る機能
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Memo/TIPS/Obj_dump/" class="md-nav__link">
         
   
@@ -3667,38 +3709,10 @@
 
 <h3 id="intersection">Intersection</h3>
 <ul>
-<li>
-<p>Sphere<br />
-    球の交差<br />
-    Impl: <a href="https://github.com/terraritto/DXLab/blob/main/Shader/DXR/Intersection/chsSphere.hlsl">link</a>
-    movie: <a href="https://youtu.be/5d0wgHcvQfA">link</a>
-    memo: <a href="../../../Memo/CG/Intersection/Sphere/">link</a></p>
-</li>
-<li>
-<p>Plane
-    平面の交差<br />
-    Impl: <a href="https://github.com/terraritto/DXLab/blob/main/Shader/DXR/Intersection/chsPlane.hlsl">link</a>
-    movie: <a href="https://youtu.be/lA3_zsVZJ-M">link</a>
-    memo: <a href="../../../Memo/CG/Intersection/Plane/">link</a></p>
-</li>
-<li>
-<p>Triangle(クラメル)<br />
+<li>Triangle(クラメル)<br />
     三角形の交差(クラメルで係数を強引に計算)<br />
     Impl: <a href="https://github.com/terraritto/DXLab/blob/main/Shader/DXR/Intersection/chsTriangle.hlsl">link</a>
-    movie: <a href="https://youtu.be/Y6dpiL0erKk">link</a></p>
-</li>
-<li>
-<p>Quad
-    矩形の交差、平面に近いもの<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/QuadTrace.h">link</a>
-    movie: <a href="https://youtu.be/aMzaBILTPk4">link</a></p>
-</li>
-<li>
-<p>Disk
-    円の交差、平面をうまく使ってく<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/DiskTrace.h">link</a>
-    movie: <a href="https://youtu.be/deryOZpNaec">link</a></p>
-</li>
+    movie: <a href="https://youtu.be/Y6dpiL0erKk">link</a></li>
 </ul>
 
 

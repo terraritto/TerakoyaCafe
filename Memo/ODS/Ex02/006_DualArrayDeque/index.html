@@ -9,22 +9,22 @@
       
       
       
-        <link rel="prev" href="../Optics/">
+        <link rel="prev" href="../005_ArrayDeque/">
       
       
-        <link rel="next" href="../Todo/">
+        <link rel="next" href="../007_RootishArrayStack/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
-        <title>強化学習周りの実装 - Terakoya Cafe Terrace</title>
+        <title>DualArrayDeque - Terakoya Cafe Terrace</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.3cba04c6.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3cba04c6.min.css">
       
       
 
@@ -43,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#dualarraydeque" class="md-skip">
           コンテンツにスキップ
         </a>
       
@@ -78,7 +78,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="ヘッダー">
-    <a href="../.." title="Terakoya Cafe Terrace" class="md-header__button md-logo" aria-label="Terakoya Cafe Terrace" data-md-component="logo">
+    <a href="../../../.." title="Terakoya Cafe Terrace" class="md-header__button md-logo" aria-label="Terakoya Cafe Terrace" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              強化学習周りの実装
+              DualArrayDeque
             
           </span>
         </div>
@@ -173,7 +173,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Terakoya Cafe Terrace" class="md-nav__button md-logo" aria-label="Terakoya Cafe Terrace" data-md-component="logo">
+    <a href="../../../.." title="Terakoya Cafe Terrace" class="md-nav__button md-logo" aria-label="Terakoya Cafe Terrace" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -191,7 +191,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -316,7 +316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Derive/Optics/Optics_001/Opt_001_001/" class="md-nav__link">
+      <a href="../../../../Derive/Optics/Optics_001/Opt_001_001/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -337,7 +337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Derive/Optics/Optics_001/Opt_001_002/" class="md-nav__link">
+      <a href="../../../../Derive/Optics/Optics_001/Opt_001_002/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -358,7 +358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Derive/Optics/Optics_001/Opt_001_003/" class="md-nav__link">
+      <a href="../../../../Derive/Optics/Optics_001/Opt_001_003/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -379,7 +379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Derive/Optics/Optics_001/Opt_001_004/" class="md-nav__link">
+      <a href="../../../../Derive/Optics/Optics_001/Opt_001_004/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -400,7 +400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Derive/Optics/Optics_001/Opt_001_005/" class="md-nav__link">
+      <a href="../../../../Derive/Optics/Optics_001/Opt_001_005/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -549,7 +549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/01/2026_0101_0104/" class="md-nav__link">
+      <a href="../../../../Diary/2026/01/2026_0101_0104/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -570,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/01/2026_0105_0111/" class="md-nav__link">
+      <a href="../../../../Diary/2026/01/2026_0105_0111/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -591,7 +591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/01/2026_0112_0118/" class="md-nav__link">
+      <a href="../../../../Diary/2026/01/2026_0112_0118/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -612,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/01/2026_0119_0125/" class="md-nav__link">
+      <a href="../../../../Diary/2026/01/2026_0119_0125/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -633,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/01/2026_0126_0131/" class="md-nav__link">
+      <a href="../../../../Diary/2026/01/2026_0126_0131/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -697,7 +697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/02/2026_0201_0208/" class="md-nav__link">
+      <a href="../../../../Diary/2026/02/2026_0201_0208/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -718,7 +718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/02/2026_0209_0215/" class="md-nav__link">
+      <a href="../../../../Diary/2026/02/2026_0209_0215/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -739,7 +739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/02/2026_0216_0222/" class="md-nav__link">
+      <a href="../../../../Diary/2026/02/2026_0216_0222/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -760,7 +760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/02/2026_0223_0228/" class="md-nav__link">
+      <a href="../../../../Diary/2026/02/2026_0223_0228/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -824,7 +824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/03/2026_0301_0308/" class="md-nav__link">
+      <a href="../../../../Diary/2026/03/2026_0301_0308/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -845,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/03/2026_0309_0315/" class="md-nav__link">
+      <a href="../../../../Diary/2026/03/2026_0309_0315/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -866,7 +866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/03/2026_0316_0322/" class="md-nav__link">
+      <a href="../../../../Diary/2026/03/2026_0316_0322/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -887,7 +887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/03/2026_0323_0329/" class="md-nav__link">
+      <a href="../../../../Diary/2026/03/2026_0323_0329/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -908,7 +908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/03/2026_0330_0331/" class="md-nav__link">
+      <a href="../../../../Diary/2026/03/2026_0330_0331/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -972,7 +972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/04/2026_0401_0405/" class="md-nav__link">
+      <a href="../../../../Diary/2026/04/2026_0401_0405/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -993,7 +993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/04/2026_0406_0412/" class="md-nav__link">
+      <a href="../../../../Diary/2026/04/2026_0406_0412/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1014,7 +1014,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/04/2026_0413_0419/" class="md-nav__link">
+      <a href="../../../../Diary/2026/04/2026_0413_0419/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1035,7 +1035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/04/2026_0420_0426/" class="md-nav__link">
+      <a href="../../../../Diary/2026/04/2026_0420_0426/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1056,7 +1056,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/04/2026_0427_0430/" class="md-nav__link">
+      <a href="../../../../Diary/2026/04/2026_0427_0430/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1120,7 +1120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/05/2026_0501_0503/" class="md-nav__link">
+      <a href="../../../../Diary/2026/05/2026_0501_0503/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1141,7 +1141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/05/2026_0504_0510/" class="md-nav__link">
+      <a href="../../../../Diary/2026/05/2026_0504_0510/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1162,7 +1162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/05/2026_0511_0517/" class="md-nav__link">
+      <a href="../../../../Diary/2026/05/2026_0511_0517/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1183,7 +1183,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/05/2026_0518_0524/" class="md-nav__link">
+      <a href="../../../../Diary/2026/05/2026_0518_0524/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1204,7 +1204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/05/2026_0525_0531/" class="md-nav__link">
+      <a href="../../../../Diary/2026/05/2026_0525_0531/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1268,7 +1268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/06/2026_0601_0607/" class="md-nav__link">
+      <a href="../../../../Diary/2026/06/2026_0601_0607/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1289,7 +1289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/06/2026_0608_0614/" class="md-nav__link">
+      <a href="../../../../Diary/2026/06/2026_0608_0614/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1310,7 +1310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/06/2026_0615_0621/" class="md-nav__link">
+      <a href="../../../../Diary/2026/06/2026_0615_0621/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1331,7 +1331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/06/2026_0622_0628/" class="md-nav__link">
+      <a href="../../../../Diary/2026/06/2026_0622_0628/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1352,7 +1352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/06/2026_0629_0630/" class="md-nav__link">
+      <a href="../../../../Diary/2026/06/2026_0629_0630/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1416,7 +1416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/07/2026_0701_0705/" class="md-nav__link">
+      <a href="../../../../Diary/2026/07/2026_0701_0705/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1437,7 +1437,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/07/2026_0706_0712/" class="md-nav__link">
+      <a href="../../../../Diary/2026/07/2026_0706_0712/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1458,7 +1458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/07/2026_0713_0719/" class="md-nav__link">
+      <a href="../../../../Diary/2026/07/2026_0713_0719/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1479,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Diary/2026/07/2026_0720_0726/" class="md-nav__link">
+      <a href="../../../../Diary/2026/07/2026_0720_0726/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1558,7 +1558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Future/future_2026/" class="md-nav__link">
+      <a href="../../../../Future/future_2026/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1621,7 +1621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../GameStatistics/MHRise/" class="md-nav__link">
+      <a href="../../../../GameStatistics/MHRise/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1642,7 +1642,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../GameStatistics/MHWilds/" class="md-nav__link">
+      <a href="../../../../GameStatistics/MHWilds/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1705,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Hobby/Anime/" class="md-nav__link">
+      <a href="../../../../Hobby/Anime/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1726,7 +1726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Hobby/Onsen/" class="md-nav__link">
+      <a href="../../../../Hobby/Onsen/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1747,7 +1747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Hobby/Trip/" class="md-nav__link">
+      <a href="../../../../Hobby/Trip/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1768,7 +1768,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Hobby/book/" class="md-nav__link">
+      <a href="../../../../Hobby/book/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1789,7 +1789,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Hobby/drink/" class="md-nav__link">
+      <a href="../../../../Hobby/drink/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1810,7 +1810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Hobby/movie/" class="md-nav__link">
+      <a href="../../../../Hobby/movie/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1831,7 +1831,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Hobby/museum/" class="md-nav__link">
+      <a href="../../../../Hobby/museum/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1856,19 +1856,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1882,7 +1880,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Implementation
@@ -1896,7 +1894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../DataStructure/" class="md-nav__link">
+      <a href="../../../../Implementation/DataStructure/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1917,7 +1915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Implementation/" class="md-nav__link">
+      <a href="../../../../Implementation/Implementation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1938,7 +1936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Optics/" class="md-nav__link">
+      <a href="../../../../Implementation/Optics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1956,41 +1954,10 @@
                 
   
   
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    強化学習周りの実装
-  </span>
-  
-
-      </a>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
   
   
     <li class="md-nav__item">
-      <a href="../Todo/" class="md-nav__link">
+      <a href="../../../../Implementation/Todo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2018,10 +1985,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
         
           
-          <label class="md-nav__link" for="__nav_7_6" id="__nav_7_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -2032,8 +1999,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
             <span class="md-nav__icon md-icon"></span>
             CG
           </label>
@@ -2046,7 +2013,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CG/Filter/" class="md-nav__link">
+      <a href="../../../../Implementation/CG/Filter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2067,28 +2034,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CG/Fractal/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    フラクタル周りの実装
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../CG/Intersection/" class="md-nav__link">
+      <a href="../../../../Implementation/CG/Intersection/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2121,17 +2067,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -2145,7 +2093,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Memo
@@ -2159,7 +2107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/Main/" class="md-nav__link">
+      <a href="../../../Main/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2250,7 +2198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Filter/BayarFilter/" class="md-nav__link">
+      <a href="../../../CG/Filter/BayarFilter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2271,7 +2219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Filter/BilateralFilter/" class="md-nav__link">
+      <a href="../../../CG/Filter/BilateralFilter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2292,7 +2240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Filter/KuwaharaFilter/" class="md-nav__link">
+      <a href="../../../CG/Filter/KuwaharaFilter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2313,7 +2261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Filter/MeanFilter/" class="md-nav__link">
+      <a href="../../../CG/Filter/MeanFilter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2334,7 +2282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Filter/OnePassGaussianFilter/" class="md-nav__link">
+      <a href="../../../CG/Filter/OnePassGaussianFilter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2355,7 +2303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Filter/SNNFilter/" class="md-nav__link">
+      <a href="../../../CG/Filter/SNNFilter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2376,7 +2324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Filter/SobelFilter/" class="md-nav__link">
+      <a href="../../../CG/Filter/SobelFilter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2440,7 +2388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Fractal/Contor1D/" class="md-nav__link">
+      <a href="../../../CG/Fractal/Contor1D/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2461,7 +2409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Fractal/Contor2D/" class="md-nav__link">
+      <a href="../../../CG/Fractal/Contor2D/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2482,7 +2430,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Fractal/Contor3D/" class="md-nav__link">
+      <a href="../../../CG/Fractal/Contor3D/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2503,7 +2451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Fractal/KochCurve/" class="md-nav__link">
+      <a href="../../../CG/Fractal/KochCurve/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2524,7 +2472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Fractal/KochSnowfrake/" class="md-nav__link">
+      <a href="../../../CG/Fractal/KochSnowfrake/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2588,7 +2536,28 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Intersection/Plane/" class="md-nav__link">
+      <a href="../../../CG/Intersection/Disk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Disk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CG/Intersection/Plane/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2609,7 +2578,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Intersection/Quad/" class="md-nav__link">
+      <a href="../../../CG/Intersection/Quad/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2630,7 +2599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/CG/Intersection/Sphere/" class="md-nav__link">
+      <a href="../../../CG/Intersection/Sphere/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2664,17 +2633,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" checked>
         
           
           <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
@@ -2688,7 +2659,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8_3">
             <span class="md-nav__icon md-icon"></span>
             ODS
@@ -2699,17 +2670,19 @@
                 
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_1" checked>
         
           
           <label class="md-nav__link" for="__nav_8_3_1" id="__nav_8_3_1_label" tabindex="0">
@@ -2723,7 +2696,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8_3_1">
             <span class="md-nav__icon md-icon"></span>
             Ex02
@@ -2737,7 +2710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/ODS/Ex02/001_Array/" class="md-nav__link">
+      <a href="../001_Array/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2758,7 +2731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/ODS/Ex02/002_ArrayStack/" class="md-nav__link">
+      <a href="../002_ArrayStack/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2779,7 +2752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/ODS/Ex02/003_FastArrayStack/" class="md-nav__link">
+      <a href="../003_FastArrayStack/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2800,7 +2773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/ODS/Ex02/004_ArrayQueue/" class="md-nav__link">
+      <a href="../004_ArrayQueue/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2821,11 +2794,63 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/ODS/Ex02/005_ArrayDeque/" class="md-nav__link">
+      <a href="../005_ArrayDeque/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     ArrayDeque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    DualArrayDeque
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../007_RootishArrayStack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RootishArrayStack
   </span>
   
 
@@ -2963,7 +2988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/RL/Sutton/Ex02/BunditEpsilonGreedy/" class="md-nav__link">
+      <a href="../../../RL/Sutton/Ex02/BunditEpsilonGreedy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2984,7 +3009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/RL/Sutton/Ex02/BunditGreedy/" class="md-nav__link">
+      <a href="../../../RL/Sutton/Ex02/BunditGreedy/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3005,7 +3030,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/RL/Sutton/Ex02/GradientBaseline/" class="md-nav__link">
+      <a href="../../../RL/Sutton/Ex02/GradientBaseline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3026,7 +3051,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/RL/Sutton/Ex02/OptimisticInitial/" class="md-nav__link">
+      <a href="../../../RL/Sutton/Ex02/OptimisticInitial/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3047,7 +3072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/RL/Sutton/Ex02/UCB/" class="md-nav__link">
+      <a href="../../../RL/Sutton/Ex02/UCB/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3111,7 +3136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/RL/Sutton/Ex03/BellmanEquation/" class="md-nav__link">
+      <a href="../../../RL/Sutton/Ex03/BellmanEquation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3132,7 +3157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/RL/Sutton/Ex03/BellmanOptimalityEquation/" class="md-nav__link">
+      <a href="../../../RL/Sutton/Ex03/BellmanOptimalityEquation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3196,7 +3221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/RL/Sutton/Ex04/GamblerProblem/" class="md-nav__link">
+      <a href="../../../RL/Sutton/Ex04/GamblerProblem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3217,7 +3242,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/RL/Sutton/Ex04/JacksCarRentalProblem/" class="md-nav__link">
+      <a href="../../../RL/Sutton/Ex04/JacksCarRentalProblem/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3238,7 +3263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/RL/Sutton/Ex04/PolicyEvaluation/" class="md-nav__link">
+      <a href="../../../RL/Sutton/Ex04/PolicyEvaluation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3318,7 +3343,28 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Memo/TIPS/Obj_dump/" class="md-nav__link">
+      <a href="../../../TIPS/DefaultTexture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デフォルトテクスチャを作る機能
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../TIPS/Obj_dump/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3389,7 +3435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Movie/DXR/" class="md-nav__link">
+      <a href="../../../../Movie/DXR/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3410,7 +3456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Movie/DirectX/" class="md-nav__link">
+      <a href="../../../../Movie/DirectX/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3431,7 +3477,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Movie/GP/" class="md-nav__link">
+      <a href="../../../../Movie/GP/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3452,7 +3498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Movie/OS/" class="md-nav__link">
+      <a href="../../../../Movie/OS/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3473,7 +3519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Movie/Optics/" class="md-nav__link">
+      <a href="../../../../Movie/Optics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3494,7 +3540,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Movie/RL/" class="md-nav__link">
+      <a href="../../../../Movie/RL/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3515,7 +3561,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Movie/SRP/" class="md-nav__link">
+      <a href="../../../../Movie/SRP/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3536,7 +3582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Movie/Siv3D/" class="md-nav__link">
+      <a href="../../../../Movie/Siv3D/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3557,7 +3603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Movie/UE/" class="md-nav__link">
+      <a href="../../../../Movie/UE/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -3611,70 +3657,149 @@
                   
 
 
-<h1 id="_1">強化学習周りの実装</h1>
-<ul>
-<li>
-<p>Greedy法<br />
-    貪欲にバンディットしていこう！<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BanditGreedy.h">link</a> 
-    movie: <a href="https://youtu.be/NuEzgazAwPY">link</a>
-    memo: <a href="../../Memo/RL/Sutton/Ex02/BunditGreedy/">link</a></p>
-</li>
-<li>
-<p>ε-Greedy法<br />
-    たまには別のものも選ぼう<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BunditEpsilonGreedy.h">link</a> 
-    movie: <a href="https://youtu.be/KZ6SZULXBxM">link</a>
-    memo: <a href="../../Memo/RL/Sutton/Ex02/BunditEpsilonGreedy/">link</a></p>
-</li>
-<li>
-<p>楽観的初期値<br />
-    初期値は寛容にするとよいらしい<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/OptimisticInitial.h">link</a> 
-    movie: <a href="https://youtu.be/toW90NjTVsQ">link</a>
-    memo: <a href="../../Memo/RL/Sutton/Ex02/OptimisticInitial/">link</a></p>
-</li>
-<li>
-<p>上限信頼区間(UCB)<br />
-    ステップ数をうまくlogオーダーで組み込む<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/UCB.h">link</a> 
-    movie: <a href="https://youtu.be/unzkWQ8fZo8">link</a>
-    memo: <a href="../../Memo/RL/Sutton/Ex02/UCB/">link</a></p>
-</li>
-<li>
-<p>勾配バンディットアルゴリズム<br />
-    ソフトマックスを使ってうまく学習をしていく<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/GradientBaseline.h">link</a> 
-    movie: <a href="https://youtu.be/BvYcs_WCL9c">link</a>
-    memo: <a href="../../Memo/RL/Sutton/Ex02/GradientBaseline/">link</a></p>
-</li>
-<li>
-<p>ベルマン方程式<br />
-    ベルマン方程式を使ってグリッドワールドを解く<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorld.h">link</a> 
-    movie: <a href="https://youtu.be/5HTBPTLxkCQ">link</a>
-    memo: <a href="../../Memo/RL/Sutton/Ex03/BellmanEquation/">link</a></p>
-</li>
-<li>
-<p>ベルマン最適方程式<br />
-    ベルマン最適方程式でグリッドワールドの最大化を可視化<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorldNext.h">link</a> 
-    movie: <a href="https://youtu.be/FvRFekLwlz4">link</a>
-    memo: <a href="../../Memo/RL/Sutton/Ex03/BellmanOptimalityEquation/">link</a></p>
-</li>
-<li>
-<p>動的計画法(DP)<br />
-    DPによるグリッドワールドの計算<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_04/04_01_GridWorld.h">link</a> 
-    memo: <a href="../../Memo/RL/Sutton/Ex04/PolicyEvaluation/">link</a></p>
-</li>
-<li>
-<p>Jack's Car Rental Probrem<br />
-    ジャックのカーレンタル問題を解く<br />
-    Impl: <a href="https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_04/04_02_JacksCarRental.h">link</a> 
-    memo: <a href="../../Memo/RL/Sutton/Ex04/JacksCarRentalProblem/">link</a></p>
-</li>
-</ul>
+<h1 id="dualarraydeque">DualArrayDeque</h1>
+<p>次のArrayは2つの配列を使って構成する配列である.<br />
+つまり、まずは変数としてArrayを2つ用意する.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">ArrayStack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_front</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">ArrayStack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_back</span><span class="p">;</span>
+</span></code></pre></div>
+配列の大きさは2つのArrayのサイズを合計するだけでOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">Size</span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_back</span><span class="p">.</span><span class="n">Size</span><span class="p">();</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
+</span></code></pre></div>
+まずはGetから見ていこう.<br />
+今回の配列はfrontとbackという二つの配列がくっついてるような形.<br />
+なので、indexで参照する際はfrontのsize内ならfrontから取得.<br />
+それよりも後ろならbackから取得するだけでOK.<br />
+ただし、backから取得する際はindexはfrontから引いた形になる.<br />
+ここは間違えると配列範囲外となっちゃうので注意.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// 取得</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">T</span><span class="w"> </span><span class="nf">Get</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">())</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="c1">// front内に収まってる場合</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="c1">// 後ろから先頭に埋めるので、配列の後ろを先頭にするように取得</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="c1">// frontをあふれる場合、backにデータが入ってる</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="c1">// こちらは先頭から入ってるので、先頭のindexが0からなるように調整して取得</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m_back</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">());</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="p">}</span>
+</span></code></pre></div>
+これが分かればsetは簡単、値を入れるようにするだけでよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">T</span><span class="w"> </span><span class="nf">Set</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">())</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="c1">// front内に収まってる場合</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="c1">// 後ろから先頭に埋めるので、配列の後ろを先頭にしてセット</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="c1">// frontをあふれる場合、backにデータが入ってる</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="c1">// こちらは先頭から入ってるので、先頭のindexが0からなるように調整してセット</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m_back</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">(),</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
+</span></code></pre></div>
+データの追加に関してもGetとSetと同じような感じでOK.<br />
+ただし、配列自体のサイズに関しては今まではResizeでやっていたけど、今回はBalanceという関数で行う.<br />
+やりたいこととしてはResizeと変わらないけど、配列が2つなのでちょっと面倒.<br />
+Balanceは先にやるとして、とりあえずコードを載せておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="c1">// 位置に応じて前か後ろかを決定後に追加</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">())</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="n">m_front</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="n">m_back</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">(),</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="c1">// 調整</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="n">Balance</span><span class="p">();</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="p">}</span>
+</span></code></pre></div>
+そしてRemoveの場合、これもAddとほぼ同じ.<br />
+削除してBalanceするだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">T</span><span class="w"> </span><span class="nf">Remove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="c1">// 前後どちらなのかを決定後削除</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">())</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_back</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">());</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="c1">// 調整</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="n">Balance</span><span class="p">();</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">    </span><span class="c1">// 消したものを返す</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="p">}</span>
+</span></code></pre></div>
+そしたら最後にBalanceの処理を見ていく.<br />
+まずは前と後ろの配列に均等に分配されてるかを判定する.<br />
+分配されてない場合はデータの確保を行う.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">frontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">();</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">backSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_back</span><span class="p">.</span><span class="n">Size</span><span class="p">();</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">// 前と後ろで三倍の差がついていない場合は処理しない</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">// そこまでの差がなければデータが均等に分けられているという判断</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">frontSize</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">backSize</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">backSize</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">frontSize</span><span class="p">))</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">{</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">}</span>
+</span></code></pre></div>
+もし確保が必要な場合は半分のサイズを計算しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// 半分を算出</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">fullSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frontSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">backSize</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kt">int</span><span class="w"> </span><span class="n">halfSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fullSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span></code></pre></div>
+まずは新しく設定するfront側に前方からデータを詰める.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// 前に半分詰めたデータを用意</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">TArray</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tempFront</span><span class="p">{</span><span class="w"> </span><span class="n">Max</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">halfSize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nextFrontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">halfSize</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nextFrontSize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">{</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="c1">// Getで取得して後方から詰めていく</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="c1">// ただあくまで先頭はindex=0になるようにする</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="c1">// (でないとTArrayのアクセス的に範囲外になる)</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="n">tempFront</span><span class="p">[</span><span class="n">halfSize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">}</span>
+</span></code></pre></div>
+そして、back側に後方からデータを詰める.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// 後に半分詰めたデータを用意</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">TArray</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tempBack</span><span class="p">{</span><span class="w"> </span><span class="n">Max</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">halfSize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nextBackSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fullSize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">halfSize</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nextBackSize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">{</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="c1">// Getで取得して前方から詰めていく</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="n">tempBack</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get</span><span class="p">(</span><span class="n">halfSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">}</span>
+</span></code></pre></div>
+こうしてできたデータを新しく突っ込めばOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">//最後にデータを設定</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">m_front</span><span class="p">.</span><span class="n">m_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempFront</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">m_front</span><span class="p">.</span><span class="n">m_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nextFrontSize</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">m_back</span><span class="p">.</span><span class="n">m_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempBack</span><span class="p">;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">m_back</span><span class="p">.</span><span class="n">m_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nextBackSize</span><span class="p">;</span>
+</span></code></pre></div>
+これでDualArrayDequeも終わり!!  </p>
 
 
 
@@ -3721,10 +3846,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
         <script src="https://embed.bsky.app/static/embed.js"></script>
       
