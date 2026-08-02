@@ -217,6 +217,7 @@
 | あおもり屋 池袋本店 | [GoogleMap](https://maps.app.goo.gl/Hw8WiQSg7txsLhme9) |
 | 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
 | 正しい晩ごはん 白‐はく‐ | [GoogleMap](https://maps.app.goo.gl/xWgU7mBst7xaWRrg9) |
+| HUB池袋西口店 | [GoogleMap](https://maps.app.goo.gl/X8d7diFH3ZUfMLii6) |
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
 | お多幸 新宿店 | [GoogleMap](https://maps.app.goo.gl/7La9ak7xAKwCWWPS6) |
@@ -233,6 +234,7 @@
 | ドン・キホーテ 秋葉原店 | [GoogleMap](https://maps.app.goo.gl/NX3cB9nF7RgWdYRv5) |
 | 銀座すし嘉 | [GoogleMap](https://maps.app.goo.gl/5fcUDUpKdVjC4LeQ6) |
 | EVERYONEs CAFE 上野恩賜公園 | [GoogleMap](https://maps.app.goo.gl/AY2tUrWgioDrghMC9) |
+| 一平ソバ | [GoogleMap](https://maps.app.goo.gl/Av8WPLHyjgrtgqEh8) |
 
 ## 愛知
 | 場所 | リンク |

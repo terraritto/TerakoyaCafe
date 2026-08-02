@@ -187,11 +187,6 @@
     movie: [link](https://youtu.be/kMtRVntRqr0)
 
 ### Mesh Shader  
-* Triangle  
-    とりあえず三角形を出すところまで  
-    Impl: [link](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_001)  
-    movie: [link](https://youtu.be/fhdpNOXFf3I)
-
 * MeshOptimizerによるMeshlet構築  
     ConstructMeshletFromOptimizerを参照  
     Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  

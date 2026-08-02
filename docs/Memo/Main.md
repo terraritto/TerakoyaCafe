@@ -64,6 +64,11 @@
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/DiskTrace.h) 
         [movie](https://youtu.be/deryOZpNaec)
 
+    * Mesh Shader Series
+        - 001 ポリゴン表示: [link](CG/MeshShaderSeries/001_Intro.md) 
+        [Impl](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_001) 
+        [movie](https://youtu.be/fhdpNOXFf3I)
+
 * ODS
     * 2章
         - Array: [link](ODS/Ex02/001_Array.md) 
