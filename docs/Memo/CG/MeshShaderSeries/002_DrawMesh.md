@@ -1,5 +1,5 @@
-# Mesh Shaderでモデルを描画  
-さて、今回でモデルの描画を行う.  
+# Mesh Shaderでモデルを描画するための準備  
+さて、今回でモデルの描画を行うための準備を行う.  
 モデルを描画するためにはちゃんとMesh Shaderをフル活用するために構造を理解する必要がある.  
 なので、細かい部分からちゃんと見ていくことにする.  
 
@@ -86,6 +86,52 @@ Vertex Shader->頂点単位で処理するだけ Mesh Shader->頂点単位の処
 そうなるとMesh Shaderではそもそものリソース構造もちゃんと考える必要がある.  
 これを自分なりにまとめた図が以下のような形.  
 ![meshlet_002_04](Image/meshlet_002_04.webp)  
+
+さて、先ほど言った通り,`DispatchMesh`でWaveを起動する.  
+図ではN個のWaveを起動しており、この呼ぶ単位はMeshletというものと同じ単位となっている.  
+このMeshletはIndexに関する情報を持った構造体のようなものである.  
+Indexを表すためにOffsetとCountという情報を持っている.  
+これがあればArrayの中を自在に参照できる.  
+簡単に考えるのであれば、  
+```c++
+if (i < meshlet.count)
+{
+    foo = indices[meshlet.offset + i];
+}
+```
+といったように連続したメモリを取ることができるからだね.  
+
+さてこのMeshletは2つのIndexによる情報を持っているが、このIndexももちろん2つのリソースと関連づいている.  
+この二つのリソースを見ていこう.  
+
+一つ目はVertexIndicesというリソース.  
+Vertex Bufferのどの頂点にアクセスできるかのリソースである.  
+つまり、Index Bufferみたいなものだけど,Index Bufferと違う点はポリゴン的な関係を持っていない点である.  
+Index Bufferは3つの連続するデータを参照すれば三角形になる、といったGeometry的な構造を持っていた.  
+今回のVertex Indicesはあくまで頂点のIndexであって、3つの連続したデータを参照しても三角形になるとは言えない点が違うのである.  
+
+では、このGometry的な構造は何処に？となると思うが、これを表すのがTriangleIndices.  
+図のようにVertex Indicesの中のIndexとして機能している.  
+これが3つの頂点を参照するため、結果としてGeometry的構造を参照できるようになるわけだ.  
+
+つまり、ここまで見て分かることはIndex Bufferの機能を上手くVertexIndicesとTriangleIndicesにバッファを分けている.  
+これをMeshletが参照するような構造になる、ということが分かるね.  
+
+さて、更にResourceだけでは何ともなので、更に詳しく呼び出しも見てみよう.  
+
+![meshlet_002_05](Image/meshlet_002_05.webp)  
+
+今後組んでいく流れはこの図の通り.  
+Dispatch MeshでWaveをまず起動する.  
+起動するとWave毎に`GroupIndex`を持っているため、これを使うとMeshletにアクセスができる.  
+MeshletはVertexIndicesとTriangleIndicesのOffsetを持っているため、アクセスしたいメモリの開始位置が分かる.  
+そして、WaveはLaneを起動しているが、Laneは`GroupThreadIndex`でどのLaneかが判定可能.  
+そしてMeshletはCountで、データのサイズも分かる！！  
+なので各Laneが`GroupThreadIndex`に沿ってアクセスを行ってくれることになる.  
+LaneからVertexIndicesとTriangleIndicesに伸びてる矢印がアクセスするデータとなる.  
+こうして受け取ったデータに対して処理を施す.これがMeshletの基本的なアクセス構造！！  
+
+今回はここまで、次回は実際に組んでいこう！！  
 
 [^1]: [GPUレイトレーシングにおける将来の標準かもしれない機能](https://qiita.com/shocker-0x15/items/b4b546171ba2a4573188)
 

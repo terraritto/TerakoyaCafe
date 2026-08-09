@@ -69,6 +69,8 @@
         [Impl](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_001) 
         [movie](https://youtu.be/fhdpNOXFf3I)
 
+        - 002 モデル描画準備: [link](CG/MeshShaderSeries/002_DrawMesh.md)  
+
 * ODS
     * 2章
         - Array: [link](ODS/Ex02/001_Array.md) 
@@ -132,6 +134,20 @@
 
         - Gamblers Problem: [link](RL/Sutton/Ex04/GamblerProblem.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_04/04_03_GamblersProblem.h)
+
+* DLFS
+    * 2章
+        - AND Gate: [link](DLFS/02/AndGate.md) 
+        [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_02/AndGate.cpp)
+
+        - NAND Gate: [link](DLFS/02/NandGate.md) 
+        [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_02/NandGate.cpp)
+
+        - OR Gate: [link](DLFS/02/OrGate.md) 
+        [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_02/OrGate.cpp)
+
+        - XOR Gate: [link](DLFS/02/XorGate.md) 
+        [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_02/XorGate.cpp)
 
 * TIPS
     - 同名ファイルの出力におけるObj衝突の解消: [link](TIPS/Obj_dump.md)

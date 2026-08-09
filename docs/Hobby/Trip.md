@@ -189,6 +189,7 @@
 | 太田記念美術館 | [GoogleMap](https://maps.app.goo.gl/EtHAMRkBtH775dY3A) |
 | 戸栗美術館 | [GoogleMap](https://maps.app.goo.gl/NB1UmJT5pGBYLp7J8) |
 | 渋谷区立松濤美術館 | [GoogleMap](https://maps.app.goo.gl/UdjAidecwm4uxX2G9) |
+| 東洋文庫ミュージアム | [GoogleMap](https://maps.app.goo.gl/3bZwPmPwWYKc6fNAA) |
 | 葛西臨海公園 | [GoogleMap](https://maps.app.goo.gl/o7cRoseANVeCiEVS8) |
 | 展望レストハウス クリスタルビュー | [GoogleMap](https://maps.app.goo.gl/M5uEZMZCnfx2RQnM7) |
 | 展望デッキ | [GoogleMap](https://maps.app.goo.gl/juvd37Z1ZrJQjou97) |
@@ -235,6 +236,7 @@
 | 銀座すし嘉 | [GoogleMap](https://maps.app.goo.gl/5fcUDUpKdVjC4LeQ6) |
 | EVERYONEs CAFE 上野恩賜公園 | [GoogleMap](https://maps.app.goo.gl/AY2tUrWgioDrghMC9) |
 | 一平ソバ | [GoogleMap](https://maps.app.goo.gl/Av8WPLHyjgrtgqEh8) |
+| コンセプトバー SF-BAR 神田フラックス | [GoogleMap](https://maps.app.goo.gl/t2tPY7aFfrCA62PVA) |
 
 ## 愛知
 | 場所 | リンク |
@@ -396,6 +398,7 @@
 | 群馬いろは | [GoogleMap](https://maps.app.goo.gl/hJqUBs2cZ9fRxhnb6) |
 | タリーズコーヒー 高崎モントレー店 | [GoogleMap](https://maps.app.goo.gl/iMv6kRZkPvHqGzDy7) |
 | 松屋 高崎駅前店 | [GoogleMap](https://maps.app.goo.gl/5rQZNnusqo5krhg67) |
+| 食べ飲み放題 大衆食堂 安べゑ 高崎駅東口店 | [GoogleMap](https://maps.app.goo.gl/f5JBFhn5RBCbQXyBA) |
 
 ## 栃木
 | 場所 | リンク |
