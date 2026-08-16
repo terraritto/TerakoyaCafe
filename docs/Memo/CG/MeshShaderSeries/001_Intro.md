@@ -236,6 +236,5 @@ float4 main(VertexOutput input) : SV_TARGET
 
 次回はちゃんとレイアウトを見直してモデルを出そうと思います.  
 
-[^1]: [こちらが中級グラフィックスのリンク](https://speakerdeck.com/projectasura/zhong-ji-gurahuitukusuru-men-xiao-lu-de-nametusiyuretutomiao-hua)
-
+[^1]: [こちらが中級グラフィックスのリンク](https://speakerdeck.com/projectasura/zhong-ji-gurahuitukusuru-men-xiao-lu-de-nametusiyuretutomiao-hua)  
 [^2]: [asdx12](https://github.com/ProjectAsura/asdx12)

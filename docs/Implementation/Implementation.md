@@ -187,21 +187,6 @@
     movie: [link](https://youtu.be/kMtRVntRqr0)
 
 ### Mesh Shader  
-* MeshOptimizerによるMeshlet構築  
-    ConstructMeshletFromOptimizerを参照  
-    Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
-    movie: [link](https://youtu.be/9i3mjXuW_NU)
-
-* DirectX MeshによるMeshlet構築  
-    ConstructMeshletFromDirectXを参照  
-    Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
-    movie: [link](https://youtu.be/9i3mjXuW_NU)
-
-* Greedy法によるMeshlet構築  
-    ConstructMeshletGreedyを参照  
-    Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
-    movie: [link](https://youtu.be/b8cRv2MZgI0)
-
 * BoundingSphereによるMeshlet構築  
     ConstructMeshletBoundingSphereを参照  
     Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  

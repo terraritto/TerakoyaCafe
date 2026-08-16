@@ -69,7 +69,14 @@
         [Impl](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_001) 
         [movie](https://youtu.be/fhdpNOXFf3I)
 
-        - 002 モデル描画準備: [link](CG/MeshShaderSeries/002_DrawMesh.md)  
+        - 002 モデル描画準備: [link](CG/MeshShaderSeries/002_DrawMesh.md)   
+
+        - 003 Meshletによる描画 API編: [link](CG/MeshShaderSeries/003_SimpleMeshlet.md) [movie](https://youtu.be/9i3mjXuW_NU)  
+            DirectX Mesh/MeshOptimizer利用の実装: [Impl](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
+
+        - 004 Meshletによる描画 Greedy編: [link](CG/MeshShaderSeries/004_MeshletGreedy.md) 
+        [Impl](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp) 
+        [movie](https://youtu.be/b8cRv2MZgI0)
 
 * ODS
     * 2章
@@ -134,6 +141,13 @@
 
         - Gamblers Problem: [link](RL/Sutton/Ex04/GamblerProblem.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_04/04_03_GamblersProblem.h)
+
+    * 5章
+        - first-visit MC: [link](RL/Sutton/Ex05/FirstVisitMC.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_05/05_01_MCOnPolicy.h)
+
+        - モンテカルロES: [link](RL/Sutton/Ex05/MCES.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_05/05_02_MCES.h)
 
 * DLFS
     * 2章

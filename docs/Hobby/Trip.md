@@ -190,6 +190,7 @@
 | 戸栗美術館 | [GoogleMap](https://maps.app.goo.gl/NB1UmJT5pGBYLp7J8) |
 | 渋谷区立松濤美術館 | [GoogleMap](https://maps.app.goo.gl/UdjAidecwm4uxX2G9) |
 | 東洋文庫ミュージアム | [GoogleMap](https://maps.app.goo.gl/3bZwPmPwWYKc6fNAA) |
+| 三井記念美術館 | [GoogleMap](https://maps.app.goo.gl/Q4czEuYQ4FfsZtwM6) |
 | 葛西臨海公園 | [GoogleMap](https://maps.app.goo.gl/o7cRoseANVeCiEVS8) |
 | 展望レストハウス クリスタルビュー | [GoogleMap](https://maps.app.goo.gl/M5uEZMZCnfx2RQnM7) |
 | 展望デッキ | [GoogleMap](https://maps.app.goo.gl/juvd37Z1ZrJQjou97) |
@@ -211,6 +212,7 @@
 | 東京都庁第一本庁舎 北展望室 | [GoogleMap](https://maps.app.goo.gl/wAXL8FfJY9LwkoSf8) |
 | 東京芸術大学大学美術館 上野館 | [GoogleMap](https://maps.app.goo.gl/igTopVkxHn6wTgAz8) |
 | 恩賜上野動物園 | [GoogleMap](https://maps.app.goo.gl/drg3WFZCCMTYBiTw5) |
+| グランドシネマサンシャイン 池袋 | [GoogleMap](https://maps.app.goo.gl/G1oMEaFgtmnoPTr69) |
 | WINE SHOP nico 渋谷店 | [GoogleMap](https://maps.app.goo.gl/gL6Gm7kUzmUaXh4r6) |
 | 鉄板焼・お好み焼 ごっつい池袋店 | [GoogleMap](https://maps.app.goo.gl/DBh4sFDVJMKqcoLF7) |
 | 池袋 十割蕎麦 鴨料理 ならや | [GoogleMap](https://maps.app.goo.gl/AG4DHHekVKoNzixh7) |
@@ -218,6 +220,7 @@
 | あおもり屋 池袋本店 | [GoogleMap](https://maps.app.goo.gl/Hw8WiQSg7txsLhme9) |
 | 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
 | 正しい晩ごはん 白‐はく‐ | [GoogleMap](https://maps.app.goo.gl/xWgU7mBst7xaWRrg9) |
+| 地酒遊楽 裏や | [GoogleMap](https://maps.app.goo.gl/rvu3rXYQwP41jfTd9) |
 | HUB池袋西口店 | [GoogleMap](https://maps.app.goo.gl/X8d7diFH3ZUfMLii6) |
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
@@ -369,6 +372,7 @@
 | スターバックス コーヒー 西武本川越駅店 | [GoogleMap](https://maps.app.goo.gl/NK5LeXwzjcHvrzUw5) |
 | 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |
 | 蔵ふと 本店 | [GoogleMap](https://maps.app.goo.gl/fRfm6hZfSzivc9RV6) |
+| 大衆割烹TAKEYA 川越店 | [GoogleMap](https://maps.app.goo.gl/G5q2fhxNjNr2FeKK9) |
 | カラオケマック川越店 | [GoogleMap](https://maps.app.goo.gl/T4ckD4Hx5sFFMD5k9) |
 | TENOHA東松山 | [GoogleMap](https://maps.app.goo.gl/KYjvi6zjkc6R3Q5Q9) |
 | 古代蓮うどん店 | [GoogleMap](https://maps.app.goo.gl/xQVUjYrhMHP9byG78) |
