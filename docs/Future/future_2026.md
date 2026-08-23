@@ -85,7 +85,7 @@
 | meshlet for MeshOptimizer | ✅ |
 | meshlet for DirectXMesh | ✅ |
 | meshlet for Greedy | ✅ |
-| meshlet for BoundingSphere ||
+| meshlet for BoundingSphere | ✅ |
 | instancing ||
 
 ## ToonShaderをやる

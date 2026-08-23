@@ -78,6 +78,9 @@
         [Impl](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp) 
         [movie](https://youtu.be/b8cRv2MZgI0)
 
+        - 005 Mesh ShaderでMeshletによる描画 Bounding Sphere編: [link](CG/MeshShaderSeries/005_MeshletBoundingSphere.md) 
+        [Impl](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp) 
+
 * ODS
     * 2章
         - Array: [link](ODS/Ex02/001_Array.md) 
