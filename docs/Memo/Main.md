@@ -1,5 +1,15 @@
 # メモまとめ
 * CG  
+    * Basics
+        - ブレゼンハムのアルゴリズム: [link](CG/Basics/Bresenham.md) 
+            [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/BresenhamSample.h) 
+            [Movie](https://youtu.be/mRRQs_vFNXk)
+
+        - Cohen-Sutherlandのアルゴリズム: [link](CG/Basics/CohenSutherland.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CohenSutherlandSample.h) 
+        [Movie](https://youtu.be/g4Ix0TcBJ-Q)
+
+
     * フィルタ
         - べイヤーフィルタ: [link](CG/Filter/BayarFilter.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BayarFilter.h) 
@@ -107,50 +117,56 @@
 * Sutton Reinforcement Learning
     * 2章
         - Bundit Greedy: [link](RL/Sutton/Ex02/BunditGreedy.md) 
-        [impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BanditGreedy.h) 
+        [impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_02/BanditGreedy.h) 
         [movie](https://youtu.be/NuEzgazAwPY)
 
         - Bundit Epsilon Greedy: [link](RL/Sutton/Ex02/BunditEpsilonGreedy.md) 
-        [impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/BunditEpsilonGreedy.h) 
+        [impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_02/BunditEpsilonGreedy.h) 
         [movie](https://youtu.be/KZ6SZULXBxM)
 
         - Optimistic Initial: [link](RL/Sutton/Ex02/OptimisticInitial.md) 
-        [impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/OptimisticInitial.h) 
+        [impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_02/OptimisticInitial.h) 
         [movie](https://youtu.be/toW90NjTVsQ)
 
         - UCB: [link](RL/Sutton/Ex02/UCB.md) 
-        [impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/UCB.h) 
+        [impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_02/UCB.h) 
         [movie](https://youtu.be/unzkWQ8fZo8)
 
         - Gradient Baseline: [link](RL/Sutton/Ex02/GradientBaseline.md) 
-        [impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/GradientBaseline.h) 
+        [impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_02/GradientBaseline.h) 
         [movie](https://youtu.be/BvYcs_WCL9c)
     
     * 3章
         - Bellman Equation: [link](RL/Sutton/Ex03/BellmanEquation.md) 
-        [impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorld.h) 
+        [impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_03/GridWorld.h) 
         [movie](https://youtu.be/5HTBPTLxkCQ)
 
         - Bellman Optimality Equation: [link](RL/Sutton/Ex03/BellmanOptimalityEquation.md) 
-        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_03/GridWorldNext.h) 
+        [Impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_03/GridWorldNext.h) 
         [movie](https://youtu.be/FvRFekLwlz4)   
 
     * 4章
         - Policy Evaluation: [link](RL/Sutton/Ex04/PolicyEvaluation.md) 
-        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_04/04_01_GridWorld.h) 
+        [Impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_04/04_01_GridWorld.h) 
 
         - Jacks Car Rental Problem: [link](RL/Sutton/Ex04/JacksCarRentalProblem.md) 
-        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_04/04_02_JacksCarRental.h) 
+        [Impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_04/04_02_JacksCarRental.h) 
 
         - Gamblers Problem: [link](RL/Sutton/Ex04/GamblerProblem.md) 
-        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_04/04_03_GamblersProblem.h)
+        [Impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_04/04_03_GamblersProblem.h)
 
     * 5章
         - first-visit MC: [link](RL/Sutton/Ex05/FirstVisitMC.md) 
-        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_05/05_01_MCOnPolicy.h)
+        [Impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_05/05_01_MCOnPolicy.h)
 
         - モンテカルロES: [link](RL/Sutton/Ex05/MCES.md) 
-        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/RL/Exp_05/05_02_MCES.h)
+        [Impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_05/05_02_MCES.h)
+
+        - 方策オフ型学習: [link](RL/Sutton/Ex05/OffPolicy.md) 
+        [Impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_05/05_03_MCOffPolicy.h)
+
+        - 無限の分散: [link](RL/Sutton/Ex05/InfinityVariance.md) 
+        [Impl](https://github.com/terraritto/SuttonRLForSiv3D/blob/main/Exp_05/05_04_InfiniteVariance.h)
 
 * DLFS
     * 2章

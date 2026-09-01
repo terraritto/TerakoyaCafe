@@ -12,4 +12,5 @@
 * `Movie` - 作った動画関係の分類
 
 ## Contact
-Blueskyにどうぞ -> [Bsky](https://bsky.app/profile/terraritto.bsky.social)
+Blueskyにどうぞ -> [Bsky](https://bsky.app/profile/terakoya-cafe-terrace.net)  
+Xの場合はこちらに -> [X(旧:Twitter)](https://x.com/terakoya_caffe)  

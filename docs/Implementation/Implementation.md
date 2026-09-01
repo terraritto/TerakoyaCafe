@@ -1,16 +1,6 @@
 # 実装まとめ
 ## Rendering
 ### Basic
-* Bresenham's Algorithm  
-    ブレゼンハムのアルゴリズム、直線を引いていく  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/BresenhamSample.h) 
-    movie: [link](https://youtu.be/mRRQs_vFNXk)
-
-* Cohen-Sutherland Algorithm  
-    クリッピング、矩形限定  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CohenSutherlandSample.h) 
-    movie: [link](https://youtu.be/g4Ix0TcBJ-Q)
-
 * Cyrus-Beck Algorithm  
     クリッピング、多角形もいける！  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CyrusBeckSample.h) 
@@ -185,12 +175,6 @@
     コメントでNEEの部分のところ  
     Impl: [link](https://github.com/terraritto/DXLab/blob/main/Shader/DXR/BRDF/CalculatePT.hlsli)
     movie: [link](https://youtu.be/kMtRVntRqr0)
-
-### Mesh Shader  
-* BoundingSphereによるMeshlet構築  
-    ConstructMeshletBoundingSphereを参照  
-    Impl: [link](https://github.com/terraritto/MeshShaderPractice/blob/main/Base/Graphics/Resource/ResourceModel.cpp)  
-    movie: まだ
 
 ### Shader Techniques
 * 集中線  
