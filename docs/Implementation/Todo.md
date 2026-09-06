@@ -392,10 +392,6 @@ specular IBL
 * Expectiminimax法
 * 最急降下法
 
-## 実装済み  
-* グローシェーディング
-* フォンシェーディング
-* 重みつきA*
-* koch snowflake
-* Texture mapping
-* perspective correct
+## 調べたときの奴  
+* Liang–Barsky algorithm
+* Nicholl–Lee–Nicholl algorithm

@@ -1,25 +1,10 @@
 # 実装まとめ
 ## Rendering
 ### Basic
-* Cyrus-Beck Algorithm  
-    クリッピング、多角形もいける！  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CyrusBeckSample.h) 
-    movie: [link](https://youtu.be/DpWlDtt9D2s)
-
 * Surtherland-Hodgman Algorithm  
     三角形を矩形内に収まるようにクリッピング  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/SurtherlandHodgemanApp.cpp) 
     movie: [link](https://youtu.be/ttAN5tCy8_8)
-
-* Edge Function(Triangle)  
-    Edge Functionを利用して三角形を塗りつぶす.パターン1の部分を参照  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h) 
-    movie: [link](https://youtu.be/uHUEoTq2w10)
-
-* Edge Function(多角形)  
-    Edge Functionを利用して多角形を塗りつぶす  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/PentagonEdgeFunctionSample.h) 
-    movie: [link](https://youtu.be/uHUEoTq2w10)
 
 * Edge Function(Triangle)  
     塗りつぶしの計算量を減らすために賢く探索.パターン3の部分を参照  

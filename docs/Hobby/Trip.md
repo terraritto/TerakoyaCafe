@@ -131,6 +131,7 @@
 | レモン社 横浜店 | [GoogleMap](https://maps.app.goo.gl/3q2Qsvzd5pE7SyTM6) |
 | 横浜美術館 | [GoogleMap](https://maps.app.goo.gl/f2NhbncQyK58zz4y9) |
 | 日本郵船氷川丸 | [GoogleMap](https://maps.app.goo.gl/c9wYG6kS89t69s2n7) |
+| 帆船日本丸 | [GoogleMap](https://maps.app.goo.gl/BodXatpiDqqZv6zm7) |
 | 大さん橋ホール | [GoogleMap](https://maps.app.goo.gl/cyLjz2iA58e1vWQB6) |
 | パシフィコ横浜 | [GoogleMap](https://maps.app.goo.gl/U43xGUSosR28FCH99) |
 | 外交官の家（旧内田定槌邸） | [GoogleMap](https://maps.app.goo.gl/a1rP4zue2Kb8vMZKA) |
@@ -154,12 +155,15 @@
 | 鵬天閣 新館 | [GoogleMap](https://maps.app.goo.gl/4LfeF7MDSq6kUrJP6) |
 | 麺処 彩 |  [GoogleMap](https://maps.app.goo.gl/YGpWSsVVWwJ53iBn7) |
 | 椿屋カフェ みなとみらいクロスパティオ店 | [GoogleMap](https://maps.app.goo.gl/vnd2yurMbvEuUJDL8) |
+| えきめんや 横浜店 | [GoogleMap](https://maps.app.goo.gl/pnghYV4oAGCMEvrZ9) |
 | 箱根湯本温泉 河鹿荘 | [GoogleMap](https://maps.app.goo.gl/Hjf7owc6YroKpwnf8) |
 | 茶房うちだ | [GoogleMap](https://maps.app.goo.gl/iv7JLKywHkPkPrb86) |
 | 箱根ラスク | [GoogleMap](https://maps.app.goo.gl/Yrq41jUSaUc7AXY87) |
 | 茶屋本陣 畔屋 | [GoogleMap](https://maps.app.goo.gl/KC2d5qiBnq4bk1Cc9) |
 | カフェ 象の鼻テラス | [GoogleMap](https://maps.app.goo.gl/wTKZvYPHEa5WSLCV7) |
 | ハングリータイガー 横浜ハンマーヘッド店 | [GoogleMap](https://maps.app.goo.gl/vA8hbw3WmrREH4xk8) |
+| Back Yard -Roof Garden Minatomirai- | [GoogleMap](https://maps.app.goo.gl/Zf5PZGFXjksexnbR8) |
+| レナーズ 横浜ワールドポーターズ店 | [GoogleMap](https://maps.app.goo.gl/xtX8M6VLftezAfrn8) |
 | 鳥みき | [GoogleMap](https://maps.app.goo.gl/taveWCbNcjscZ282A) |
 | 箱根駅伝ミュージアム | [GoogleMap](https://maps.app.goo.gl/RgSTMH2sg3mBdJqU7) |
 | 箱根関所 | [GoogleMap](https://maps.app.goo.gl/v3sNW91jfQDD5kuk8) |
