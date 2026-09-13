@@ -154,7 +154,7 @@ Radiusも2つ用意して、scoreも用意しとく.
 ```
 
 `newVertex`に寄った位置にずれるというのは多分こんな感じで理解すればいいはず.  
-[meshlet_005_02](Image/meshlet_05_002.webp)  
+![meshlet_005_02](Image/meshlet_05_002.webp)  
 緑の`newVertex`に向かって中心がずれてるという感じ.  
 ちょっと大げさだけど、実際は凄い小さいスケールの動きではあると思う.  
 

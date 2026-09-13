@@ -226,6 +226,7 @@
 | 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
 | 正しい晩ごはん 白‐はく‐ | [GoogleMap](https://maps.app.goo.gl/xWgU7mBst7xaWRrg9) |
 | 地酒遊楽 裏や | [GoogleMap](https://maps.app.goo.gl/rvu3rXYQwP41jfTd9) |
+| ええがな 池袋本店 | [GoogleMap](https://maps.app.goo.gl/fG5YaRG3PRtE1R6S6) |
 | HUB池袋西口店 | [GoogleMap](https://maps.app.goo.gl/X8d7diFH3ZUfMLii6) |
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
@@ -246,6 +247,7 @@
 | 一平ソバ | [GoogleMap](https://maps.app.goo.gl/Av8WPLHyjgrtgqEh8) |
 | コンセプトバー SF-BAR 神田フラックス | [GoogleMap](https://maps.app.goo.gl/t2tPY7aFfrCA62PVA) |
 | 酔心 東京駅店 | [GoogleMap](https://maps.app.goo.gl/omR6AFtGjyy22YQE8) |
+| 孫鈴舎 | [GoogleMap](https://maps.app.goo.gl/hsZngyh5jsCnsxrn8) |
 | 日本橋髙島屋S.C. | [GoogleMap](https://maps.app.goo.gl/zaw9Zbgj3Dx2r2hP6) |
 | Cafe Renoir 目黒東口駅前店 | [GoogleMap](https://maps.app.goo.gl/5us76YiQGNG3zkWT8) |
 | 蔵 目黒 | [GoogleMap](https://maps.app.goo.gl/hb1Uz6gbhrx8SRRX8) |

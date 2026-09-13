@@ -94,7 +94,6 @@ diffuse IBL
 specular IBL
 
 ## fractal
-* シェルピンスキの三角形
 * pentagonal gasket
 * fractal swiss flag
 * C-curve
@@ -103,15 +102,12 @@ specular IBL
 * fractal tree
 * fractal star
 * fractal leaf
-* hilbert curve
 * fractal staircase
-* カントール集合
 * fractal pentagram
 * fractal diamond
 * fractal tower
 * Ron's algorithm
 * Tao's algorithm
-* マンデルブロ集合
 
 ## 数値計算
 * fixed-point root finding algorithm
@@ -395,3 +391,6 @@ specular IBL
 ## 調べたときの奴  
 * Liang–Barsky algorithm
 * Nicholl–Lee–Nicholl algorithm
+* Xiaolin Wu's line algorithm
+* Kahan summation algorithm
+* Midpoint circle algorithm

@@ -6,11 +6,6 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/SurtherlandHodgemanApp.cpp) 
     movie: [link](https://youtu.be/ttAN5tCy8_8)
 
-* Edge Function(Triangle)  
-    塗りつぶしの計算量を減らすために賢く探索.パターン3の部分を参照  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h) 
-    movie: [link](https://youtu.be/k8z1MI6KRX8)
-
 * CG座標変換  
     座標変換、モデル座標系->ワールド座標系->ビュー座標系->投影座標系->スクリーン座標系の流れ  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/VertexProcess.h) 

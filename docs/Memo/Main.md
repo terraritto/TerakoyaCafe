@@ -5,6 +5,9 @@
             [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/BresenhamSample.h) 
             [Movie](https://youtu.be/mRRQs_vFNXk)
 
+        - DDA: [link](CG/Basics/DDA.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/DDASample.h)  
+
         - Cohen-Sutherlandのアルゴリズム: [link](CG/Basics/CohenSutherland.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/CohenSutherlandSample.h) 
         [Movie](https://youtu.be/g4Ix0TcBJ-Q)
@@ -64,6 +67,18 @@
         - コッホ雪片: [link](CG/Fractal/KochSnowfrake.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/KochSnowflake.h) 
         [movie](https://youtu.be/yY6GhZ8SMX4)
+
+        - シェルピンスキーのギャスケット: [link](CG/Fractal/SierpinskiGasket.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/Sierpinski.h)
+
+        - マンデルブロ集合: [link](CG/Fractal/Mandelbrot.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/Mandelbrot.h)
+
+        - バーニング・シップ: [link](CG/Fractal/BurningShip.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/BurningShip.h)
+
+        - バーンズリーのシダ: [link](CG/Fractal/BernsleyFern.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/BernsleyFern.h)
     
     * レイトレ交差判定
         - Plane: [link](CG/Intersection/Plane.md) 
@@ -104,6 +119,20 @@
         - 006 Appendix 01 ImGuiの初期化の書き方が変わってた件: [link](CG/MeshShaderSeries/Appendix_006_01_Imgui.md)  
         - 006 Appendix 02 PIPELINE_STATISTICSについて: [link](CG/MeshShaderSeries/Appendix_006_02_Statistics.md)  
 
+* Math
+    * Pi
+        - ウォリスの公式: [link](Math/Pi/WallisProduct.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/WallisSample.h)
+
+        - グレゴリー級数とシャープの方法: [link](Math/Pi/GregorySharp.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/GregorySharpSample.h)  
+
+* PseudoRand
+    - 線形合同法: [link](PseudoRand/LCG.md)  
+        - RANDU: [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Pseudo/RANDUSample.h)
+        - MINSTD: [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Pseudo/LehmerRandomSample.h)
+        - LCG: [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Pseudo/LCGSample.h)
+
 * ODS
     * 2章
         - Array: [link](ODS/Ex02/001_Array.md) 
@@ -133,6 +162,15 @@
 
         - DLList: [link](ODS/Ex03/002_DLList.md) 
         [Impl](https://github.com/terraritto/DataStructurePractice/blob/main/Ex_03/DLList.h)
+
+        - BDeque: [link](ODS/Ex03/003_BDeque.md) 
+        [Impl](https://github.com/terraritto/DataStructurePractice/blob/main/Ex_03/BDeque.h) 
+
+        - SEList: [link](ODS/Ex03/004_SEList.md) 
+        [Impl](https://github.com/terraritto/DataStructurePractice/blob/main/Ex_03/SEList.h) 
+
+        - XORList: [link](ODS/Ex03/005_XorList.md) 
+        [Impl](https://github.com/terraritto/DataStructurePractice/blob/main/Ex_03/XORList.h)
 
 * Sutton Reinforcement Learning
     * 2章
@@ -207,3 +245,6 @@
     
     - DefaultTextureを作るためのツール: [link](TIPS/DefaultTexture.md) 
     [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Zoo/DefaultTextureCreator.h)
+
+    - 魔法少女ノ魔女裁判 Switch2のフェードを再現してみる: [link](TIPS/MagicalTrialFade.md) 
+    [Impl](https://github.com/terraritto/Siv3DImplementZoo/tree/main/Zoo/MagicalTrial)
