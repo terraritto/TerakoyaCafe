@@ -238,6 +238,9 @@
 | Chef's Theatre | [GoogleMap](https://maps.app.goo.gl/M4FVBLKPJwXEhe4n7) |
 | 武蔵野アブラ学会 吉祥寺店 | [GoogleMap](https://maps.app.goo.gl/Y5oxquS8JeBXeJV17) |
 | 時屋 | [GoogleMap](https://maps.app.goo.gl/Sy4VtHggyTx8B3948) |
+| ドトールコーヒーショップ 新宿ビルディング店 | [GoogleMap](https://maps.app.goo.gl/rjoEZTRnrwaUvn757) |
+| 日本酒原価酒蔵 新宿総本店 | [GoogleMap](https://maps.app.goo.gl/CybeWWRATrGVtMLD8) |
+| 魚三四味家 すみよし 西武新宿 | [GoogleMap](https://maps.app.goo.gl/PwqMM4GkNzHLeifm6) |
 | ビヤホールライオン 銀座七丁目店 | [GoogleMap](https://maps.app.goo.gl/b9ZCodj1vbKLYtnh6) |
 | 福とほまれ（福井アンテナショップ） | [GoogleMap](https://maps.app.goo.gl/c81f26WUSnNqVPFP6) |
 | ドトールコーヒーショップ 浅草橋南店 | [GoogleMap](https://maps.app.goo.gl/Nkv7aqbZMv8NXht28) |
@@ -248,6 +251,7 @@
 | コンセプトバー SF-BAR 神田フラックス | [GoogleMap](https://maps.app.goo.gl/t2tPY7aFfrCA62PVA) |
 | 酔心 東京駅店 | [GoogleMap](https://maps.app.goo.gl/omR6AFtGjyy22YQE8) |
 | 孫鈴舎 | [GoogleMap](https://maps.app.goo.gl/hsZngyh5jsCnsxrn8) |
+| Marunouchi Base | [GoogleMap](https://maps.app.goo.gl/y76C77y2T79u3YTb8) |
 | 日本橋髙島屋S.C. | [GoogleMap](https://maps.app.goo.gl/zaw9Zbgj3Dx2r2hP6) |
 | Cafe Renoir 目黒東口駅前店 | [GoogleMap](https://maps.app.goo.gl/5us76YiQGNG3zkWT8) |
 | 蔵 目黒 | [GoogleMap](https://maps.app.goo.gl/hb1Uz6gbhrx8SRRX8) |
@@ -370,6 +374,8 @@
 | 永明寺古墳 | [GoogleMap](https://maps.app.goo.gl/ecBun5uhcAp8u7nU6) |
 | 正法院 | [GoogleMap](https://maps.app.goo.gl/4r4Kv1KM5mGaSa6R9) |
 | 加須未来館 | [GoogleMap](https://maps.app.goo.gl/Q2bBknvACZNBpNi27) |
+| 旧石川組製糸西洋館 | [GoogleMap](https://maps.app.goo.gl/DrZcdeY74yydni5T6) |
+| 狭山市立博物館 | [GoogleMap](https://maps.app.goo.gl/GUy8224ezhYagr7z8) |
 | 東松山市観光案内所 | [GoogleMap](https://maps.app.goo.gl/C15mb7ogSveskseU6) |
 | ＪＲ行田駅前観光案内所 | [GoogleMap](https://maps.app.goo.gl/9U9xfwRZekNCRp4HA) |
 | 熊谷駅観光案内所 | [GoogleMap](https://maps.app.goo.gl/FsqZAJyqtaXK8hEK8) |
@@ -384,7 +390,9 @@
 | 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |
 | 蔵ふと 本店 | [GoogleMap](https://maps.app.goo.gl/fRfm6hZfSzivc9RV6) |
 | 大衆割烹TAKEYA 川越店 | [GoogleMap](https://maps.app.goo.gl/G5q2fhxNjNr2FeKK9) |
+| なかなか 川越西口店 | [GoogleMap](https://maps.app.goo.gl/428Cg39JLBpyPPH16) |
 | カラオケマック川越店 | [GoogleMap](https://maps.app.goo.gl/T4ckD4Hx5sFFMD5k9) |
+| 蕎麦懐石さくら荘 | [GoogleMap](https://maps.app.goo.gl/zBkXgGseKVG6osGa9) |
 | TENOHA東松山 | [GoogleMap](https://maps.app.goo.gl/KYjvi6zjkc6R3Q5Q9) |
 | 古代蓮うどん店 | [GoogleMap](https://maps.app.goo.gl/xQVUjYrhMHP9byG78) |
 | 喫茶サリュート | [GoogleMap](https://maps.app.goo.gl/u2ZbU1Vyuk2bLu5g6) |

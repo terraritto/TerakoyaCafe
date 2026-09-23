@@ -6,11 +6,6 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/SurtherlandHodgemanApp.cpp) 
     movie: [link](https://youtu.be/ttAN5tCy8_8)
 
-* CG座標変換  
-    座標変換、モデル座標系->ワールド座標系->ビュー座標系->投影座標系->スクリーン座標系の流れ  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/VertexProcess.h) 
-    movie: [link](https://youtu.be/Ut00Yn21Ohk)
-
 * 法線ベクトル法  
     dot計算で省くだけ  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/HiddenSurfaceRemovalNormal.h) 
@@ -336,18 +331,3 @@
     科博の「量子の世紀」にあったデモを再現してみるだけ  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Zoo/QuantumBitDemo.h)
     movie: [link](https://youtu.be/gy-_Hcs76-E)
-
-* GameProgrammingC++ Series  
-    動画シリーズで進めてるやつ  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/GameProgrammingC%2B%2B)
-    movie: 多すぎるので略
-
-* OS Series  
-    動画シリーズで進めてるやつ  
-    Impl: [link](https://github.com/terraritto/OSProject)
-    movie: 多すぎるので略
-
-* PRML  
-    PRML関係の実装、1章~4章の内容となります。  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/PRML)
-    movie: まだ

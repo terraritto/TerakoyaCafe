@@ -90,8 +90,8 @@
 * GGX
 
 ## IBL
-diffuse IBL
-specular IBL
+* diffuse IBL
+* specular IBL
 
 ## fractal
 * pentagonal gasket
@@ -331,7 +331,6 @@ specular IBL
 * regular grid
 
 ## 乱数
-* LCG
 * メルセンヌツイスター
 
 ## PostProcess
@@ -394,3 +393,5 @@ specular IBL
 * Xiaolin Wu's line algorithm
 * Kahan summation algorithm
 * Midpoint circle algorithm
+* [フラクタルまとめられてる奴](https://w.wiki/C8Sq)
+* [これもちょっとフラクタル載ってる](https://w.wiki/UbCE)
