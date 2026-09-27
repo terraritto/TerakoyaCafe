@@ -21,11 +21,19 @@
             - Triangle: [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h)  
             - 多角形: [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/PentagonEdgeFunctionSample.h)  
 
+        - 塗りつぶし最適化: [link](CG/Basics/Rasterization_02.md) 
+        [Movie](https://youtu.be/k8z1MI6KRX8?si=39G3iBMNGk362ud_) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/TriangleEdgeFunctionSample.h)
+
         - 3D座標変換: [link](CG/Basics/Trans.md) 
         [movie](https://youtu.be/Ut00Yn21Ohk)
             - 実際の実装: [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/VertexProcess.h)  
             - 基底の可視化: [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/BasisSample.h)
             - NDCのグラフ: [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/NDCPlot.h)
+
+        - 法線カリング: [link](CG/Basics/BackFaceCulling.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/HiddenSurfaceRemovalNormal.h) 
+        [Movie](https://youtu.be/ubP8RBPaGCg) 
 
     * フィルタ
         - べイヤーフィルタ: [link](CG/Filter/BayarFilter.md) 
@@ -162,8 +170,12 @@
         [Impl](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_003)
         - 006 Appendix 01 ImGuiの初期化の書き方が変わってた件: [link](CG/MeshShaderSeries/Appendix_006_01_Imgui.md)  
         - 006 Appendix 02 PIPELINE_STATISTICSについて: [link](CG/MeshShaderSeries/Appendix_006_02_Statistics.md)  
+        
         - 007 Mesh Shaderによるカリング ～ Meshlet編1 FrustumCulling ～: [link](CG/MeshShaderSeries/007_MeshletCulling.md) 
         [Impl](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_004)
+
+        - 008 Mesh Shaderによるカリング ～ Meshlet編2 Normal Cone Culling ～: [link](CG/MeshShaderSeries/008_CullingNormalCone.md) 
+        [Impl](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_005)
 
 * Math
     * Pi

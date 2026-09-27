@@ -174,12 +174,12 @@ Rightに関しては逆に右のクリップ平面よりも左側にいる必要
 ```math
 \begin{equation}
     \begin{split}
-    & -w^{\prime} < x^{\prime}: Left Planeから見た内部領域 \\
-    & x^{\prime} < w^{\prime}: Right Planeから見た内部領域 \\
-    & -w^{\prime} < y^{\prime}: Bottom Planeから見た内部領域 \\
-    & y^{\prime} < w^{\prime}: Top Planeから見た内部領域 \\
-    & 0 < z^{\prime}: Near Planeから見た内部領域 \\
-    & z^{\prime} < w^{\prime}: Far Planeから見た内部領域
+    & -w^{\prime} < x^{\prime}: Left \, Plane \, inside \, region \\
+    & x^{\prime} < w^{\prime}: Right \, Plane \, inside \, region \\
+    & -w^{\prime} < y^{\prime}: Bottom \, Plane \, inside \, region \\
+    & y^{\prime} < w^{\prime}: Top \, Plane \, inside \, region\\
+    & 0 < z^{\prime}: Near \, Plane \, inside \, region \\
+    & z^{\prime} < w^{\prime}: Far \, Plane \, inside \, region
     \end{split}
 \end{equation}
 ```
@@ -257,12 +257,12 @@ Rightに関しては逆に右のクリップ平面よりも左側にいる必要
 ```math
 \begin{equation}
     \begin{split}
-    & Left Plane: v \cdot (col_{4} + col_{1}) = 0 \\
-    & Right Plane: v \cdot (col_{4} - col_{1}) = 0 \\
-    & Bottom Plane: v \cdot (col_{4} + col_{2}) = 0 \\
-    & Top Plane: v \cdot (col_{4} - col_{2}) = 0 \\
-    & Near Plane: v \cdot (0 + col_{3}) = 0 \\
-    & Far Plane: v \cdot (col_{4} - col_{3}) = 0
+    & Left \, Plane: v \cdot (col_{4} + col_{1}) = 0 \\
+    & Right \, Plane: v \cdot (col_{4} - col_{1}) = 0 \\
+    & Bottom \, Plane: v \cdot (col_{4} + col_{2}) = 0 \\
+    & Top \, Plane: v \cdot (col_{4} - col_{2}) = 0 \\
+    & Near \, Plane: v \cdot (0 + col_{3}) = 0 \\
+    & Far \, Plane: v \cdot (col_{4} - col_{3}) = 0
     \end{split}
 \end{equation}
 ```
