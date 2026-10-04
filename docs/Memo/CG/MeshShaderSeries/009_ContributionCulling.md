@@ -448,5 +448,216 @@ float4 getBoundingBox(const float3 center, float radius, float nearZ, const floa
 ここまでやってなんだけど、ここからが最適化のお話となる.  
 基礎部分が重すぎるねこれは...  
 
+今回参考にするのは`sphere_screen_extents`[^3]という関数.  
+これが今まで長々とやってきた論文の内容を最適化したものである.  
+
+ちょっと上のコードの記号として見やすいようにコードを書き変えつつ、中身を見てみよう.  
+この関数ではBoundingBoxの中心と半径,そしてprojection行列を取る.  
+```c++
+float4 sphere_screen_extents(const float3 &c, float r, const float4x4 &p)
+{
+```
+
+今回の最適化ではまずnear planeを考えない.  
+つまり、先ほど話したnear planeに球がぶつかるという条件は排除してる.  
+あくまで前提として、カメラより前に絶対にものがあるとしてそこの処理は排除してるわけだ.  
+そしたらまずは$`T`$を求める.  
+Tを求めるために$`\cos,\sin`$でも使用するため、$`t`$を計算する.  
+```C++
+  float4 result;
+  float r2=r*r, d=c.z*r;
+  float t=sqrt(c.x*c.x+c.z*c.z-r2);
+  ```
+
+さて、この後の計算が最適化の光るところ.  
+逆に言えばここで私は何やってるのかわからず、理解するのに時間を費やしました.  
+
+まずは先ほどと同じように$`T`$を求めることを考える.  
+今回原点$`O`$は今回も0なので省略して$`T=t\omega^{*}`$を計算すればよい.  
+ここで$`C=(p_{x},p_{z})`$として考えてみよう.  
+
+```math
+\begin{equation}
+    \begin{split}
+    T&=t\omega^{*} \\
+    & = \cos{\theta} \begin{bmatrix}
+    \cos{\theta} & \sin{\theta} \\
+    -\sin{\theta} & \cos{\theta}
+    \end{bmatrix} c^{*} \\
+    &=\cos{\theta}
+    \begin{bmatrix}
+    p_{x}\cos{\theta} + p_{z} \sin{\theta} \\
+    -p_{x} \sin{\theta} + p_{z} \cos{\theta}
+    \end{bmatrix} \\
+    &= \cos{\theta}
+    \begin{bmatrix}
+    p_{x}\frac{t}{C} + p_{z} \frac{r}{C} \\
+    -p_{x} \frac{r}{C} + p_{z} \frac{t}{C}
+    \end{bmatrix} \\
+    &= \frac{\cos{\theta}}{C}
+    \begin{bmatrix}
+    p_{x}t + p_{z} r \\
+    -p_{x} r + p_{z} t
+    \end{bmatrix}
+    \end{split}
+\end{equation}
+```
+これで$`T`$が細かく分解された.  
+さて、これは現在カメラの座標系,つまりビュー座標系である.  
+これをprojection行列を掛けることで射影空間に持っていく.  
+更に言うと$`z`$で割ることで$`[0,1]`$というNDC空間に持っていくことを考える.  
+この辺の詳しい話は別の記事[^4]で書いてるので、詳しくはそっちを読んでほしい.  
+この際の行列の式を$`x`$のみで考えると以下のようになる.  
+
+```math
+\begin{equation}
+    \begin{split}
+    x_{Rndc} &= m_{11}\frac{x}{z} \\
+    &= m_{11}\frac{p_{x}t + p_{z} r}{-p_{x} r + p_{z} t}
+    \frac{\frac{\cos{\theta}}{C}}{\frac{\cos{\theta}}{C}} \\
+    &= m_{11}\frac{p_{x}t+ p_{z}r}{-p_{x} r + p_{z} t}
+    \end{split}
+\end{equation}
+```
+ここで、$`ha=p_{x}t, hb=p_{x}r,hc=p_{z}t, d=p_{z}r`$とすると、  
+```math
+\begin{equation}
+    \begin{split}
+    x_{Rndc} 
+    = m_{11}\frac{ha+ d}{-hb + hc}
+    \end{split}
+\end{equation}
+```
+となる.  
+
+上手く色々消えて綺麗になった!!  
+これがRectの右側となるわけだ.  
+左側は単純に$`\sin`$となる$`d`$と$`hb`$の符号を反転させるだけなので,  
+```math
+\begin{equation}
+    \begin{split}
+    x_{Lndc} 
+    = m_{11}\frac{ha- d}{hb + hc}
+    \end{split}
+\end{equation}
+```
+これを計算したら以下のようになる.  
+う～ん賢い.  
+```c++
+  float ha=c.x*t, hb=c.x*r, hc=c.z*t;
+  result.x=(ha-d)*p._11/(hc+hb); // left
+  result.z=(ha+d)*p._11/(hc-hb); // right
+```
+自分は最初に回転行列の形になってるのに気づいたんだけど、そのあとに$`\frac{x}{z}`$になってるのが全く分からなかった.  
+う～んなんでここで傾き求めてんだ～？なんでだ～？と思いつつ、あきらめて布団で目を閉じた瞬間に透視除算が脳内に降ってきて気づいた.  
+数学者もこんな感じで数式が振ってきたりするんかね？あまりにもパズルのピースがハマった感じで気持ちよかったです.  
+
+さて、後は消化試合.  
+$`x`$の部分を$`y`$に変えて、$`va=p_{y}t_{y}, vb=p_{y}r,vc=p_{z}t_{y}, d=p_{z}r`$遠く.  
+$`t_{y}`$は$`t`$と区別するために添え字を付けてみた.  
+これより、  
+
+```math
+\begin{equation}
+    \begin{split}
+    v_{Tndc} 
+    &= m_{22}\frac{va+ d}{-vb + hc} \\ 
+    v_{Bndc} 
+    &= m_{22}\frac{va- d}{vb + vc}
+    \end{split}
+\end{equation}
+```
+単純に入れ替えただけなので簡単ですね.  
+こちらも同じような式になる.  
+```C++ 
+  // calculate vertical extents
+  float ty=sqrt(c.y*c.y+c.z*c.z-r2);
+  float va=c.y*ty, vb=c.y*r, vc=c.z*ty;
+  result.y=(va-d)*p._22/(vc+vb); // bottom
+  result.w=(va+d)*p._22/(vc-vb); // top
+  return result;
+}
+```
+
+こうして4つの部分を求めることができればAABBも完成となる！  
+この最適化した式がどういう計算してるのか分かったね.  
+
+ここで捕捉ですが、中級グラフィックス入門の方での説明では同じ式に$`vp`$,つまりView-Projection行列を入れてる.  
+これちょっと個人的には怪しいと思う...  
+理由は今までの計算を見ればわかるけど、透視除算をしているのでワールド座標で$`z`$を割ってしまうとカメラの移動とか回転が全て無視されるからである.  
+多分ここはそもそもの球をview空間まで持って行った状態でprojection行列を渡すというのが必要だと思う.  
+自分の実装はこっちで進めていこうと思う.  
+
+さて、実装は簡単でまずは位置をView空間に持って行く.  
+wには半径が入ってるので影響させないように注意.  
+スケールに関してはWorldで確定してるので、Viewで大きさが変わることはない.  
+そして、処理は`ContributionCulling`で行われる.  
+```c++
+bool IsVisible(Meshlet meshlet, float3 cameraPosition, float4 planes[6], float4x4 world, float4x4 view, float4x4 proj)
+{
+    float4 sphere = TransformSphere(meshlet.BoundingSphere, world);
+
+    sphere.xyz = mul(view, float4(sphere.xyz, 1.0f)).xyz;
+
+    if (ContributionCulling(sphere, proj))
+    {
+        return false;
+    }
+
+    return true;
+}
+```
+今回はスクリーン上のサイズを取って、これで画面上の大きさが分かる.  
+後は`abs`を使いつつサイズを確定し、指定サイズ分よりも小さければカリングしてしまう.  
+今回は自分で弄れるように`Constant.Contribution`で用意しといた.  
+```c++
+bool ContributionCulling(float4 sphere, float4x4 p)
+{
+    float4 LBRT = SphereScreenExtents(sphere, p);
+
+    float w = abs(LBRT.z - LBRT.x); // left - right
+    float h = abs(LBRT.w - LBRT.y); // top - bottom
+
+    return max(w, h) <  Constant.Contribution;
+}
+```
+あとは先ほどの計算を行うだけだ、これは先ほどやった計算と同じなので略.  
+```c++
+float4 SphereScreenExtents(float4 c, float4x4 p)
+{
+    float4 result;
+    float r2 = c.w * c.w;
+    float d  = c.z * c.w;
+
+    // for width
+    float t = sqrt(c.x * c.x + c.z * c.z - r2);
+    float ha = c.x * t;
+    float hb = c.x * c.w;
+    float hc = c.z * t;
+    result.x = (ha - d) * p._11 / (hc + hb); // left
+    result.z = (ha + d) * p._11 / (hc - hb); // right
+
+    // for height
+    float ty = sqrt(c.y * c.y + c.z * c.z - r2);
+    float va = c.y * ty;
+    float vb = c.y * c.w;
+    float vc = c.z * ty;
+    result.y = (va - d) * p._22 / (vc + vb); // bottom
+    result.w = (va + d) * p._22 / (vc - vb); // top
+
+    return result;
+}
+```
+さて、ここまでできればあとは結果.  
+
+![meshlet_009_07](Image/meshlet_009_07.webp)  
+
+今回はデバッグ用カメラではなく、ちゃんと今見ているカメラでの判定になってます.  
+遠くの方が青くなってるので正しそうですね.  
+結構大変ですが、これでmeshlet単位のカリングは終了！  
+次からはMSによるポリゴン単位のカリングに入ります.  
+
 [^1]: [メッシュシェーダカリング](https://www.project-asura.com/articles/d3d12/d3d12_022.html)  
 [^2]: [2D Polyhedral Bounds of a Clipped, Perspective-Projected 3D Sphere](https://jcgt.org/published/0002/02/05/)  
+[^3]: [sphere_screen_extents](https://gist.github.com/JarkkoPFC/1186bc8a861dae3c8339b0cda4e6cdb3)  
+[^4]: [3D座標変換](../Basics/Trans.md)

@@ -216,6 +216,8 @@
 | サンパークダーツ本館 | [GoogleMap](https://maps.app.goo.gl/Hguc2ehGsjSF8EJP6) |
 | 東京都庁第一本庁舎 北展望室 | [GoogleMap](https://maps.app.goo.gl/wAXL8FfJY9LwkoSf8) |
 | 東京芸術大学大学美術館 上野館 | [GoogleMap](https://maps.app.goo.gl/igTopVkxHn6wTgAz8) |
+| 東京芸術大学上野校地 陳列館 | [GoogleMap](https://maps.app.goo.gl/4yXJEPk7H5qMFX7v8) |
+| 東京芸術大学上野校地 正木記念館 | [GoogleMap](https://maps.app.goo.gl/VejZmQdeaGMuDezn9) |
 | 恩賜上野動物園 | [GoogleMap](https://maps.app.goo.gl/drg3WFZCCMTYBiTw5) |
 | グランドシネマサンシャイン 池袋 | [GoogleMap](https://maps.app.goo.gl/G1oMEaFgtmnoPTr69) |
 | WINE SHOP nico 渋谷店 | [GoogleMap](https://maps.app.goo.gl/gL6Gm7kUzmUaXh4r6) |
@@ -228,6 +230,7 @@
 | 地酒遊楽 裏や | [GoogleMap](https://maps.app.goo.gl/rvu3rXYQwP41jfTd9) |
 | ええがな 池袋本店 | [GoogleMap](https://maps.app.goo.gl/fG5YaRG3PRtE1R6S6) |
 | 富久鮨 池袋西口店 FUKUSUSHI WEST IKEBUKURO | [GoogleMap](https://maps.app.goo.gl/S4r9QkEADhR3mQVr9) |
+| 鶴亀八番 池袋店 | [GoogleMap](https://maps.app.goo.gl/BLD8NXUqeSSJ7mZT7) |
 | HUB池袋西口店 | [GoogleMap](https://maps.app.goo.gl/X8d7diFH3ZUfMLii6) |
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
@@ -407,14 +410,17 @@
 | 芝山古墳・はにわ博物館 | [GoogleMap](https://maps.app.goo.gl/CNETApKPMXHmTCsj9) |
 | 千葉県立中央博物館 | [GoogleMap](https://maps.app.goo.gl/iaWDKChjnFqf7eX38) |
 | 千葉市立郷土博物館 | [GoogleMap](https://maps.app.goo.gl/17pWtsoQs1s8ebWb7) |
+| 千葉市美術館 | [GoogleMap](https://maps.app.goo.gl/1feGX1i6Aq7URPoF6) |
 | 亥鼻城跡 | [GoogleMap](https://maps.app.goo.gl/BGGvG3JsLoWvfZwCA) |
 | 中里海水浴場 | [GoogleMap](https://maps.app.goo.gl/nvx92pHENkk1naJz6) |
 | たぶん…世界一小さいチョコレート工場 | [GoogleMap](https://maps.app.goo.gl/hoNauP7PqJR6vrdP8) |
 | ホテルカアナパリ | [GoogleMap](https://maps.app.goo.gl/nu3sMMu7P9BAFsJy9) |
 | スポーツウェーブ鉃腕24 稲毛長沼店 | [GoogleMap](https://maps.app.goo.gl/oGQnEqQtE1AoBkph8) |
+| コストコホールセール 幕張倉庫店 | [GoogleMap](https://maps.app.goo.gl/VMCYpxaRf674otoC9) |
 | 南風堂珈琲店 | [GoogleMap](https://maps.app.goo.gl/fBvBt3E3NNGBHdsb6) |
 | 煮込みカツカレーの店本店 | [GoogleMap](https://maps.app.goo.gl/6DSqjnNh7kyhTVts5) |
 | カレー屋 久.山（ひさ.やま） | [GoogleMap](https://maps.app.goo.gl/PzcDKn164bX3PH71A) |
+| 松屋 幕張インター店（松のや・マイカリー食堂併設） | [GoogleMap](https://maps.app.goo.gl/PUsksXB6NE1GJCGs8) |
 
 ## 群馬
 | 場所 | リンク |

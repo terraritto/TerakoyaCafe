@@ -15,7 +15,7 @@
 ```math
 \begin{equation}
     \begin{split}
-    V \dot N > 0 \quad (invisible)
+    V \cdot N > 0 \quad (invisible)
     \end{split}
 \end{equation}
 ```
