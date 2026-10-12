@@ -35,6 +35,11 @@
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/HiddenSurfaceRemovalNormal.h) 
         [Movie](https://youtu.be/ubP8RBPaGCg) 
 
+        - ZSort法: [link](CG/Basics/ZSort.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/RemovalFace/RemovalFaceZSort.cpp) 
+        [Movie](https://youtu.be/XhdNgjRiu3k)
+
+
     * フィルタ
         - べイヤーフィルタ: [link](CG/Filter/BayarFilter.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BayarFilter.h) 
@@ -64,6 +69,15 @@
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/SobelFilter.h) 
         [movie](https://youtu.be/rXzaPR2FDGY)
     
+        - LoGフィルタ: [link](CG/Filter/LoGFilter.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/LoGFilter.h)
+
+        - DoGフィルタ: [link](CG/Filter/DoGFilter.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/DoGFilter.h)
+
+        - XDoGフィルタ: [link](CG/Filter/XDoGFilter.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/XDoGFilter.h)
+
     *  フラクタル
         - カントール集合1D: [link](CG/Fractal/Contor1D.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/Cantor1D.h) 
@@ -152,9 +166,34 @@
             - Graph: [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/CIE1931/CIE1931XYZGraph.h)
             - ColorSystem: [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/CIE1931/XYZColorSystem.h)
 
+        - CIE1964 XYZについて: [link](CG/Color/CIE1964XYZ.md) 
+            - Graph: [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/CIE1964/CIE1964XYZGraph.h)
+            - ColorSystem: [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/CIE1964/CIE1964ColorSystem.h)
+
+        - 黒体への道 その1: シュテファン＝ボルツマンの法則: [link](CG/Color/StefanBoltzmann.md) 
+        [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/BlackBody/StefanBoltzmannGraph.h)
+        - 黒体への道 その2: キルヒホッフの法則(放射): [link](CG/Color/KirchhoffLaw.md)  
+
+    * Toon
+        - MatCap: [link](CG/Toon/MatCap.md) 
+        [Impl](https://github.com/terraritto/CGImplForDX12/tree/main/LitSphere)
+
+        - RampTexture: [link](CG/Toon/RampTexture.md) 
+        [Impl](https://github.com/terraritto/CGImplForDX12/tree/main/RampTexture)
+
+        - XToon: [link](CG/Toon/XToon.md) 
+        [Impl](https://github.com/terraritto/CGImplForDX12/tree/main/XToon)
+
     * Paper
         - Lumoを実装してみる: [link](CG/Paper/Lumo.md) 
         [Impl](https://github.com/terraritto/RecalculateNormalNPR/tree/main/Lumo)
+
+        - Stylized depiction of images based on depth perceptionの実装をやってみた: [link](CG/Paper/StylizedDepiction.md) 
+            - GradientReshaping: [Impl](https://github.com/terraritto/RecalculateNormalNPR/blob/main/StylizedDepiction/GradientReshapingFunction.h)
+            - HalfTone: [Impl](https://github.com/terraritto/RecalculateNormalNPR/blob/main/StylizedDepiction/SDHalftoning.h)
+            - MultiTone: [Impl](https://github.com/terraritto/RecalculateNormalNPR/blob/main/StylizedDepiction/SDMultiToning.h)
+            - DynamicLine: [Impl](https://github.com/terraritto/RecalculateNormalNPR/blob/main/StylizedDepiction/SDDynamicLine.h)
+            - NormalReconstruct: [Impl](https://github.com/terraritto/RecalculateNormalNPR/blob/main/StylizedDepiction/SDNormalReconstruct.h)
 
     * Mesh Shader Series
         - 001 ポリゴン表示: [link](CG/MeshShaderSeries/001_Intro.md) 
@@ -223,6 +262,16 @@
         [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/SelectionSort.h)
         - シェーカーソート: [link](Algorithm/Sort/ShakerSort.md) 
         [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/ShakerSort.h)
+        - 二分木ソート: [link](Algorithm/Sort/BinaryTreeSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/BinaryTreeSort.h)
+        - ヒープソート: [link](Algorithm/Sort/HeapSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/HeapSort.h)
+        - 図書館ソート: [link](Algorithm/Sort/LibrarySort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/LibrarySort.h)
+        - マージソート: [link](Algorithm/Sort/MergeSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/MergeSort.h)
+        - シェルソート: [link](Algorithm/Sort/ShellSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/ShellSort.h)
 
 * ODS
     * 2章
@@ -331,10 +380,23 @@
         - XOR Gate: [link](DLFS/02/XorGate.md) 
         [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_02/XorGate.cpp)
 
+    * 3章
+        - Step関数: [link](DLFS/03/StepFunction.md) 
+        [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/StepFunction.cpp)
+
+        - Sigmoid関数: [link](DLFS/03/SigmoidFunction.md) 
+        [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/Sigmoid.cpp)
+
+        - ReLU関数: [link](DLFS/03/ReLUFunction.md) 
+        [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/ReLU.cpp)
+
 * Electronics
     * FPGA
         - Tang Nano 9K Lチカ: [link](Electronics/FPGA/TangNano_LBlink.md) 
         [Impl](https://github.com/terraritto/TangNano9kPractice/tree/main/Led_Blink/)
+
+        - TangNano9kでシンプルなCPUを作ってみる その1: Lチカ: [link](Electronics/FPGA/TangNano_SimpleCpu_01.md) 
+        [Impl](https://github.com/terraritto/TangNano9kPractice/tree/main/SimpleCpu/01_LBlink/src)
 
 * TIPS
     - 同名ファイルの出力におけるObj衝突の解消: [link](TIPS/Obj_dump.md)

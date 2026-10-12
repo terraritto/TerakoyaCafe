@@ -179,6 +179,7 @@
 | 東京国立博物館 | [GoogleMap](https://maps.app.goo.gl/AnFx5NWVhx7ZJWEz8) |
 | 国立科学博物館 | [GoogleMap](https://maps.app.goo.gl/iHdpLtFCszHqRwgi9) |
 | 国立西洋美術館 | [GoogleMap](https://maps.app.goo.gl/5iAkWNhMeqdZmBSs7) |
+| 国立新美術館 | [GoogleMap](https://maps.app.goo.gl/8RfCrSF1k9cWeG7G6) |
 | 東京都美術館 | [GoogleMap](https://maps.app.goo.gl/rh99t8VSEVey9dnQA) |
 | 東京国立近代美術館 | [GoogleMap](https://maps.app.goo.gl/qeVFwQXTwfbXcAAv8) |
 | 古代オリエント博物館 | [GoogleMap](https://maps.app.goo.gl/bomVS3H42uXew7Jw6) |
@@ -221,17 +222,20 @@
 | 恩賜上野動物園 | [GoogleMap](https://maps.app.goo.gl/drg3WFZCCMTYBiTw5) |
 | グランドシネマサンシャイン 池袋 | [GoogleMap](https://maps.app.goo.gl/G1oMEaFgtmnoPTr69) |
 | WINE SHOP nico 渋谷店 | [GoogleMap](https://maps.app.goo.gl/gL6Gm7kUzmUaXh4r6) |
+| 池袋西口 ||
 | 鉄板焼・お好み焼 ごっつい池袋店 | [GoogleMap](https://maps.app.goo.gl/DBh4sFDVJMKqcoLF7) |
-| 池袋 十割蕎麦 鴨料理 ならや | [GoogleMap](https://maps.app.goo.gl/AG4DHHekVKoNzixh7) |
 | 炭市場 どんどこ 西池袋店 | [GoogleMap](https://maps.app.goo.gl/gtq7NMaga1gr2TkU9) |
 | あおもり屋 池袋本店 | [GoogleMap](https://maps.app.goo.gl/Hw8WiQSg7txsLhme9) |
-| 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
-| 正しい晩ごはん 白‐はく‐ | [GoogleMap](https://maps.app.goo.gl/xWgU7mBst7xaWRrg9) |
-| 地酒遊楽 裏や | [GoogleMap](https://maps.app.goo.gl/rvu3rXYQwP41jfTd9) |
 | ええがな 池袋本店 | [GoogleMap](https://maps.app.goo.gl/fG5YaRG3PRtE1R6S6) |
 | 富久鮨 池袋西口店 FUKUSUSHI WEST IKEBUKURO | [GoogleMap](https://maps.app.goo.gl/S4r9QkEADhR3mQVr9) |
 | 鶴亀八番 池袋店 | [GoogleMap](https://maps.app.goo.gl/BLD8NXUqeSSJ7mZT7) |
 | HUB池袋西口店 | [GoogleMap](https://maps.app.goo.gl/X8d7diFH3ZUfMLii6) |
+| 池袋東口 ||
+| 池袋 十割蕎麦 鴨料理 ならや | [GoogleMap](https://maps.app.goo.gl/AG4DHHekVKoNzixh7) |
+| 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
+| 正しい晩ごはん 白‐はく‐ | [GoogleMap](https://maps.app.goo.gl/xWgU7mBst7xaWRrg9) |
+| 地酒遊楽 裏や | [GoogleMap](https://maps.app.goo.gl/rvu3rXYQwP41jfTd9) |
+| 喃風 池袋駅前店 | [GoogleMap](https://maps.app.goo.gl/kSUEmeBEAyb7sVrq6) |
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
 | お多幸 新宿店 | [GoogleMap](https://maps.app.goo.gl/7La9ak7xAKwCWWPS6) |
@@ -245,6 +249,7 @@
 | ドトールコーヒーショップ 新宿ビルディング店 | [GoogleMap](https://maps.app.goo.gl/rjoEZTRnrwaUvn757) |
 | 日本酒原価酒蔵 新宿総本店 | [GoogleMap](https://maps.app.goo.gl/CybeWWRATrGVtMLD8) |
 | 魚三四味家 すみよし 西武新宿 | [GoogleMap](https://maps.app.goo.gl/PwqMM4GkNzHLeifm6) |
+| 赤から新宿西口店 | [GoogleMap](https://maps.app.goo.gl/64ybZYBQxeSNG1119) |
 | ビヤホールライオン 銀座七丁目店 | [GoogleMap](https://maps.app.goo.gl/b9ZCodj1vbKLYtnh6) |
 | 福とほまれ（福井アンテナショップ） | [GoogleMap](https://maps.app.goo.gl/c81f26WUSnNqVPFP6) |
 | ドトールコーヒーショップ 浅草橋南店 | [GoogleMap](https://maps.app.goo.gl/Nkv7aqbZMv8NXht28) |
@@ -397,6 +402,7 @@
 | 大衆割烹TAKEYA 川越店 | [GoogleMap](https://maps.app.goo.gl/G5q2fhxNjNr2FeKK9) |
 | なかなか 川越西口店 | [GoogleMap](https://maps.app.goo.gl/428Cg39JLBpyPPH16) |
 | カラオケマック川越店 | [GoogleMap](https://maps.app.goo.gl/T4ckD4Hx5sFFMD5k9) |
+| そば御膳 むさしや | [GoogleMap](https://maps.app.goo.gl/1T7swtvC4aoEjfJF7) |
 | 蕎麦懐石さくら荘 | [GoogleMap](https://maps.app.goo.gl/zBkXgGseKVG6osGa9) |
 | TENOHA東松山 | [GoogleMap](https://maps.app.goo.gl/KYjvi6zjkc6R3Q5Q9) |
 | 古代蓮うどん店 | [GoogleMap](https://maps.app.goo.gl/xQVUjYrhMHP9byG78) |

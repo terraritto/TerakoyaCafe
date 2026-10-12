@@ -137,7 +137,7 @@ auto f = [](const double& x)
 
 こうして通るPixelを求めたら、後は各Pixelに対して当たってるかを確認するだけ.  
 
-![画像挿入]()
+![SytlizedDepiction_02](Image/StylizedDepiction_02.webp)
 
 もし当たっていればそれは光源からは見えない位置、光源まで到達するならそれは光源からは見える位置なので処理を施してあげるといった感じだ.  
 これを駆使して上記のうち3つは処理を施していくので、先に説明をしてみたわけである.  
@@ -198,6 +198,8 @@ auto HalfToneProcess = [&]()
 
 結果はこんな感じ、いい感じに色分けできている気がする.  
 
+![SyylizedDepiction](Image/SytlizedDepiction_04.webp)  
+
 * MultiToning  
 これは単純で、複数の光源を用意して、その交差で$`0 or 1`$ではなく$`0, 0.25, 0.5, 1`$みたいなグレーも混ぜましょう～というだけである.  
 
@@ -223,6 +225,8 @@ for (int i = 0; i < ImageWidth; i++)
 
 結果は次のような感じ.  
 
+![StylizedDepiction_05](Image/StylizedDepiction_05.webp)
+
 うん、ちょっとグラデーションっぽくなった.  
 
 * Dynamic Lines  
@@ -232,7 +236,7 @@ Dynamic Linesだと分かりにくいけど、集中線と言えば分かりや�
 
 線を引くにあたっての考え方は単純で、確率で光源の手前に高い壁を築くだけ！  
 
-![画像挿入]()  
+![StylizedDepiction_03](Image/StylizedDepiction_03.webp)  
 
 こうするとこのピクセルを通るRayは強制的に高い壁によって拒まれることになる.  
 拒まれた位置は基本的に全部0になるため、結果として黒い線が形成されることになるわけだ.賢い.  
@@ -279,7 +283,7 @@ for (int i = 0; i < wallNum;)
 
 これで完成、結果を見てみる.  
 
-![画像挿入]()
+![StylizedDepiction_06](Image/StylizedDepiction_06.webp)
 
 うん、それっぽく線が引かれている！  
 
@@ -288,16 +292,12 @@ for (int i = 0; i < wallNum;)
 法線の計算は以下で行う.  
 
 ```math
-\begin{equation}
-    \begin{split}
-    \Delta N(p) = 0
-    \end{split}
-\end{equation}
-```
-
+\begin{split}
 g_{x}(x,y) &= [1,0,\nabla_{x}z(x,y)] \\
 g_{y}(x,y) &= [0,1,\nabla_{y}z(x,y)] \\
 n(x,y) &= \frac{g_{x} \times g_{y}}{|g_{x} \times g_{y}|}
+\end{split}
+```
 
 $`\nabla`$は単純にソーベルフィルタを取ってやればいい.  
 そしたら式通りに計算するだけ.  
@@ -320,7 +320,7 @@ for (int i = 0; i < ImageWidth; i++)
 
 そしたら最後にライティング、Pixel Shaderを見ておこう.  
 ほぼLumoと変わらないが、前回と違いマスク画像ではなく画像に適用しているので2枚のテクスチャで色を重ねている.  
-```hlsl
+```c++
 float4 PS(s3d::PSInput input) : SV_TARGET
 {
 	float2 uv = input.uv;
@@ -336,7 +336,10 @@ float4 PS(s3d::PSInput input) : SV_TARGET
 
 そしたら結果.  
 
+![StylizedDepiction_07](Image/StylizedDepiction_07.webp)
+
 カラー画像な分、今回の方が見栄えがいいね.  
+波の部分がライティングでちょっと白っぽいものをライティングしてるのが分かりやすいはず.  
 
 ということで今回はこの辺で終わりかな.  
 実装が面白かったので満足です.  
