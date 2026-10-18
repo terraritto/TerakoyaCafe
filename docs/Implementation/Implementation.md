@@ -6,11 +6,6 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/SurtherlandHodgemanApp.cpp) 
     movie: [link](https://youtu.be/ttAN5tCy8_8)
 
-* DepthBuffer法  
-    メモリは消費するが、上手くデプスを解決  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/RemovalFace/RemovalFaceDepthBuffer.cpp) 
-    movie: [link](https://youtu.be/syPKq6gL8wQ)
-
 * グローシェーディング  
     頂点でライティングをしておこう  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/GourandShadingApp.cpp) 

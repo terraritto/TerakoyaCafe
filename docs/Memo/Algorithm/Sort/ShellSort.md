@@ -87,3 +87,4 @@ h_{k} = \lfloor \frac{n}{2^{k}} \rfloor
 
 [^1]: [シェルソート](https://w.wiki/WCaG)  
 [^2]: [ドナルド・シェル](https://w.wiki/WCgm)  
+[^3]: [挿入ソート](./InsertionSort.md)  

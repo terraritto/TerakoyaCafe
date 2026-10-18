@@ -78,6 +78,9 @@
         - XDoGフィルタ: [link](CG/Filter/XDoGFilter.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/XDoGFilter.h)
 
+        - Edge Tanget Flow:[link](CG/Filter/EdgeTangentFlow.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/ETF.h)
+
     *  フラクタル
         - カントール集合1D: [link](CG/Fractal/Contor1D.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CG/Fractal/Cantor1D.h) 
@@ -173,6 +176,8 @@
         - 黒体への道 その1: シュテファン＝ボルツマンの法則: [link](CG/Color/StefanBoltzmann.md) 
         [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/BlackBody/StefanBoltzmannGraph.h)
         - 黒体への道 その2: キルヒホッフの法則(放射): [link](CG/Color/KirchhoffLaw.md)  
+        - 黒体への道 その3: そしてプランクの法則へ: [link](CG/Color/RadianceLaw.md) 
+        [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/BlackBody/RadiationLawGraph.h) 
 
     * Toon
         - MatCap: [link](CG/Toon/MatCap.md) 
@@ -272,6 +277,14 @@
         [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/MergeSort.h)
         - シェルソート: [link](Algorithm/Sort/ShellSort.md) 
         [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/ShellSort.h)
+        - イントロソート: [link](Algorithm/Sort/IntroSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/IntroSort.h)
+        - パティエンスソート: [link](Algorithm/Sort/PatienceSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/PatienceSort.h)
+        - ストランドソート: [link](Algorithm/Sort/StrandSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/StrandSort.h)
+        - クイックソート: [link](Algorithm/Sort/QuickSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/QuickSort.h)
 
 * ODS
     * 2章
@@ -389,6 +402,9 @@
 
         - ReLU関数: [link](DLFS/03/ReLUFunction.md) 
         [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/ReLU.cpp)
+
+        - MNISTを試しに描画する: [link](DLFS/03/DrawMNIST.md) 
+        [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/TestMNIST.cpp)
 
 * Electronics
     * FPGA

@@ -229,13 +229,16 @@
 | ええがな 池袋本店 | [GoogleMap](https://maps.app.goo.gl/fG5YaRG3PRtE1R6S6) |
 | 富久鮨 池袋西口店 FUKUSUSHI WEST IKEBUKURO | [GoogleMap](https://maps.app.goo.gl/S4r9QkEADhR3mQVr9) |
 | 鶴亀八番 池袋店 | [GoogleMap](https://maps.app.goo.gl/BLD8NXUqeSSJ7mZT7) |
+| トロ政 池袋店 | [GoogleMap](https://maps.app.goo.gl/rvhhCYssbqdWQrGTA) |
 | HUB池袋西口店 | [GoogleMap](https://maps.app.goo.gl/X8d7diFH3ZUfMLii6) |
+| HUB池袋西口公園店 | [GoogleMap](https://maps.app.goo.gl/JUFmp8dbFwpefXYj6) |
 | 池袋東口 ||
 | 池袋 十割蕎麦 鴨料理 ならや | [GoogleMap](https://maps.app.goo.gl/AG4DHHekVKoNzixh7) |
 | 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
 | 正しい晩ごはん 白‐はく‐ | [GoogleMap](https://maps.app.goo.gl/xWgU7mBst7xaWRrg9) |
 | 地酒遊楽 裏や | [GoogleMap](https://maps.app.goo.gl/rvu3rXYQwP41jfTd9) |
 | 喃風 池袋駅前店 | [GoogleMap](https://maps.app.goo.gl/kSUEmeBEAyb7sVrq6) |
+| --------||
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
 | お多幸 新宿店 | [GoogleMap](https://maps.app.goo.gl/7La9ak7xAKwCWWPS6) |
@@ -265,6 +268,7 @@
 | Cafe Renoir 目黒東口駅前店 | [GoogleMap](https://maps.app.goo.gl/5us76YiQGNG3zkWT8) |
 | 蔵 目黒 | [GoogleMap](https://maps.app.goo.gl/hb1Uz6gbhrx8SRRX8) |
 | 松屋 両国店 | [GoogleMap](https://maps.app.goo.gl/YY3hZfHvUX1n8d3w6) |
+| Midtown BBQ Tokyo | [GoogleMap](https://maps.app.goo.gl/BNcLaM1hFM8Kp56P8) |
 
 ## 愛知
 | 場所 | リンク |
