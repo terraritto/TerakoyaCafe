@@ -12,7 +12,7 @@
         <link rel="prev" href="../ShakerSort/">
       
       
-        <link rel="next" href="../../../CG/Basics/BackFaceCulling/">
+        <link rel="next" href="../StrandSort/">
       
       
       <link rel="icon" href="../../../../assets/images/favicon.png">
@@ -2836,6 +2836,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../IntroSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イントロソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../LibrarySort/" class="md-nav__link">
         
   
@@ -2862,6 +2883,48 @@
   
   <span class="md-ellipsis">
     マージソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PatienceSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パティエンスソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QuickSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クイックソート
   </span>
   
 
@@ -2939,6 +3002,27 @@
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../StrandSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ストランドソート
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -3126,6 +3210,27 @@
   
   <span class="md-ellipsis">
     DDA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CG/Basics/DepthBuffer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプスバッファ法
   </span>
   
 
@@ -3416,6 +3521,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../CG/Color/RadianceLaw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    黒体への道 その3: そしてプランクの法則へ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../CG/Color/SmithPokorny/" class="md-nav__link">
         
   
@@ -3569,6 +3695,27 @@
   
   <span class="md-ellipsis">
     DoG(Difference of Gaussian) Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CG/Filter/EdgeTangentFlow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ETF(Edge Tangent Flow)を実装してみる
   </span>
   
 
@@ -4895,6 +5042,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../DLFS/03/DrawMNIST/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MNISTを試しに描画する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../DLFS/03/ReLUFunction/" class="md-nav__link">
         
   
@@ -5070,6 +5238,27 @@
   
   <span class="md-ellipsis">
     TangNano9kでシンプルなCPUを作ってみる その1: Lチカ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Electronics/FPGA/TangNano_SimpleCpu_02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TangNano9kでシンプルなCPUを作ってみる その2: 1bit CPU
   </span>
   
 
@@ -6613,7 +6802,7 @@
     }
 </style>
 <h1 id="_1">シェルソート</h1>
-<p>シェルソート<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>はコムソート<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>のように間隔を決定して、それを元に挿入ソート[^3]を行うソート.<br />
+<p>シェルソート<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>はコムソート<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>のように間隔を決定して、それを元に挿入ソート<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>を行うソート.<br />
 今回も例に漏れず例を見てみよう.<br />
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>8 3 1 2 7 5 6 4 n=8
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -6699,6 +6888,9 @@ h_{k} = \lfloor \frac{n}{2^{k}} \rfloor
 </li>
 <li id="fn:2">
 <p><a href="https://w.wiki/WCgm">ドナルド・シェル</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="../InsertionSort/">挿入ソート</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

@@ -2832,6 +2832,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/IntroSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イントロソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Algorithm/Sort/LibrarySort/" class="md-nav__link">
         
   
@@ -2858,6 +2879,48 @@
   
   <span class="md-ellipsis">
     マージソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/PatienceSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パティエンスソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/QuickSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クイックソート
   </span>
   
 
@@ -2921,6 +2984,27 @@
   
   <span class="md-ellipsis">
     シェルソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/StrandSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ストランドソート
   </span>
   
 
@@ -3114,6 +3198,27 @@
   
   <span class="md-ellipsis">
     DDA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/DepthBuffer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプスバッファ法
   </span>
   
 
@@ -3404,6 +3509,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Color/RadianceLaw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    黒体への道 その3: そしてプランクの法則へ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Color/SmithPokorny/" class="md-nav__link">
         
   
@@ -3557,6 +3683,27 @@
   
   <span class="md-ellipsis">
     DoG(Difference of Gaussian) Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/EdgeTangentFlow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ETF(Edge Tangent Flow)を実装してみる
   </span>
   
 
@@ -4895,6 +5042,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../DLFS/03/DrawMNIST/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MNISTを試しに描画する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../DLFS/03/ReLUFunction/" class="md-nav__link">
         
   
@@ -5070,6 +5238,27 @@
   
   <span class="md-ellipsis">
     TangNano9kでシンプルなCPUを作ってみる その1: Lチカ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Electronics/FPGA/TangNano_SimpleCpu_02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TangNano9kでシンプルなCPUを作ってみる その2: 1bit CPU
   </span>
   
 
@@ -6622,20 +6811,24 @@ UVに対して、U方向はRamp Textureと同等のものを置き、V方向で�
 ということで、一番楽なハイライトとシルエットをやって行く.  </p>
 <p>ハイライトはSpecular Highlightの値を参照するものである.<br />
 Phongのハイライトが論文では使われているが、ハイライトは鏡面反射.<br />
-鏡面反射は
-* ライト方向をジオメトリ法線基準で反射させた<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span>
-* カメラ位置からワールド位置を引いて作ったビュー方向<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span>
-を使うと、以下のように表される.  </p>
+鏡面反射は</p>
+<ul>
+<li>ライト方向をジオメトリ法線基準で反射させた<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span></li>
+<li>カメラ位置からワールド位置を引いて作ったビュー方向<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span></li>
+</ul>
+<p>を使うと、以下のように表される.  </p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>D</mi><mo>=</mo><mo stretchy="false">(</mo><mi>V</mi><mo>⋅</mo><mi>R</mi><msup><mo stretchy="false">)</mo><mi>α</mi></msup></mrow><annotation encoding="application/x-tex">
 D = (V \cdot R)^{\alpha}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p>つまり鏡面反射が強い場所ほどルックアップ位置が強い場所になる感じだ.  </p>
 <p>次にシルエット.<br />
 シルエットは簡単に言えばリムライトの位置を基準にして<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span>を変えればよい.<br />
-リムライトは
-* カメラ位置からワールド位置を引いて作ったビュー方向<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span>
-* 法線方向<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>
-を使うと、以下のように表される.  </p>
+リムライトは</p>
+<ul>
+<li>カメラ位置からワールド位置を引いて作ったビュー方向<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>V</mi></mrow><annotation encoding="application/x-tex">V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span></li>
+<li>法線方向<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span></li>
+</ul>
+<p>を使うと、以下のように表される.  </p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>D</mi><mo>=</mo><mo stretchy="false">(</mo><mi>V</mi><mo>⋅</mo><mi>N</mi><msup><mo stretchy="false">)</mo><mi>α</mi></msup></mrow><annotation encoding="application/x-tex">
 D = (V \cdot N)^{\alpha}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0037em;">α</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
