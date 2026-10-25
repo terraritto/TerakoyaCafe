@@ -232,6 +232,7 @@
 | トロ政 池袋店 | [GoogleMap](https://maps.app.goo.gl/rvhhCYssbqdWQrGTA) |
 | HUB池袋西口店 | [GoogleMap](https://maps.app.goo.gl/X8d7diFH3ZUfMLii6) |
 | HUB池袋西口公園店 | [GoogleMap](https://maps.app.goo.gl/JUFmp8dbFwpefXYj6) |
+| --------||
 | 池袋東口 ||
 | 池袋 十割蕎麦 鴨料理 ならや | [GoogleMap](https://maps.app.goo.gl/AG4DHHekVKoNzixh7) |
 | 天ぷらすずき 池袋 | [GoogleMap](https://maps.app.goo.gl/62wz9euXro21M6sPA) |
@@ -261,6 +262,7 @@
 | EVERYONEs CAFE 上野恩賜公園 | [GoogleMap](https://maps.app.goo.gl/AY2tUrWgioDrghMC9) |
 | 一平ソバ | [GoogleMap](https://maps.app.goo.gl/Av8WPLHyjgrtgqEh8) |
 | コンセプトバー SF-BAR 神田フラックス | [GoogleMap](https://maps.app.goo.gl/t2tPY7aFfrCA62PVA) |
+| 松屋 神田南口店 | [GoogleMap](https://maps.app.goo.gl/pegQmcL6poTZaZCu7) |
 | 酔心 東京駅店 | [GoogleMap](https://maps.app.goo.gl/omR6AFtGjyy22YQE8) |
 | 孫鈴舎 | [GoogleMap](https://maps.app.goo.gl/hsZngyh5jsCnsxrn8) |
 | Marunouchi Base | [GoogleMap](https://maps.app.goo.gl/y76C77y2T79u3YTb8) |
@@ -401,10 +403,12 @@
 | 羽生市 市民プラザ | [GoogleMap](https://maps.app.goo.gl/SGQStL6NvFrWNxYE6) |
 | BurgerCafe honohono | [GoogleMap](https://maps.app.goo.gl/9k9sXBkXo3RZHUsG8) |
 | スターバックス コーヒー 西武本川越駅店 | [GoogleMap](https://maps.app.goo.gl/NK5LeXwzjcHvrzUw5) |
+| ドトールコーヒーショップ 川越店 | [GoogleMap](https://maps.app.goo.gl/9Q4SFcuLrhHP4YTy8) |
 | 磯丸水産 東武川越店 | [GoogleMap](https://maps.app.goo.gl/HmCU2nemJtH5Xh2J8) |
 | 蔵ふと 本店 | [GoogleMap](https://maps.app.goo.gl/fRfm6hZfSzivc9RV6) |
 | 大衆割烹TAKEYA 川越店 | [GoogleMap](https://maps.app.goo.gl/G5q2fhxNjNr2FeKK9) |
 | なかなか 川越西口店 | [GoogleMap](https://maps.app.goo.gl/428Cg39JLBpyPPH16) |
+| うりずんの風 | [GoogleMap](https://maps.app.goo.gl/DD1X27W5VsK2LmRK6) |
 | カラオケマック川越店 | [GoogleMap](https://maps.app.goo.gl/T4ckD4Hx5sFFMD5k9) |
 | そば御膳 むさしや | [GoogleMap](https://maps.app.goo.gl/1T7swtvC4aoEjfJF7) |
 | 蕎麦懐石さくら荘 | [GoogleMap](https://maps.app.goo.gl/zBkXgGseKVG6osGa9) |

@@ -43,6 +43,10 @@
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/RemovalFace/RemovalFaceDepthBuffer.cpp) 
         [Movie](https://youtu.be/syPKq6gL8wQ)
 
+        - Gourand Shading: [link](CG/Basics/GourandShading.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/GourandShadingApp.cpp) 
+        [Movie](https://youtu.be/3nEc-kAhi64)
+
     * フィルタ
         - べイヤーフィルタ: [link](CG/Filter/BayarFilter.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BayarFilter.h) 
@@ -423,6 +427,10 @@
 
         - MNISTを試しに描画する: [link](DLFS/03/DrawMNIST.md) 
         [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/TestMNIST.cpp)
+
+        - 学習済みのデータを読み込んでMNISTを推論してみる: [link](DLFS/03/CalcMNIST.md) 
+            - 実装: [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/NeuralMNIST.cpp)
+            - Python変換コード: [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/convert.py)
 
 * Electronics
     * FPGA

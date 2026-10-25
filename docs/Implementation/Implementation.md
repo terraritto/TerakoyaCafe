@@ -6,11 +6,6 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/SurtherlandHodgemanApp.cpp) 
     movie: [link](https://youtu.be/ttAN5tCy8_8)
 
-* グローシェーディング  
-    頂点でライティングをしておこう  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/GourandShadingApp.cpp) 
-    movie: [link](https://youtu.be/3nEc-kAhi64)
-
 * フォンシェーディング  
     ピクセルシェーダの礎  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/PhongShadingApp.cpp) 
