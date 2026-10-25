@@ -1916,6 +1916,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/10/2026_1019_1025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/10/19 ~ 2026/10/25
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2895,11 +2916,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/OddEvenSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    奇偶転置ソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../Algorithm/Sort/PatienceSort/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     パティエンスソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/PigeonholeSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    鳩の巣ソート
   </span>
   
 
@@ -2963,6 +3026,27 @@
   
   <span class="md-ellipsis">
     シェーカーソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/ShearSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シェアソート
   </span>
   
 
@@ -3233,6 +3317,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../CG/Basics/GourandShading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    グローシェーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../CG/Basics/Rasterization_01/" class="md-nav__link">
         
   
@@ -3486,6 +3591,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../CG/Color/PlanckianLocus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    黒体への道 その4: 黒体軌跡で色を見る
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../CG/Color/RGBColorSystem/" class="md-nav__link">
         
   
@@ -3702,6 +3828,48 @@
   
   <span class="md-ellipsis">
     ETF(Edge Tangent Flow)を実装してみる
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CG/Filter/FDoG/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FDoG Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CG/Filter/FXDoG/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FXDoG
   </span>
   
 
@@ -5020,6 +5188,27 @@
             03
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/03/CalcMNIST/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学習済みのデータを読み込んでMNISTを推論してみる
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -6786,6 +6975,21 @@
                   
 
 
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+  integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs"
+  crossorigin="anonymous" />
+
+<style type="text/css">
+    .katex img {
+      object-fit: fill;
+      padding: unset;
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: inherit;
+    }
+</style>
 <h1 id="tangnano9kcpu-2-1bit-cpu">TangNano9kでシンプルなCPUを作ってみる その2: 1bit CPU</h1>
 <p>今回は1bit CPUをやっていく.<br />
 まずはCPUの<code>a</code>と<code>next_a</code>の部分を前回と今回で見比べよう.  </p>
@@ -6834,7 +7038,243 @@
 このROMにアドレスを流し込み、機械語を出力するということになる.<br />
 基本的に回路設計ではCPUを作って、プログラマが書いたプログラムをコンパイルなどしてアセンブリとした後最終的に機械語まで落とし込んだら、これが命令群となる.<br />
 <code>Address</code>でどの命令を使うかを決めて、それからROMから取り出した命令が<code>data</code>に流し込まれて次の命令へ...とするのが主な構造.<br />
-まあそこまで細かいのは今後見ていくのでよいとして、今回はとりあえずROMで指定されたアドレスを指定したら命令が流されるという構造を作ることを考えよう.  </p>
+まあそこまで細かいのは今後見ていくのでよいとして、今回はとりあえずROMで指定されたアドレスを指定したら命令が流されるという構造を作ることを考えよう.</p>
+<p>今回作るROMはこんな感じ.  </p>
+<p><img alt="MakeSimpleCpu_02_03" src="../Image/MakeSimpleCpu_02_03.webp" />  </p>
+<p>Addressで読みだす位置を決める.<br />
+今回は1bitなので、0 or 1の2つのアドレスが決められる.<br />
+これは</p>
+<ul>
+<li>アドレス0: A</li>
+<li>アドレス1: B</li>
+</ul>
+<p>という風に決まっており、このアドレスの信号がMXに渡ってAとBが決まることになる.<br />
+AとBは4パターンに分けられて、以下のようになる.  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">命令A</th>
+<th style="text-align: center;">命令B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p>これがdataに流されるわけだけど、これが0ならNOP,1ならNOTとなる.<br />
+Lチカにおいて、</p>
+<ul>
+<li>NOP: ずっと点灯 or ずっと消灯</li>
+<li>NOT: 点灯と消灯を繰り返す</li>
+</ul>
+<p>といった関係にあるため,両方とも0の場合はチカチカしない状態になってしまう.<br />
+逆に両方1は毎回チカチカ、どっちかが0ならチカチカとストップを繰り返すので両方1の半分の周期ということだ.<br />
+今回は</p>
+<ul>
+<li>A: 1</li>
+<li>B: 0</li>
+</ul>
+<p>のものを採用しよう！<br />
+これを先ほどの機械語と合わせると次のような図を考えられる.  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">アドレス</th>
+<th style="text-align: center;">命令(機械語)</th>
+<th style="text-align: center;">アセンブリ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">NOT</td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">NOP</td>
+</tr>
+</tbody>
+</table>
+<p>なんかアドレス感はないけど、まあそれはメモリから引っ張ってくるとかしてないからというのもある.<br />
+致し方なし.  </p>
+<p>さて、そしたら実際にコードを組んでみよう.<br />
+module名は<code>rom</code>.<br />
+入力は<code>address</code>で出力は<code>data</code>.<br />
+<div class="language-Verilog highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">module</span><span class="w"> </span><span class="n">rom</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">(</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w">               </span><span class="c1">// input: 命令のアドレス</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="n">data</span><span class="w">                   </span><span class="c1">// output: 出力</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">);</span>
+</span></code></pre></div>
+条件は論理式で書くため、<code>alway_comb</code>で行う.<br />
+switch文の要領で組み込めばよい.<br />
+これがマルチプレクサとなる.<br />
+<code>address</code>が0の電流なら読みだした1を流す.<br />
+<code>address</code>が1の電流なら読みだした0を流す.<br />
+これが命令であり、機械語となるわけだ.<br />
+<div class="language-Verilog highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="k">always_comb</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">            </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0: NOT命令</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">            </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1: NOP命令</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="k">endcase</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">endmodule</span>
+</span></code></pre></div>
+これでRom側は終わり！  </p>
+<p>さて、次は改造したCPUの構造を見てみよう.  </p>
+<p><img alt="MakeSimpleCPU_02_04" src="../Image/MakeSimpleCpu_02_04.webp" />  </p>
+<p>分けて考えよう.<br />
+まずaについて、これは前回とほぼ同じ.<br />
+ROMから流されたdataがマルチプレクサに流し込まれて、NOPとNOTのどちらかになるが、それ以外は同じ.  </p>
+<ul>
+<li>前回: NOTのみ</li>
+<li>今回: NOP or NOT</li>
+</ul>
+<p>といった感じの違いかな.  </p>
+<p>そして、アドレスに関してはipというもので決まる.<br />
+instruction pointerの略でipだね.<br />
+現状は+1でクロック毎に値が変わる感じ.<br />
+つまり,<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>4...</mn></mrow><annotation encoding="application/x-tex">0,1,2,3,4...</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4...</span></span></span></span>となるわけだが、今回は1bitなのを思い出してほしい.<br />
+1bitで表せるのは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0,1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span></span></span></span>のどちらか.<br />
+つまり、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>0...</mn></mrow><annotation encoding="application/x-tex">0,1,0,1,0...</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0...</span></span></span></span>となるわけだ.<br />
+これはアドレスで言うと,</p>
+<ul>
+<li>Addr:0 -&gt; NOT</li>
+<li>Addr:1 -&gt; NOP</li>
+<li>Addr:0 -&gt; NOT</li>
+<li>Addr:1 -&gt; NOP</li>
+<li>Addr:0 -&gt; NOT</li>
+</ul>
+<p>という風にアドレスを読み込んで命令をしてるのと同じ.<br />
+これでROMとCPUが繋がれた！！  </p>
+<p>さて、実際にコードにしておこう.<br />
+モジュールは単純にアドレスとデータが追加されている.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">module</span><span class="w"> </span><span class="n">cpu</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">(</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w">               </span><span class="c1">// input: クロック</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">n_reset</span><span class="p">,</span><span class="w">           </span><span class="c1">// input: リセットボタン</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w">              </span><span class="c1">// input: データ</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w">           </span><span class="c1">// output: アドレス</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="n">led</span><span class="w">                </span><span class="c1">// output: LED </span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">);</span>
+</span></code></pre></div></p>
+<p>ワイヤーはipの部分を追加.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="c1">// モジュール内のワイヤー</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">next_a</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">ip</span><span class="p">,</span><span class="w"> </span><span class="n">next_ip</span><span class="p">;</span>
+</span></code></pre></div></p>
+<p>論理式は基本的に<code>a</code>と<code>ip</code>にnextのものを流し込むだけ.  </p>
+<p><div class="language-verilog highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="c1">// DFF</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">always_ff</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">clk</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">~</span><span class="n">n_reset</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">            </span><span class="c1">// リセット時</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">            </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">            </span><span class="n">ip</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="k">end</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">            </span><span class="c1">// 平常時</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">            </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next_a</span><span class="p">;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">            </span><span class="n">ip</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next_ip</span><span class="p">;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="k">end</span><span class="w">      </span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="k">end</span>
+</span></code></pre></div>
+addressにはipを流し込む.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// aの状態を出力</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ip</span><span class="p">;</span><span class="w"> </span><span class="c1">// ipの状態を出力</span>
+</span></code></pre></div>
+<code>next_a</code>はROMから読みだした命令が<code>data</code>に入ってるので、これをいれるだけ.<br />
+<code>next_ip</code>は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">+</span><span class="mord">1</span></span></span></span>するだけ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span><span class="k">always_comb</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">            </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="o">:</span><span class="w"> </span><span class="n">next_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">   </span><span class="c1">// 0: NOP</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">            </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="o">:</span><span class="w"> </span><span class="n">next_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">a</span><span class="p">;</span><span class="w">  </span><span class="c1">// 1: NOT </span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="k">endcase</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="n">next_ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ip</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span><span class="w"> </span><span class="c1">// next_ip++</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">endmodule</span>
+</span></code></pre></div></p>
+<p>これで完了.  </p>
+<p>CPUには大事なROMができたことで、これを統合した構造を作っておく.  </p>
+<p>もう一度図を見ておこう.  </p>
+<p><img alt="MakeSimpleCpu_02_02" src="../Image/MakeSimpleCpu_02_02.webp" />  </p>
+<p>CPUとROMをまとめたものがmother_board.<br />
+単純に分けたモジュールを並べただけ.<br />
+ハード側はCPUを作る,ソフト側はコードを書いて命令を作りROMに焼く.<br />
+これをmother_boardで橋を架けてる感じなわけだ.  </p>
+<p>このコードは簡単なので、一気にコードを載せておく.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">module</span><span class="w"> </span><span class="n">mother_board</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">(</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w">       </span><span class="c1">// input: クロック</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">n_reset</span><span class="p">,</span><span class="w">   </span><span class="c1">// input: リセットボタン</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="n">led</span><span class="w">        </span><span class="c1">// output: LED</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">);</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="c1">// モジュール内のワイヤー</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">address</span><span class="p">;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="c1">// モジュールの埋め込み</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="n">cpu</span><span class="w"> </span><span class="n">cpu</span><span class="p">(.</span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">n_reset</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">led</span><span class="p">);</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="n">rom</span><span class="w"> </span><span class="n">rom</span><span class="p">(.</span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">data</span><span class="p">);</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="k">endmodule</span>
+</span></code></pre></div>
+本当につなぐだけ.  </p>
+<p>あとはtopを見返しておこう.<br />
+書き換えるのは1行だけ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">mother_board</span><span class="w"> </span><span class="n">mother_board</span><span class="p">(.</span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">n_reset</span><span class="p">(</span><span class="n">pin_n_reset</span><span class="p">),</span><span class="w"> </span><span class="p">.</span><span class="n">led</span><span class="p">(</span><span class="n">pin_led</span><span class="p">));</span>
+</span></code></pre></div>
+前回はCPUだった部分をmother_boardにするだけ.<br />
+これだけでOK!!  </p>
+<p>今回は波形を描画してみよう.<br />
+ちゃんとシミュレーションをするのは大変.<br />
+GowinにはAnalyzer Oscilloscope<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>というものがあり、これを使うとちょっと楽.<br />
+シミュレーションはできないけど、実際に実行して波形を見れる.<br />
+ただし、クロックの立ち上がりか立下りのどちらか駆動なためクロック自体は見ることが不可能.そこを見たい場合はシミュレーションなんだろうなぁ.  </p>
+<p>さて、自分がやった手順は非常に明快.<br />
+gaoファイルを作る、読み取りたい条件を設定してからTangNano9kを接続してAnalyzer Oscilloscopeに流すだけ.<br />
+この結果が以下.  </p>
+<p><img alt="MakeSimpleCpu_02_05" src="../Image/MakeSimpleCpu_02_05.png" />  </p>
+<ul>
+<li>
+<p>addressが1のとき、dataは0.<br />
+これはちゃんと命令を発行できてるね.  </p>
+</li>
+<li>
+<p>ipとaddressが協調してるのはのも正しそう.  </p>
+</li>
+<li>aとnext_aの関係もわかりやすいね.<br />
+立ち上がりで変化が起きる、これはNOT命令.<br />
+その後同じ状態が1命令だけ続く.これはNOP命令.<br />
+ちゃんと命令も問題なさそう.  </li>
+</ul>
+<p>こんな風に波形を見ればいろんな情報を収集できる.<br />
+デバッグに仕える非常に便利なものだ！<br />
+さて、これで一旦終了.<br />
+次回は多重ワイヤーでTD4にしていく.  </p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://qiita.com/hi631/items/334b4ef61def04667ec3">Tang-NanoでAnalyzer Oscilloscopeを使ってみる</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
