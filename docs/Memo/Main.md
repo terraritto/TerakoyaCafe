@@ -39,6 +39,9 @@
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/RemovalFace/RemovalFaceZSort.cpp) 
         [Movie](https://youtu.be/XhdNgjRiu3k)
 
+        - Depth Buffer法: [link](CG/Basics/DepthBuffer.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/RemovalFace/RemovalFaceDepthBuffer.cpp) 
+        [Movie](https://youtu.be/syPKq6gL8wQ)
 
     * フィルタ
         - べイヤーフィルタ: [link](CG/Filter/BayarFilter.md) 
@@ -80,6 +83,12 @@
 
         - Edge Tanget Flow:[link](CG/Filter/EdgeTangentFlow.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/ETF.h)
+
+        - FDoG: [link](CG/Filter/FDoG.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/FDoG.h)
+
+        - FXDoG: [link](CG/Filter/FXDoG.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/XFDoG.h)
 
     *  フラクタル
         - カントール集合1D: [link](CG/Fractal/Contor1D.md) 
@@ -178,6 +187,9 @@
         - 黒体への道 その2: キルヒホッフの法則(放射): [link](CG/Color/KirchhoffLaw.md)  
         - 黒体への道 その3: そしてプランクの法則へ: [link](CG/Color/RadianceLaw.md) 
         [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/BlackBody/RadiationLawGraph.h) 
+        - 黒体への道 その4: 黒体軌跡で色を見る: [link](CG/Color/PlanckianLocus.md) 
+            - 黒体軌跡: [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/BlackBody/PlanckianLocus.h) 
+            - 色温度表示: [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/BlackBody/TemperatureColor.h)
 
     * Toon
         - MatCap: [link](CG/Toon/MatCap.md) 
@@ -285,6 +297,12 @@
         [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/StrandSort.h)
         - クイックソート: [link](Algorithm/Sort/QuickSort.md) 
         [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/QuickSort.h)
+        - 奇偶転置ソート: [link](Algorithm/Sort/OddEvenSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/OddEvenSort.h)
+        - 鳩の巣ソート: [link](Algorithm/Sort/PigeonholeSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/PigeonholeSort.h)
+        - シェアソート: [link](Algorithm/Sort/ShearSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/ShearSort.h)
 
 * ODS
     * 2章
@@ -413,6 +431,9 @@
 
         - TangNano9kでシンプルなCPUを作ってみる その1: Lチカ: [link](Electronics/FPGA/TangNano_SimpleCpu_01.md) 
         [Impl](https://github.com/terraritto/TangNano9kPractice/tree/main/SimpleCpu/01_LBlink/src)
+
+        - TangNano9kでシンプルなCPUを作ってみる その2: 1bit CPU: [link](Electronics/FPGA/TangNano_SimpleCpu_02.md) 
+        [Impl](https://github.com/terraritto/TangNano9kPractice/tree/main/SimpleCpu/02_1BitCpu/src)
 
 * TIPS
     - 同名ファイルの出力におけるObj衝突の解消: [link](TIPS/Obj_dump.md)

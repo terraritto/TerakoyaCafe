@@ -132,7 +132,7 @@ while (true)
 
 ![PatienceSort_01](Image/PatienceSort_01.webp)  
 
-うん、途中までだけどそれっぽくなってる.  
+うん、ちゃんとソートされてる.  
 多分合ってるでしょう.  
 
 [^1]: [Patience sorting](https://w.wiki/a4xx)  
