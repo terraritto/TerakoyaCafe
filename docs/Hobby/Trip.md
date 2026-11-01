@@ -222,6 +222,8 @@
 | 恩賜上野動物園 | [GoogleMap](https://maps.app.goo.gl/drg3WFZCCMTYBiTw5) |
 | グランドシネマサンシャイン 池袋 | [GoogleMap](https://maps.app.goo.gl/G1oMEaFgtmnoPTr69) |
 | WINE SHOP nico 渋谷店 | [GoogleMap](https://maps.app.goo.gl/gL6Gm7kUzmUaXh4r6) |
+| 竹芝客船ターミナル | [GoogleMap](https://maps.app.goo.gl/iNsNoYVZ1D3nb2Vn9) |
+| SHOP竹芝 | [GoogleMap](https://maps.app.goo.gl/XF1Qb1fS9t6f51QA6) |
 | 池袋西口 ||
 | 鉄板焼・お好み焼 ごっつい池袋店 | [GoogleMap](https://maps.app.goo.gl/DBh4sFDVJMKqcoLF7) |
 | 炭市場 どんどこ 西池袋店 | [GoogleMap](https://maps.app.goo.gl/gtq7NMaga1gr2TkU9) |
@@ -271,6 +273,15 @@
 | 蔵 目黒 | [GoogleMap](https://maps.app.goo.gl/hb1Uz6gbhrx8SRRX8) |
 | 松屋 両国店 | [GoogleMap](https://maps.app.goo.gl/YY3hZfHvUX1n8d3w6) |
 | Midtown BBQ Tokyo | [GoogleMap](https://maps.app.goo.gl/BNcLaM1hFM8Kp56P8) |
+| 岡田港 | [GoogleMap](https://maps.app.goo.gl/DAWhwWuP5u8HUJho8) |
+| モービルレンタカー大島店 | [GoogleMap](https://maps.app.goo.gl/6jKWYqgPEGnE6ZeG7) |
+| 地層大切断面 | [GoogleMap](https://maps.app.goo.gl/iNaXmZxXzBkQjCju8) |
+| 波浮港見晴台 | [GoogleMap](https://maps.app.goo.gl/wJxTNhYe1CgQfJvZ7) |
+| 踊子の里資料館（旧港屋旅館） | [GoogleMap](https://maps.app.goo.gl/1jSXLJPJeQB4HiG66) |
+| らぁ麺よりみち 伊豆大島 | [GoogleMap](https://maps.app.goo.gl/PSbBRVgss6eicZnZ9) |
+| 裏砂漠 第1展望台 | [GoogleMap](https://maps.app.goo.gl/QxGdiriMuE32KNj77) |
+| 伊豆大島 大島温泉ホテル | [GoogleMap](https://maps.app.goo.gl/tooboaBb6KPMeos89) |
+| minatoにぎわいマーケット 岡田店 | [GoogleMap](https://maps.app.goo.gl/7kSZdtVPmQmyJvEG9) |
 
 ## 愛知
 | 場所 | リンク |
