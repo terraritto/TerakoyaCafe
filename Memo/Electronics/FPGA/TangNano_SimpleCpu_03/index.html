@@ -3423,6 +3423,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../CG/Basics/PhongShading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フォンシェーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../CG/Basics/Rasterization_01/" class="md-nav__link">
         
   
@@ -4835,6 +4856,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../CG/MeshShaderSeries/010_BackFaceZeroAreaCull/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh Shaderによるカリング ～ ポリゴン編1 背面カリングとゼロ面積カリング ～
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../CG/MeshShaderSeries/Appendix_006_01_Imgui/" class="md-nav__link">
         
   
@@ -5273,6 +5315,27 @@
             03
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/03/BatchMNIST/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BatchでまとめてMNISTを推論する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -7124,6 +7187,240 @@
 <p>フラグレジスタ、桁あふれ検知用.<br />
 キャリーフラグってやつか.<br />
 OS自作の時も良くお世話になりました.  </p>
+<p>これでレジスタ構造が明らかになったので、次はCPUの拡張.<br />
+今回は次のような形になる.  </p>
+<p><img alt="MakeSimpleCpu_03_01" src="../Image/MakeSimpleCpu_03_01.webp" />  </p>
+<p>まずレジスタとして<code>b,cf,out</code>が追加された.<br />
+今までは<code>a</code>が出力だったが、今回からは<code>out</code>を出力するようになる.<br />
+レジスタの構造としてはそれ以上に変わったことはない.  </p>
+<p>入力されるデータはさらに分割されて、<code>opecode</code>と<code>imm</code>になる.<br />
+要は<code>data</code>は8bitのデータで、<code>opecode</code>が上位4bit,<code>imm</code>が下位4bitと分割されるわけだ.  </p>
+<p>実際に本だとさらに追加でswitchという入力があった.<br />
+が、これはTangNano9kだとそもそも入力としてはSwitch2つしかないし、1つはresetに取られてる始末.<br />
+あまりにもそれだと寂しいので、今回はSwitchは組み込まない形状にしてみた.<br />
+固定値になるけど、形はシンプルになったのでまあいいか...の精神.  </p>
+<p>さて、そしたらCPUのコードを組んでみよう.<br />
+まずは今までの図の中のコードをモジュールとワイヤーで用意！<br />
+スイッチは使わないのでコメントアウトしてます.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">module</span><span class="w"> </span><span class="n">cpu</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">(</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w">               </span><span class="c1">// input: クロック</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">n_reset</span><span class="p">,</span><span class="w">           </span><span class="c1">// input: リセットボタン</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">7</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w">        </span><span class="c1">// input: データ</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="c1">// input  logic [3:0] switch,      // input: スイッチ</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w">     </span><span class="c1">// output: アドレス</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">led</span><span class="w">          </span><span class="c1">// output: LED </span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">);</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="c1">// モジュール内のワイヤー</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">next_a</span><span class="p">;</span><span class="w">          </span><span class="c1">// 汎用レジスタ</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">next_b</span><span class="p">;</span><span class="w">          </span><span class="c1">// 汎用レジスタ</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">cf</span><span class="p">,</span><span class="w"> </span><span class="n">next_cf</span><span class="p">;</span><span class="w">              </span><span class="c1">// キャリーフラグ</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">ip</span><span class="p">,</span><span class="w"> </span><span class="n">next_ip</span><span class="p">;</span><span class="w">        </span><span class="c1">// 命令ポインタ</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">next_out</span><span class="p">;</span><span class="w">      </span><span class="c1">// LED接続</span>
+</span></code></pre></div>
+次はフリップフロップ、これも前回のを拡張するだけ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="c1">// DFF</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">always_ff</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">clk</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">~</span><span class="n">n_reset</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">            </span><span class="c1">// リセット時</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">            </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">&#39;0</span><span class="p">;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">            </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">&#39;0</span><span class="p">;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">            </span><span class="n">cf</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">&#39;0</span><span class="p">;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">            </span><span class="n">ip</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">&#39;0</span><span class="p">;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">            </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">&#39;0</span><span class="p">;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="k">end</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">            </span><span class="c1">// 平常時</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">            </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next_a</span><span class="p">;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">            </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next_b</span><span class="p">;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">            </span><span class="n">cf</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next_cf</span><span class="p">;</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">            </span><span class="n">ip</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next_ip</span><span class="p">;</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">            </span><span class="n">out</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next_out</span><span class="p">;</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">        </span><span class="k">end</span><span class="w">      </span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="k">end</span>
+</span></code></pre></div>
+<code>data</code>は上位4bitが<code>opecode</code>,下位4bitが<code>imm</code>でした.<br />
+これに従ってassignを行う.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">opecode</span><span class="p">,</span><span class="w"> </span><span class="n">imm</span><span class="p">;</span><span class="w"> </span><span class="c1">// 命令と即値</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mh">7</span><span class="o">:</span><span class="mh">4</span><span class="p">];</span><span class="w"> </span><span class="c1">// データから命令を接続</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">imm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span><span class="w"> </span><span class="c1">// データから即値を接続</span>
+</span></code></pre></div>
+最後に<code>address</code>と<code>led</code>に出力をつなぐ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">;</span><span class="w"> </span><span class="c1">// outの状態を出力</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ip</span><span class="p">;</span><span class="w"> </span><span class="c1">// ipの状態を出力</span>
+</span></code></pre></div>
+さて、そしたら組み込み回路.<br />
+こいつが中々なもの.<br />
+まず最初に初期値を設定する.<br />
+これは<code>NOP</code>命令に相当,何もしてないのと同じ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="k">always_comb</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">        </span><span class="n">next_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">             </span><span class="c1">// 汎用レジスタはそのままの値</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="n">next_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">             </span><span class="c1">// 汎用レジスタはそのままの値</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="n">next_cf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span><span class="w">         </span><span class="c1">// キャリーフラグは0</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="n">next_ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ip</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">4</span><span class="mi">&#39;d1</span><span class="p">;</span><span class="w">    </span><span class="c1">// ipは1増やす</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="n">next_out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out</span><span class="p">;</span><span class="w">         </span><span class="c1">// LEDは現在の状態</span>
+</span></code></pre></div>
+次に命令を作成する.<br />
+<code>opecode</code>で0~15の数字を命令と結びつける作業である.<br />
+今回は以下のような命令を実際に実装した.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">        </span><span class="n">unique</span><span class="w"> </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="n">opecode</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0000</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="n">next_cf</span><span class="p">,</span><span class="w"> </span><span class="n">next_a</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">imm</span><span class="p">;</span><span class="w">       </span><span class="c1">// 0: add A, imm</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0101</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="n">next_cf</span><span class="p">,</span><span class="w"> </span><span class="n">next_b</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">imm</span><span class="p">;</span><span class="w">       </span><span class="c1">// 5: add B, imm</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0011</span><span class="o">:</span><span class="w"> </span><span class="n">next_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">imm</span><span class="p">;</span><span class="w">                      </span><span class="c1">// 3: mov A, imm</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0111</span><span class="o">:</span><span class="w"> </span><span class="n">next_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">imm</span><span class="p">;</span><span class="w">                      </span><span class="c1">// 7: mov B, imm</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0001</span><span class="o">:</span><span class="w"> </span><span class="n">next_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">                        </span><span class="c1">// 1: mov A, B</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0100</span><span class="o">:</span><span class="w"> </span><span class="n">next_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">                        </span><span class="c1">// 4: mov B, A</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b1111</span><span class="o">:</span><span class="w"> </span><span class="n">next_ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">imm</span><span class="p">;</span><span class="w">                     </span><span class="c1">// 15: jmp imm</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b1110</span><span class="o">:</span><span class="w"> </span><span class="n">next_ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cf</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">ip</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">4</span><span class="mi">&#39;d1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">imm</span><span class="p">;</span><span class="w">    </span><span class="c1">// 14: jnc imm</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">            </span><span class="c1">// 4&#39;b0010: next_a = switch;                   // 2: IN A</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">            </span><span class="c1">// 4&#39;b0110: next_b = switch;                   // 6: IN B</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b1001</span><span class="o">:</span><span class="w"> </span><span class="n">next_out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">                      </span><span class="c1">// 9: OUT B</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b1011</span><span class="o">:</span><span class="w"> </span><span class="n">next_out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">imm</span><span class="p">;</span><span class="w">                    </span><span class="c1">// 11: OUT imm</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">            </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="k">endcase</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="k">end</span>
+</span></code></pre></div>
+switch関係の命令はいらないので省略した.<br />
+やってることはコードを読めばわかるので、アセンブリの命令表だけ列挙しておく.  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">opecode</th>
+<th style="text-align: left;">アセンブリ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0000</td>
+<td style="text-align: left;">add A, imm</td>
+</tr>
+<tr>
+<td style="text-align: center;">0001</td>
+<td style="text-align: left;">mov A, B</td>
+</tr>
+<tr>
+<td style="text-align: center;">0011</td>
+<td style="text-align: left;">mov A, imm</td>
+</tr>
+<tr>
+<td style="text-align: center;">0100</td>
+<td style="text-align: left;">mov B, A</td>
+</tr>
+<tr>
+<td style="text-align: center;">0101</td>
+<td style="text-align: left;">add B, imm</td>
+</tr>
+<tr>
+<td style="text-align: center;">0111</td>
+<td style="text-align: left;">mov B, imm</td>
+</tr>
+<tr>
+<td style="text-align: center;">1001</td>
+<td style="text-align: left;">out B</td>
+</tr>
+<tr>
+<td style="text-align: center;">1011</td>
+<td style="text-align: left;">out imm</td>
+</tr>
+<tr>
+<td style="text-align: center;">1110</td>
+<td style="text-align: left;">jnc imm</td>
+</tr>
+<tr>
+<td style="text-align: center;">1111</td>
+<td style="text-align: left;">jmp imm</td>
+</tr>
+</tbody>
+</table>
+<p>うん、アセンブリをやったことあれば機械語との対応はそこまで難しくないね.<br />
+アドレスがジャンプするのとか、実際の動作としては<code>ip=imm</code>みたいに直接指定してるのと変わらないということだ.  </p>
+<p>さて、そしたら最後にROM.<br />
+ここに命令を打ち込んでいく.<br />
+今はコンパイラとかはないので、あくまで真心を込めた手打ちをしていくことになる.  </p>
+<p>まずROMのデータは入力にアドレスを取って、出力にデータを取る.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">module</span><span class="w"> </span><span class="n">rom</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">(</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w">               </span><span class="c1">// input: 命令のアドレス</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">7</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">data</span><span class="w">                   </span><span class="c1">// output: 出力</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">);</span>
+</span></code></pre></div>
+アドレスの数値をみて実際の処理を読み込んでいけばよい.<br />
+これは結構簡単.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">    </span><span class="k">always_comb</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="w">                    </span><span class="c1">// address  data  operate</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0000</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b0111</span><span class="n">_1010</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0        7A    mov B, 10</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0001</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1001</span><span class="n">_0000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1        90    OUT B</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0010</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b0011</span><span class="n">_1101</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2        3D    MOV A, 13</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0011</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b0000</span><span class="n">_0001</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3        01    ADD A, 1</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0100</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1110</span><span class="n">_0011</span><span class="p">;</span><span class="w"> </span><span class="c1">// 4        E3    JNC    3</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0101</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b0101</span><span class="n">_0001</span><span class="p">;</span><span class="w"> </span><span class="c1">// 5        51    ADD B, 1</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0110</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1110</span><span class="n">_0001</span><span class="p">;</span><span class="w"> </span><span class="c1">// 6        E1    JNC    1</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0111</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1011</span><span class="n">_0000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 7        B0    OUT    0</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b1000</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1011</span><span class="n">_1111</span><span class="p">;</span><span class="w"> </span><span class="c1">// 8        BF    OUT    15</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b1001</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1111</span><span class="n">_0111</span><span class="p">;</span><span class="w"> </span><span class="c1">// 9        F7    JMP    7</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">            </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b0000</span><span class="n">_0000</span><span class="p">;</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span><span class="k">endcase</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="k">endmodule</span>
+</span></code></pre></div></p>
+<p>これだけ見ても何のこっちゃとなるので、部分部分で見ていこう.  </p>
+<p>まず最初はここ
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="mh">4</span><span class="mb">&#39;b0000</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b0111</span><span class="n">_1010</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0        7A    mov B, 10</span>
+</span></code></pre></div>
+<code>mov B, imm</code>の命令で即値が10なので、Bに10を代入している.<br />
+実際のところ本だとここはswitchによる制御だけど、まあ関係ないね.  </p>
+<p>次はここ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="mh">4</span><span class="mb">&#39;b0001</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1001</span><span class="n">_0000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1        90    OUT B</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="mh">4</span><span class="mb">&#39;b0010</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b0011</span><span class="n">_1101</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2        3D    MOV A, 13</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="mh">4</span><span class="mb">&#39;b0011</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b0000</span><span class="n">_0001</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3        01    ADD A, 1</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="mh">4</span><span class="mb">&#39;b0100</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1110</span><span class="n">_0011</span><span class="p">;</span><span class="w"> </span><span class="c1">// 4        E3    JNC    3</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="mh">4</span><span class="mb">&#39;b0101</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b0101</span><span class="n">_0001</span><span class="p">;</span><span class="w"> </span><span class="c1">// 5        51    ADD B, 1</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="mh">4</span><span class="mb">&#39;b0110</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1110</span><span class="n">_0001</span><span class="p">;</span><span class="w"> </span><span class="c1">// 6        E1    JNC    1</span>
+</span></code></pre></div>
+これを適当に疑似コードで書くなら次のような感じ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">do</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">out</span><span class="p">(</span><span class="n">B</span><span class="p">);</span><span class="w"> </span><span class="c1">// 1: LEDに値を出力</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">13</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2: 13をAに代入</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="k">do</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="n">a</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3: A++をする</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">);</span><span class="w"> </span><span class="c1">// 4:条件を満たしてないなら1へ</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span><span class="n">b</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="c1">// 5: B++をする</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="p">}</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="k">while</span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">);</span><span class="w"> </span><span class="c1">// 6: 条件を満たしてないなら1へ</span>
+</span></code></pre></div>
+コードと結びつけるとかなりわかりやすいね.  </p>
+<p>さて、最後の3行も見よう.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="mh">4</span><span class="mb">&#39;b0111</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1011</span><span class="n">_0000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 7        B0    OUT    0</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="mh">4</span><span class="mb">&#39;b1000</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1011</span><span class="n">_1111</span><span class="p">;</span><span class="w"> </span><span class="c1">// 8        BF    OUT    15</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="mh">4</span><span class="mb">&#39;b1001</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b1111</span><span class="n">_0111</span><span class="p">;</span><span class="w"> </span><span class="c1">// 9        F7    JMP    7</span>
+</span></code></pre></div>
+これもコードに対応させてみよう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">do</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="p">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="c1">// Lチカ</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="n">out</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// 7</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="n">out</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span><span class="w"> </span><span class="c1">// 8</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"> </span><span class="c1">// 9: ずっとループ</span>
+</span></code></pre></div></p>
+<p>こんな風に時間を計ってLEDに値を出力をしてるコードなわけだ.<br />
+時間について考えてみよう.命令を見ると、</p>
+<ul>
+<li>LEDに値を設定: +1s</li>
+<li>Aを1回足す:+1s </li>
+<li>Aが2命令を3回繰り返す:+6s</li>
+<li>Bを1回足す:+1s</li>
+<li>Bの判定:+1s</li>
+</ul>
+<p>となる.<br />
+つまり、1ループが10sとなっていて、Bが10に設定されているので、60秒を数えるコードと言える！<br />
+60秒を数えた後はLチカで終了を知らせるわけだ.  </p>
+<p>こう見るとシンプルですね、例のメイド本もこれを作るのが目標だったらしい.<br />
+ということで4bitCPUの原型はできた！<br />
+次はこれを改良していこうかなと思う.  </p>
 
 
 
