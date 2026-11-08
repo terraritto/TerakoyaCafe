@@ -156,6 +156,8 @@
 | 麺処 彩 |  [GoogleMap](https://maps.app.goo.gl/YGpWSsVVWwJ53iBn7) |
 | 椿屋カフェ みなとみらいクロスパティオ店 | [GoogleMap](https://maps.app.goo.gl/vnd2yurMbvEuUJDL8) |
 | えきめんや 横浜店 | [GoogleMap](https://maps.app.goo.gl/pnghYV4oAGCMEvrZ9) |
+| 松屋 横浜西口店 | [GoogleMap](https://maps.app.goo.gl/jbuUAGp9KVjUrtcc9) |
+| 四十八漁場 エキニア横浜店 | [GoogleMap](https://maps.app.goo.gl/TAXD2XsgXoxPdcA2A) |
 | 箱根湯本温泉 河鹿荘 | [GoogleMap](https://maps.app.goo.gl/Hjf7owc6YroKpwnf8) |
 | 茶房うちだ | [GoogleMap](https://maps.app.goo.gl/iv7JLKywHkPkPrb86) |
 | 箱根ラスク | [GoogleMap](https://maps.app.goo.gl/Yrq41jUSaUc7AXY87) |
@@ -220,10 +222,20 @@
 | 東京芸術大学上野校地 陳列館 | [GoogleMap](https://maps.app.goo.gl/4yXJEPk7H5qMFX7v8) |
 | 東京芸術大学上野校地 正木記念館 | [GoogleMap](https://maps.app.goo.gl/VejZmQdeaGMuDezn9) |
 | 恩賜上野動物園 | [GoogleMap](https://maps.app.goo.gl/drg3WFZCCMTYBiTw5) |
+| 秋月電子通商 秋葉原店 | [GoogleMap](https://maps.app.goo.gl/YAoXgPstMaRBAN4S7) |
+| ドン・キホーテ 秋葉原店 | [GoogleMap](https://maps.app.goo.gl/NX3cB9nF7RgWdYRv5) |
 | グランドシネマサンシャイン 池袋 | [GoogleMap](https://maps.app.goo.gl/G1oMEaFgtmnoPTr69) |
 | WINE SHOP nico 渋谷店 | [GoogleMap](https://maps.app.goo.gl/gL6Gm7kUzmUaXh4r6) |
 | 竹芝客船ターミナル | [GoogleMap](https://maps.app.goo.gl/iNsNoYVZ1D3nb2Vn9) |
 | SHOP竹芝 | [GoogleMap](https://maps.app.goo.gl/XF1Qb1fS9t6f51QA6) |
+| 岡田港 | [GoogleMap](https://maps.app.goo.gl/DAWhwWuP5u8HUJho8) |
+| モービルレンタカー大島店 | [GoogleMap](https://maps.app.goo.gl/6jKWYqgPEGnE6ZeG7) |
+| 地層大切断面 | [GoogleMap](https://maps.app.goo.gl/iNaXmZxXzBkQjCju8) |
+| 波浮港見晴台 | [GoogleMap](https://maps.app.goo.gl/wJxTNhYe1CgQfJvZ7) |
+| 踊子の里資料館（旧港屋旅館） | [GoogleMap](https://maps.app.goo.gl/1jSXLJPJeQB4HiG66) |
+| 裏砂漠 第1展望台 | [GoogleMap](https://maps.app.goo.gl/QxGdiriMuE32KNj77) |
+| 伊豆大島 大島温泉ホテル | [GoogleMap](https://maps.app.goo.gl/tooboaBb6KPMeos89) |
+| minatoにぎわいマーケット 岡田店 | [GoogleMap](https://maps.app.goo.gl/7kSZdtVPmQmyJvEG9) |
 | 池袋西口 ||
 | 鉄板焼・お好み焼 ごっつい池袋店 | [GoogleMap](https://maps.app.goo.gl/DBh4sFDVJMKqcoLF7) |
 | 炭市場 どんどこ 西池袋店 | [GoogleMap](https://maps.app.goo.gl/gtq7NMaga1gr2TkU9) |
@@ -244,6 +256,9 @@
 | --------||
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
+| 松屋 上野店 | [GoogleMap](https://maps.app.goo.gl/hEr6qhhSRzecFUr38) |
+| HUB秋葉原店 | [GoogleMap](https://maps.app.goo.gl/XRfFraCQoqpU5e3D9) |
+| 鉄板焼 かもめ食堂 ヨドバシAkiba店 | [GoogleMap](https://maps.app.goo.gl/ZH2pXNDvnZ68g1XK8) |
 | お多幸 新宿店 | [GoogleMap](https://maps.app.goo.gl/7La9ak7xAKwCWWPS6) |
 | PARKLIFE CAFE & RESTAURANT | [GoogleMap](https://maps.app.goo.gl/gy9y6zwyCeqpKWX17) |
 | 夢二カフェ 港や | [GoogleMap](https://maps.app.goo.gl/jnwPUK6mUDDaebcYA) |
@@ -259,7 +274,6 @@
 | ビヤホールライオン 銀座七丁目店 | [GoogleMap](https://maps.app.goo.gl/b9ZCodj1vbKLYtnh6) |
 | 福とほまれ（福井アンテナショップ） | [GoogleMap](https://maps.app.goo.gl/c81f26WUSnNqVPFP6) |
 | ドトールコーヒーショップ 浅草橋南店 | [GoogleMap](https://maps.app.goo.gl/Nkv7aqbZMv8NXht28) |
-| ドン・キホーテ 秋葉原店 | [GoogleMap](https://maps.app.goo.gl/NX3cB9nF7RgWdYRv5) |
 | 銀座すし嘉 | [GoogleMap](https://maps.app.goo.gl/5fcUDUpKdVjC4LeQ6) |
 | EVERYONEs CAFE 上野恩賜公園 | [GoogleMap](https://maps.app.goo.gl/AY2tUrWgioDrghMC9) |
 | 一平ソバ | [GoogleMap](https://maps.app.goo.gl/Av8WPLHyjgrtgqEh8) |
@@ -273,15 +287,7 @@
 | 蔵 目黒 | [GoogleMap](https://maps.app.goo.gl/hb1Uz6gbhrx8SRRX8) |
 | 松屋 両国店 | [GoogleMap](https://maps.app.goo.gl/YY3hZfHvUX1n8d3w6) |
 | Midtown BBQ Tokyo | [GoogleMap](https://maps.app.goo.gl/BNcLaM1hFM8Kp56P8) |
-| 岡田港 | [GoogleMap](https://maps.app.goo.gl/DAWhwWuP5u8HUJho8) |
-| モービルレンタカー大島店 | [GoogleMap](https://maps.app.goo.gl/6jKWYqgPEGnE6ZeG7) |
-| 地層大切断面 | [GoogleMap](https://maps.app.goo.gl/iNaXmZxXzBkQjCju8) |
-| 波浮港見晴台 | [GoogleMap](https://maps.app.goo.gl/wJxTNhYe1CgQfJvZ7) |
-| 踊子の里資料館（旧港屋旅館） | [GoogleMap](https://maps.app.goo.gl/1jSXLJPJeQB4HiG66) |
 | らぁ麺よりみち 伊豆大島 | [GoogleMap](https://maps.app.goo.gl/PSbBRVgss6eicZnZ9) |
-| 裏砂漠 第1展望台 | [GoogleMap](https://maps.app.goo.gl/QxGdiriMuE32KNj77) |
-| 伊豆大島 大島温泉ホテル | [GoogleMap](https://maps.app.goo.gl/tooboaBb6KPMeos89) |
-| minatoにぎわいマーケット 岡田店 | [GoogleMap](https://maps.app.goo.gl/7kSZdtVPmQmyJvEG9) |
 
 ## 愛知
 | 場所 | リンク |

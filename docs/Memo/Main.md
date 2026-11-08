@@ -47,6 +47,10 @@
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/GourandShadingApp.cpp) 
         [Movie](https://youtu.be/3nEc-kAhi64)
 
+        - Phong Shading: [link](CG/Basics/PhongShading.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/PhongShadingApp.cpp) 
+        [Movie](https://youtu.be/uW9xnKbCRAk)
+
     * フィルタ
         - べイヤーフィルタ: [link](CG/Filter/BayarFilter.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BayarFilter.h) 
@@ -248,6 +252,9 @@
         [link](CG/MeshShaderSeries/009_ContributionCulling.md) 
         [Impl](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_006)
 
+        - 010 Mesh Shaderによるカリング ～ ポリゴン編1 背面カリングとゼロ面積カリング ～: [link](CG/MeshShaderSeries/010_BackFaceZeroAreaCull.md) 
+        [Impl](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_008)  
+
 * Math
     * Pi
         - ウォリスの公式: [link](Math/Pi/WallisProduct.md) 
@@ -432,6 +439,9 @@
             - 実装: [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/NeuralMNIST.cpp)
             - Python変換コード: [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/convert.py)
 
+        - BatchでまとめてMNISTを推論する: [link](DLFS/03/BatchMNIST.md) 
+        [Impl](https://github.com/terraritto/DLFS/blob/main/Ex_03/NeuralMNISTBatch.cpp)
+
 * Electronics
     * FPGA
         - Tang Nano 9K Lチカ: [link](Electronics/FPGA/TangNano_LBlink.md) 
@@ -442,6 +452,9 @@
 
         - TangNano9kでシンプルなCPUを作ってみる その2: 1bit CPU: [link](Electronics/FPGA/TangNano_SimpleCpu_02.md) 
         [Impl](https://github.com/terraritto/TangNano9kPractice/tree/main/SimpleCpu/02_1BitCpu/src)
+
+        - TangNano9kでシンプルなCPUを作ってみる その3: TD4: [link](Electronics/FPGA/TangNano_SimpleCpu_03.md) 
+        [Impl](https://github.com/terraritto/TangNano9kPractice/tree/main/SimpleCpu/03_TD4)
 
 * TIPS
     - 同名ファイルの出力におけるObj衝突の解消: [link](TIPS/Obj_dump.md)
