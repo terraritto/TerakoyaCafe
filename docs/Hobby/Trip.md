@@ -491,3 +491,15 @@
 | 牡蠣屋フライ亭 | [GoogleMap](https://maps.app.goo.gl/JdLvwKmBQd6UV1d47) |
 | お食事とおみやげ処 洗心庵 | [GoogleMap](https://maps.app.goo.gl/K1XwG1QGaa1CHwui7) |
 | 松島温泉 小松館 好風亭 | [GoogleMap](https://maps.app.goo.gl/jNGtxg1Avd5S7F87A) |
+
+## 青森
+| 場所 | リンク |
+| :--- | :--- |
+|あおもり駅前ビーチ| [GoogleMap](https://maps.app.goo.gl/Gu4ZYoE8ajkGz5LP6) |
+| 青函連絡船メモリアルシップ八甲田丸 | [GoogleMap](https://maps.app.goo.gl/G6JZatKukxG3Uq6t9) |
+| 浅虫観光案内所 | [GoogleMap](https://maps.app.goo.gl/v2Tao1aqhqE7Bm3DA) |
+| 三内丸山遺跡 | [GoogleMap](https://maps.app.goo.gl/XuB5FdoaXhApEwnUA) |
+| 青森県立美術館 | [GoogleMap](https://maps.app.goo.gl/WhUWQGDKZVM26ie4A) |
+| 青森食堂 | [GoogleMap](https://maps.app.goo.gl/nnn9w9Huq38pwGDM7) |
+| 魚っ喰いの田 新青森駅店 | [GoogleMap](https://maps.app.goo.gl/K32euVj89BxZAwSA8) |
+| 割烹旅館さつき | [GoogleMap](https://maps.app.goo.gl/1n3UqHFuKQUgwfdB8) |

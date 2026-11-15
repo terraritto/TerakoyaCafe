@@ -6,11 +6,6 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/SurtherlandHodgemanApp.cpp) 
     movie: [link](https://youtu.be/ttAN5tCy8_8)
 
-* フォンシェーディング  
-    ピクセルシェーダの礎  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/PhongShadingApp.cpp) 
-    movie: [link](https://youtu.be/uW9xnKbCRAk)
-
 * Perspective Correct  
     貼り付けるときはパースも考慮しようね  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/Renderer/App/UVTest/002)
