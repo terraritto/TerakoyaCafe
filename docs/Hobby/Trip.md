@@ -427,6 +427,7 @@
 | なかなか 川越西口店 | [GoogleMap](https://maps.app.goo.gl/428Cg39JLBpyPPH16) |
 | うりずんの風 | [GoogleMap](https://maps.app.goo.gl/DD1X27W5VsK2LmRK6) |
 | カラオケマック川越店 | [GoogleMap](https://maps.app.goo.gl/T4ckD4Hx5sFFMD5k9) |
+| 囲坊主 | [GoogleMap](https://maps.app.goo.gl/ktoDagEDJTEA4dUd7) |
 | そば御膳 むさしや | [GoogleMap](https://maps.app.goo.gl/1T7swtvC4aoEjfJF7) |
 | 蕎麦懐石さくら荘 | [GoogleMap](https://maps.app.goo.gl/zBkXgGseKVG6osGa9) |
 | TENOHA東松山 | [GoogleMap](https://maps.app.goo.gl/KYjvi6zjkc6R3Q5Q9) |

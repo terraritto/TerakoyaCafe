@@ -60,6 +60,9 @@
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/BilateralFilter.h) 
         [movie](https://youtu.be/WwVQfapRkXw)
 
+        - GuidedFilter: [link](CG/Filter/GuidedFilter.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/GuidedFilter.h)
+
         - Kuwaharaフィルタ: [link](CG/Filter/KuwaharaFilter.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/CV/KuwaharaFilter.h) 
         [movie](https://youtu.be/po2Lr4QWV3E)
@@ -176,6 +179,9 @@
         - 分光視感効率について: [link](CG/Color/LuminousEfficiency.md) 
         [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/Graph/LuminousEffectivity.h)
 
+        - 明所視と暗所視について: [link](CG/Color/PhotopicScotopic.md) 
+        [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/Graph/PhotopicScotopic.h)
+
         - CIE1931のRGB値を描画してみる: [link](CG/Color/CIE1931RGB.md) 
         [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/CIE1931/CIE1931RGBGraph.h)
 
@@ -198,6 +204,12 @@
         - 黒体への道 その4: 黒体軌跡で色を見る: [link](CG/Color/PlanckianLocus.md) 
             - 黒体軌跡: [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/BlackBody/PlanckianLocus.h) 
             - 色温度表示: [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/BlackBody/TemperatureColor.h)
+
+        - UCS色度図準備編 ～MacAdam楕円の可視化と補間～: [link](CG/Color/MacAdam.md) 
+        [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/UCS/MacAdamPlot.h)
+        - UCS色度図 ~CIE1960とCIE1976によるUV空間~: [link](CG/Color/UCS1960_1976.md) 
+            - UCS1960: [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/UCS/CIE1960UCS.h)
+            - UCS1976: [Impl](https://github.com/terraritto/ColorForSiv3D/blob/main/UCS/CIE1976UCS.h)
 
     * Toon
         - MatCap: [link](CG/Toon/MatCap.md) 
@@ -255,6 +267,16 @@
         - 010 Mesh Shaderによるカリング ～ ポリゴン編1 背面カリングとゼロ面積カリング ～: [link](CG/MeshShaderSeries/010_BackFaceZeroAreaCull.md) 
         [Impl](https://github.com/terraritto/MeshShaderPractice/tree/main/Sample_008)  
 
+* CV
+    * Interpolation
+        - NearestNeighbor法: [link](CV/Interpolate/NearestNeighbor.md) 
+        [Impl](https://github.com/terraritto/ImageInterpolateForSiv3D/blob/main/NearestNeighbor.h)
+        - バイリニア補間: [link](Cv/Interpolate/BilinearInterpolation.md) 
+        [Impl](https://github.com/terraritto/ImageInterpolateForSiv3D/blob/main/Bilinear.h)
+        - バイキュービック補間: [link](CV/Interpolate/BiCubicInterpolation.md)
+            - Sincとの比較: [Impl](https://github.com/terraritto/ImageInterpolateForSiv3D/blob/main/SincComparison.h) 
+            - 実際の補間: [Impl](https://github.com/terraritto/ImageInterpolateForSiv3D/blob/main/BiCubic.h)
+
 * Math
     * Pi
         - ウォリスの公式: [link](Math/Pi/WallisProduct.md) 
@@ -262,6 +284,18 @@
 
         - グレゴリー級数とシャープの方法: [link](Math/Pi/GregorySharp.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/GregorySharpSample.h)  
+
+    * 数値積分
+        - 台形則: [link](Math/NumInt/TrapezoidalRule.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/Integral/TrapezoidalRule.h)
+        - 中点則: [link](Math/NumInt/MidPointRule.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/Integral/MidPointRule.h)
+        - シンプソン則: [link](Math/NumInt/SimpsonRule.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/Integral/SimpsonsRule.h)
+
+    * 素数
+        - エラトステネスの篩: [link](Math/Prime/EratosthenesSieve.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Numerical/Prime/EratosthenesSieve.h)
 
 * PseudoRand
     - 線形合同法: [link](PseudoRand/LCG.md)  
@@ -314,6 +348,12 @@
         [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/PigeonholeSort.h)
         - シェアソート: [link](Algorithm/Sort/ShearSort.md) 
         [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/ShearSort.h)
+        - バケットソート: [link](Algorithm/Sort/BucketSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/BucketSort.h)
+        - 分布数え上げソート: [link](Algorithm/Sort/DistCountSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/DistributionCountingSort.h)
+        - 基数ソート: [link](Algorithm/Sort/RadixSort.md) 
+        [Impl](https://github.com/terraritto/SortForSiv3D/blob/main/RadixSort.h)
 
 * ODS
     * 2章
