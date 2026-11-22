@@ -271,7 +271,7 @@
     * Interpolation
         - NearestNeighbor法: [link](CV/Interpolate/NearestNeighbor.md) 
         [Impl](https://github.com/terraritto/ImageInterpolateForSiv3D/blob/main/NearestNeighbor.h)
-        - バイリニア補間: [link](Cv/Interpolate/BilinearInterpolation.md) 
+        - バイリニア補間: [link](CV/Interpolate/BilinearInterpolation.md) 
         [Impl](https://github.com/terraritto/ImageInterpolateForSiv3D/blob/main/Bilinear.h)
         - バイキュービック補間: [link](CV/Interpolate/BiCubicInterpolation.md)
             - Sincとの比較: [Impl](https://github.com/terraritto/ImageInterpolateForSiv3D/blob/main/SincComparison.h) 
