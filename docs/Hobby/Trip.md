@@ -368,6 +368,8 @@
 | 弁天横丁 | [GoogleMap](https://maps.app.goo.gl/21pmm9HR3SQkqspW9) |
 | 菓子屋横丁 | [GoogleMap](https://maps.app.goo.gl/V8xEX7fKoeRCanqa8) |
 | ちいかわもぐもぐ本舗 川越店 | [GoogleMap](https://maps.app.goo.gl/XCv31mLCTBH3ojsT7) |
+| SNOOPY Village 川越店 | [GoogleMap](https://maps.app.goo.gl/ZTgfp4zSewqQD51p6) |
+| 川越市立美術館 | [GoogleMap](https://maps.app.goo.gl/ahMcELpc8W3bD1YL6) |
 | 大沢家住宅 | [GoogleMap](https://maps.app.goo.gl/o4fw43nn3dRgLEAN6) |
 | 川越まつり会館 | [GoogleMap](https://maps.app.goo.gl/zd9knjrKCnponEfx9) |
 | 権現山古墳群 | [GoogleMap](https://maps.app.goo.gl/uRaKjARKkpULjZfe8) |
@@ -429,6 +431,7 @@
 | カラオケマック川越店 | [GoogleMap](https://maps.app.goo.gl/T4ckD4Hx5sFFMD5k9) |
 | 囲坊主 | [GoogleMap](https://maps.app.goo.gl/ktoDagEDJTEA4dUd7) |
 | そば御膳 むさしや | [GoogleMap](https://maps.app.goo.gl/1T7swtvC4aoEjfJF7) |
+| Coide | [GoogleMap](https://maps.app.goo.gl/wuRVv5Btzdgw24qH8) |
 | 蕎麦懐石さくら荘 | [GoogleMap](https://maps.app.goo.gl/zBkXgGseKVG6osGa9) |
 | TENOHA東松山 | [GoogleMap](https://maps.app.goo.gl/KYjvi6zjkc6R3Q5Q9) |
 | 古代蓮うどん店 | [GoogleMap](https://maps.app.goo.gl/xQVUjYrhMHP9byG78) |

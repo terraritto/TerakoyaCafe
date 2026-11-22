@@ -496,6 +496,9 @@
         - TangNano9kでシンプルなCPUを作ってみる その3: TD4: [link](Electronics/FPGA/TangNano_SimpleCpu_03.md) 
         [Impl](https://github.com/terraritto/TangNano9kPractice/tree/main/SimpleCpu/03_TD4)
 
+        - TangNano9kでシンプルなCPUを作ってみる その4: 使いやすいように拡張: [link](Electronics/FPGA/TangNano_SimpleCpu_04.md) 
+        [Impl](https://github.com/terraritto/TangNano9kPractice/tree/main/SimpleCpu/04_Edit)
+
 * TIPS
     - 同名ファイルの出力におけるObj衝突の解消: [link](TIPS/Obj_dump.md)
     
