@@ -1,0 +1,7996 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../LuminousEfficiency/">
+      
+      
+        <link rel="next" href="../PhotopicScotopic/">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>UCS色度図準備編 ～MacAdam楕円の可視化と補間～ - Terakoya Cafe Terrace</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3cba04c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ucs-macadam" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../../../.." title="Terakoya Cafe Terrace" class="md-header__button md-logo" aria-label="Terakoya Cafe Terrace" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Terakoya Cafe Terrace
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              UCS色度図準備編 ～MacAdam楕円の可視化と補間～
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Terakoya Cafe Terrace" class="md-nav__button md-logo" aria-label="Terakoya Cafe Terrace" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Terakoya Cafe Terrace
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Derive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Derive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Optics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Optics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_1" id="__nav_2_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Optics 001
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Optics 001
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Derive/Optics/Optics_001/Opt_001_001/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フェルマーの原理による屈折
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Derive/Optics/Optics_001/Opt_001_002/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レンズ表面を表す方程式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Derive/Optics/Optics_001/Opt_001_003/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    入出波面の曲率半径
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Derive/Optics/Optics_001/Opt_001_004/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レンズの屈折力とレンズの公式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Derive/Optics/Optics_001/Opt_001_005/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レンズの結像式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Diary
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Diary
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2026
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            2026
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_1" id="__nav_3_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    01
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            01
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/01/2026_0101_0104/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/01/01 ~ 2026/01/04
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/01/2026_0105_0111/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/01/05 ~ 2026/01/11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/01/2026_0112_0118/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/01/12 ~ 2026/01/18
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/01/2026_0119_0125/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/01/19 ~ 2026/01/25
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/01/2026_0126_0131/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/01/26 ~ 2026/01/31
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_2" id="__nav_3_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    02
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            02
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/02/2026_0201_0208/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/02/01 ~ 2026/02/08
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/02/2026_0209_0215/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/02/09 ~ 2026/02/15
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/02/2026_0216_0222/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/02/16 ~ 2026/02/22
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/02/2026_0223_0228/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/02/23 ~ 2026/02/28
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    03
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            03
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/03/2026_0301_0308/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/03/01 ~ 2026/03/08
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/03/2026_0309_0315/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/03/09 ~ 2026/03/15
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/03/2026_0316_0322/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/03/16 ~ 2026/03/22
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/03/2026_0323_0329/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/03/23 ~ 2026/03/29
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/03/2026_0330_0331/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/03/30 ~ 2026/03/31
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_4" id="__nav_3_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    04
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            04
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/04/2026_0401_0405/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/04/01 ~ 2026/04/05
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/04/2026_0406_0412/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/04/06 ~ 2026/04/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/04/2026_0413_0419/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/04/13 ~ 2026/04/19
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/04/2026_0420_0426/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/04/20 ~ 2026/04/26
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/04/2026_0427_0430/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/04/27 ~ 2026/04/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_5" id="__nav_3_1_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    05
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            05
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/05/2026_0501_0503/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/05/01 ~ 2026/05/03
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/05/2026_0504_0510/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/05/04 ~ 2026/05/10
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/05/2026_0511_0517/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/05/11 ~ 2026/05/17
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/05/2026_0518_0524/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/05/18 ~ 2026/05/24
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/05/2026_0525_0531/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/05/25 ~ 2026/05/31
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_6" id="__nav_3_1_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    06
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            06
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/06/2026_0601_0607/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/06/01 ~ 2026/06/07
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/06/2026_0608_0614/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/06/08 ~ 2026/06/14
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/06/2026_0615_0621/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/06/15 ~ 2026/06/21
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/06/2026_0622_0628/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/06/22 ~ 2026/06/28
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/06/2026_0629_0630/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/06/29 ~ 2026/06/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_7" id="__nav_3_1_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    07
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            07
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/07/2026_0701_0705/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/07/01 ~ 2026/07/05
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/07/2026_0706_0712/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/07/06 ~ 2026/07/12
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/07/2026_0713_0719/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/07/13 ~ 2026/07/19
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/07/2026_0720_0726/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/07/20 ~ 2026/07/26
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/07/2026_0727_0731/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/07/27 ~ 2026/07/31
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_8" id="__nav_3_1_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    08
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            08
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/08/2026_0801_0802/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/08/01 ~ 2026/08/02
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/08/2026_0803_0809/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/08/03 ~ 2026/08/09
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/08/2026_0810_0816/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/08/10 ~ 2026/08/16
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/08/2026_0817_0823/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/08/17 ~ 2026/08/23
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/08/2026_0824_0831/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/08/24 ~ 2026/08/31
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_9" id="__nav_3_1_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    09
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_9">
+            <span class="md-nav__icon md-icon"></span>
+            09
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/09/2026_0901_0906/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/09/01 ~ 2026/09/06
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/09/2026_0907_0913/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/09/07 ~ 2026/09/13
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/09/2026_0914_0920/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/09/14 ~ 2026/09/20
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/09/2026_0921_0927/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/09/21 ~ 2026/09/27
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/09/2026_0928_0930/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/09/28 ~ 2026/09/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_10" id="__nav_3_1_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    10
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_10">
+            <span class="md-nav__icon md-icon"></span>
+            10
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/10/2026_1001_1004/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/10/01 ~ 2026/10/04
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/10/2026_1005_1011/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/10/05 ~ 2026/10/11
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/10/2026_1012_1018/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/10/12 ~ 2026/10/18
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/10/2026_1019_1025/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/10/19 ~ 2026/10/25
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/10/2026_1026_1031/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/10/26 ~ 2026/10/31
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_11" id="__nav_3_1_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    11
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_11">
+            <span class="md-nav__icon md-icon"></span>
+            11
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1101_1108/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/01 ~ 2026/11/08
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1109_1115/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/09 ~ 2026/11/15
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1116_1122/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/16 ~ 2026/11/22
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Future
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Future
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Future/future_2026/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026年の抱負
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    GameStatistics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            GameStatistics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../GameStatistics/MHRise/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monster Hunter Rise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../GameStatistics/MHWilds/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monster Hunter Wilds
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Hobby
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Hobby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Hobby/Anime/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アニメ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Hobby/Onsen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    温泉むすめ パネル集め
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Hobby/Trip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    旅行
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Hobby/book/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    本
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Hobby/drink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    飲んだもの
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Hobby/movie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    映画とかドラマとか
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Hobby/museum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    展覧会個人的メモ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Implementation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Implementation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Implementation/DataStructure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データ構造周りの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Implementation/Implementation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    実装まとめ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Implementation/Optics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    光学設計周りの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Implementation/Todo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    実装したいリスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_5" id="__nav_7_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CG
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_5">
+            <span class="md-nav__icon md-icon"></span>
+            CG
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Implementation/CG/Filter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フィルタ周りの実装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Implementation/CG/Intersection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intersection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Memo
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Memo
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Main/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メモまとめ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithm
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2_1" id="__nav_8_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Shuffle
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Shuffle
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Shuffle/FisherYates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フィッシャー–イェーツのシャッフル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Shuffle/Sattolo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サットロのアルゴリズム
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2_2" id="__nav_8_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sort
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Sort
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/BinaryTreeSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    二分木ソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/BubbleSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バブルソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/BucketSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バケットソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/CombSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コムソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/DistCountSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    分布数え上げソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/GnomSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ノームソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/HeapSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヒープソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/InsertionSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    挿入ソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/IntroSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イントロソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/LibrarySort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    図書館ソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/MergeSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マージソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/OddEvenSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    奇偶転置ソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/PatienceSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パティエンスソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/PigeonholeSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    鳩の巣ソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/QuickSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クイックソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/RadixSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基数ソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/SelectionSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    選択ソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/ShakerSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シェーカーソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/ShearSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シェアソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/ShellSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シェルソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Algorithm/Sort/StrandSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ストランドソート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CG
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            CG
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3_1" id="__nav_8_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Basics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Basics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/BackFaceCulling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    法線ベクトルによるBack Face Culling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/Bresenham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bresenhamのアルゴリズム
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/CohenSutherland/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cohen-Sutherlandのアルゴリズム
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/CyrusBeck/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cyrus-Beckのアルゴリズム
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/DDA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DDA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/DepthBuffer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプスバッファ法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/GourandShading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    グローシェーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/PerspectiveCorrect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パースペクティブコレクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/PhongShading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フォンシェーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/Rasterization_01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ラスタライズをやってみる
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/Rasterization_02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ラスタライズの最適化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/Trans/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3D座標変換
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/ZSort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Z-Sort法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8_3_2" id="__nav_8_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Color
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Color
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BrutonWavelength/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dan Brutonの波長近似アルゴリズム
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CIE1931RGB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CIE1931のRGB値を描画してみる
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CIE1964XYZ/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CIE1964 XYZについて
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ColorOpponent/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    反対色説から段階説へ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KirchhoffLaw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    黒体への道 その2: キルヒホッフの法則(放射)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LuminousEfficiency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    分光視感効率について
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    UCS色度図準備編 ～MacAdam楕円の可視化と補間～
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PhotopicScotopic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    明所視と暗所視について
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PlanckianLocus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    黒体への道 その4: 黒体軌跡で色を見る
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RGBColorSystem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RGB空間について
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RadianceLaw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    黒体への道 その3: そしてプランクの法則へ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SmithPokorny/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    三色説と分光感度グラフ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../StefanBoltzmann/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    黒体への道 その1: シュテファン＝ボルツマンの法則
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UCS1960_1976/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UCS色度図 CIE1960とCIE1976によるUV空間
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../XYZColorSpace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XYZ表色系と色度図
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3_3" id="__nav_8_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Filter
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Filter
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/BayarFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BayarFilter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/BilateralFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BilateralFilter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/DoGFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DoG(Difference of Gaussian) Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/EdgeTangentFlow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ETF(Edge Tangent Flow)を実装してみる
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/FDoG/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FDoG Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/FXDoG/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FXDoG
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/GuidedFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guided Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/KuwaharaFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kuwahara Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/LoGFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LoG(Laplacian of Gaussian) Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/MeanFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mean Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/OnePassGaussianFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OnePassGaussianFilter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/SNNFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SNN Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/SobelFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sobel Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Filter/XDoGFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XDoG(eXtended Difference of Gaussian) Filter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3_4" id="__nav_8_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Fractal
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Fractal
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/BernsleyFern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bernsley Fern(バーンズリーのシダ)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/BurningShip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BurningShip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/Contor1D/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contor1D
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/Contor2D/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contor2D
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/Contor3D/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contor3D
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/HilbertCurve/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヒルベルト曲線
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/Julia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ジュリア集合
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/KochCurve/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KochCurve
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/KochSnowfrake/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KochSnowfrake
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/Lyapunov/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リアプノフ・フラクタル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/Mandelbrot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mandelbrot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/MengerSponge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メンガーのスポンジ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/PeanoCurve/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ペアノ曲線
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/SierpinskiGasket/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sierpinski Gasket
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fractal/TakagiCurve/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    高木曲線
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3_5" id="__nav_8_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Intersection
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Intersection
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intersection/Disk/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Disk
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intersection/Plane/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intersection/Quad/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quad
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Intersection/Sphere/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sphere
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3_6" id="__nav_8_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    MeshShaderSeries
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            MeshShaderSeries
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/001_Intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MeshShaderでTriangleを描画
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/002_DrawMesh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh Shaderでモデルを描画するための準備
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/003_SimpleMeshlet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh ShaderでMeshletによる描画 API編
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/004_MeshletGreedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh ShaderでMeshletによる描画 Greedy編
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/005_MeshletBoundingSphere/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh ShaderでMeshletによる描画 Bounding Sphere編
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/006_Instancing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instancingで沢山出してみよう！ ～ ASを添えて ～
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/007_MeshletCulling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh Shaderによるカリング ～ Meshlet編1 FrustumCulling ～
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/008_CullingNormalCone/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh Shaderによるカリング ～ Meshlet編2 Normal Cone Culling ～
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/009_ContributionCulling/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh Shaderによるカリング ～ Meshlet編3 Contribution Culling ～
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/010_BackFaceZeroAreaCull/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mesh Shaderによるカリング ～ ポリゴン編1 背面カリングとゼロ面積カリング ～
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/Appendix_006_01_Imgui/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Appendix ImGuiの初期化の書き方が変わってた件
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MeshShaderSeries/Appendix_006_02_Statistics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Appendix PIPELINE_STATISTICSについて
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3_7" id="__nav_8_3_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Paper
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            Paper
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Paper/Lumo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lumoを実装してみる
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Paper/StylizedDepiction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stylized depiction of images based on depth perceptionの実装をやってみた
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3_8" id="__nav_8_3_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Toon
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            Toon
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Toon/MatCap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MatCap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Toon/RampTexture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ramp Texture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Toon/XToon/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XToon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_4" id="__nav_8_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CV
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_4">
+            <span class="md-nav__icon md-icon"></span>
+            CV
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_4_1" id="__nav_8_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Interpolate
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Interpolate
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CV/Interpolate/BiCubicInterpolation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バイキュービック補間
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CV/Interpolate/BilinearInterpolation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バイリニア補間
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CV/Interpolate/NearestNeighbor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NearestNeighbor法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5" id="__nav_8_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DLFS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5">
+            <span class="md-nav__icon md-icon"></span>
+            DLFS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5_1" id="__nav_8_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    02
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            02
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/02/AndGate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    And Gate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/02/NandGate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nand Gate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/02/OrGate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Or Gate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/02/XorGate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Xor Gate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_5_2" id="__nav_8_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    03
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            03
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/03/BatchMNIST/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BatchでまとめてMNISTを推論する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/03/CalcMNIST/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    学習済みのデータを読み込んでMNISTを推論してみる
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/03/DrawMNIST/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MNISTを試しに描画する
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/03/ReLUFunction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ReLU関数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/03/SigmoidFunction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sigmoid関数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DLFS/03/StepFunction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Step関数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6" id="__nav_8_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Electronics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6">
+            <span class="md-nav__icon md-icon"></span>
+            Electronics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_6_1" id="__nav_8_6_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    FPGA
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            FPGA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Electronics/FPGA/TangNano_LBlink/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tang Nano 9kでLチカをやってく
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Electronics/FPGA/TangNano_SimpleCpu_01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TangNano9kでシンプルなCPUを作ってみる その1: Lチカ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Electronics/FPGA/TangNano_SimpleCpu_02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TangNano9kでシンプルなCPUを作ってみる その2: 1bit CPU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Electronics/FPGA/TangNano_SimpleCpu_03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TangNano9kでシンプルなCPUを作ってみる その3: TD4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Electronics/FPGA/TangNano_SimpleCpu_04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TangNano9kでシンプルなCPUを作ってみる その4: 使いやすいように拡張
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_7" id="__nav_8_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Math
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_7">
+            <span class="md-nav__icon md-icon"></span>
+            Math
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_7_1" id="__nav_8_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    NumInt
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            NumInt
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/NumInt/MidPointRule/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    中点則
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/NumInt/SimpsonRule/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シンプソン則
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/NumInt/TrapezoidalRule/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    台形則
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_7_2" id="__nav_8_7_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pi
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_7_2">
+            <span class="md-nav__icon md-icon"></span>
+            Pi
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Pi/GregorySharp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    グレゴリー級数とシャープの方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Pi/WallisProduct/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ウォリスの公式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_7_3" id="__nav_8_7_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Prime
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            Prime
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Prime/EratosthenesSieve/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラトステネスの篩
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_8" id="__nav_8_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ODS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_8">
+            <span class="md-nav__icon md-icon"></span>
+            ODS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_8_1" id="__nav_8_8_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ex02
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            Ex02
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex02/001_Array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Array
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex02/002_ArrayStack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ArrayStack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex02/003_FastArrayStack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FastArrayStack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex02/004_ArrayQueue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ArrayQueue
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex02/005_ArrayDeque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ArrayDeque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex02/006_DualArrayDeque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DualArrayDeque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex02/007_RootishArrayStack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RootishArrayStack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_8_2" id="__nav_8_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ex03
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ex03
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex03/001_SLList/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SLList: 単方向リスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex03/002_DLList/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLList: 双方向連結リスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex03/003_BDeque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BDeque: Block固定のDeque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex03/004_SEList/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SEList: 空間効率の良い連結リスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ODS/Ex03/005_XorList/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XOR List
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_9" id="__nav_8_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    PseudoRand
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_9">
+            <span class="md-nav__icon md-icon"></span>
+            PseudoRand
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../PseudoRand/LCG/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linear congruential generators(LCG): 線形合同法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_10" id="__nav_8_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    RL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_10">
+            <span class="md-nav__icon md-icon"></span>
+            RL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_10_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_10_1" id="__nav_8_10_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Sutton
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_8_10_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_10_1">
+            <span class="md-nav__icon md-icon"></span>
+            Sutton
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_10_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_10_1_1" id="__nav_8_10_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ex02
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_10_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_10_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            Ex02
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex02/BunditEpsilonGreedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BunditEpsilonGreedy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex02/BunditGreedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BunditGreedy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex02/GradientBaseline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GradientBaseline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex02/OptimisticInitial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Optimistic Initial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex02/UCB/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    UCB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_10_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_10_1_2" id="__nav_8_10_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ex03
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_10_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_10_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ex03
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex03/BellmanEquation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BellmanEquation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex03/BellmanOptimalityEquation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BellmanOptimalityEquation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_10_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_10_1_3" id="__nav_8_10_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ex04
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_10_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_10_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Ex04
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex04/GamblerProblem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gambler Problem
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex04/JacksCarRentalProblem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jacks Car Rental Problem
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex04/PolicyEvaluation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    PolicyEvaluation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_10_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_10_1_4" id="__nav_8_10_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ex05
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_8_10_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_10_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Ex05
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex05/FirstVisitMC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    first-visit MC: 初回訪問MC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex05/InfinityVariance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infinite Variance: 無限の分散
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex05/MCES/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monte Carlo ES: モンテカルロES
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../RL/Sutton/Ex05/OffPolicy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Off-Policy Learning: 方策オフ型学習
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_11" id="__nav_8_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    TIPS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_11">
+            <span class="md-nav__icon md-icon"></span>
+            TIPS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../TIPS/DefaultTexture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デフォルトテクスチャを作る機能
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../TIPS/MagicalTrialFade/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    魔法少女ノ魔女裁判 Switch2のフェードを再現してみる
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../TIPS/Obj_dump/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    同名ファイルの出力におけるObj衝突の解消
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Movie
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Movie
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Movie/DXR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DirectX Raytracing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Movie/DirectX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DirectX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Movie/GP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Game Programming C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Movie/OS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    OS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Movie/Optics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Optics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Movie/RL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reinforcement Learning(強化学習)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Movie/SRP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SRP Series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Movie/Siv3D/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Siv3D
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Movie/UE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Unreal Engine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+  integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs"
+  crossorigin="anonymous" />
+
+<style type="text/css">
+    .katex img {
+      object-fit: fill;
+      padding: unset;
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: inherit;
+    }
+</style>
+<h1 id="ucs-macadam">UCS色度図準備編 ～MacAdam楕円の可視化と補間～</h1>
+<p>前回言った通りUCS色度をやろうかと思ったが、そのためのちょっとした準備をしようと思う.<br />
+外堀を埋めることって大事よね、うん.  </p>
+<p>さて、CIE1931の色度図に関して考える.<br />
+XYZ空間の色の関係性を図式化したことで色々なことが理解できるようになったことは、今までの流れの中でも分かると思う.<br />
+今までで言えば例えば、  </p>
+<ul>
+<li>波長単体の色がスペクトル軌跡で表され、純紫軌跡という単体波長では表せないものもある</li>
+<li>波長をどれだけブレンドさせればどの色に対応するかが分かる</li>
+<li>色度図の外の色は人には見えない不可視領域</li>
+<li>温度によって色が変わる、これはプランク軌跡で可視化される</li>
+</ul>
+<p>といったようなことだ.<br />
+色度図があれば色に関して色々と議論がしやすいというのが分かる.<br />
+ということは、今回やるのも色に関する何かしらについて考えようというお話だ.  </p>
+<p>今回考えるのは色差(しきさ)<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>というものについて考える.<br />
+2色の<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>A</mi></msub><mo separator="true">,</mo><msub><mi>C</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">C_{A},C_{B}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>が用意されたとする.<br />
+この二色に対して目で見た際,</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>A</mi></msub></mrow><annotation encoding="application/x-tex">C_{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>と<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">C_{B}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>は同じ色に見える: 色差が小さい</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>A</mi></msub></mrow><annotation encoding="application/x-tex">C_{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>と<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">C_{B}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>は違う色に見える: 色差が大きい</li>
+</ul>
+<p>簡単に言えばこんな感じで2つの色が与えられたときに、似ているかどうかを判断する量として定義するわけだ.<br />
+ではこの色差を表す式はどんな感じになるんだろう？  </p>
+<p>まず一番最初に思いつくのはユークリッド距離.<br />
+色度図内の2点を取って、そこの距離を求めればいいんじゃない？というのは真っ先に思いつくはず.<br />
+つまり、</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mi>o</mi><mi>l</mi><mi>o</mi><mi>r</mi><mi>D</mi><mi>i</mi><mi>f</mi><mi>f</mi><mi>r</mi><mi>e</mi><mi>n</mi><mi>c</mi><mi>e</mi><mo>=</mo><msqrt><mrow><mo stretchy="false">(</mo><msub><mi>C</mi><mi>A</mi></msub><mi mathvariant="normal">.</mi><mi>r</mi><mo>−</mo><msub><mi>C</mi><mi>B</mi></msub><mi mathvariant="normal">.</mi><mi>r</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><msub><mi>C</mi><mi>A</mi></msub><mi mathvariant="normal">.</mi><mi>g</mi><mo>−</mo><msub><mi>C</mi><mi>B</mi></msub><mi mathvariant="normal">.</mi><mi>g</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><msub><mi>C</mi><mi>A</mi></msub><mi mathvariant="normal">.</mi><mi>b</mi><mo>−</mo><msub><mi>C</mi><mi>B</mi></msub><mi mathvariant="normal">.</mi><mi>b</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">
+ColorDiffrence = \sqrt{(C_{A}.r - C_{B}.r)^2 + (C_{A}.g - C_{B}.g)^2 + (C_{A}.b - C_{B}.b)^2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal" style="margin-right:0.02778em;">orD</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.10764em;">ff</span><span class="mord mathnormal">re</span><span class="mord mathnormal">n</span><span class="mord mathnormal">ce</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.2561em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9839em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">.</span><span class="mord mathnormal">b</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-2.9439em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSc0MDBlbScgaGVpZ2h0PScxLjI4ZW0nIHZpZXdCb3g9JzAgMCA0MDAwMDAgMTI5NicgcHJlc2VydmVBc3BlY3RSYXRpbz0neE1pbllNaW4gc2xpY2UnPjxwYXRoIGQ9J00yNjMsNjgxYzAuNywwLDE4LDM5LjcsNTIsMTE5CmMzNCw3OS4zLDY4LjE2NywxNTguNywxMDIuNSwyMzhjMzQuMyw3OS4zLDUxLjgsMTE5LjMsNTIuNSwxMjAKYzM0MCwtNzA0LjcsNTEwLjcsLTEwNjAuMyw1MTIsLTEwNjcKbDAgLTAKYzQuNywtNy4zLDExLC0xMSwxOSwtMTEKSDQwMDAwdjQwSDEwMTIuMwpzLTI3MS4zLDU2NywtMjcxLjMsNTY3Yy0zOC43LDgwLjcsLTg0LDE3NSwtMTM2LDI4M2MtNTIsMTA4LC04OS4xNjcsMTg1LjMsLTExMS41LDIzMgpjLTIyLjMsNDYuNywtMzMuOCw3MC4zLC0zNC41LDcxYy00LjcsNC43LC0xMi4zLDcsLTIzLDdzLTEyLC0xLC0xMiwtMQpzLTEwOSwtMjUzLC0xMDksLTI1M2MtNzIuNywtMTY4LC0xMDkuMywtMjUyLC0xMTAsLTI1MmMtMTAuNyw4LC0yMiwxNi43LC0zNCwyNgpjLTIyLDE3LjMsLTMzLjMsMjYsLTM0LDI2cy0yNiwtMjYsLTI2LC0yNnM3NiwtNTksNzYsLTU5czc2LC02MCw3NiwtNjB6Ck0xMDAxIDgwaDQwMDAwMHY0MGgtNDAwMDAweicvPjwvc3ZnPg=="/></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2561em;"><span></span></span></span></span></span></span></span></span></span></p>
+<p>という式が成り立つんじゃない？ということ.<br />
+確かに滑らかに色度図内では色が変わっているため、これはありえそうな気がする...  </p>
+<p>ここで出てくるのがデビッド・マクアダム先生<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.<br />
+1942年の論文でマクアダム楕円<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>というものを発表した.  </p>
+<p>マクアダム先生の実験は非常に簡単だ.  </p>
+<p><img alt="MacAdam_01" src="../Image/MacAdam_01.webp" />  </p>
+<p>2色の色を用意して片方をテスト色とし、もう一方を調整できる色にする.<br />
+調整できる色を観察者は調整して、テスト色と一致させる.<br />
+もちろん人間の目なので完全に一致はしないが、その差はある範囲内に収まることが分かった.<br />
+この収まる範囲は楕円形状で定義ができ、CIE1931上に描画することで確認が可能.  </p>
+<p>今回はまずこの楕円を描画してみよう.<br />
+今回のデータもcolour<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>にあったので、こちらを参考にデータを取ってみた.<br />
+どうもObserveとCalculateの2つがあるが、Calculateの方が正確らしい.<br />
+一応コード上ではどちらも定義しておいたが、今回はCalculateの方を描画してみよう.  </p>
+<p>まず最初に今回のデータは楕円のデータとその回転値で構成することにする.  </p>
+<pre><code class="language-c++">Array&lt;std::pair&lt;double, Ellipse&gt;&gt; m_calculate;
+</code></pre>
+<p>Siv3DではEllipseに楕円の中心位置、そして長軸短軸の2つを定義可能.<br />
+今回のMacAdamのデータも</p>
+<ul>
+<li>中心位置</li>
+<li>長軸</li>
+<li>短軸</li>
+<li>回転</li>
+</ul>
+<p>で構成されているため、これを代入してあげればよい.  </p>
+<p>実際の描画は以下の手順で行う.<br />
+まず楕円の中心はxy空間なので、事前にシーン空間に移しておく.  </p>
+<pre><code class="language-c++">for (auto&amp; v : macAdam.m_calculate)
+{
+    // CenterをScene座標にしておく
+    Vec2 center = v.second.center;
+    center.x = (center.x - X_BOUND.x) / (X_BOUND.y - X_BOUND.x);
+    center.y = 1.0 - (center.y - Y_BOUND.x) / (Y_BOUND.y - Y_BOUND.x);
+    center.x = Math::Lerp(sceneMin.x, sceneMax.x, center.x);
+    center.y = Math::Lerp(sceneMin.y, sceneMax.y, center.y);
+
+    v.second.setCenter(center);
+}
+</code></pre>
+<p>描画時には回転値と楕円を取り出す.  </p>
+<pre><code class="language-c++">for (const auto&amp; v : macAdam.m_calculate)
+{
+    double angle = v.first;
+    auto ellipse = v.second;
+</code></pre>
+<p>回転値はマイナスしているのに注意.<br />
+どうも回転行列が時計回りを正としてるっぽいので、今回は反時計回りが欲しいためマイナスにしてるだけ.<br />
+あとは楕円の縁が欲しいので<code>drawFrame</code>で描画すればよい.  </p>
+<pre><code class="language-c++">    const Transformer2D transformer{ Mat3x2::Rotate(ToRadians(-angle), ellipse.center) };
+    ellipse.drawFrame(1.0, Palette::Black);
+}
+</code></pre>
+<p>さて、ここまで来たら描画をしてみる.結果は以下だ.  </p>
+<p><img alt="MacAdam_02" src="../Image/MacAdam_02.webp" />  </p>
+<p>う～ん...あまりにも小さい...<br />
+小さいが、この範囲が色としては同じに見える範囲ということになる.  </p>
+<p>分かりやすいように実際の色差とは異なるが、10倍にして描画してみよう.  </p>
+<p><img alt="MacAdam_03" src="../Image/MacAdam_03.webp" />  </p>
+<p>うん、分かりやすくなった！<br />
+ネットとかでよく見るのはこの図が多いですね.<br />
+自分はここ<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>の図と比較してましたが、まああってる気がする.  </p>
+<p>この図の大事なのは個人的に2つあると思っている.<br />
+1つ目は同じ色かどうかを実験することで色差の小さい部分を測定したこと.<br />
+これによって楕円状に色差が同じ範囲がどうなるのかが分かるようになったともいえる.  </p>
+<p>2つ目は色空間の位置によって色差の幅は違うという点.<br />
+10倍にすることで浮き彫りになったのは、一番わかりやすい部分と緑の色度の部分と青の色度の部分では全く楕円の大きさが違う点.<br />
+絶対的に青の範囲は小さいし、緑の部分は大きい.<br />
+しかも全部の方向が同じ距離で測れるなら、本来は円にならないとおかしいのである...</p>
+<p>これからわかることは色差でユークリッド距離を使うことができないことを表している.<br />
+色度図内の距離の差と人間の感じる色差というのは単純に同じとは言えないということだ.<br />
+緑は楕円が大きいため色差を感じにくいけど、青は敏感で色差を感じやすい.<br />
+そのため、同じ距離として測ることが出来ない...  </p>
+<p>まあ、確かに感覚的にもこれはいえそうな気がする.<br />
+LMS視錐体<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>を考えれば緑の量が圧倒的に多いので、色差を同じと捉える範囲も大き目.<br />
+逆に圧倒的に小さい青は圧倒的に少ないので、色差も感じやすい.<br />
+勝手な予想ではあるけど、この辺はなんか言えそうな気はする.  </p>
+<p>さて、ではどうにかしてこの楕円を大体同じくらいの大きさにできないか？<br />
+もしこれができるのであれば、ユークリッド距離みたいな感じで測ることが可能になる.<br />
+そのために今のXY色度図を別の形に変形することで、つまりUCS色度図に変形させることで大体同じくらいの大きさにしようよ！というのが次回の内容である.  </p>
+<p>さて、UCS色度図は次回に回すこととして,今回はこのMacAdamの楕円の補間を最後にやってみよう.<br />
+まあ色度も統一されたものではないので正確ではないんだけど、こちら<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>でやってるのを見てかなり面白いなと重い挑戦.  </p>
+<p>まず現状の楕円の中心から三角形を導出.<br />
+導出後に三角形の内部化を判定し、内部だった場合は重心座標系で補間する.<br />
+これだけで三角形ないの楕円をすべて定義できるという寸法.賢い～.  </p>
+<p>実際にやってみよう.<br />
+まずは頂点だけで三角形を構築する必要がある.<br />
+有名なのはドロネー三角形分割とかだけど、これに関してはSiv3Dでは機能として入ってる.<br />
+自分で実装するのは面倒なので、機能を使わせてもらおう.  </p>
+<p>やることは簡単で、楕円の頂点を<code>SubDivision2D</code>に突っ込む.<br />
+追加後は<code>calculateTriangles</code>を呼び出すのみ.  </p>
+<pre><code class="language-c++">Subdivision2D div{ Scene::Rect()};
+
+// 楕円の全頂点を突っ込む
+for (const auto&amp; v : macAdam.m_calculate)
+{
+    auto ellipse = v.second;
+    div.addPoint(ellipse.center);
+}
+
+// ドロネー三角形分割
+div.calculateTriangles(triangles);
+</code></pre>
+<p>これで三角形が完成！<br />
+自分で定義したVertexに対して作って参照とかにしてくれると嬉しくはあるんだけど、まあそこは言っても仕方ない.  </p>
+<p>あとは頑張って補間していく.<br />
+まず、<code>contains</code>関数でどの三角形の内側かを判定する.<br />
+全ての三角形において外側の場合は終了としてしまう.  </p>
+<pre><code class="language-c++">// 三角形の内側にあるものを探す
+bool isInside = false;
+Triangle* target = nullptr;
+for (auto&amp; t : triangles)
+{
+    if (t.contains(targetPos))
+    {
+        isInside = true;
+        target = &amp;t;
+    }
+}
+isDrawTarget = isInside;
+if (!isInside) { return; }
+</code></pre>
+<p>次に重心座標系を計算.<br />
+これは以前Depth Buffer<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>でやったのと同じ処理を書けばよいだけ.  </p>
+<pre><code class="language-c++">// 重心座標系uvwを計算
+auto p0 = target-&gt;p0, p1 = target-&gt;p1, p2 = target-&gt;p2;
+double polyArea = Cross(p1 - p0, p2 - p0);
+const double u = Abs(Cross(p1 - p0, targetPos - p0) / polyArea);
+const double v = Abs(Cross(p2 - p0, targetPos - p0) / polyArea);
+const double w = Abs(Cross(p2 - p1, targetPos - p1) / polyArea);
+</code></pre>
+<p>現状三角形の頂点は位置しか持っていないため、その頂点がどの楕円と対応してるかが分からない...<br />
+そのため、三角形の頂点と対応する楕円を見つける.<br />
+見つけ方は単純に一番近い距離のものを採用.<br />
+ついでに角度も保持しておく.  </p>
+<pre><code class="language-c++">// 点を持つ楕円を探索
+auto FindPoints = [&amp;](Vec2 p, Ellipse&amp; e, double&amp; a)
+    {
+        double distance = 1e+10;
+        for (const auto&amp; d : macAdam.m_calculate)
+        {
+            const auto&amp; ellipse = d.second;
+            const double length = (ellipse.center - p).length();
+            if (length &lt; distance)
+            {
+                distance = length;
+                e = ellipse;
+                a = d.first;
+            }
+        }
+    };
+
+Ellipse e0, e1, e2; double a0, a1, a2;
+FindPoints(p0, e0, a0); FindPoints(p1, e1, a1); FindPoints(p2, e2, a2);
+</code></pre>
+<p>最後に重心座標系を使って補間すれば終わり.<br />
+こうして完成した<code>targetEllipse</code>を描画すればよい.  </p>
+<pre><code class="language-c++">// 補間
+auto center = e0.center * w + e1.center * v + e2.center * u;
+auto axes = e0.axes * w + e1.axes * v + e2.axes * u;
+targetAngle = a0 * w + a1 * v + a2 * u;
+targetEllipse.setCenter(center);
+targetEllipse.setAxes(axes);
+</code></pre>
+<p>実際に描画した結果が以下である.  </p>
+<p><img alt="MacAdam_04" src="../Image/MacAdam_04.webp" />  </p>
+<p>うん、実際にそれっぽく補間されてるのが分かる.<br />
+見やすいように緑に近い範囲を可視化してみたが、青の方を可視化してみると、</p>
+<p><img alt="MacAdam_05" src="../Image/MacAdam_05.webp" />    </p>
+<p>こんな感じでちょっと小さくなってるので動作としては問題なさそう.<br />
+実際に自分たちが感じてる色差とはまったく一致しないけど、とにかくある点において色差がほぼ同じ範囲が欲しい時とかには使えるかもしれない.<br />
+といったところで今回はここまで.  </p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://w.wiki/Cyge">色差</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://w.wiki/eRE9">デビッド・マクアダム</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://w.wiki/9oHR">マクアダム楕円</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://github.com/colour-science/colour/blob/develop/colour/models/datasets/macadam_ellipses.py">macadam_ellipses.py</a>&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://henatips.com/page/37/">色彩工学 (2) - 均等色空間</a>&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p><a href="../SmithPokorny/">三色説と分光感度グラフ</a>&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p><a href="http://www.enjoy.ne.jp/~k-ichikawa/Interpolation_2D.html">■2次元不規則分布データの補間の例 ～ 色彩工学におけるマクアダム楕円の補間 ～</a>&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p><a href="../../Basics/DepthBuffer/">デプスバッファ法</a>&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
