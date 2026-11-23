@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7698,201 +7719,201 @@
 <p>クイックソート<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>もマージソートみたいに分割をしていって統合するソート.<br />
 基準となる数値をピボットとして選出し、それを基準に左右を入れ替える.<br />
 というのを上から順に再帰することで上手く実行を行う寸法.  </p>
-<p>実際の流れを見ていこう.  </p>
-<pre><code>初期状態: 
-8 4 3 7 6 5 2 1
-↑             ↑
-l             r
-
-1: 
-pivot: (l+r)/2=(0+7)/2=3 -&gt;arr[3]=7
-
-8 4 3 7 6 5 2 1     pivot以上のlと以下のrを見つける
-↑             ↑
-l             r
-
-1 4 3 7 6 5 2 8     swap
-↑             ↑
-l             r
-
-1 4 3 7 6 5 2 8     pivot以上のlと以下のrを見つける
-      ↑     ↑
-      l     r
-
-1 4 3 2 6 5 7 8     swap
-      ↑     ↑
-      l     r
-
-1 4 3 2 6 5 7 8     pivot以上のlと以下のrを見つける
-          ↑ ↑
-          r l
-
-lとrの大小が逆転してるので終わり
-
-1-left:
-l_start=0, l_end=6で、l_start &lt; l_endが成り立つので,
-l=l_start=0, r=l_end-1=5で開始
-
-pivot: (l+r)/2=(0+5)/2=2 -&gt; arr[2]=3
-
-1 4 3 2 6 5 | 7 8     pivot以上のlと以下のrを見つける
-  ↑   ↑
-  l   r
-
-1 2 3 4 6 5 | 7 8     swap
-  ↑   ↑
-  l   r
-
-1 2 3 4 6 5 | 7 8     pivot以上のlと以下のrを見つける
-    ↑
-    lr
-
-lとrが同じ位置を差してるので終わり
-1 2 | 3 | 4 6 5 | 7 8 
-
-1-left-left:
-l_start=0, l_end=2で、l_start &lt; l_endが成り立つので,
-l=l_start=0, r=l_end-1=1で開始
-
-pivot: (l+r)/2=(0+1)/2=0 -&gt; arr[0]=1
-
-1 2 | 3 | 4 6 5 | 7 8     pivot以上のlと以下のrを見つける
-↑
-lr
-
-lとrが同じ位置を差してるので終わり
-同じ位置なら確定  
-1 | 2 | 3 | 4 6 5 | 7 8    1が確定！
-
-1-left-left-left:
-l_start=0, l_end=0で、l_start &lt; l_endが成り立たないので終わり
-
-1-left-left-right:
-r_start=1, r_end=0で、r_end &lt; r_startが成り立つので、
-l=r_end+1=1, r=r_start=1で開始
-(特に変更ないので略) 
-
-1 | 2 | 3 | 4 6 5 | 7 8    2もarr[1]=2で同じ位置なので、ここで確定
-
-1-left-right:
-r-start=5, r_end=2で、r_end &lt; r_startが成り立つので、
-l=r_end+1=3. r=r_start=5で開始
-
-pivot: (l+r)/2=(3+5)/2=4 -&gt; arr[4]=6
-
-1 | 2 | 3 | 4 6 5 | 7 8     pivot以上のlと以下のrを見つける
-              ↑ ↑
-              l r
-
-1 | 2 | 3 | 4 5 6 | 7 8     swap
-              ↑ ↑
-              l r
-
-1 | 2 | 3 | 4 5 6 | 7 8     pivot以上のlと以下のrを見つける
-                ↑
-                lr
-
-lとrが同じ位置を差してるので終わり
-同じ位置なら確定  
-1 | 2 | 3 | 4 5 | 6 | 7 8 ここで6は確定
-
-1-left-right-left:
-l_start=3, l_end=5で、l_start &lt; l_endが成り立たつので、
-l=l_start=3, r=l_end-1=4で開始
-
-pivot: (l+r)/2=(3+4)/2=3 -&gt; arr[3]=4
-1 | 2 | 3 | 4 5 | 6 | 7 8     pivot以上のlと以下のrを見つける
-            ↑
-            lr
-
-lとrが同じ位置を差してるので終わり
-同じ位置なら確定  
-1 | 2 | 3 | 4 | 5 | 6 | 7 8 ここで4は確定
-
-1-left-right-left-left:
-l_start=3, l_end=3で、l_start &lt; l_endが成り立たたないので再帰しない
-
-1-left-right-left-right:
-r_start=4, r_end=3で、r_end &lt; r_startが成り立つので、
-l=r_end+1=4, r=r_start=4で開始
-(特に変更ないので略) 
-
-1 | 2 | 3 | 4 | 5 | 6 | 7 8    5もarr[4]=5で同じ位置なので、ここで5も確定
-
-1-left-right-right:
-r_start=5,r_end=5で、r_end &lt; r_startが成り立たたないので終わり
-
-1-right:
-r_start=7,r_end=5で、r_end &lt; r_startが成り立たつので、
-l=r_end+1=6, r=r_start=7で開始
-
-pivot: (l+r)/2=(6+7)/2=6 -&gt; arr[6]=7
-1 | 2 | 3 | 4 | 5 | 6 | 7 8     pivot以上のlと以下のrを見つける
-                        ↑
-                        lr
-
-lとrが同じ位置を差してるので終わり
-同じ位置なら確定  
-1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 ここで7は確定(8はまだ)
-
-1-right-left:
-l_start=6, l_end=6で、l_start &lt; l_endが成り立たたないので再帰しない
-
-1-right-right:
-r_start=7,r_end=6で、r_end &lt; r_startが成り立たつので、
-l=r_end+1=7, r=r_start=7で開始
-(特に変更ないので略) 
-
-1 | 2 | 3 | 4 | 5 | 6 | 7 | 8  8もarr[7]=8で同じ位置なので、ここで8も確定
-
-完了！
-</code></pre>
-<p>長々と書いたけど、基本的にはswapさせていき、もし左右で同じindexを示した場合は</p>
-<pre><code>小さい | lrが示した位置 | 大きい
-</code></pre>
-<p>が満たされてるので、位置としては確定できる！<br />
+<p>実際の流れを見ていこう.<br />
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>初期状態: 
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>8 4 3 7 6 5 2 1
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>↑             ↑
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>l             r
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>1: 
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>pivot: (l+r)/2=(0+7)/2=3 -&gt;arr[3]=7
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>8 4 3 7 6 5 2 1     pivot以上のlと以下のrを見つける
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>↑             ↑
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>l             r
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>1 4 3 7 6 5 2 8     swap
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>↑             ↑
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>l             r
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>1 4 3 7 6 5 2 8     pivot以上のlと以下のrを見つける
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>      ↑     ↑
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>      l     r
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>1 4 3 2 6 5 7 8     swap
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>      ↑     ↑
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>      l     r
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>1 4 3 2 6 5 7 8     pivot以上のlと以下のrを見つける
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>          ↑ ↑
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>          r l
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>lとrの大小が逆転してるので終わり
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>1-left:
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>l_start=0, l_end=6で、l_start &lt; l_endが成り立つので,
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>l=l_start=0, r=l_end-1=5で開始
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>pivot: (l+r)/2=(0+5)/2=2 -&gt; arr[2]=3
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>1 4 3 2 6 5 | 7 8     pivot以上のlと以下のrを見つける
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>  ↑   ↑
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>  l   r
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>1 2 3 4 6 5 | 7 8     swap
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>  ↑   ↑
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>  l   r
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>1 2 3 4 6 5 | 7 8     pivot以上のlと以下のrを見つける
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    ↑
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>    lr
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>lとrが同じ位置を差してるので終わり
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>1 2 | 3 | 4 6 5 | 7 8 
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>1-left-left:
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>l_start=0, l_end=2で、l_start &lt; l_endが成り立つので,
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>l=l_start=0, r=l_end-1=1で開始
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>pivot: (l+r)/2=(0+1)/2=0 -&gt; arr[0]=1
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>1 2 | 3 | 4 6 5 | 7 8     pivot以上のlと以下のrを見つける
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>↑
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>lr
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>lとrが同じ位置を差してるので終わり
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>同じ位置なら確定  
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>1 | 2 | 3 | 4 6 5 | 7 8    1が確定！
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>1-left-left-left:
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>l_start=0, l_end=0で、l_start &lt; l_endが成り立たないので終わり
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>1-left-left-right:
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>r_start=1, r_end=0で、r_end &lt; r_startが成り立つので、
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>l=r_end+1=1, r=r_start=1で開始
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>(特に変更ないので略) 
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>1 | 2 | 3 | 4 6 5 | 7 8    2もarr[1]=2で同じ位置なので、ここで確定
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>1-left-right:
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>r-start=5, r_end=2で、r_end &lt; r_startが成り立つので、
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>l=r_end+1=3. r=r_start=5で開始
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>pivot: (l+r)/2=(3+5)/2=4 -&gt; arr[4]=6
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>1 | 2 | 3 | 4 6 5 | 7 8     pivot以上のlと以下のrを見つける
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>              ↑ ↑
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>              l r
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>1 | 2 | 3 | 4 5 6 | 7 8     swap
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>              ↑ ↑
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>              l r
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>1 | 2 | 3 | 4 5 6 | 7 8     pivot以上のlと以下のrを見つける
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>                ↑
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>                lr
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>lとrが同じ位置を差してるので終わり
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>同じ位置なら確定  
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>1 | 2 | 3 | 4 5 | 6 | 7 8 ここで6は確定
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>1-left-right-left:
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>l_start=3, l_end=5で、l_start &lt; l_endが成り立たつので、
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>l=l_start=3, r=l_end-1=4で開始
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>pivot: (l+r)/2=(3+4)/2=3 -&gt; arr[3]=4
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>1 | 2 | 3 | 4 5 | 6 | 7 8     pivot以上のlと以下のrを見つける
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>            ↑
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>            lr
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>lとrが同じ位置を差してるので終わり
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>同じ位置なら確定  
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>1 | 2 | 3 | 4 | 5 | 6 | 7 8 ここで4は確定
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>1-left-right-left-left:
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>l_start=3, l_end=3で、l_start &lt; l_endが成り立たたないので再帰しない
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>1-left-right-left-right:
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>r_start=4, r_end=3で、r_end &lt; r_startが成り立つので、
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>l=r_end+1=4, r=r_start=4で開始
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>(特に変更ないので略) 
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>1 | 2 | 3 | 4 | 5 | 6 | 7 8    5もarr[4]=5で同じ位置なので、ここで5も確定
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>1-left-right-right:
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>r_start=5,r_end=5で、r_end &lt; r_startが成り立たたないので終わり
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>1-right:
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>r_start=7,r_end=5で、r_end &lt; r_startが成り立たつので、
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>l=r_end+1=6, r=r_start=7で開始
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>pivot: (l+r)/2=(6+7)/2=6 -&gt; arr[6]=7
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>1 | 2 | 3 | 4 | 5 | 6 | 7 8     pivot以上のlと以下のrを見つける
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>                        ↑
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>                        lr
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>lとrが同じ位置を差してるので終わり
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>同じ位置なら確定  
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 ここで7は確定(8はまだ)
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>1-right-left:
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>l_start=6, l_end=6で、l_start &lt; l_endが成り立たたないので再帰しない
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>1-right-right:
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>r_start=7,r_end=6で、r_end &lt; r_startが成り立たつので、
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>l=r_end+1=7, r=r_start=7で開始
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>(特に変更ないので略) 
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>1 | 2 | 3 | 4 | 5 | 6 | 7 | 8  8もarr[7]=8で同じ位置なので、ここで8も確定
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>完了！
+</span></code></pre></div></p>
+<p>長々と書いたけど、基本的にはswapさせていき、もし左右で同じindexを示した場合は
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>小さい | lrが示した位置 | 大きい
+</span></code></pre></div>
+が満たされてるので、位置としては確定できる！<br />
 というのを繰り返して分割しているだけである.<br />
 ここの肝が一番大事かもしれない.  </p>
 <p>さて、クイックソートを実際に組んでいこう.<br />
-まずピボット位置を決めて、左右を初期位置にする.  </p>
-<pre><code class="language-c++">  auto quick = [&amp;](auto quick, int left, int right) -&gt; void
-  {
-    double pivot = dataList[(left+right)/2].weight;
-    int l = left, r = right;
-</code></pre>
-<p>左右で左からなら大きい値を、右からなら小さい値を見つける.<br />
-見つかったら整列させるが、配列位置が逆転してる場合は終了してしまう.  </p>
-<pre><code class="language-c++">    // pivotの左に小さい値、右に大きい値となるように整列
-    while (true)
-    {
-      // pivotより小さければ右にずらしていく
-      while (dataList[left].weight &lt; pivot)
-      {
-        left++;
-      }
-
-      // pivotより大きければ左にずらしていく
-      while (pivot &lt; dataList[right].weight)
-      {
-        right--;
-      }
-
-      if (right &lt;= left) { break; }
-
-      std::swap(dataList[right], dataList[left]);
-      result.push_back(dataList);
-    }
-</code></pre>
+まずピボット位置を決めて、左右を初期位置にする.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">quick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">quick</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">void</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">pivot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataList</span><span class="p">[(</span><span class="n">left</span><span class="o">+</span><span class="n">right</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">].</span><span class="n">weight</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+</span></code></pre></div>
+左右で左からなら大きい値を、右からなら小さい値を見つける.<br />
+見つかったら整列させるが、配列位置が逆転してる場合は終了してしまう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="c1">// pivotの左に小さい値、右に大きい値となるように整列</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="c1">// pivotより小さければ右にずらしていく</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">dataList</span><span class="p">[</span><span class="n">left</span><span class="p">].</span><span class="n">weight</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">pivot</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="p">{</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="n">left</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">      </span><span class="c1">// pivotより大きければ左にずらしていく</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">      </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">pivot</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">dataList</span><span class="p">[</span><span class="n">right</span><span class="p">].</span><span class="n">weight</span><span class="p">)</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">      </span><span class="p">{</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="n">right</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">left</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">dataList</span><span class="p">[</span><span class="n">right</span><span class="p">],</span><span class="w"> </span><span class="n">dataList</span><span class="p">[</span><span class="n">left</span><span class="p">]);</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">      </span><span class="n">result</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">dataList</span><span class="p">);</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>最後に決まった左の位置を基準に更に再帰.<br />
-これで完了！  </p>
-<pre><code class="language-c++">    // 元の位置に
-    int p = left;
-    left = l; right = r;
-
-    if (left &lt; p) { quick(quick, left, p - 1); }
-    if (p &lt; right) { quick(quick, p + 1, right); }
-  };
-</code></pre>
+これで完了！<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="c1">// 元の位置に</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">;</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">quick</span><span class="p">(</span><span class="n">quick</span><span class="p">,</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">quick</span><span class="p">(</span><span class="n">quick</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="p">};</span>
+</span></code></pre></div></p>
 <p>結果を見てみよう.  </p>
 <p><img alt="QuickSort_01" src="../Image/QuickSort_01.webp" />  </p>
 <p>うん、左側に再帰の山が出来ている.<br />

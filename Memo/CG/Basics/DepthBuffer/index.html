@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7717,20 +7738,20 @@
 デプスバッファは単純だ.<br />
 widthとheight分のデータを用意してあげて、最小値で初期化してあげればよい.<br />
 Z軸はカメラ視点から見たら小さいほど遠いので、初期値は無限大に遠い場所にあるイメージである.<br />
-保存するのはdepthなので<code>double</code>だけでOK.軽くしたければ<code>float</code>でもよいね.  </p>
-<pre><code class="language-c++">    class DepthBuffer
-    {
-    public:
-        DepthBuffer(int width, int height)
-        {
-            m_data.resize(height);
-            for (auto&amp; data : m_data) { data.resize(width, std::numeric_limits&lt;double&gt;::lowest()); }
-        }
-
-    public:
-        Array&lt;Array&lt;double&gt;&gt; m_data;
-    };
-</code></pre>
+保存するのはdepthなので<code>double</code>だけでOK.軽くしたければ<code>float</code>でもよいね.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">DepthBuffer</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="n">DepthBuffer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">height</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="n">m_data</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">height</span><span class="p">);</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">lowest</span><span class="p">());</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">m_data</span><span class="p">;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div></p>
 <p>さて、ここまで来たらちょっと面倒なのが次.<br />
 前回のZ-Sort法はあくまで基準となるポリゴンの1点が分かればよかった.<br />
 今回はピクセル単位に比較をする必要があるため、これでは問題がある...<br />
@@ -7772,30 +7793,30 @@ w = \frac{\triangle BCP}{\triangle ABC}=\frac{\|BC \times PB \|}{\| AB \times AC
 u + v + w = \frac{\triangle BCP + \triangle ACP + \triangle ABP}{\triangle ABC}=1
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">u</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2519em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">△</span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.07153em;">BC</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">△</span><span class="mord mathnormal" style="margin-right:0.13889em;">BCP</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">△</span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.13889em;">CP</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">△</span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.13889em;">BP</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></p>
 <p>という風に上手く1になるように正規化されるようになっているため、3点の比で<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>を求めることができるという訳だ.  </p>
-<p>ここまで分かれば後は計算式通りにやれば終わり.  </p>
-<pre><code class="language-c++">// 重心の計算
-const double polyArea = Cross(v2.xy() - v1.xy(), v3.xy() - v1.xy());
-if (polyArea == 0.0) { continue; } // ゼロ除算対策
-const double u = Abs(Cross(v2.xy() - v1.xy(), p - v1.xy()) / polyArea); // v3用
-const double v = Abs(Cross(v3.xy() - v1.xy(), p - v1.xy()) / polyArea); // v2用
-const double w = Abs(Cross(v3.xy() - v2.xy(), p - v2.xy()) / polyArea); // v1用
-
-// 重心による補間
-const double depth = w * vert1-&gt;viewPos.z + v * vert2-&gt;viewPos.z + u * vert3-&gt;viewPos.z;
-</code></pre>
+<p>ここまで分かれば後は計算式通りにやれば終わり.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// 重心の計算</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">polyArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cross</span><span class="p">(</span><span class="n">v2</span><span class="p">.</span><span class="n">xy</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v1</span><span class="p">.</span><span class="n">xy</span><span class="p">(),</span><span class="w"> </span><span class="n">v3</span><span class="p">.</span><span class="n">xy</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v1</span><span class="p">.</span><span class="n">xy</span><span class="p">());</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">polyArea</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// ゼロ除算対策</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abs</span><span class="p">(</span><span class="n">Cross</span><span class="p">(</span><span class="n">v2</span><span class="p">.</span><span class="n">xy</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v1</span><span class="p">.</span><span class="n">xy</span><span class="p">(),</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v1</span><span class="p">.</span><span class="n">xy</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">polyArea</span><span class="p">);</span><span class="w"> </span><span class="c1">// v3用</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abs</span><span class="p">(</span><span class="n">Cross</span><span class="p">(</span><span class="n">v3</span><span class="p">.</span><span class="n">xy</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v1</span><span class="p">.</span><span class="n">xy</span><span class="p">(),</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v1</span><span class="p">.</span><span class="n">xy</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">polyArea</span><span class="p">);</span><span class="w"> </span><span class="c1">// v2用</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abs</span><span class="p">(</span><span class="n">Cross</span><span class="p">(</span><span class="n">v3</span><span class="p">.</span><span class="n">xy</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v2</span><span class="p">.</span><span class="n">xy</span><span class="p">(),</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v2</span><span class="p">.</span><span class="n">xy</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">polyArea</span><span class="p">);</span><span class="w"> </span><span class="c1">// v1用</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">// 重心による補間</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vert1</span><span class="o">-&gt;</span><span class="n">viewPos</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vert2</span><span class="o">-&gt;</span><span class="n">viewPos</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vert3</span><span class="o">-&gt;</span><span class="n">viewPos</span><span class="p">.</span><span class="n">z</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>これで<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>に対する深度が求まったので、深度値を比較して正しいかを確認する.<br />
 depthが小さい場合は遠方なのでスキップ,0より大きい場合はカメラより内側になっちゃうので、これもスキップ.<br />
-スキップされない場合は手前のポリゴンといえるので、描画に移ってもよい.  </p>
-<pre><code class="language-c++">// 深度バッファの適用
-if (depth &lt; m_depthBuffer-&gt;m_data[y][x] || depth &gt;= 0.0)
-{
-    continue;
-}
-</code></pre>
-<p>ただし、深度自体は今回のように更新を忘れずに.<br />
-既に描かれてるものよりも奥だったら、次は省けるようになるので.  </p>
-<pre><code class="language-++">m_depthBuffer-&gt;m_data[y][x] = depth;
-</code></pre>
+スキップされない場合は手前のポリゴンといえるので、描画に移ってもよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// 深度バッファの適用</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">depth</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_depthBuffer</span><span class="o">-&gt;</span><span class="n">m_data</span><span class="p">[</span><span class="n">y</span><span class="p">][</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">depth</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">continue</span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
+</span></code></pre></div>
+ただし、深度自体は今回のように更新を忘れずに.<br />
+既に描かれてるものよりも奥だったら、次は省けるようになるので.<br />
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>m_depthBuffer-&gt;m_data[y][x] = depth;
+</span></code></pre></div></p>
 <p>これで描画した状態が以下.  </p>
 <p><img alt="DepthBuffer_02" src="../Image/DepthBuffer_02.webp" />  </p>
 <p>前回と違い完全にちゃんと描画されている！<br />

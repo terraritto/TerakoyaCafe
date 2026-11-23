@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7727,29 +7748,29 @@ Stylized depiction of images based on depth perception<sup id="fnref:2"><a class
 \end{equation}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5em;vertical-align:-0.5em;"></span><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1em;"><span style="top:-3.16em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">0.212</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">0.715</span><span class="mord mathnormal">G</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">0.072</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5em;"><span></span></span></span></span></span></span></span><span class="tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="eqn-num"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5em;"><span></span></span></span></span></span></span></span></span></p>
 <p>このY値を使って処理を行うわけだけど、まず最初にやるのはバイラテラルフィルタの適用.<br />
-これでノイズ低減をしておく.  </p>
-<pre><code class="language-c++">// AlphaをRに変換 
-for (int i = 0; i &lt; ImageWidth; i++)
-{
-    for (int j = 0; j &lt; ImageHeight; j++)
-    {
-        r[j][i] = ColorF{ static_cast&lt;double&gt;(inputImage[j][i].a), 0.0, 0.0, 1.0 };
-
-        // YCrCbのYを計算,その後でdepth=Yとしてしまう
-        Vec3 color = Vec3{ inputImage[j][i].r,inputImage[j][i].g,inputImage[j][i].b } / 255.0;
-        double Y = Dot(color, Vec3{ 0.213,0.715,0.072 });
-        L[j][i] = ColorF{ Y,0.0,0.0,1.0 };
-
-        // 保持しておく
-        inputLayer[j][i] = Y;
-    }
-}
-
-// Bilateral Filterを適用してぼかす
-constexpr double SIGMA_COLOR = 0.1;
-constexpr double SIGMA_SPACE = 10.0;
-L.bilateralFilter(-1, SIGMA_COLOR, SIGMA_SPACE); 
-</code></pre>
+これでノイズ低減をしておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// AlphaをRに変換 </span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ImageWidth</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ImageHeight</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="n">r</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ColorF</span><span class="p">{</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">inputImage</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">a</span><span class="p">),</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="c1">// YCrCbのYを計算,その後でdepth=Yとしてしまう</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="n">Vec3</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec3</span><span class="p">{</span><span class="w"> </span><span class="n">inputImage</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">r</span><span class="p">,</span><span class="n">inputImage</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">g</span><span class="p">,</span><span class="n">inputImage</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">b</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">255.0</span><span class="p">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dot</span><span class="p">(</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">Vec3</span><span class="p">{</span><span class="w"> </span><span class="mf">0.213</span><span class="p">,</span><span class="mf">0.715</span><span class="p">,</span><span class="mf">0.072</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="n">L</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ColorF</span><span class="p">{</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="c1">// 保持しておく</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="n">inputLayer</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">}</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1">// Bilateral Filterを適用してぼかす</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">SIGMA_COLOR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="p">;</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">SIGMA_SPACE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="p">;</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">L</span><span class="p">.</span><span class="n">bilateralFilter</span><span class="p">(</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">SIGMA_COLOR</span><span class="p">,</span><span class="w"> </span><span class="n">SIGMA_SPACE</span><span class="p">);</span><span class="w"> </span>
+</span></code></pre></div></p>
 <p>現状<code>inputLayer</code>がY値、<code>L</code>がY値にバイラテラルフィルタを掛けたものとなっている.<br />
 これを使ってTwo-scale Tone Management for Photographic Look<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>において、「Bilateral Decomposition」と呼ばれている処理を行う.<br />
 この<code>L</code>をBaseレイヤーとして<code>B(x,y)</code>とする.<br />
@@ -7775,26 +7796,26 @@ L.bilateralFilter(-1, SIGMA_COLOR, SIGMA_SPACE);
 <p>ここで<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>b</mi></msub><mo separator="true">,</mo><msub><mi>F</mi><mi>d</mi></msub></mrow><annotation encoding="application/x-tex">F_{b},F_{d}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>はハイパーパラメータである.<br />
 調整して良い値を見つけよう.<br />
 今回は以下のように実装してみた.<br />
-<code>base</code>と<code>detail</code>に計算した後、これを重みと共に足し合わせるだけである.  </p>
-<pre><code class="language-c++">double baseWeight = 1.0; double detailWeight = 0.9;
-for (int i = 0; i &lt; ImageWidth; i++)
-{
-    for (int j = 0; j &lt; ImageHeight; j++)
-    {
-        double base = f(f(f(f(L[j][i].r / 255.0))));
-        double detail = inputLayer[j][i] - base;
-        depthLayer[j][i] = base * baseWeight + detail * detailWeight;
-    }
-}
-</code></pre>
+<code>base</code>と<code>detail</code>に計算した後、これを重みと共に足し合わせるだけである.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">baseWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">detailWeight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.9</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ImageWidth</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ImageHeight</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">].</span><span class="n">r</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">255.0</span><span class="p">))));</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">detail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputLayer</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">base</span><span class="p">;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="n">depthLayer</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">baseWeight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">detail</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">detailWeight</span><span class="p">;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>ここでちょっとおかしな点に気付くはず.<br />
 <code>base</code>にfという謎の関数がかかっている...<br />
 このfは以下のようになっている.  </p>
-<pre><code class="language-c++">auto f = [](const double&amp; x)
-    {
-        return (3.0 + (-6.0 + 4.0 * x) * x) * x;
-    };
-</code></pre>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="mf">3.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mf">-6.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">4.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div>
 <p>これは数式で書くなら以下のような感じ.  </p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnspacing="1em"><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mtable rowspacing="0.25em" columnalign="right" columnspacing=""><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>3</mn><mo>+</mo><mo stretchy="false">(</mo><mo>−</mo><mn>6</mn><mo>+</mo><mn>4</mn><mi>x</mi><mo stretchy="false">)</mo><mi>x</mi><mo stretchy="false">)</mo><mi>x</mi></mrow></mstyle></mtd></mtr></mtable></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{equation}
@@ -7834,49 +7855,49 @@ for (int i = 0; i &lt; ImageWidth; i++)
 ハーフトーンは単純で光に当たるピクセルは1,当たらないなら0という単純なもの！<br />
 この処理では<code>from</code>側に処理したいPixel,<code>to</code>側にポイントライトの位置を入れる.<br />
 高さは関係なくあくまで位置が分かればいいので<code>.xy()</code>で取る.<br />
-その後、距離を計算しておきつつ、DDAで点を求めておく.  </li>
+その後、距離を計算しておきつつ、DDAで点を求めておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">HalfToneProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="c1">// AlphaをRに変換 </span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ImageWidth</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ImageHeight</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">                </span><span class="n">Vec2</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="n">Vec2</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">pointLight</span><span class="p">.</span><span class="n">xy</span><span class="p">()</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">targetDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="p">.</span><span class="n">distanceFrom</span><span class="p">(</span><span class="n">to</span><span class="p">);</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">points</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetDDAPoints</span><span class="p">(</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">);</span>
+</span></code></pre></div></li>
 </ul>
-<pre><code class="language-c++">auto HalfToneProcess = [&amp;]()
-    {
-        // AlphaをRに変換 
-        for (int i = 0; i &lt; ImageWidth; i++)
-        {
-            for (int j = 0; j &lt; ImageHeight; j++)
-            {
-                Vec2 from = { i, j }; Vec2 to = { pointLight.xy() };
-                const double targetDistance = from.distanceFrom(to);
-                auto points = GetDDAPoints(from, to);
-</code></pre>
 <p>そしたらまずRayの高さを求める.<br />
 <code>from</code>と<code>to</code>があるので、Rayの距離を使って<code>from: threshold=0, to: threshold=1</code>となるような閾値を求める.<br />
-この閾値でLerpをして探索時点の高さが<code>currentDepth</code>で求まる.  </p>
-<pre><code class="language-c++">                bool isIntersect = false;
-                for (const auto&amp; point : points)
-                {
-                    double depth = depthLayer[point.y][point.x];
-
-                    // 現状の高さに置ける値をlerpで計算してみる
-                    double pointDistance = from.distanceFrom(point.xy());
-                    double threshold = pointDistance / targetDistance;
-                    double currentDepth = Math::Lerp(depthLayer[j][i], pointLight.z, threshold);
-</code></pre>
-<p>あとは現在のRayの高さである<code>currentDepth</code>が現状のピクセルに立ってる壁<code>depth</code>よりも高いか低いかを求める.<br />
+この閾値でLerpをして探索時点の高さが<code>currentDepth</code>で求まる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">                </span><span class="kt">bool</span><span class="w"> </span><span class="n">isIntersect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">point</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">points</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">                </span><span class="p">{</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">                    </span><span class="kt">double</span><span class="w"> </span><span class="n">depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">depthLayer</span><span class="p">[</span><span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">];</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">                    </span><span class="c1">// 現状の高さに置ける値をlerpで計算してみる</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">                    </span><span class="kt">double</span><span class="w"> </span><span class="n">pointDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">from</span><span class="p">.</span><span class="n">distanceFrom</span><span class="p">(</span><span class="n">point</span><span class="p">.</span><span class="n">xy</span><span class="p">());</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">                    </span><span class="kt">double</span><span class="w"> </span><span class="n">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointDistance</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">targetDistance</span><span class="p">;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">                    </span><span class="kt">double</span><span class="w"> </span><span class="n">currentDepth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="n">depthLayer</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">pointLight</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">threshold</span><span class="p">);</span>
+</span></code></pre></div>
+あとは現在のRayの高さである<code>currentDepth</code>が現状のピクセルに立ってる壁<code>depth</code>よりも高いか低いかを求める.<br />
 <code>currentDepth</code>の方が低い場合,これは壁にめり込んでいるという判定なので、交差判定をtrueにして終わり.<br />
 もしもPointLightまでたどり着いたら<code>false</code>となる.  </p>
-<pre><code class="language-c++">                    // 交差してる？
-                    if (currentDepth &lt;= depth)
-                    {
-                        isIntersect = true;
-                        break;
-                    }
-                }
-</code></pre>
-<p>あとは交差していれば光から見えないので0,交差していなければ光から見えるので1とすれば完了.  </p>
-<pre><code class="language-c++">                result[j][i] = isIntersect ? 0.0 : 1.0;
-            }
-        }
-    };
-</code></pre>
+<p><div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">                    </span><span class="c1">// 交差してる？</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentDepth</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">depth</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">                    </span><span class="p">{</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">                        </span><span class="n">isIntersect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">                        </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">                    </span><span class="p">}</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">                </span><span class="p">}</span>
+</span></code></pre></div>
+あとは交差していれば光から見えないので0,交差していなければ光から見えるので1とすれば完了.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">                </span><span class="n">result</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isIntersect</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div></p>
 <p>結果はこんな感じ、いい感じに色分けできている気がする.  </p>
 <p><img alt="SyylizedDepiction" src="../Image/SytlizedDepiction_04.webp" />  </p>
 <ul>
@@ -7884,23 +7905,23 @@ for (int i = 0; i &lt; ImageWidth; i++)
 これは単純で、複数の光源を用意して、その交差で<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mi>o</mi><mi>r</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">0 or 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span><span class="mord mathnormal" style="margin-right:0.02778em;">or</span><span class="mord">1</span></span></span></span>ではなく<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>0.25</mn><mo separator="true">,</mo><mn>0.5</mn><mo separator="true">,</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0, 0.25, 0.5, 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.25</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0.5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span></span></span></span>みたいなグレーも混ぜましょう～というだけである.  </li>
 </ul>
 <p>今回のテストではとりあえず光源は2つとして採用.<br />
-用意した後は交差しているのかを取って、交差したものの平均した色にしてみた.  </p>
-<pre><code class="language-c++">// AlphaをRに変換 
-for (int i = 0; i &lt; ImageWidth; i++)
-{
-    for (int j = 0; j &lt; ImageHeight; j++)
-    {
-        Vec2 from = { i, j };
-
-        bool isIntersectPoint1 = IsHitLight(from, pointLight, depthLayer[j][i]);
-        bool isIntersectPoint2 = IsHitLight(from, pointLight2, depthLayer[j][i]);
-
-        double sum = (isIntersectPoint1 + isIntersectPoint2) / 2.0;
-
-        result[j][i] = sum;
-    }
-}
-</code></pre>
+用意した後は交差しているのかを取って、交差したものの平均した色にしてみた.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// AlphaをRに変換 </span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ImageWidth</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">{</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ImageHeight</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="n">Vec2</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">isIntersectPoint1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IsHitLight</span><span class="p">(</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">pointLight</span><span class="p">,</span><span class="w"> </span><span class="n">depthLayer</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">isIntersectPoint2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IsHitLight</span><span class="p">(</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="n">pointLight2</span><span class="p">,</span><span class="w"> </span><span class="n">depthLayer</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">isIntersectPoint1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">isIntersectPoint2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="n">result</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>結果は次のような感じ.  </p>
 <p><img alt="StylizedDepiction_05" src="../Image/StylizedDepiction_05.webp" /></p>
 <p>うん、ちょっとグラデーションっぽくなった.  </p>
@@ -7915,40 +7936,40 @@ Dynamic Linesだと分かりにくいけど、集中線と言えば分かりや�
 <p>こうするとこのピクセルを通るRayは強制的に高い壁によって拒まれることになる.<br />
 拒まれた位置は基本的に全部0になるため、結果として黒い線が形成されることになるわけだ.賢い.  </p>
 <p>今回は以下のような感じで実装をしてみた.<br />
-まず乱数を生成して、手前ほど出やすくなるような確率分布を<code>std::discrete_distribution</code>を使って作成.  </p>
-<pre><code class="language-C++">std::vector&lt;double&gt; values;
-for (int i = pixelOffset; i &gt; 0; i--) { values.push_back(i); }
-std::discrete_distribution&lt;std::size_t&gt; dist(
-    values.begin(),
-    values.end()
-);
-</code></pre>
-<p>極座標のような感じで実装するため、まずはどれくらい回転させるかを乱数で決める.  </p>
-<pre><code class="language-c++">auto wallDepthLayer = depthLayer;
-for (int i = 0; i &lt; wallNum;)
-{
-    Vec2 r = { 1,0 };
-    r.rotate(Random(0.0, 1.0)* Math::TwoPi);
-</code></pre>
+まず乱数を生成して、手前ほど出やすくなるような確率分布を<code>std::discrete_distribution</code>を使って作成.<br />
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">values</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pixelOffset</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">values</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">std</span><span class="o">::</span><span class="n">discrete_distribution</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dist</span><span class="p">(</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">values</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="n">values</span><span class="p">.</span><span class="n">end</span><span class="p">()</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">);</span>
+</span></code></pre></div>
+極座標のような感じで実装するため、まずはどれくらい回転させるかを乱数で決める.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">wallDepthLayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">depthLayer</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">wallNum</span><span class="p">;)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">{</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="n">Vec2</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="n">r</span><span class="p">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">Random</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="n">Math</span><span class="o">::</span><span class="n">TwoPi</span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>回転が決まった後は、先程の乱数を使ってどれくらいの位置に壁を築くかを決定する.<br />
 今回は<code>50~75</code>pixelとした.<br />
 あまり手前だとあまりにも光源から遠いピクセルの塗りつぶしが多くなるため.<br />
-多分元の論文もそういう処理入れてそうではあるけどどうなんだろ？  </p>
-<pre><code class="language-c++">    size_t distance = dist(engine);
-    r *= Math::Lerp(50, 75, distance/static_cast&lt;double&gt;(pixelOffset));
-
-最後に光源位置からずらして、壁を作る位置を決定.  
-現在のPixel位置をはみ出してないかを確認した上で壁を築く.  
-```c++
-    Vec2 p = pointLight.xy() + r;
-
-    if (p.y &lt; wallDepthLayer.size() &amp;&amp; p.x &lt; wallDepthLayer[p.y].size())
-    {
-        wallDepthLayer[p.y][p.x] = 5; // 壁を厚くする
-        i++;
-    }
-}
-</code></pre>
+多分元の論文もそういう処理入れてそうではあるけどどうなんだろ？<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dist</span><span class="p">(</span><span class="n">engine</span><span class="p">);</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">Math</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w"> </span><span class="n">distance</span><span class="o">/</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">pixelOffset</span><span class="p">));</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">最後に光源位置からずらして</span><span class="err">、</span><span class="n">壁を作る位置を決定</span><span class="p">.</span><span class="w">  </span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">現在のPixel位置をはみ出してないかを確認した上で壁を築く</span><span class="p">.</span><span class="w">  </span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="err">```</span><span class="n">c</span><span class="o">++</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="n">Vec2</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointLight</span><span class="p">.</span><span class="n">xy</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">wallDepthLayer</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">wallDepthLayer</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">].</span><span class="n">size</span><span class="p">())</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">        </span><span class="n">wallDepthLayer</span><span class="p">[</span><span class="n">p</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">// 壁を厚くする</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">        </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>これで完成、結果を見てみる.  </p>
 <p><img alt="StylizedDepiction_06" src="../Image/StylizedDepiction_06.webp" /></p>
 <p>うん、それっぽく線が引かれている！  </p>
@@ -7965,36 +7986,36 @@ n(x,y) &amp;= \frac{g_{x} \times g_{y}}{|g_{x} \times g_{y}|}
 \end{split}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:5.5324em;vertical-align:-2.5162em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.0162em;"><span style="top:-5.4365em;"><span class="pstrut" style="height:3.2603em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span><span style="top:-3.9365em;"><span class="pstrut" style="height:3.2603em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span><span style="top:-2.0162em;"><span class="pstrut" style="height:3.2603em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.5162em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.0162em;"><span style="top:-5.4365em;"><span class="pstrut" style="height:3.2603em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord">∇</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)]</span></span></span><span style="top:-3.9365em;"><span class="pstrut" style="height:3.2603em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord">∇</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)]</span></span></span><span style="top:-2.0162em;"><span class="pstrut" style="height:3.2603em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord">∣</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9721em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.5162em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
 <p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∇</mi></mrow><annotation encoding="application/x-tex">\nabla</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">∇</span></span></span></span>は単純にソーベルフィルタを取ってやればいい.<br />
-そしたら式通りに計算するだけ.  </p>
-<pre><code class="language-c++">auto nablaX = SobelFilter(depthLayer, weightsX);
-auto nablaY = SobelFilter(depthLayer, weightsY);
-
-for (int i = 0; i &lt; ImageWidth; i++)
-{
-    for (int j = 0; j &lt; ImageHeight; j++)
-    {
-        Vec3 gx = {1.0, 0.0, nablaX[j][i]};
-        Vec3 gy = {0.0, 1.0, nablaY[j][i]};
-        Vec3 r = Math::Cross(gx, gy).normalized();
-        r = r * 0.5 + Vec3::One() * 0.5; // [-1,1]-&gt;[0,1]へ
-        resultImage[j][i] = ColorF(r.x, r.y, r.z, 1.0);
-    }
-}
-</code></pre>
+そしたら式通りに計算するだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">nablaX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SobelFilter</span><span class="p">(</span><span class="n">depthLayer</span><span class="p">,</span><span class="w"> </span><span class="n">weightsX</span><span class="p">);</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">nablaY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SobelFilter</span><span class="p">(</span><span class="n">depthLayer</span><span class="p">,</span><span class="w"> </span><span class="n">weightsY</span><span class="p">);</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ImageWidth</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">{</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ImageHeight</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">        </span><span class="n">Vec3</span><span class="w"> </span><span class="n">gx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="n">nablaX</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]};</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">        </span><span class="n">Vec3</span><span class="w"> </span><span class="n">gy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">nablaY</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]};</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">        </span><span class="n">Vec3</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="o">::</span><span class="n">Cross</span><span class="p">(</span><span class="n">gx</span><span class="p">,</span><span class="w"> </span><span class="n">gy</span><span class="p">).</span><span class="n">normalized</span><span class="p">();</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Vec3</span><span class="o">::</span><span class="n">One</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span><span class="w"> </span><span class="c1">// [-1,1]-&gt;[0,1]へ</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">        </span><span class="n">resultImage</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ColorF</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>そしたら最後にライティング、Pixel Shaderを見ておこう.<br />
-ほぼLumoと変わらないが、前回と違いマスク画像ではなく画像に適用しているので2枚のテクスチャで色を重ねている.  </p>
-<pre><code class="language-c++">float4 PS(s3d::PSInput input) : SV_TARGET
-{
-    float2 uv = input.uv;
-    float4 base = g_texture0.Sample(g_sampler0, uv);
-    float4 tex = g_texture1.Sample(g_sampler0, uv);
-    float3 normal = tex.rgb * 2.0f - 1.0f;
-
-    float4 color = float4(saturate(dot(normal, g_lightDirection)) * g_lightColor, 1.0);
-    color.rgb += base.rgb;
-    return (color * input.color) + g_colorAdd;
-}
-</code></pre>
+ほぼLumoと変わらないが、前回と違いマスク画像ではなく画像に適用しているので2枚のテクスチャで色を重ねている.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">float4</span><span class="w"> </span><span class="nf">PS</span><span class="p">(</span><span class="n">s3d</span><span class="o">::</span><span class="n">PSInput</span><span class="w"> </span><span class="n">input</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">SV_TARGET</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="p">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="n">float2</span><span class="w"> </span><span class="n">uv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">uv</span><span class="p">;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_texture0</span><span class="p">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">g_sampler0</span><span class="p">,</span><span class="w"> </span><span class="n">uv</span><span class="p">);</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">tex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_texture1</span><span class="p">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">g_sampler0</span><span class="p">,</span><span class="w"> </span><span class="n">uv</span><span class="p">);</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="n">float3</span><span class="w"> </span><span class="n">normal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tex</span><span class="p">.</span><span class="n">rgb</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0f</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">;</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float4</span><span class="p">(</span><span class="n">saturate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">normal</span><span class="p">,</span><span class="w"> </span><span class="n">g_lightDirection</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">g_lightColor</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">    </span><span class="n">color</span><span class="p">.</span><span class="n">rgb</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">base</span><span class="p">.</span><span class="n">rgb</span><span class="p">;</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">g_colorAdd</span><span class="p">;</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>そしたら結果.  </p>
 <p><img alt="StylizedDepiction_07" src="../Image/StylizedDepiction_07.webp" /></p>
 <p>カラー画像な分、今回の方が見栄えがいいね.<br />

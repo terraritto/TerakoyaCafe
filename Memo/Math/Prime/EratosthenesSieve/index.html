@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7713,12 +7734,12 @@
 <p>素数判定の王、個人的に一番有名なのはエラトステネスの篩<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>な気はしています.<br />
 エラトステネスの篩はやることは簡単で、素数の倍数を片っ端から潰していくということをするだけ.  </p>
 <p>例えば1から30までのマスを用意する.  </p>
-<pre><code>1:t  2:t  3:t  4:t  5:t  6:t  7:t
-8:t  9:t  10:t 11:t 12:t 13:t 14:t 
-15:t 16:t 17:t 18:t 19:t 20:t 21:t
-22:t 23:t 24:t 25:t 26:t 27:t 28:t
-29:t 30:t
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1:t  2:t  3:t  4:t  5:t  6:t  7:t
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>8:t  9:t  10:t 11:t 12:t 13:t 14:t 
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>15:t 16:t 17:t 18:t 19:t 20:t 21:t
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>22:t 23:t 24:t 25:t 26:t 27:t 28:t
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>29:t 30:t
+</span></code></pre></div>
 <p>マスにはtrueかfalseの判定結果が入るようになっている.<br />
 trueは<code>t</code>,falseは<code>f</code>で表すことにする.<br />
 この時<code>t</code>なら素数,<code>f</code>なら素数じゃないということになる.  </p>
@@ -7726,31 +7747,31 @@ trueは<code>t</code>,falseは<code>f</code>で表すことにする.<br />
 これは2だ、1は素数じゃない.1を含めたらプッチ神父も怒ってしまう.<br />
 そして、2の倍数は2で割れるため素数じゃない.<br />
 そのため、2の倍数は<code>f</code>にして振り落とす！  </p>
-<pre><code>1:t  2:t  3:t  4:f  5:t  6:f  7:t
-8:f  9:t  10:f 11:t 12:f 13:t 14:f 
-15:t 16:f 17:t 18:f 19:t 20:f 21:t
-22:f 23:t 24:f 25:t 26:f 27:t 28:f
-29:t 30:f
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>1:t  2:t  3:t  4:f  5:t  6:f  7:t
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>8:f  9:t  10:f 11:t 12:f 13:t 14:f 
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>15:t 16:f 17:t 18:f 19:t 20:f 21:t
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>22:f 23:t 24:f 25:t 26:f 27:t 28:f
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>29:t 30:f
+</span></code></pre></div>
 <p>この段階で4,6,8,10,12,14,16,18,20,22,24,26,28,30が脱落！<br />
 14個なのでほぼ半分が素数でないことになる.<br />
 1を除けば残っている素数は15個だ.<br />
 次に小さい素数は3、そのため3の倍数を次は落とす.  </p>
-<pre><code>1:t  2:t  3:t  4:f  5:t  6:f  7:t
-8:f  9:f  10:f 11:t 12:f 13:t 14:f 
-15:f 16:f 17:t 18:f 19:t 20:f 21:f
-22:f 23:t 24:f 25:t 26:f 27:f 28:f
-29:t 30:f
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>1:t  2:t  3:t  4:f  5:t  6:f  7:t
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>8:f  9:f  10:f 11:t 12:f 13:t 14:f 
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>15:f 16:f 17:t 18:f 19:t 20:f 21:f
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>22:f 23:t 24:f 25:t 26:f 27:f 28:f
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>29:t 30:f
+</span></code></pre></div>
 <p>9,15,21,27が脱落！<br />
 残っている素数は11個.<br />
 次に小さい素数は5、そのため5の倍数を次は落とす.  </p>
-<pre><code>1:t  2:t  3:t  4:f  5:t  6:f  7:t
-8:f  9:f  10:f 11:t 12:f 13:t 14:f 
-15:f 16:f 17:t 18:f 19:t 20:f 21:f
-22:f 23:t 24:f 25:f 26:f 27:f 28:f
-29:t 30:f
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>1:t  2:t  3:t  4:f  5:t  6:f  7:t
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>8:f  9:f  10:f 11:t 12:f 13:t 14:f 
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>15:f 16:f 17:t 18:f 19:t 20:f 21:f
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>22:f 23:t 24:f 25:f 26:f 27:f 28:f
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>29:t 30:f
+</span></code></pre></div>
 <p>25が脱落！
 残っている素数は10個.<br />
 次に小さい素数は7、そのため7の倍数を次は落とす...がこれはない.<br />
@@ -7758,63 +7779,63 @@ trueは<code>t</code>,falseは<code>f</code>で表すことにする.<br />
 次に小さい素数は13、そのため13の倍数を次は落とす...がこれはない.
 次に小さい素数は17、これ以降は2倍すると30を超えちゃうので落とせない.<br />
 そのため省略をする.  </p>
-<pre><code>1:t  2:t  3:t  4:f  5:t  6:f  7:t
-8:f  9:f  10:f 11:t 12:f 13:t 14:f 
-15:f 16:f 17:t 18:f 19:t 20:f 21:f
-22:f 23:t 24:f 25:f 26:f 27:f 28:f
-29:t 30:f
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>1:t  2:t  3:t  4:f  5:t  6:f  7:t
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>8:f  9:f  10:f 11:t 12:f 13:t 14:f 
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>15:f 16:f 17:t 18:f 19:t 20:f 21:f
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>22:f 23:t 24:f 25:f 26:f 27:f 28:f
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>29:t 30:f
+</span></code></pre></div>
 <p>こんな感じで小さい方の素数から合成数となる数を片っ端から落とすのが篩っぽい動き.<br />
 これをコードで書くと以下のような感じ.  </p>
-<pre><code class="language-c++">for (int i = 2; i &lt; N; i++)
-{
-    if (container[i]) // 素数のみ篩をかける
-    {
-        // 倍数部分のみ回ればOK
-        for (int j = i * 2; j &lt; N; j+=i)
-        {
-            container[j] = false;
-        }
-    }
-}
-</code></pre>
-<p>小さい方から素数を探して、見つかったら倍数を振り落とす.これだけだ！  </p>
+<p><div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">container</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="c1">// 素数のみ篩をかける</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="c1">// 倍数部分のみ回ればOK</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">+=</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">            </span><span class="n">container</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+</span></code></pre></div>
+小さい方から素数を探して、見つかったら倍数を振り落とす.これだけだ！  </p>
 <p>さて、これだとちょっと無駄が多いので最適化してみよう.<br />
-まず倍数の部分.  </p>
-<pre><code class="language-c++">int j = i * 2;
-</code></pre>
-<p>こんな感じで二倍にしているが、2ってすでに弾いてるので無駄.<br />
+まず倍数の部分.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span></code></pre></div>
+こんな感じで二倍にしているが、2ってすでに弾いてるので無駄.<br />
 この後<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>ずつ足していくけど、この中にも既に確定した素数があると無駄な計算となる.<br />
-つまり、自分の数字より下の倍数はすべて弾いても問題ないので、以下のようにスキップが可能.  </p>
-<pre><code class="language-c++">int j = i * i;
-</code></pre>
-<p>これでちょっと軽くなった！  </p>
-<p>次に見るのはループ回数.  </p>
-<pre><code class="language-c++">for (int i = 2; i &lt; N; i++)
-</code></pre>
-<p>頭から<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>まで見ているけど、そもそも考えてほしい.<br />
+つまり、自分の数字より下の倍数はすべて弾いても問題ないので、以下のようにスキップが可能.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span></code></pre></div>
+これでちょっと軽くなった！  </p>
+<p>次に見るのはループ回数.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></code></pre></div>
+頭から<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>まで見ているけど、そもそも考えてほしい.<br />
 エラトステネスの篩は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∗</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">i*i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>より下は先程述べた通り、小さい素数が含まれてるorすでに弾いてるので見る必要がない.<br />
 そして、エラトステネスの篩で確認したいのは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>までの値.<br />
 そのため<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><msqrt><mi>N</mi></msqrt></mrow><annotation encoding="application/x-tex">i=\sqrt{N}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1133em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9267em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span><span style="top:-2.8867em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSc0MDBlbScgaGVpZ2h0PScxLjA4ZW0nIHZpZXdCb3g9JzAgMCA0MDAwMDAgMTA4MCcgcHJlc2VydmVBc3BlY3RSYXRpbz0neE1pbllNaW4gc2xpY2UnPjxwYXRoIGQ9J005NSw3MDIKYy0yLjcsMCwtNy4xNywtMi43LC0xMy41LC04Yy01LjgsLTUuMywtOS41LC0xMCwtOS41LC0xNApjMCwtMiwwLjMsLTMuMywxLC00YzEuMywtMi43LDIzLjgzLC0yMC43LDY3LjUsLTU0CmM0NC4yLC0zMy4zLDY1LjgsLTUwLjMsNjYuNSwtNTFjMS4zLC0xLjMsMywtMiw1LC0yYzQuNywwLDguNywzLjMsMTIsMTAKczE3MywzNzgsMTczLDM3OGMwLjcsMCwzNS4zLC03MSwxMDQsLTIxM2M2OC43LC0xNDIsMTM3LjUsLTI4NSwyMDYuNSwtNDI5CmM2OSwtMTQ0LDEwNC41LC0yMTcuNywxMDYuNSwtMjIxCmwwIC0wCmM1LjMsLTkuMywxMiwtMTQsMjAsLTE0Ckg0MDAwMDB2NDBIODQ1LjI3MjQKcy0yMjUuMjcyLDQ2NywtMjI1LjI3Miw0NjdzLTIzNSw0ODYsLTIzNSw0ODZjLTIuNyw0LjcsLTksNywtMTksNwpjLTYsMCwtMTAsLTEsLTEyLC0zcy0xOTQsLTQyMiwtMTk0LC00MjJzLTY1LDQ3LC02NSw0N3oKTTgzNCA4MGg0MDAwMDB2NDBoLTQwMDAwMHonLz48L3N2Zz4="/></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1133em;"><span></span></span></span></span></span></span></span></span>より大きい値は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∗</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">i*i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>の計算で<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>を超えちゃうのでやる必要がない.<br />
-よって、以下のループで問題ない.  </p>
-<pre><code class="language-c++">    for (int i = 2; i &lt;= Sqrt(N); i++)
-</code></pre>
-<p>ただし<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>q</mi><mi>r</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">Sqrt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">Sq</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">t</span></span></span></span>が負荷的に気になるなら<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∗</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">i*i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>で判定してもよい.  </p>
-<pre><code class="language-c++">    for (int i = 2; i*i &lt;= N; i++)
-</code></pre>
+よって、以下のループで問題ない.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">Sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></code></pre></div>
+ただし<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>q</mi><mi>r</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">Sqrt</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">Sq</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">t</span></span></span></span>が負荷的に気になるなら<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>∗</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">i*i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span>で判定してもよい.  </p>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></code></pre></div>
 <p>ここまでをまとめた結果が以下.  </p>
-<pre><code class="language-c++">for (int i = 2; i*i &lt;= N; i++)
-{
-    if (container[i]) // 素数のみ篩をかける
-    {
-        // 倍数部分のみ回ればOK
-        for (int j = i * i; j &lt; N; j+=i)
-        {
-            container[j] = false;
-        }
-    }
-}
-</code></pre>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">*</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="p">{</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">container</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="c1">// 素数のみ篩をかける</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">        </span><span class="c1">// 倍数部分のみ回ればOK</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">+=</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">            </span><span class="n">container</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="p">}</span>
+</span></code></pre></div>
 <p>うん、単純だけどこれだけでも軽くなっている！<br />
 さて、最後に1000までの素数を列挙してみよう.  </p>
 <p><img alt="EratosthenesSieve_01" src="../Image/EratosthenesSieve_01.webp" />  </p>

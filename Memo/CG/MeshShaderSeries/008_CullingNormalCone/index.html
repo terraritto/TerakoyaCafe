@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7724,9 +7745,9 @@ meshletは生成時に頂点の近い位置を選出しているため、ある�
 <p>何はともあれ、まずは法錐のデータを作らないと始まらない.<br />
 ということで、今回もこっから始めよう.<br />
 この法錐も前回のBounding Sphereと同様,meshoptimizerを使うことで実装が可能!!  </p>
-<p>まずは法錐のデータを入れる用の配列を用意、<code>uint32_t</code>でOK.  </p>
-<pre><code class="language-c++">    std::vector&lt;uint32_t&gt; meshletCones;
-</code></pre>
+<p>まずは法錐のデータを入れる用の配列を用意、<code>uint32_t</code>でOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">meshletCones</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>さて、前回のBounds計算で<code>meshopt_computeMeshletBounds</code>を行っていた.<br />
 実はこれで投げると法錐のデータに関してもちゃんと用意ができている.<br />
 そのため、まずはデータを抽出しよう.<br />
@@ -7737,40 +7758,40 @@ meshletは生成時に頂点の近い位置を選出しているため、ある�
 </ul>
 <p>この二つである.<br />
 軸は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mi>y</mi><mi>z</mi></mrow><annotation encoding="application/x-tex">xyz</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">x</span><span class="mord mathnormal" style="margin-right:0.04398em;">yz</span></span></span></span>なのでfloat3つ分で、角度はfloat1つ分なので全部を<code>XMFLOAT4</code>に格納する.<br />
-ただし、データは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-1,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>なので、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>となるように調整をしておく.  </p>
-<pre><code class="language-c++">        XMFLOAT4 normalCone =
-        {
-            std::clamp(bounds.cone_axis[0] * 0.5f + 0.5f, 0.0f, 1.0f),
-            std::clamp(bounds.cone_axis[1] * 0.5f + 0.5f, 0.0f, 1.0f),
-            std::clamp(bounds.cone_axis[2] * 0.5f + 0.5f, 0.0f, 1.0f),
-            std::clamp(bounds.cone_cutoff  * 0.5f + 0.5f, 0.0f, 1.0f) // sin(a)
-        };
-</code></pre>
+ただし、データは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-1,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>なので、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>となるように調整をしておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">        </span><span class="n">XMFLOAT4</span><span class="w"> </span><span class="n">normalCone</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">clamp</span><span class="p">(</span><span class="n">bounds</span><span class="p">.</span><span class="n">cone_axis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5f</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">),</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">clamp</span><span class="p">(</span><span class="n">bounds</span><span class="p">.</span><span class="n">cone_axis</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5f</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">),</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">clamp</span><span class="p">(</span><span class="n">bounds</span><span class="p">.</span><span class="n">cone_axis</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5f</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">),</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">clamp</span><span class="p">(</span><span class="n">bounds</span><span class="p">.</span><span class="n">cone_cutoff</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5f</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span><span class="w"> </span><span class="c1">// sin(a)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="p">};</span>
+</span></code></pre></div></p>
 <p>そして、そのあとは<code>XMFLOAT4</code>を8bitずつ<code>uint32_t</code>に収める.<br />
-index bufferでもやってたのと同じような処理だ.  </p>
-<pre><code class="language-c++">        uint32_t packNormalCone = 0u;
-        packNormalCone |= ((static_cast&lt;uint8_t&gt;(normalCone.x * 255.0f) &amp; 0xFF) &lt;&lt; 0);
-        packNormalCone |= ((static_cast&lt;uint8_t&gt;(normalCone.y * 255.0f) &amp; 0xFF) &lt;&lt; 8);
-        packNormalCone |= ((static_cast&lt;uint8_t&gt;(normalCone.z * 255.0f) &amp; 0xFF) &lt;&lt; 16);
-        packNormalCone |= ((static_cast&lt;uint8_t&gt;(normalCone.w * 255.0f) &amp; 0xFF) &lt;&lt; 24);
-
-        meshletCones.push_back(packNormalCone);
-</code></pre>
-<p>あとはResource側でも渡すのを忘れずに.  </p>
-<pre><code class="language-c++">        meshletResource.m_normalCone = meshletCones[count];
-</code></pre>
-<p>そしたらhlsl側、こっちも前回同様Meshletにデータを用意すればOK.  </p>
-<pre><code class="language-c++">struct Meshlet
-{
-    uint VertexOffset;
-    uint VertexCount;
-    uint TriangleOffset;
-    uint TriangleCount;
-    uint NormalCone; // 追加
-    float4 BoundingSphere;
-};
-</code></pre>
-<p>ここまででデータの追加は終わった！<br />
+index bufferでもやってたのと同じような処理だ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">        </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">packNormalCone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0u</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">        </span><span class="n">packNormalCone</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">((</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">normalCone</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">255.0f</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="n">packNormalCone</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">((</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">normalCone</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">255.0f</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="n">packNormalCone</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">((</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">normalCone</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">255.0f</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">);</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="n">packNormalCone</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">((</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">normalCone</span><span class="p">.</span><span class="n">w</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">255.0f</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">24</span><span class="p">);</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="n">meshletCones</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">packNormalCone</span><span class="p">);</span>
+</span></code></pre></div>
+あとはResource側でも渡すのを忘れずに.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">        </span><span class="n">meshletResource</span><span class="p">.</span><span class="n">m_normalCone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">meshletCones</span><span class="p">[</span><span class="n">count</span><span class="p">];</span>
+</span></code></pre></div></p>
+<p>そしたらhlsl側、こっちも前回同様Meshletにデータを用意すればOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Meshlet</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">VertexOffset</span><span class="p">;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">VertexCount</span><span class="p">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">TriangleOffset</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">TriangleCount</span><span class="p">;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">NormalCone</span><span class="p">;</span><span class="w"> </span><span class="c1">// 追加</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">BoundingSphere</span><span class="p">;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">};</span>
+</span></code></pre></div>
+ここまででデータの追加は終わった！<br />
 次は実際に法錐カリングの処理に入っていく.  </p>
 <p><img alt="meshlet_008_02" src="../Image/meshlet_008_02.webp" />  </p>
 <p>見えているかどうかは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mi>v</mi><mi>i</mi><mi>e</mi><mi>w</mi></mrow><annotation encoding="application/x-tex">-view</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7429em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">i</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span></span>という視線ベクトルの逆方向と法線がどれくらいかで判定する.<br />
@@ -7851,16 +7872,16 @@ index bufferでもやってたのと同じような処理だ.  </p>
 3行目はMeshoptimizer<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>のREADMEに書かれてる式,確かにここまでやった方が余計なマイナスが消えて良いのかもしれない.<br />
 意味としてはどちらも同じです.  </p>
 <p>そしたら<code>cone_cutoff</code>のパラメータって、角度とは言うけど結局何が入ってるの～？ということについて考える.  </p>
-<p>まず実際の定義を見に行くと、以下のようになっている.  </p>
-<pre><code class="language-c++">    float cone_cutoff; /* = cos(angle/2) */
-</code></pre>
-<p>なるほど、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cos</mi><mo>⁡</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">\cos{\alpha}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span>みたいな風なものを収めてるっぽい.  </p>
-<p>次に格納位置を見てみよう.  </p>
-<pre><code class="language-c++">    // cos(a) for normal cone is mindp; we need to add 90 degrees on both sides and invert the cone
-    // which gives us -cos(a+90) = -(-sin(a)) = sin(a) = sqrt(1 - cos^2(a))
-    bounds.cone_cutoff = sqrtf(1 - mindp * mindp);
-</code></pre>
-<p>mindpが<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cos</mi><mo>⁡</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">\cos{\alpha}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span>なので、なんかおかしい...<br />
+<p>まず実際の定義を見に行くと、以下のようになっている.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">cone_cutoff</span><span class="p">;</span><span class="w"> </span><span class="cm">/* = cos(angle/2) */</span>
+</span></code></pre></div>
+なるほど、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cos</mi><mo>⁡</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">\cos{\alpha}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span>みたいな風なものを収めてるっぽい.  </p>
+<p>次に格納位置を見てみよう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span><span class="c1">// cos(a) for normal cone is mindp; we need to add 90 degrees on both sides and invert the cone</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="c1">// which gives us -cos(a+90) = -(-sin(a)) = sin(a) = sqrt(1 - cos^2(a))</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">bounds</span><span class="p">.</span><span class="n">cone_cutoff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrtf</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mindp</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">mindp</span><span class="p">);</span>
+</span></code></pre></div>
+mindpが<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cos</mi><mo>⁡</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">\cos{\alpha}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span>なので、なんかおかしい...<br />
 どうも欲しいのは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>cos</mi><mo>⁡</mo><mrow><mo stretchy="false">(</mo><mi>α</mi><mo>+</mo><mfrac><mi>π</mi><mn>2</mn></mfrac><mo stretchy="false">)</mo></mrow></mrow><annotation encoding="application/x-tex">\cos{(\alpha+\frac{\pi}{2})}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.095em;vertical-align:-0.345em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6954em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">π</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span></span></span></span></span>,これは先ほどの計算からわかる.<br />
 更に言えば<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sin</mi><mo>⁡</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">\sin{\alpha}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6679em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span>だとベストなのもわかる.<br />
 そのため、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>−</mo><msqrt><mrow><msup><mrow><mi>cos</mi><mo>⁡</mo></mrow><mn>2</mn></msup><mi>α</mi></mrow></msqrt><mo>=</mo><mi>sin</mi><mo>⁡</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">1-\sqrt{\cos^2{\alpha}}=\sin{\alpha}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.0849em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9551em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mop"><span class="mop">cos</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span><span style="top:-2.9151em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSc0MDBlbScgaGVpZ2h0PScxLjA4ZW0nIHZpZXdCb3g9JzAgMCA0MDAwMDAgMTA4MCcgcHJlc2VydmVBc3BlY3RSYXRpbz0neE1pbllNaW4gc2xpY2UnPjxwYXRoIGQ9J005NSw3MDIKYy0yLjcsMCwtNy4xNywtMi43LC0xMy41LC04Yy01LjgsLTUuMywtOS41LC0xMCwtOS41LC0xNApjMCwtMiwwLjMsLTMuMywxLC00YzEuMywtMi43LDIzLjgzLC0yMC43LDY3LjUsLTU0CmM0NC4yLC0zMy4zLDY1LjgsLTUwLjMsNjYuNSwtNTFjMS4zLC0xLjMsMywtMiw1LC0yYzQuNywwLDguNywzLjMsMTIsMTAKczE3MywzNzgsMTczLDM3OGMwLjcsMCwzNS4zLC03MSwxMDQsLTIxM2M2OC43LC0xNDIsMTM3LjUsLTI4NSwyMDYuNSwtNDI5CmM2OSwtMTQ0LDEwNC41LC0yMTcuNywxMDYuNSwtMjIxCmwwIC0wCmM1LjMsLTkuMywxMiwtMTQsMjAsLTE0Ckg0MDAwMDB2NDBIODQ1LjI3MjQKcy0yMjUuMjcyLDQ2NywtMjI1LjI3Miw0NjdzLTIzNSw0ODYsLTIzNSw0ODZjLTIuNyw0LjcsLTksNywtMTksNwpjLTYsMCwtMTAsLTEsLTEyLC0zcy0xOTQsLTQyMiwtMTk0LC00MjJzLTY1LDQ3LC02NSw0N3oKTTgzNCA4MGg0MDAwMDB2NDBoLTQwMDAwMHonLz48L3N2Zz4="/></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.0849em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6679em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></span>で直接<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sin</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\sin</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6679em;"></span><span class="mop">sin</span></span></span></span>を収めてるっぽい.<br />
@@ -7870,45 +7891,45 @@ index bufferでもやってたのと同じような処理だ.  </p>
 <p>まず最初はデータの<code>normalCone</code>をUnpackする.<br />
 CPU側からは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>で渡したので、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[-1,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>になるように整形を行う.<br />
 そして、余りにも角度が小さい場合は打ち切っておく.<br />
-法錐としてみなさないパターンですね.  </p>
-<pre><code class="language-c++">bool IsVisible(Meshlet meshlet, float3 cameraPosition, float4 planes[6], float4x4 world, float4x4 viewProj)
-{
-    // [0,1] -&gt; [0, 2] -&gt; [-1, 1]
-    float4 normalCone = UnpackNorm(meshlet.NormalCone) * 2.0f - 1.0f;
-
-    // judge degree near zero.
-    if (normalCone.w &lt;= 1e-6f)
-    {
-        return false;
-    }
-</code></pre>
+法錐としてみなさないパターンですね.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">IsVisible</span><span class="p">(</span><span class="n">Meshlet</span><span class="w"> </span><span class="n">meshlet</span><span class="p">,</span><span class="w"> </span><span class="n">float3</span><span class="w"> </span><span class="n">cameraPosition</span><span class="p">,</span><span class="w"> </span><span class="n">float4</span><span class="w"> </span><span class="n">planes</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="n">float4x4</span><span class="w"> </span><span class="n">world</span><span class="p">,</span><span class="w"> </span><span class="n">float4x4</span><span class="w"> </span><span class="n">viewProj</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="c1">// [0,1] -&gt; [0, 2] -&gt; [-1, 1]</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">normalCone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UnpackNorm</span><span class="p">(</span><span class="n">meshlet</span><span class="p">.</span><span class="n">NormalCone</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0f</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="c1">// judge degree near zero.</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">normalCone</span><span class="p">.</span><span class="n">w</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">1e-6f</span><span class="p">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>次にBoundingSphereの中心をViewが見る位置として、View方向を構築する.<br />
-前回もそうだったけど、Meshletはポリゴンの集まりなので、こんな風に基準の位置が必要～.  </p>
-<pre><code class="language-c++">    float4 sphere = TransformSphere(meshlet.BoundingSphere, world);
-    float3 viewDirection = normalize(sphere.xyz - cameraPosition);
-</code></pre>
-<p>axisも変換をしておく,もちろんワールド座標に.  </p>
-<pre><code class="language-c++">    float3 axis = normalize(mul((float3x3)world, normalCone.xyz));
-</code></pre>
+前回もそうだったけど、Meshletはポリゴンの集まりなので、こんな風に基準の位置が必要～.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">sphere</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TransformSphere</span><span class="p">(</span><span class="n">meshlet</span><span class="p">.</span><span class="n">BoundingSphere</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">);</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="n">float3</span><span class="w"> </span><span class="n">viewDirection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normalize</span><span class="p">(</span><span class="n">sphere</span><span class="p">.</span><span class="n">xyz</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cameraPosition</span><span class="p">);</span>
+</span></code></pre></div></p>
+<p>axisも変換をしておく,もちろんワールド座標に.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">    </span><span class="n">float3</span><span class="w"> </span><span class="n">axis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normalize</span><span class="p">(</span><span class="n">mul</span><span class="p">((</span><span class="n">float3x3</span><span class="p">)</span><span class="n">world</span><span class="p">,</span><span class="w"> </span><span class="n">normalCone</span><span class="p">.</span><span class="n">xyz</span><span class="p">));</span>
+</span></code></pre></div></p>
 <p>最後に<code>NormalConeCulling</code>で判定を行う.<br />
-これが<code>true</code>ならCullingされてるということで打ち切りをして終わり.  </p>
-<pre><code class="language-c++">    if (NormalConeCulling(float4(axis, normalCone.w), viewDirection))
-    {
-        return false;
-    }
-
-    return true;
-}
-</code></pre>
+これが<code>true</code>ならCullingされてるということで打ち切りをして終わり.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">NormalConeCulling</span><span class="p">(</span><span class="n">float4</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span><span class="w"> </span><span class="n">normalCone</span><span class="p">.</span><span class="n">w</span><span class="p">),</span><span class="w"> </span><span class="n">viewDirection</span><span class="p">))</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p><code>NormalConeCulling</code>を見てみよう. 
 これは単純に見えない判定の<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>sin</mi><mo>⁡</mo><mi>α</mi><mo>&lt;</mo><mo>=</mo><mi>d</mi><mi>o</mi><mi>t</mi><mo stretchy="false">(</mo><mi>v</mi><mi>i</mi><mi>e</mi><mi>w</mi><mo separator="true">,</mo><mi>n</mi><mi>o</mi><mi>r</mi><mi>m</mi><mi>a</mi><mi>l</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\sin{\alpha} &lt;= dot(view, normal)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.707em;vertical-align:-0.0391em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">i</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.02778em;">or</span><span class="mord mathnormal">ma</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mclose">)</span></span></span></span>をやるだけ.<br />
-これが<code>true</code>なら不可視領域ということですね.  </p>
-<pre><code class="language-c++">bool NormalConeCulling(float4 normalCone, float3 viewDirection)
-{    
-    // this writes representation by MeshOptimizer.
-    return dot(normalCone.xyz, viewDirection) &gt; normalCone.w;   
-}
-</code></pre>
+これが<code>true</code>なら不可視領域ということですね.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">NormalConeCulling</span><span class="p">(</span><span class="n">float4</span><span class="w"> </span><span class="n">normalCone</span><span class="p">,</span><span class="w"> </span><span class="n">float3</span><span class="w"> </span><span class="n">viewDirection</span><span class="p">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="p">{</span><span class="w">    </span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="c1">// this writes representation by MeshOptimizer.</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">dot</span><span class="p">(</span><span class="n">normalCone</span><span class="p">.</span><span class="n">xyz</span><span class="p">,</span><span class="w"> </span><span class="n">viewDirection</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">normalCone</span><span class="p">.</span><span class="n">w</span><span class="p">;</span><span class="w">   </span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>これでカリングの計算は終わり、最後に結果を見てみよう.  </p>
 <p><img alt="meshlet_008_03" src="../Image/meshlet_008_03.webp" />  </p>
 <p>今回は法錐カリングのみを適用した形で、前回のフラスタムカリングは適用していない.<br />

@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7757,61 +7778,61 @@ fは画素値を取ってきているんだった.<br />
 ここまでのことをまとめると、1つ目は距離による影響を考えていたのに対し、2つ目は色の差による影響を取り入れるという二つのものを合わせたものがバイラテラルフィルタと言えそう.<br />
 周囲のピクセルで近いものを取り入れるように考慮すると良さそうというのは感覚的にもあってそうな感じはある.<br />
 あとはこれを実際に実装するだけ.<br />
-まずはフィルタのサイズを取る.これは式内のm,nに相当.  </p>
-<pre><code class="language-c++">for (int i = -filterSize; i &lt;= filterSize; i++)
-{
-    for (int j = -filterSize; j &lt;= filterSize; j++)
-    {
-</code></pre>
-<p>これができたらまずはfの値を計算する,要は画素値を取ってくるだけ.  </p>
-<pre><code class="language-c++">        ColorF current = image[h][w]; // f(i, j)
-        ColorF next = image[h + i][w + j]; // f(i+m, j+n)
-</code></pre>
-<p>そしたらまずはexpの一つ目を計算.  </p>
-<pre><code class="language-c++">                float exp1 = Exp(-(i * i + j * j) / (2.0f * sigma1 * sigma1));
-</code></pre>
-<p>その次にexpの二つ目、画素値の差を取ってそれを使うだけ.<br />
-それが終わったらexp1をかけ合わせてあげれば重みになる.  </p>
-<pre><code class="language-c++">                Vec3 p = current.rgb() - next.rgb();
-                Vec3 exp2 = Exp(-(p * p) / (2.0f * sigma2 * sigma2));
-                exp2 *= exp1; // これがw(i,j,m,n)
-</code></pre>
-<p>最後に結果を足しつつも、重みも蓄積しておく.<br />
-重みはバイラテラルフィルタの分母に相当するので、最後に割ってあげる必要があるため.  </p>
-<pre><code class="language-c++">                result += exp2 * next.rgb();
-                sum += exp2;
-</code></pre>
-<p>すべての処理が終わったら、結果を割ってあげれば終了.  </p>
-<pre><code class="language-c++">        result = result / sum;
-</code></pre>
-<p>これをまとめると以下のようになる.  </p>
-<pre><code class="language-c++">auto filterProcess = [&amp;](int w, int h)
-    {
-        Vec3 sum = Vec3::Zero();
-
-        Vec3 result = Vec3::Zero();
-        for (int i = -filterSize; i &lt;= filterSize; i++)
-        {
-            for (int j = -filterSize; j &lt;= filterSize; j++)
-            {
-                ColorF current = image[h][w];
-                ColorF next = image[h + i][w + j]; // f(i+m, j+n)
-
-                // 重み計算
-                float exp1 = Exp(-(i * i + j * j) / (2.0f * sigma1 * sigma1));
-                Vec3 p = current.rgb() - next.rgb();
-                Vec3 exp2 = Exp(-(p * p) / (2.0f * sigma2 * sigma2));
-                exp2 *= exp1; // これがw(i,j,m,n)
-
-                result += exp2 * next.rgb();
-                sum += exp2;
-            }
-        }
-
-        result = result / sum;
-        resultImage[h][w] = { ColorF(result, 1.0f) };
-    };
-</code></pre>
+まずはフィルタのサイズを取る.これは式内のm,nに相当.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">filterSize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">filterSize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">filterSize</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">filterSize</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">{</span>
+</span></code></pre></div>
+これができたらまずはfの値を計算する,要は画素値を取ってくるだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">        </span><span class="n">ColorF</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">w</span><span class="p">];</span><span class="w"> </span><span class="c1">// f(i, j)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">        </span><span class="n">ColorF</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">];</span><span class="w"> </span><span class="c1">// f(i+m, j+n)</span>
+</span></code></pre></div>
+そしたらまずはexpの一つ目を計算.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">                </span><span class="kt">float</span><span class="w"> </span><span class="n">exp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma1</span><span class="p">));</span>
+</span></code></pre></div>
+その次にexpの二つ目、画素値の差を取ってそれを使うだけ.<br />
+それが終わったらexp1をかけ合わせてあげれば重みになる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">                </span><span class="n">Vec3</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">next</span><span class="p">.</span><span class="n">rgb</span><span class="p">();</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">                </span><span class="n">Vec3</span><span class="w"> </span><span class="n">exp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2</span><span class="p">));</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">                </span><span class="n">exp2</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">exp1</span><span class="p">;</span><span class="w"> </span><span class="c1">// これがw(i,j,m,n)</span>
+</span></code></pre></div>
+最後に結果を足しつつも、重みも蓄積しておく.<br />
+重みはバイラテラルフィルタの分母に相当するので、最後に割ってあげる必要があるため.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">                </span><span class="n">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">exp2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="p">.</span><span class="n">rgb</span><span class="p">();</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">                </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">exp2</span><span class="p">;</span>
+</span></code></pre></div>
+すべての処理が終わったら、結果を割ってあげれば終了.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+</span></code></pre></div>
+これをまとめると以下のようになる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">filterProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">h</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="n">Vec3</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec3</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="n">Vec3</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec3</span><span class="o">::</span><span class="n">Zero</span><span class="p">();</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">filterSize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">filterSize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">filterSize</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">filterSize</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">                </span><span class="n">ColorF</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">w</span><span class="p">];</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">                </span><span class="n">ColorF</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">];</span><span class="w"> </span><span class="c1">// f(i+m, j+n)</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">                </span><span class="c1">// 重み計算</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">                </span><span class="kt">float</span><span class="w"> </span><span class="n">exp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma1</span><span class="p">));</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">                </span><span class="n">Vec3</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">next</span><span class="p">.</span><span class="n">rgb</span><span class="p">();</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">                </span><span class="n">Vec3</span><span class="w"> </span><span class="n">exp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2</span><span class="p">));</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">                </span><span class="n">exp2</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">exp1</span><span class="p">;</span><span class="w"> </span><span class="c1">// これがw(i,j,m,n)</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">                </span><span class="n">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">exp2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="p">.</span><span class="n">rgb</span><span class="p">();</span>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">                </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">exp2</span><span class="p">;</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">        </span><span class="n">resultImage</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ColorF</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-6-26"><a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div></p>
 
 
 

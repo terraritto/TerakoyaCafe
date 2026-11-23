@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7704,12 +7725,12 @@
 ETFの場の流れを使うことで、anisotropicにフィルタを作ってフィルタを掛けたのがFDoGの実装<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>.<br />
 そして、このFDoGに対してXDoGを適用したものがFXDoGとなる.  </p>
 <p>やることは簡単でFDoGにおいてDoGを使ってた部分をXDoGに変えるだけ.本当にあっけない.  </p>
-<pre><code class="language-c++">double convResult = conv - convK;
-convResult = (1.0 - XDoGTau) * conv + XDoGTau * convResult;
-</code></pre>
-<p>比較に関してはXDoGのものを使用するようにしてみた.  </p>
-<pre><code class="language-c++">result = result &gt; epsilon ? 1.0 : 1.0 + Tanh(phi * (result-epsilon));
-</code></pre>
+<p><div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">convResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conv</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">convK</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">convResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">XDoGTau</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">conv</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">XDoGTau</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">convResult</span><span class="p">;</span>
+</span></code></pre></div>
+比較に関してはXDoGのものを使用するようにしてみた.  </p>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">epsilon</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Tanh</span><span class="p">(</span><span class="n">phi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="o">-</span><span class="n">epsilon</span><span class="p">));</span>
+</span></code></pre></div>
 <p>これで準備は整った.<br />
 結果は以下である.  </p>
 <p><img alt="FXDoG" src="../Image/FXDoG_01.webp" /></p>

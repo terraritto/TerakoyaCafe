@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7721,164 +7742,164 @@ p_{i+1} = w_{i} * p_{i} + b_{i}
 この重みとバイアスが学習するごとに最適な値になっていくことになる.<br />
 今回は学習後なので、この最適に計算した値が手に入ることになる.  </p>
 <p>ということでまずはデータを読み込んでいこう.<br />
-初期化は今回はこんな感じにしてみた.  </p>
-<pre><code class="language-c++">    bool NeuralMNIST::Initialize()
-    {
-        if (!m_mnist.Initialize()) { return false; }
-
-        if (!LoadWeight()) { return false; }
-
-        return true;
-    }
-</code></pre>
-<p><code>m_mnist</code>は前回のMNISTの読み込みをしてくれる.<br />
+初期化は今回はこんな感じにしてみた.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">NeuralMNIST::Initialize</span><span class="p">()</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">m_mnist</span><span class="p">.</span><span class="n">Initialize</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">LoadWeight</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+<code>m_mnist</code>は前回のMNISTの読み込みをしてくれる.<br />
 重要なのは<code>LoadWeight</code>だ.<br />
 今回のWeightはPythonのデータになっており、pickleというpythonのライブラリで作られていて使いづらい...<br />
 そのため、まずpython側でjsonに変換をした.<br />
-内容は以下のような感じ、力技～.  </p>
-<pre><code class="language-c++">import pickle
-import json
-import numpy as np
-
-with open(&quot;sample_weight.pkl&quot;, 'rb') as f:
-    network = pickle.load(f)
-    with open(&quot;sample_weight.json&quot;, 'w') as w:
-        network['b1'] = network['b1'].tolist()
-        network['b2'] = network['b2'].tolist()
-        network['b3'] = network['b3'].tolist()
-        network['W1'] = network['W1'].tolist()
-        network['W2'] = network['W2'].tolist()
-        network['W3'] = network['W3'].tolist()
-        json.dump(network, w)
-</code></pre>
-<p>こうして変換jsonを<code>LoadWeight</code>では読み込む.<br />
-jsonであればSiv3Dでは機能があるため楽に行ける.  </p>
-<pre><code class="language-c++">    bool NeuralMNIST::LoadWeight()
-    {
-        m_weightPath = FileSystem::CurrentDirectory() + U&quot;Resource/Ex03/sample_weight.json&quot;;
-
-        const auto json = JSON::Load(m_weightPath);
-        if (!json)
-        {
-            Logger &lt;&lt; U&quot;Json File Load Failed: &quot; &lt;&lt; m_weightPath;
-            return false;
-        }
-</code></pre>
-<p>ここまで来れば簡単だ.<br />
-まずバイアスをデータとして読み込む.  </p>
-<pre><code class="language-c++">        // bias
-        const Array&lt;String&gt; biasNameList = { U&quot;b1&quot;, U&quot;b2&quot;, U&quot;b3&quot; };
-        for (const auto&amp; biasName : biasNameList)
-        {
-            nc::NdArray&lt;float&gt; bs;
-            const auto data = json[biasName];
-            bs.resizeFast(1, data.size());
-            for (int i = 0; const auto&amp; bias : json[biasName])
-            {
-                bs[i] = (bias.value.get&lt;float&gt;());
-                i++;
-            }
-            m_weightMap[biasName] = bs;
-        }
-</code></pre>
-<p>そして、重みも読み込む.  </p>
-<pre><code class="language-c++">        // weight
-        const Array&lt;String&gt; weightNameList = { U&quot;W1&quot;, U&quot;W2&quot;, U&quot;W3&quot; };
-        for (const auto&amp; weightName : weightNameList)
-        {
-            nc::NdArray&lt;float&gt; ws;
-            const auto data = json[weightName];
-            ws.resizeFast(data.size(), data[0].size());
-            for (int i = 0; const auto&amp; weightKey : data)
-            {
-                for (int j = 0; const auto&amp; weight : weightKey.value)
-                {
-                    ws[j + i * ws.numCols()] = weight.value.get&lt;float&gt;();
-                    j++;
-                }
-                i++;
-            }
-            m_weightMap[weightName] = ws;
-        }
-
-        return true;
-    }
-</code></pre>
+内容は以下のような感じ、力技～.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">import</span><span class="w"> </span><span class="n">pickle</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">import</span><span class="w"> </span><span class="n">json</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">import</span><span class="w"> </span><span class="n">numpy</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">np</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">with</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;sample_weight.pkl&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="n">rb</span><span class="err">&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">f</span><span class="o">:</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">network</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pickle</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">with</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">&quot;sample_weight.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;w&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">as</span><span class="w"> </span><span class="n">w</span><span class="o">:</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">b1</span><span class="err">&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">b1</span><span class="err">&#39;</span><span class="p">].</span><span class="n">tolist</span><span class="p">()</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">b2</span><span class="err">&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">b2</span><span class="err">&#39;</span><span class="p">].</span><span class="n">tolist</span><span class="p">()</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">b3</span><span class="err">&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">b3</span><span class="err">&#39;</span><span class="p">].</span><span class="n">tolist</span><span class="p">()</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">W1</span><span class="err">&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">W1</span><span class="err">&#39;</span><span class="p">].</span><span class="n">tolist</span><span class="p">()</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">W2</span><span class="err">&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">W2</span><span class="err">&#39;</span><span class="p">].</span><span class="n">tolist</span><span class="p">()</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">W3</span><span class="err">&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">network</span><span class="p">[</span><span class="err">&#39;</span><span class="n">W3</span><span class="err">&#39;</span><span class="p">].</span><span class="n">tolist</span><span class="p">()</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">network</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">)</span>
+</span></code></pre></div>
+こうして変換jsonを<code>LoadWeight</code>では読み込む.<br />
+jsonであればSiv3Dでは機能があるため楽に行ける.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">NeuralMNIST::LoadWeight</span><span class="p">()</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="n">m_weightPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FileSystem</span><span class="o">::</span><span class="n">CurrentDirectory</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;Resource/Ex03/sample_weight.json&quot;</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JSON</span><span class="o">::</span><span class="n">Load</span><span class="p">(</span><span class="n">m_weightPath</span><span class="p">);</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">json</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">            </span><span class="n">Logger</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;Json File Load Failed: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">m_weightPath</span><span class="p">;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="p">}</span>
+</span></code></pre></div>
+ここまで来れば簡単だ.<br />
+まずバイアスをデータとして読み込む.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">        </span><span class="c1">// bias</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">biasNameList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;b1&quot;</span><span class="p">,</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;b2&quot;</span><span class="p">,</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;b3&quot;</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">biasName</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">biasNameList</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">            </span><span class="n">nc</span><span class="o">::</span><span class="n">NdArray</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bs</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">[</span><span class="n">biasName</span><span class="p">];</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">            </span><span class="n">bs</span><span class="p">.</span><span class="n">resizeFast</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bias</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">json</span><span class="p">[</span><span class="n">biasName</span><span class="p">])</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">                </span><span class="n">bs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">bias</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">());</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">                </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">            </span><span class="n">m_weightMap</span><span class="p">[</span><span class="n">biasName</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bs</span><span class="p">;</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="p">}</span>
+</span></code></pre></div>
+そして、重みも読み込む.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">        </span><span class="c1">// weight</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">weightNameList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;W1&quot;</span><span class="p">,</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;W2&quot;</span><span class="p">,</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;W3&quot;</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">weightName</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">weightNameList</span><span class="p">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">            </span><span class="n">nc</span><span class="o">::</span><span class="n">NdArray</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ws</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="p">[</span><span class="n">weightName</span><span class="p">];</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">            </span><span class="n">ws</span><span class="p">.</span><span class="n">resizeFast</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">());</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">weightKey</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">weight</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">weightKey</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">                </span><span class="p">{</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">                    </span><span class="n">ws</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ws</span><span class="p">.</span><span class="n">numCols</span><span class="p">()]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weight</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">                    </span><span class="n">j</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">                </span><span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">            </span><span class="n">m_weightMap</span><span class="p">[</span><span class="n">weightName</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ws</span><span class="p">;</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>重みもバイアスもまとめて一緒に<code>m_weightMap</code>に突っ込んだ.<br />
 あまりにも適当だけど、まあ今回はそこまで深く考えなくてもいいでしょう.  </p>
 <p>さて、計算は単純.<br />
 まずデータを持ち出して計算用の関数も用意.<br />
-テストした結果ちゃんと判定できていたものは、<code>count</code>に足すことでカウントすることにする.  </p>
-<pre><code class="language-c++">    void NeuralMNIST::Process()
-    {
-        ClearPrint();
-
-        const auto&amp; testImages = m_mnist.GetTestImages();
-        const auto&amp; testLabels = m_mnist.GetTestLabels();
-
-        FuncSigmoid sigmoid;
-        FuncSoftmax softmax;
-
-        int count = 0;
-</code></pre>
-<p>さて、実際の計算.<br />
+テストした結果ちゃんと判定できていたものは、<code>count</code>に足すことでカウントすることにする.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">NeuralMNIST::Process</span><span class="p">()</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="n">ClearPrint</span><span class="p">();</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">testImages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_mnist</span><span class="p">.</span><span class="n">GetTestImages</span><span class="p">();</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">testLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_mnist</span><span class="p">.</span><span class="n">GetTestLabels</span><span class="p">();</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="n">FuncSigmoid</span><span class="w"> </span><span class="n">sigmoid</span><span class="p">;</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="n">FuncSoftmax</span><span class="w"> </span><span class="n">softmax</span><span class="p">;</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span></code></pre></div>
+さて、実際の計算.<br />
 3層の計算は簡単に<code>weight</code>と<code>bias</code>で計算するだけ.<br />
 損失関数はsigmoidを使用.<br />
 これは以前にやったね.<br />
-そしてソフトマックスを計算して、最大値のものを取得すればそれが答えのラベルとなる.  </p>
-<pre><code class="language-c++">        for (int i = 0; i &lt; testImages.numRows(); i++)
-        {
-            auto data = testImages.row(i);
-            data /= 255.0f;
-
-            data = data.dot(m_weightMap[U&quot;W1&quot;]) + m_weightMap[U&quot;b1&quot;];
-            sigmoid.Process(data);
-            data = data.dot(m_weightMap[U&quot;W2&quot;]) + m_weightMap[U&quot;b2&quot;];
-            sigmoid.Process(data);
-            data = data.dot(m_weightMap[U&quot;W3&quot;]) + m_weightMap[U&quot;b3&quot;];
-            softmax.Process(data);
-
-            auto maxIndex = data.argmax()[0];
-            auto label = testLabels[i];
-            if (label == maxIndex)
-            {
-                count++;
-            }
-        }
-</code></pre>
+そしてソフトマックスを計算して、最大値のものを取得すればそれが答えのラベルとなる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">testImages</span><span class="p">.</span><span class="n">numRows</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">testImages</span><span class="p">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">            </span><span class="n">data</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mf">255.0f</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">            </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">m_weightMap</span><span class="p">[</span><span class="sa">U</span><span class="s">&quot;W1&quot;</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_weightMap</span><span class="p">[</span><span class="sa">U</span><span class="s">&quot;b1&quot;</span><span class="p">];</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">            </span><span class="n">sigmoid</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">            </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">m_weightMap</span><span class="p">[</span><span class="sa">U</span><span class="s">&quot;W2&quot;</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_weightMap</span><span class="p">[</span><span class="sa">U</span><span class="s">&quot;b2&quot;</span><span class="p">];</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">            </span><span class="n">sigmoid</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">            </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">m_weightMap</span><span class="p">[</span><span class="sa">U</span><span class="s">&quot;W3&quot;</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_weightMap</span><span class="p">[</span><span class="sa">U</span><span class="s">&quot;b3&quot;</span><span class="p">];</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">            </span><span class="n">softmax</span><span class="p">.</span><span class="n">Process</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">maxIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">argmax</span><span class="p">()[</span><span class="mi">0</span><span class="p">];</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">testLabels</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">maxIndex</span><span class="p">)</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">                </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">        </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>さて、ソフトマックスはやってない気がする.<br />
 自分が触れたことがるのでいえば、強化学習<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>での学習時にちょっとやったのでこっちに解説は譲る.<br />
 要は全部足したら1になるように正規化するように全部の和で割る.<br />
 割っただけで値の比率は同じなので、すべての値の内一番大きい奴が欲しかったものになる.<br />
-という風な感じ.  </p>
-<pre><code class="language-c++">    void Process(nc::NdArray&lt;float&gt;&amp; results) const override
-    {
-        const auto maxValue = results.max();
-        results = results - maxValue;
-
-        // 合計を計算
-        auto temp = results; 
-        for (auto&amp; value : temp) { value = Exp(value); }
-        auto sum = temp.sum();
-
-        // softmaxを適用
-        for (auto&amp; value : results)
-        {
-            value = Exp(value) / sum[0];
-        }
-    }
-</code></pre>
-<p>今回は上のような感じで計算した.<br />
+という風な感じ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">Process</span><span class="p">(</span><span class="n">nc</span><span class="o">::</span><span class="n">NdArray</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">results</span><span class="p">.</span><span class="n">max</span><span class="p">();</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">maxValue</span><span class="p">;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="c1">// 合計を計算</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">results</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">temp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exp</span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">.</span><span class="n">sum</span><span class="p">();</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">        </span><span class="c1">// softmaxを適用</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">results</span><span class="p">)</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exp</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sum</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+今回は上のような感じで計算した.<br />
 ちょっと変わってるのが<code>results-maxValue</code>としてる点.<br />
 計算した値が非常に大きい場合,sotgmaxだと<code>Exp</code>をするためオーバーフローしやすい.<br />
 そのため、オーバーフローしないように値を調整してるだけである.<br />
 強化学習の時はまずそんな飽和することがなかったためやってなかったけど、こういうのはやっといた方がエラーが少なくて良いですね.  </p>
 <p>さて、最後に結果を出力.<br />
 正確性は割合で正解と判定された数と実際のデータ数で割ってあげればよい.<br />
-こうすれば最大<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.0</mn><mo>=</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">1.0=100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span>という風になるわけだ.  </p>
-<pre><code class="language-c++">        Print &lt;&lt; U&quot;Accuracy: &quot; &lt;&lt; Format(static_cast&lt;float&gt;(count) / testImages.numRows());
-    }
-</code></pre>
+こうすれば最大<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.0</mn><mo>=</mo><mn>100</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">1.0=100\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span></span></span></span>という風になるわけだ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">        </span><span class="n">Print</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;Accuracy: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">Format</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">count</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">testImages</span><span class="p">.</span><span class="n">numRows</span><span class="p">());</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>さて、学習した結果以下のものが出力される.  </p>
 <p><img alt="CalcMNIST_01" src="../Image/CalcMNIST_01.webp" /></p>
 <p>うん、この結果はちゃんとpython側で実装されているものと同じ.<br />

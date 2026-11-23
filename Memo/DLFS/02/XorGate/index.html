@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7732,15 +7753,15 @@
 ではどうするのかというと、NandとOrという処理を通した後、Andを通す.これが正解.<br />
 要は1つだけの処理じゃだめだけど、複数を組み合わせることで複雑な判断ができるようになるってこと.<br />
 これが多層パーセプトロンの気持ちなんだろうなぁ.  </p>
-<p>ということでコードは簡単、以下のようにすればよい.  </p>
-<pre><code class="language-c++">        NandGate nandGate;
-        AndGate andGate;
-        OrGate orGate;
-
-        Vec2 medium = { nandGate.Evaluate(value), orGate.Evaluate(value) };
-        return andGate.Evaluate(medium);
-</code></pre>
-<p>これで可視化をしてみよう.<br />
+<p>ということでコードは簡単、以下のようにすればよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">        </span><span class="n">NandGate</span><span class="w"> </span><span class="n">nandGate</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">        </span><span class="n">AndGate</span><span class="w"> </span><span class="n">andGate</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="n">OrGate</span><span class="w"> </span><span class="n">orGate</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="n">Vec2</span><span class="w"> </span><span class="n">medium</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">nandGate</span><span class="p">.</span><span class="n">Evaluate</span><span class="p">(</span><span class="n">value</span><span class="p">),</span><span class="w"> </span><span class="n">orGate</span><span class="p">.</span><span class="n">Evaluate</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">andGate</span><span class="p">.</span><span class="n">Evaluate</span><span class="p">(</span><span class="n">medium</span><span class="p">);</span>
+</span></code></pre></div>
+これで可視化をしてみよう.<br />
 <img alt="XOR Gate" src="../Image/DLFS_02_Xor.webp" /><br />
 赤と青が分類で来ているのが分かる.<br />
 緑の太い線が今回の処理を通したうえで、1となる範囲を可視化したものである.<br />

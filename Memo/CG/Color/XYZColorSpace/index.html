@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7787,24 +7808,24 @@ CIEの最初の回<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></
 ここは大事なので頭に入れておきたいところ.  </p>
 <p>さて、そしたら実際にまずはXYZ空間を表示してみよう.<br />
 変える部分は非常に簡単で、単純にXYZを突っ込むだけ！<br />
-RGBには変換が必要だったけど、逆に楽になっちゃった.  </p>
-<pre><code class="language-c++">    while (true)
-    {
-        const double waveLength = Parse&lt;double&gt;(csvData[rows][0]);
-        if (800 &lt; waveLength) { break; }
-
-        // データの抽出
-        wavelengthes.push_back(waveLength);
-        Float3 entry{ Parse&lt;double&gt;(csvData[rows][1]),Parse&lt;double&gt;(csvData[rows][2]), Parse&lt;double&gt;(csvData[rows][3]) };
-
-        // XYZなので、そのまま突っ込む
-        color_X.push_back(entry.x);
-        color_Y.push_back(entry.y);
-        color_Z.push_back(entry.z);
-
-        rows++;
-    }
-</code></pre>
+RGBには変換が必要だったけど、逆に楽になっちゃった.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">waveLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Parse</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">csvData</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">800</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">waveLength</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="c1">// データの抽出</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="n">wavelengthes</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">waveLength</span><span class="p">);</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="n">Float3</span><span class="w"> </span><span class="n">entry</span><span class="p">{</span><span class="w"> </span><span class="n">Parse</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">csvData</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span><span class="n">Parse</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">csvData</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span><span class="w"> </span><span class="n">Parse</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">csvData</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="c1">// XYZなので、そのまま突っ込む</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="n">color_X</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="n">color_Y</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="n">color_Z</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="n">rows</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>そしたら結果を表示してみる.  </p>
 <p><img alt="XYZColorSpace_01" src="../Image/XYZColorSpace_01.webp" /></p>
 <p>うん、いい感じに負の部分がなくなってきっちり収まってる！  </p>
@@ -7829,12 +7850,12 @@ rgではなくxyなのでxy色度図というやつ.<br />
 <p>とはいってもやることは簡単で、線を引く際のstartの位置に円を表示するだけである.<br />
 文字の表示は難しそうだけど、Siv3Dには線を引くために<code>Line</code>というクラスがある.<br />
 このクラスは法線を計算できる！これが結構便利.<br />
-以前に自分のやったものだとこの辺のクリッピング<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>でも使いました、この法線には助かってるのよね～.  </p>
-<pre><code class="language-c++">Circle{ start, 2 }.overwrite(image, Palette::Blue);
-font(Format(wavelengthes[i])).paintAt
-(image, start + Line{ start, end }.normal() * offset, Palette::Black);
-</code></pre>
-<p>これで描画完了！実際に結果を見てみる.  </p>
+以前に自分のやったものだとこの辺のクリッピング<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>でも使いました、この法線には助かってるのよね～.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Circle</span><span class="p">{</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">}.</span><span class="n">overwrite</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">Palette</span><span class="o">::</span><span class="n">Blue</span><span class="p">);</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">font</span><span class="p">(</span><span class="n">Format</span><span class="p">(</span><span class="n">wavelengthes</span><span class="p">[</span><span class="n">i</span><span class="p">])).</span><span class="n">paintAt</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Line</span><span class="p">{</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="p">}.</span><span class="n">normal</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="n">Palette</span><span class="o">::</span><span class="n">Black</span><span class="p">);</span>
+</span></code></pre></div>
+これで描画完了！実際に結果を見てみる.  </p>
 <p><img alt="XYZColorSpace_03" src="../Image/XYZColorSpace_03.webp" /></p>
 <p>うん、いい感じ！<br />
 結構よく見る図に近づいてきたのではないでしょうか？<br />

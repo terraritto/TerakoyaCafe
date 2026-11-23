@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7699,22 +7720,22 @@
 まずはデータがないと始まらないので、データの準備から.  </p>
 <p>まずはGLTFにおいて、TexCoord,つまりuv値を取れるようにする.<br />
 これがないと始まらない.<br />
-前回のグローシェーディング<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>の時は法線を取ってたが、それと同じような形式でデータにアクセス可能.  </p>
-<pre><code class="language-c++">auto&amp; tecCoord0Accessor = model.accessors[texCoord0Index];
-auto&amp; texCoord0BufferView = model.bufferViews[tecCoord0Accessor.bufferView];
-auto&amp; tecCoordBuffer = model.buffers[texCoord0BufferView.buffer];
-const float* texCoord0s = reinterpret_cast&lt;const float*&gt;(&amp;tecCoordBuffer.data[texCoord0BufferView.byteOffset + tecCoord0Accessor.byteOffset]);
-</code></pre>
-<p>あとはこのデータからUVを取り出して、<code>m_uv0</code>に結び付ければOK.  </p>
-<pre><code class="language-c++">for (int i = 0; i &lt; positionAccessor.count; ++i)
-{
-    int index = i * 3 + 0;
-    auto vertex = std::make_shared&lt;Vertex&gt;();
-    // ...
-    vertex-&gt;m_uv0 = Vec2{ texCoord0s[i * 2], texCoord0s[i * 2 + 1] }; // 追加
-    renderPrimitive-&gt;AddVertex(vertex);
-}
-</code></pre>
+前回のグローシェーディング<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>の時は法線を取ってたが、それと同じような形式でデータにアクセス可能.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tecCoord0Accessor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">accessors</span><span class="p">[</span><span class="n">texCoord0Index</span><span class="p">];</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">texCoord0BufferView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">bufferViews</span><span class="p">[</span><span class="n">tecCoord0Accessor</span><span class="p">.</span><span class="n">bufferView</span><span class="p">];</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">tecCoordBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">buffers</span><span class="p">[</span><span class="n">texCoord0BufferView</span><span class="p">.</span><span class="n">buffer</span><span class="p">];</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">*</span><span class="w"> </span><span class="n">texCoord0s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tecCoordBuffer</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">texCoord0BufferView</span><span class="p">.</span><span class="n">byteOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tecCoord0Accessor</span><span class="p">.</span><span class="n">byteOffset</span><span class="p">]);</span>
+</span></code></pre></div>
+あとはこのデータからUVを取り出して、<code>m_uv0</code>に結び付ければOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">positionAccessor</span><span class="p">.</span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">vertex</span><span class="o">-&gt;</span><span class="n">m_uv0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec2</span><span class="p">{</span><span class="w"> </span><span class="n">texCoord0s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">texCoord0s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// 追加</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">renderPrimitive</span><span class="o">-&gt;</span><span class="n">AddVertex</span><span class="p">(</span><span class="n">vertex</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>これでUVはOK.  </p>
 <p>ここから作るのは次のような構造.  </p>
 <p><img alt="PerspectiveCorrect_01" src="../Image/PerspectiveCorrect_01.png" />  </p>
@@ -7723,117 +7744,117 @@ const float* texCoord0s = reinterpret_cast&lt;const float*&gt;(&amp;tecCoordBuff
 <p>ということでまずテクスチャ.<br />
 テクスチャのデータはSiv3D側で簡単に扱えるので、これをフル活用する.<br />
 Textureに関してはファイル名はtinygltf側から取得可能.<br />
-そのため、これをModelが持つimageHolderという管理クラス側に<code>SetImage</code>経由で渡して登録する.  </p>
-<pre><code class="language-c++">void GLTFLoader::FetchImages(tinygltf::Model&amp; model)
-{
-    auto renderModel = m_model.lock();
-    auto imageHolder = renderModel-&gt;CreateImageHolder().lock();
-    imageHolder-&gt;ResizeHolder(model.images.size());
-
-    for (int index = 0; auto&amp; image : model.images)
-    {
-        imageHolder-&gt;SetImage(m_path + Unicode::FromUTF8(image.uri), index);
-        index++;
-    }
-}
-</code></pre>
-<p>ImageHolderのSetImageの関数は次のような感じ.<br />
+そのため、これをModelが持つimageHolderという管理クラス側に<code>SetImage</code>経由で渡して登録する.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">GLTFLoader::FetchImages</span><span class="p">(</span><span class="n">tinygltf</span><span class="o">::</span><span class="n">Model</span><span class="o">&amp;</span><span class="w"> </span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">renderModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_model</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">imageHolder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">renderModel</span><span class="o">-&gt;</span><span class="n">CreateImageHolder</span><span class="p">().</span><span class="n">lock</span><span class="p">();</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="n">imageHolder</span><span class="o">-&gt;</span><span class="n">ResizeHolder</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">images</span><span class="p">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="n">imageHolder</span><span class="o">-&gt;</span><span class="n">SetImage</span><span class="p">(</span><span class="n">m_path</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Unicode</span><span class="o">::</span><span class="n">FromUTF8</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">uri</span><span class="p">),</span><span class="w"> </span><span class="n">index</span><span class="p">);</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="n">index</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">}</span>
+</span></code></pre></div>
+ImageHolderのSetImageの関数は次のような感じ.<br />
 Siv3dのImageクラスをパスから生成.<br />
 こうすると勝手にTextureデータを読み込んでくれるので、余計なことは考えなくてよい.<br />
-あとはImageクラスの機能であれこれできるので楽なもんよね.  </p>
-<pre><code class="language-c++">void ImageHolder::SetImage(const String path, const size_t index)
-{
-    assert(0 &lt;= index);
-    auto image = std::make_shared&lt;Image&gt;(path);
-    this-&gt;m_images[index] = image;
-}
-</code></pre>
-<p>これでImageは大体終わり.  </p>
+あとはImageクラスの機能であれこれできるので楽なもんよね.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">ImageHolder::SetImage</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">index</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">index</span><span class="p">);</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Image</span><span class="o">&gt;</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_images</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">image</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">}</span>
+</span></code></pre></div>
+これでImageは大体終わり.  </p>
 <p>ここまで出来たら実際にModel側でマテリアルを用意する.<br />
 まずマテリアルに関しては非常に単純なBaseColorのみを持つものとしてしまう.  </p>
-<pre><code class="language-c++">class DefaultMaterial
-{
-public:
-    std::weak_ptr&lt;Image&gt; GetBaseColorTexture() const { return m_baseColorTexture; }
-
-protected:
-    void SetBaseColorTexture(std::weak_ptr&lt;Image&gt; texture) { m_baseColorTexture = texture; }
-
-protected:
-    std::weak_ptr&lt;Image&gt; m_baseColorTexture;
-
-private:
-    friend class GLTFLoader;
-};
-</code></pre>
-<p>登録をするため,<code>GLTFLoader</code>はfriendにしてみた.  </p>
+<p><div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">DefaultMaterial</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">weak_ptr</span><span class="o">&lt;</span><span class="n">Image</span><span class="o">&gt;</span><span class="w"> </span><span class="n">GetBaseColorTexture</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">m_baseColorTexture</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">protected</span><span class="o">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">SetBaseColorTexture</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">weak_ptr</span><span class="o">&lt;</span><span class="n">Image</span><span class="o">&gt;</span><span class="w"> </span><span class="n">texture</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">m_baseColorTexture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">texture</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">protected</span><span class="o">:</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">weak_ptr</span><span class="o">&lt;</span><span class="n">Image</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_baseColorTexture</span><span class="p">;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="k">private</span><span class="o">:</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">GLTFLoader</span><span class="p">;</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="p">};</span>
+</span></code></pre></div>
+登録をするため,<code>GLTFLoader</code>はfriendにしてみた.  </p>
 <p>そしたら、実際にModelからデータを取り出す作業.<br />
-<code>tinygltf::Model</code>がマテリアルを持っているので、これからTextureを取り出して、Material側に登録すればよい.  </p>
-<pre><code class="language-c++">void GLTFLoader::FetchMaterials(tinygltf::Model&amp; model)
-{
-    auto renderModel = m_model.lock();
-
-    for (auto&amp; material : model.materials)
-    {
-        auto renderMaterial = renderModel-&gt;CreateMaterial().lock();
-
-        // 存在しない場合は飛ばし
-        const int baseColorTextureIndex = material.pbrMetallicRoughness.baseColorTexture.index;
-        if (baseColorTextureIndex == -1) { continue; }
-
-        tinygltf::Texture baseColorTexture = model.textures[baseColorTextureIndex];
-        renderMaterial-&gt;SetBaseColorTexture(renderModel-&gt;GetImage(baseColorTexture.source));
-    }
-}
-</code></pre>
+<code>tinygltf::Model</code>がマテリアルを持っているので、これからTextureを取り出して、Material側に登録すればよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">GLTFLoader::FetchMaterials</span><span class="p">(</span><span class="n">tinygltf</span><span class="o">::</span><span class="n">Model</span><span class="o">&amp;</span><span class="w"> </span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">renderModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_model</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">material</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">materials</span><span class="p">)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">renderMaterial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">renderModel</span><span class="o">-&gt;</span><span class="n">CreateMaterial</span><span class="p">().</span><span class="n">lock</span><span class="p">();</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="c1">// 存在しない場合は飛ばし</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">baseColorTextureIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">material</span><span class="p">.</span><span class="n">pbrMetallicRoughness</span><span class="p">.</span><span class="n">baseColorTexture</span><span class="p">.</span><span class="n">index</span><span class="p">;</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">baseColorTextureIndex</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span><span class="n">tinygltf</span><span class="o">::</span><span class="n">Texture</span><span class="w"> </span><span class="n">baseColorTexture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">textures</span><span class="p">[</span><span class="n">baseColorTextureIndex</span><span class="p">];</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">        </span><span class="n">renderMaterial</span><span class="o">-&gt;</span><span class="n">SetBaseColorTexture</span><span class="p">(</span><span class="n">renderModel</span><span class="o">-&gt;</span><span class="n">GetImage</span><span class="p">(</span><span class="n">baseColorTexture</span><span class="p">.</span><span class="n">source</span><span class="p">));</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>さて、ここからは実際にUVを描画していくターン.<br />
 まずはシェーダー側から用意をしてみよう.  </p>
 <p>頂点シェーダーの受け渡しは簡単.<br />
-そのまま渡すだけ.  </p>
-<pre><code class="language-c++">// 結果を格納
-output-&gt;screenPos = Vec4{ tempV.m128_f32[0], tempV.m128_f32[1],tempV.m128_f32[2],tempV.m128_f32[3] };
-output-&gt;uv = input-&gt;uv;
-</code></pre>
+そのまま渡すだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// 結果を格納</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">output</span><span class="o">-&gt;</span><span class="n">screenPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec4</span><span class="p">{</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">output</span><span class="o">-&gt;</span><span class="n">uv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="o">-&gt;</span><span class="n">uv</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>そして、ピクセルシェーダーでは画像とUVが入力として手に入るので、これを使ってアクセスするだけ.<br />
 画像の縦と横はわかるので、後はこれを使ってUVで位置を計算.<br />
 今回はそれっぽく近似した位置にしてるが、ここのサンプルの仕方は他にもある...<br />
 が今回はシンプルにいこう.シンプルイズベスト.<br />
-最後に色として反映させればOK.  </p>
-<pre><code class="language-c++">auto baseColorTexture = input-&gt;baseColorTexture.lock();
-
-Vec3 baseColor = Vec3::One();
-if (baseColorTexture)
-{
-    auto h = baseColorTexture-&gt;height() - 1;
-    auto w = baseColorTexture-&gt;width() - 1;
-    Color baseColorData = (*baseColorTexture)
-        [static_cast&lt;int&gt;(h * input-&gt;uv.y)][static_cast&lt;int&gt;(w * input-&gt;uv.x)];
-    baseColor = Vec3{ baseColorData.r, baseColorData.g, baseColorData.b } / 255.0f;
-}
-(*m_image)[input-&gt;screenPos.y][input-&gt;screenPos.x] = ColorF({ baseColor ,1.0 });
-</code></pre>
-<p>これでShaderは終了！  </p>
+最後に色として反映させればOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">baseColorTexture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="o">-&gt;</span><span class="n">baseColorTexture</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">Vec3</span><span class="w"> </span><span class="n">baseColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec3</span><span class="o">::</span><span class="n">One</span><span class="p">();</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">baseColorTexture</span><span class="p">)</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">{</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseColorTexture</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseColorTexture</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="n">Color</span><span class="w"> </span><span class="n">baseColorData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">baseColorTexture</span><span class="p">)</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">        </span><span class="p">[</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">h</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="o">-&gt;</span><span class="n">uv</span><span class="p">.</span><span class="n">y</span><span class="p">)][</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">w</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="o">-&gt;</span><span class="n">uv</span><span class="p">.</span><span class="n">x</span><span class="p">)];</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="n">baseColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec3</span><span class="p">{</span><span class="w"> </span><span class="n">baseColorData</span><span class="p">.</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">baseColorData</span><span class="p">.</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">baseColorData</span><span class="p">.</span><span class="n">b</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">255.0f</span><span class="p">;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="p">}</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="p">(</span><span class="o">*</span><span class="n">m_image</span><span class="p">)[</span><span class="n">input</span><span class="o">-&gt;</span><span class="n">screenPos</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">input</span><span class="o">-&gt;</span><span class="n">screenPos</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ColorF</span><span class="p">({</span><span class="w"> </span><span class="n">baseColor</span><span class="w"> </span><span class="p">,</span><span class="mf">1.0</span><span class="w"> </span><span class="p">});</span>
+</span></code></pre></div>
+これでShaderは終了！  </p>
 <p>次にプログラム側.<br />
 ここではUVを重心座標で補間し、それをInputに渡している.<br />
 Textureはポインタをそのまま渡してる.<br />
-あとはShader側で生のテクスチャを良しなにしてねというやつだ.  </p>
-<pre><code class="language-c++">// UVを補間
-const Vec2 uv = w * vert1-&gt;uv + v * vert2-&gt;uv + u * vert3-&gt;uv;
-shaderInput-&gt;uv = uv;
-
-// パラメータを用意
-shaderInput-&gt;directionalLight = m_lightDir;
-shaderInput-&gt;lightColor = m_lightColor;
-shaderInput-&gt;screenPos = { x,y };
-shaderInput-&gt;baseColorTexture = pMat-&gt;GetBaseColorTexture();
-m_pixelShader-&gt;Calculate();
-</code></pre>
+あとはShader側で生のテクスチャを良しなにしてねというやつだ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// UVを補間</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">const</span><span class="w"> </span><span class="n">Vec2</span><span class="w"> </span><span class="n">uv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vert1</span><span class="o">-&gt;</span><span class="n">uv</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vert2</span><span class="o">-&gt;</span><span class="n">uv</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vert3</span><span class="o">-&gt;</span><span class="n">uv</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">shaderInput</span><span class="o">-&gt;</span><span class="n">uv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uv</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1">// パラメータを用意</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">shaderInput</span><span class="o">-&gt;</span><span class="n">directionalLight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_lightDir</span><span class="p">;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">shaderInput</span><span class="o">-&gt;</span><span class="n">lightColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_lightColor</span><span class="p">;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">shaderInput</span><span class="o">-&gt;</span><span class="n">screenPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">shaderInput</span><span class="o">-&gt;</span><span class="n">baseColorTexture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pMat</span><span class="o">-&gt;</span><span class="n">GetBaseColorTexture</span><span class="p">();</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">m_pixelShader</span><span class="o">-&gt;</span><span class="n">Calculate</span><span class="p">();</span>
+</span></code></pre></div></p>
 <p>さて、今回はちょっとシンプルな画像として以下<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>からシンプルなテクスチャを拝借した.<br />
 このテクスチャ、テストには便利なんだけど、ちょっと中身のStrideが面倒...<br />
-今回は特殊パターンとして、以下のように読み込み時をテスト時のみ書き換えた.  </p>
-<pre><code class="language-c++">vertex-&gt;m_uv0 = Vec2{ texCoord0s[i * 2 + i], texCoord0s[i * 2 + 1 + i] };
-</code></pre>
-<p>あまりにも変な読み込み方をしてて詰まったので、一応メモしておく.  </p>
+今回は特殊パターンとして、以下のように読み込み時をテスト時のみ書き換えた.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">vertex</span><span class="o">-&gt;</span><span class="n">m_uv0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec2</span><span class="p">{</span><span class="w"> </span><span class="n">texCoord0s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">texCoord0s</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="p">};</span>
+</span></code></pre></div>
+あまりにも変な読み込み方をしてて詰まったので、一応メモしておく.  </p>
 <p>さて、こうして描画された結果は以下である.  </p>
 <div class="footnote">
 <hr />

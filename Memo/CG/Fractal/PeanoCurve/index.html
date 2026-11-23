@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7716,101 +7737,101 @@
 <p>手順に関してはまず図を描いてみた.  </p>
 <p><img alt="peano_01" src="../Image/peano_01.webp" /></p>
 <p>まず一番基本となる動きは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo separator="true">,</mo><mi>Q</mi><mo separator="true">,</mo><mi>R</mi><mo separator="true">,</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">P,Q,R,S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span>の形である.<br />
-これは縦が横よりも大きく動くような計上なので、今回はY軸移動は2倍動くようにした.  </p>
-<pre><code class="language-c++">auto dr = [&amp;](Array&lt;Direction&gt; dirList)
-{
-    // 必要な線を構築
-    for (auto&amp; dir : dirList)
-    {
-        Vec2 temp = currentPos;
-        switch (dir)
-        {
-        case Direction::up:
-            currentPos.y -= LineOffset * 2.0; break;
-
-        case Direction::right:
-            currentPos.x += LineOffset; break;
-
-        case Direction::down:
-            currentPos.y += LineOffset * 2.0; break;
-
-        case Direction::left:
-            currentPos.x -= LineOffset; break;
-        }
-
-        lineList.push_back(Line{ temp, currentPos });
-    }
-};
-</code></pre>
+これは縦が横よりも大きく動くような計上なので、今回はY軸移動は2倍動くようにした.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">dr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Direction</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dirList</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="c1">// 必要な線を構築</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dir</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">dirList</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="n">Vec2</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentPos</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">dir</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">Direction</span><span class="o">::</span><span class="no">up</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="n">currentPos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">LineOffset</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">Direction</span><span class="o">::</span><span class="no">right</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">            </span><span class="n">currentPos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">LineOffset</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">Direction</span><span class="o">::</span><span class="no">down</span><span class="p">:</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">            </span><span class="n">currentPos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">LineOffset</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">Direction</span><span class="o">::</span><span class="no">left</span><span class="p">:</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">            </span><span class="n">currentPos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">LineOffset</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="n">lineList</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Line</span><span class="p">{</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">currentPos</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="p">};</span>
+</span></code></pre></div></p>
 <p>そして、一番根本の形はそのまま定義してあげればよい.<br />
-例えばPであれば、上、右、下、右、上という動きになるため、そのまま組めば良い.  </p>
-<pre><code class="language-c++">auto PRoot = [&amp;]() {dr({ Direction::up, Direction::right, Direction::down, Direction::right, Direction::up }); };
-auto QRoot = [&amp;]() {dr({ Direction::up, Direction::left, Direction::down, Direction::left, Direction::up }); };
-auto RRoot = [&amp;]() {dr({ Direction::down, Direction::right, Direction::up, Direction::right, Direction::down }); };
-auto SRoot = [&amp;]() {dr({ Direction::down, Direction::left, Direction::up, Direction::left, Direction::down }); };
-</code></pre>
+例えばPであれば、上、右、下、右、上という動きになるため、そのまま組めば良い.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">PRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span><span class="n">dr</span><span class="p">({</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">QRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span><span class="n">dr</span><span class="p">({</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">auto</span><span class="w"> </span><span class="n">RRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span><span class="n">dr</span><span class="p">({</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">right</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">auto</span><span class="w"> </span><span class="n">SRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span><span class="n">dr</span><span class="p">({</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="p">};</span>
+</span></code></pre></div></p>
 <p>そしたら次に再帰.<br />
 再帰に関しては<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>の時はRootを描くとして、それ以外の場合は9この矩形をなぞるように移動をする.<br />
 例えばPであれば、上、右、下、右、上という動きであった.<br />
 これを矩形でなぞっていくと、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mi>Q</mi><mi>P</mi><mspace width="1em"/><mi>R</mi><mi>S</mi><mi>R</mi><mspace width="1em"/><mi>P</mi><mi>Q</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">PQP \quad RSR \quad PQP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">PQP</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">RSR</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">PQP</span></span></span></span>というような感じになる.<br />
-あとはこれをそのままプログラムに落とし込めばよい.  </p>
-<pre><code class="language-c++">P = [&amp;](int n)
-{
-    if (n &lt;= 0) { PRoot(); return; }
-    P(n - 1); OffsetLine(Direction::up);
-    Q(n - 1); OffsetLine(Direction::up);
-    P(n - 1); OffsetLine(Direction::right);
-    R(n - 1); OffsetLine(Direction::down);
-    S(n - 1); OffsetLine(Direction::down);
-    R(n - 1); OffsetLine(Direction::right);
-    P(n - 1); OffsetLine(Direction::up);
-    Q(n - 1); OffsetLine(Direction::up);
-    P(n - 1);
-};
-</code></pre>
-<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo separator="true">,</mo><mi>R</mi><mo separator="true">,</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">Q,R,S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span>も同様に描く.  </p>
-<pre><code class="language-c++">Q = [&amp;](int n)
-{
-    if (n &lt;= 0) { QRoot(); return; }
-    Q(n - 1); OffsetLine(Direction::up);
-    P(n - 1); OffsetLine(Direction::up);
-    Q(n - 1); OffsetLine(Direction::left);
-    S(n - 1); OffsetLine(Direction::down);
-    R(n - 1); OffsetLine(Direction::down);
-    S(n - 1); OffsetLine(Direction::left);
-    Q(n - 1); OffsetLine(Direction::up);
-    P(n - 1); OffsetLine(Direction::up);
-    Q(n - 1);
-};
-
-R = [&amp;](int n)
-{
-    if (n &lt;= 0) { RRoot(); return; }
-    R(n - 1); OffsetLine(Direction::down);
-    S(n - 1); OffsetLine(Direction::down);
-    R(n - 1); OffsetLine(Direction::right);
-    P(n - 1); OffsetLine(Direction::up);
-    Q(n - 1); OffsetLine(Direction::up);
-    P(n - 1); OffsetLine(Direction::right);
-    R(n - 1); OffsetLine(Direction::down);
-    S(n - 1); OffsetLine(Direction::down);
-    R(n - 1);
-};
-
-S = [&amp;](int n)
-{
-    if (n &lt;= 0) { SRoot(); return; }
-    S(n - 1); OffsetLine(Direction::down);
-    R(n - 1); OffsetLine(Direction::down);
-    S(n - 1); OffsetLine(Direction::left);
-    Q(n - 1); OffsetLine(Direction::up);
-    P(n - 1); OffsetLine(Direction::up);
-    Q(n - 1); OffsetLine(Direction::left);
-    S(n - 1); OffsetLine(Direction::down);
-    R(n - 1); OffsetLine(Direction::down);
-    S(n - 1);
-};
-</code></pre>
+あとはこれをそのままプログラムに落とし込めばよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">P</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">PRoot</span><span class="p">();</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">P</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="n">P</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">right</span><span class="p">);</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">right</span><span class="p">);</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="n">P</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="n">P</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">};</span>
+</span></code></pre></div></p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo separator="true">,</mo><mi>R</mi><mo separator="true">,</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">Q,R,S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span>も同様に描く.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">QRoot</span><span class="p">();</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">P</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">left</span><span class="p">);</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">left</span><span class="p">);</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="n">P</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">};</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="p">{</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">RRoot</span><span class="p">();</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">right</span><span class="p">);</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span><span class="n">P</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="n">P</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">right</span><span class="p">);</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="p">};</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="p">{</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">SRoot</span><span class="p">();</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">left</span><span class="p">);</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">    </span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">    </span><span class="n">P</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">up</span><span class="p">);</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">    </span><span class="n">Q</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">left</span><span class="p">);</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">    </span><span class="n">R</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">OffsetLine</span><span class="p">(</span><span class="n">Direction</span><span class="o">::</span><span class="n">down</span><span class="p">);</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">    </span><span class="n">S</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="p">};</span>
+</span></code></pre></div></p>
 <p>これでペアノ曲線もできた、結果を見てみよう.  </p>
 <p><img alt="peano_02" src="../Image/peano_02.webp" /></p>
 <p>うん、いい感じに模様が生成できている！  </p>

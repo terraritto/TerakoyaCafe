@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7701,151 +7722,151 @@
 <p>まず最初にデータの用意から.頂点のデータを用意していく.<br />
 今回は頂点は位置とindexを取れるようにする.<br />
 また、接続されている三角形も記録できるように<code>m_neighbors</code>で用意.<br />
-更にこの頂点がすでに処理されているかを設定できるように、<code>m_isVisited</code>も用意した.  </p>
-<pre><code class="language-c++">struct Vertex
-{
-    XMFLOAT3 m_position;
-    uint32_t m_index;
-    std::vector&lt;Triangle*&gt; m_neighbors;
-    bool m_isVisited = false;
-};
-</code></pre>
-<p>三角形に関しては頂点のポインタで持たせるようにする、特に四角形と考慮はせずに3個のみ.<br />
+更にこの頂点がすでに処理されているかを設定できるように、<code>m_isVisited</code>も用意した.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Vertex</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">XMFLOAT3</span><span class="w"> </span><span class="n">m_position</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">m_index</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Triangle</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">m_neighbors</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_isVisited</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">};</span>
+</span></code></pre></div>
+三角形に関しては頂点のポインタで持たせるようにする、特に四角形と考慮はせずに3個のみ.<br />
 そして<code>cetroid</code>,これはソート用に用意した変数.<br />
-また、三角形に関しても<code>m_isVisited</code>で処理されているかを設定できるようにしてある.  </p>
-<pre><code class="language-c++">struct Triangle
-{
-    std::array&lt;Vertex*, 3&gt; m_vertices;
-    XMFLOAT3 m_centroid; //for sort
-    bool m_isVisited = false;
-};
-</code></pre>
+また、三角形に関しても<code>m_isVisited</code>で処理されているかを設定できるようにしてある.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Triangle</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_vertices</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">XMFLOAT3</span><span class="w"> </span><span class="n">m_centroid</span><span class="p">;</span><span class="w"> </span><span class="c1">//for sort</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_isVisited</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">};</span>
+</span></code></pre></div></p>
 <p>便利関数の用意、こちらはソート用.<br />
 <code>sortIndex</code>を見て、軸指定で計算ができるようにしてある.<br />
 0ならx,1ならy,2ならzといった感じ.<br />
 Triangle側のソートは<code>centroid</code>を基準、これは後程何なのかわかる予定.<br />
-頂点は<code>position</code>を基準、これは分かりやすいね、軸方向基準で一列になるようにソートしてるんだね.  </p>
-<pre><code class="language-c++">// sort function
-int sortIndex = 0;
-auto CompareTriangles = [sortIndex](const Triangle* t1, const Triangle* t2)
-    {
-        if (sortIndex == 1) { return t1-&gt;m_centroid.y &lt; t2-&gt;m_centroid.y; }
-        else if (sortIndex == 2) { return t1-&gt;m_centroid.z &lt; t2-&gt;m_centroid.z; }
-        return t1-&gt;m_centroid.x &lt; t2-&gt;m_centroid.x;
-    };
-auto CompareVertices = [sortIndex](const Vertex* v1, const Vertex* v2)
-    {
-        if (sortIndex == 1) { return v1-&gt;m_position.y &lt; v2-&gt;m_position.y; }
-        else if (sortIndex == 2) { return v1-&gt;m_position.z &lt; v2-&gt;m_position.z; }
-        return v1-&gt;m_position.x &lt; v2-&gt;m_position.x;
-    };
-</code></pre>
+頂点は<code>position</code>を基準、これは分かりやすいね、軸方向基準で一列になるようにソートしてるんだね.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// sort function</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">sortIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">auto</span><span class="w"> </span><span class="n">CompareTriangles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">sortIndex</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">Triangle</span><span class="o">*</span><span class="w"> </span><span class="n">t1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Triangle</span><span class="o">*</span><span class="w"> </span><span class="n">t2</span><span class="p">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sortIndex</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">t1</span><span class="o">-&gt;</span><span class="n">m_centroid</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">t2</span><span class="o">-&gt;</span><span class="n">m_centroid</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sortIndex</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">t1</span><span class="o">-&gt;</span><span class="n">m_centroid</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">t2</span><span class="o">-&gt;</span><span class="n">m_centroid</span><span class="p">.</span><span class="n">z</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">t1</span><span class="o">-&gt;</span><span class="n">m_centroid</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">t2</span><span class="o">-&gt;</span><span class="n">m_centroid</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="p">};</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">auto</span><span class="w"> </span><span class="n">CompareVertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">sortIndex</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">v2</span><span class="p">)</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sortIndex</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">v1</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">v2</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sortIndex</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">v1</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">v2</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">z</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">v1</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">v2</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div></p>
 <p>そしたら変数周りの準備.<br />
-最初はBBox,これは最小値点と最大値点があればどうにかなるので、<code>XMFLOAT3</code>2つで表現.  </p>
-<pre><code class="language-c++">    // BBox
-    XMFLOAT3 minValue; minValue.x = (std::numeric_limits&lt;float&gt;::max)();
-    minValue.y = minValue.x; minValue.z = minValue.x;
-    XMFLOAT3 maxValue; maxValue.x = std::numeric_limits&lt;float&gt;::lowest();
-    maxValue.y = maxValue.x; maxValue.z = maxValue.x;
-</code></pre>
+最初はBBox,これは最小値点と最大値点があればどうにかなるので、<code>XMFLOAT3</code>2つで表現.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="c1">// BBox</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">XMFLOAT3</span><span class="w"> </span><span class="n">minValue</span><span class="p">;</span><span class="w"> </span><span class="n">minValue</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">max</span><span class="p">)();</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">minValue</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">minValue</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">minValue</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">minValue</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">XMFLOAT3</span><span class="w"> </span><span class="n">maxValue</span><span class="p">;</span><span class="w"> </span><span class="n">maxValue</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">lowest</span><span class="p">();</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">maxValue</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">maxValue</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">maxValue</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">maxValue</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>次は頂点,単純に元のデータとなる頂点データは<code>pureVertices</code>で持たせる.<br />
-ソートとかをする際は<code>vertices</code>というポインタ配列で<code>pureVertices</code>に参照を持たせる方式にしてみた.  </p>
-<pre><code class="language-c++">// Vertices
-std::vector&lt;Vertex&gt; pureVertices; pureVertices.resize(mesh-&gt;GetVerticesNum());
-std::vector&lt;Vertex*&gt; vertices; vertices.resize(mesh-&gt;GetVerticesNum());
-</code></pre>
-<p>さて、この頂点の配列は要はVertex Bufferの代替みたいなもの.<br />
+ソートとかをする際は<code>vertices</code>というポインタ配列で<code>pureVertices</code>に参照を持たせる方式にしてみた.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Vertices</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pureVertices</span><span class="p">;</span><span class="w"> </span><span class="n">pureVertices</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">GetVerticesNum</span><span class="p">());</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">vertices</span><span class="p">;</span><span class="w"> </span><span class="n">vertices</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">GetVerticesNum</span><span class="p">());</span>
+</span></code></pre></div>
+さて、この頂点の配列は要はVertex Bufferの代替みたいなもの.<br />
 なので、そのままVertex Bufferのパラメータを<code>pureVerticesに</code>移せばよい.<br />
-indexは順に付けていき、<code>vertices</code>には参照として<code>pureVertices</code>につなげるだけ.  </p>
-<pre><code class="language-c++">for (auto i = 0u; i &lt; vertices.size(); ++i)
-{
-    pureVertices[i].m_position = mesh-&gt;m_positions[i];
-    pureVertices[i].m_index = i;
-    vertices[i] = &amp;pureVertices.at(i);
-
-    // ...
-}
-</code></pre>
-<p>そして、BBOXの値はそのまま最小値と最大値を決めるだけ.  </p>
-<pre><code class="language-c++">        minValue.x = min(minValue.x, vertices[i]-&gt;m_position.x);
-        maxValue.x = max(maxValue.x, vertices[i]-&gt;m_position.x);
-        minValue.y = min(minValue.y, vertices[i]-&gt;m_position.y);
-        maxValue.y = max(maxValue.y, vertices[i]-&gt;m_position.y);
-        minValue.z = min(minValue.z, vertices[i]-&gt;m_position.z);
-        maxValue.z = max(maxValue.z, vertices[i]-&gt;m_position.z);
-</code></pre>
-<p>これで頂点は終わり!  </p>
+indexは順に付けていき、<code>vertices</code>には参照として<code>pureVertices</code>につなげるだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0u</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">pureVertices</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">m_position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_positions</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">pureVertices</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">m_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pureVertices</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">}</span>
+</span></code></pre></div>
+そして、BBOXの値はそのまま最小値と最大値を決めるだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">        </span><span class="n">minValue</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">minValue</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">        </span><span class="n">maxValue</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">maxValue</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="n">minValue</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">minValue</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">        </span><span class="n">maxValue</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">maxValue</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="n">minValue</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">minValue</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="n">maxValue</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">maxValue</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+</span></code></pre></div>
+これで頂点は終わり!  </p>
 <p>次はTriangle側の用意.<br />
-頂点と同じようにpureとその参照で持たせる方式.  </p>
-<pre><code class="language-c++">std::vector&lt;Triangle&gt; pureTriangles; pureTriangles.resize(mesh-&gt;GetIndicesNum() / 3);
-std::vector&lt;Triangle*&gt; triangles; triangles.resize(mesh-&gt;GetIndicesNum() / 3);
-</code></pre>
-<p>Triangleの方はIndex Bufferからアクセスを行う.<br />
+頂点と同じようにpureとその参照で持たせる方式.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Triangle</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pureTriangles</span><span class="p">;</span><span class="w"> </span><span class="n">pureTriangles</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">GetIndicesNum</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Triangle</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">triangles</span><span class="p">;</span><span class="w"> </span><span class="n">triangles</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">GetIndicesNum</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+</span></code></pre></div>
+Triangleの方はIndex Bufferからアクセスを行う.<br />
 Index Bufferがあれば3点は連続しているので、このアクセスで手に入る.<br />
-なので、これを使ってまずはTriangleが参照する頂点のポインタを格納する.   </p>
-<pre><code class="language-c++">for (auto i = 0u; i &lt; (mesh-&gt;GetIndicesNum() / 3); ++i)
-{
-    uint32_t index = i * 3;
-    Triangle* triangle = &amp;pureTriangles.at(i);
-
-    // register vertices
-    triangle-&gt;m_vertices[0] = &amp;pureVertices.at(mesh-&gt;m_indices[index]);
-    triangle-&gt;m_vertices[1] = &amp;pureVertices.at(mesh-&gt;m_indices[index + 1]);
-    triangle-&gt;m_vertices[2] = &amp;pureVertices.at(mesh-&gt;m_indices[index + 2]);
-
-    // ...
-}
-</code></pre>
-<p>三角形の3頂点側はこの三角形を構成していることになる.<br />
-なので、<code>m_neighbors</code>の方にこのtriangleを登録しておく.  </p>
-<pre><code class="language-c++">    // Register neighbor
-    Vertex* vert1 = triangle-&gt;m_vertices[0];
-    Vertex* vert2 = triangle-&gt;m_vertices[1];
-    Vertex* vert3 = triangle-&gt;m_vertices[2];
-
-    vert1-&gt;m_neighbors.push_back(triangle);
-    vert2-&gt;m_neighbors.push_back(triangle);
-    vert3-&gt;m_neighbors.push_back(triangle);
-</code></pre>
-<p>最後に<code>m_centroid</code>を計算.<br />
+なので、これを使ってまずはTriangleが参照する頂点のポインタを格納する. <br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0u</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">GetIndicesNum</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">Triangle</span><span class="o">*</span><span class="w"> </span><span class="n">triangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pureTriangles</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="c1">// register vertices</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pureVertices</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_indices</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pureVertices</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_indices</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pureVertices</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_indices</span><span class="p">[</span><span class="n">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">]);</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="p">}</span>
+</span></code></pre></div>
+三角形の3頂点側はこの三角形を構成していることになる.<br />
+なので、<code>m_neighbors</code>の方にこのtriangleを登録しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">    </span><span class="c1">// Register neighbor</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">vert1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">vert2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">vert3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="n">vert1</span><span class="o">-&gt;</span><span class="n">m_neighbors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">triangle</span><span class="p">);</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="n">vert2</span><span class="o">-&gt;</span><span class="n">m_neighbors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">triangle</span><span class="p">);</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="n">vert3</span><span class="o">-&gt;</span><span class="n">m_neighbors</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">triangle</span><span class="p">);</span>
+</span></code></pre></div>
+最後に<code>m_centroid</code>を計算.<br />
 3頂点の位置を足して、3で割っている.<br />
 これは三角形の重心の計算だね.<br />
 centroidは重心の意だけど、これは三角形の重心なのでした.<br />
-後は最後に<code>pureTriangles</code>の三角形を<code>triangles</code>に登録しておけば終わり！  </p>
-<pre><code class="language-c++">    // calculate simple average pos
-    triangle-&gt;m_centroid.x = (vert1-&gt;m_position.x + vert2-&gt;m_position.x + vert3-&gt;m_position.x) / 3.0f;
-    triangle-&gt;m_centroid.y = (vert1-&gt;m_position.y + vert2-&gt;m_position.y + vert3-&gt;m_position.y) / 3.0f;
-    triangle-&gt;m_centroid.z = (vert1-&gt;m_position.z + vert2-&gt;m_position.z + vert3-&gt;m_position.z) / 3.0f;
-
-    triangles[i] = triangle;
-</code></pre>
+後は最後に<code>pureTriangles</code>の三角形を<code>triangles</code>に登録しておけば終わり！<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">    </span><span class="c1">// calculate simple average pos</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_centroid</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">vert1</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vert2</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vert3</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">3.0f</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_centroid</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">vert1</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vert2</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vert3</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">3.0f</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_centroid</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">vert1</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vert2</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vert3</span><span class="o">-&gt;</span><span class="n">m_position</span><span class="p">.</span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">3.0f</span><span class="p">;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="n">triangles</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">triangle</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>そしたら最後にソート処理を実行する.<br />
 これは一番長い軸を対象として行う.<br />
 頂点ならposition,triangleならcentroidだね.<br />
 triangleは3点あるので、基準として重心を選んでる感じ.<br />
-長い軸なのは論文をちゃんと読んでるわけではないのでわからないけど、まあ感覚的に狭いほど密になっちゃうので、長い軸を取りたいという気持ちはわかる...  </p>
-<pre><code class="language-c++">    // calculate length per axis
-    XMFLOAT3 axis;
-    axis.x = abs(maxValue.x - minValue.x);
-    axis.y = abs(maxValue.y - minValue.y);
-    axis.z = abs(maxValue.z - minValue.z);
-
-    // sort by longest axis length!!
-    if (axis.x &gt; axis.y &amp;&amp; axis.x &gt; axis.z)
-    {
-        sortIndex = 0; // X
-    }
-    else if (axis.y &gt; axis.z &amp;&amp; axis.y &gt; axis.x)
-    {
-        sortIndex = 1; // Y
-    }
-    else
-    {
-        sortIndex = 2; // Z
-    }
-    std::sort(vertices.begin(), vertices.end(), CompareVertices);
-    std::sort(triangles.begin(), triangles.end(), CompareTriangles);
-</code></pre>
+長い軸なのは論文をちゃんと読んでるわけではないのでわからないけど、まあ感覚的に狭いほど密になっちゃうので、長い軸を取りたいという気持ちはわかる...<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="w">    </span><span class="c1">// calculate length per axis</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">XMFLOAT3</span><span class="w"> </span><span class="n">axis</span><span class="p">;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">axis</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">maxValue</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">minValue</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="n">axis</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">maxValue</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">minValue</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="n">axis</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">maxValue</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">minValue</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="c1">// sort by longest axis length!!</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">axis</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">axis</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">axis</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">axis</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">        </span><span class="n">sortIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// X</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">axis</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">axis</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">axis</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">axis</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">        </span><span class="n">sortIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// Y</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">        </span><span class="n">sortIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// Z</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">vertices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">vertices</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">CompareVertices</span><span class="p">);</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">triangles</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">triangles</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">CompareTriangles</span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>さて、なんでこういうソートをするの？という話だけど、Meshlet自体はある程度近い点を処理するのが良い.<br />
 理由は簡単でカリングとかを今後行う場合はこのMeshlet単位となる.<br />
 もしも離れている点があると、その点のせいでカリングが効いてない...ということになりかねないし、逆もしかりでなんか消えてる...といったことも起こりかねない.<br />
@@ -7853,212 +7874,211 @@ triangleは3点あるので、基準として重心を選んでる感じ.<br />
 まあ頂点同士の連結を見るので、大抵は気にしなくても問題なくはある.  </p>
 <p>さて、そしたら実際にGreedyの処理に入る.<br />
 まず処理する頂点を詰めるQueueを用意する.<br />
-Meshlet単位で分割するvertexとtriangleは<code>tempVertices</code>と<code>tempTriangle</code>にため込んでいく.  </p>
-<pre><code class="language-c++">std::queue&lt;Vertex*&gt; verticesQueue;
-std::vector&lt;Vertex*&gt; tempVertices;
-std::vector&lt;Triangle*&gt; tempTriangles;
-</code></pre>
+Meshlet単位で分割するvertexとtriangleは<code>tempVertices</code>と<code>tempTriangle</code>にため込んでいく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">verticesQueue</span><span class="p">;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Triangle</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">tempTriangles</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>そしたらまずは頂点毎の処理.<br />
-頂点が訪れていなければQueueに突っ込んで、<code>while</code>でQueueが空になるまで処理を繰り返す.  </p>
-<pre><code class="language-c++">for (Vertex* vertex : vertices)
-{
-    if (vertex-&gt;m_isVisited) { continue; }
-
-    // push vertex
-    verticesQueue.push(vertex);
-
-    while (!verticesQueue.empty())
-    {
-        // ...
-    }
-</code></pre>
-<p>これは要はまず適当な頂点を決めて突っ込んでるのに等しい.<br />
+頂点が訪れていなければQueueに突っ込んで、<code>while</code>でQueueが空になるまで処理を繰り返す.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">vertices</span><span class="p">)</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="p">{</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">vertex</span><span class="o">-&gt;</span><span class="n">m_isVisited</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="c1">// push vertex</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="n">verticesQueue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">vertex</span><span class="p">);</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">verticesQueue</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">        </span><span class="c1">// ...</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+これは要はまず適当な頂点を決めて突っ込んでるのに等しい.<br />
 <img alt="meshlet_004_01" src="../Image/meshlet_004_01.webp" />  </p>
 <p>Queue内の処理に移る.<br />
 まずQueueが空で内ならpopしてすでに訪れてるかを確認.<br />
-既に訪れてるなら処理はいらないのでskipする.  </p>
-<pre><code class="language-c++">while (!verticesQueue.empty())
-{
-    // Get head data
-    Vertex* currentVertex = verticesQueue.front();
-    verticesQueue.pop();
-
-    if (currentVertex-&gt;m_isVisited) { continue; }
-
-    for (Triangle* triangle : currentVertex-&gt;m_neighbors)
-    // ...
-}
-</code></pre>
-<p>もしもまだ訪れたことがない場合、頂点のneighborsを見て、各triangleに対して処理を行っていくことになる.<br />
+既に訪れてるなら処理はいらないのでskipする.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">verticesQueue</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="p">{</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="c1">// Get head data</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">currentVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">verticesQueue</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="n">verticesQueue</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">currentVertex</span><span class="o">-&gt;</span><span class="n">m_isVisited</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Triangle</span><span class="o">*</span><span class="w"> </span><span class="n">triangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">currentVertex</span><span class="o">-&gt;</span><span class="n">m_neighbors</span><span class="p">)</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="p">}</span>
+</span></code></pre></div>
+もしもまだ訪れたことがない場合、頂点のneighborsを見て、各triangleに対して処理を行っていくことになる.<br />
 勿論Triangleもすでに追加済みだったらskip.<br />
-処理していないTriangleであれば頂点を見て、まだ訪れたことがない頂点ならQueueに突っ込んでおく.  </p>
-<pre><code class="language-c++">for (Triangle* triangle : currentVertex-&gt;m_neighbors)
-{
-    Vertex* vert1 = triangle-&gt;m_vertices[0];
-    Vertex* vert2 = triangle-&gt;m_vertices[1];
-    Vertex* vert3 = triangle-&gt;m_vertices[2];
-
-    // if not registered, register triangle.
-    if (triangle-&gt;m_isVisited)
-    {
-        // if registered, skip.
-        continue;
-    }
-
-    // if not searched, push queue.
-    if (vert1-&gt;m_isVisited == false) { verticesQueue.push(vert1); }
-    if (vert2-&gt;m_isVisited == false) { verticesQueue.push(vert2); }
-    if (vert3-&gt;m_isVisited == false) { verticesQueue.push(vert3); }
-
-    // ...
-}
-</code></pre>
-<p>こうしてQueueにっつこむことで三角形が登録されたことになる.<br />
+処理していないTriangleであれば頂点を見て、まだ訪れたことがない頂点ならQueueに突っ込んでおく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Triangle</span><span class="o">*</span><span class="w"> </span><span class="n">triangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">currentVertex</span><span class="o">-&gt;</span><span class="n">m_neighbors</span><span class="p">)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">vert1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">vert2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">vert3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="c1">// if not registered, register triangle.</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_isVisited</span><span class="p">)</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">        </span><span class="c1">// if registered, skip.</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">        </span><span class="k">continue</span><span class="p">;</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">    </span><span class="c1">// if not searched, push queue.</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">vert1</span><span class="o">-&gt;</span><span class="n">m_isVisited</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">verticesQueue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">vert1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">vert2</span><span class="o">-&gt;</span><span class="n">m_isVisited</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">verticesQueue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">vert2</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">vert3</span><span class="o">-&gt;</span><span class="n">m_isVisited</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">verticesQueue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">vert3</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="p">}</span>
+</span></code></pre></div>
+こうしてQueueにっつこむことで三角形が登録されたことになる.<br />
 <img alt="meshlet_004_02" src="../Image/meshlet_004_03.webp" />  </p>
 <p>Queueに追加後はtempに頂点を追加できるかを確認する.<br />
 すでにtempに追加されてる場合の二重登録を避けるためである.<br />
-そして、追加できる頂点数を数えておく.  </p>
-<pre><code class="language-c++">    // hou much add vertex to temp vertex list?
-    bool isVert1 = std::find(tempVertices.begin(), tempVertices.end(), vert1) == tempVertices.end();
-    bool isVert2 = std::find(tempVertices.begin(), tempVertices.end(), vert2) == tempVertices.end();
-    bool isVert3 = std::find(tempVertices.begin(), tempVertices.end(), vert3) == tempVertices.end();
-    int mustAddVertexCount = 0;
-    if (isVert1) { mustAddVertexCount++; }
-    if (isVert2) { mustAddVertexCount++; }
-    if (isVert3) { mustAddVertexCount++; }
-</code></pre>
-<p>次に追加予定の個数分の空きがあるかを確認する.<br />
-meshletは最大数の縛りがあるので、ちゃんとここを満たすように分割する必要があるためである.  </p>
-<pre><code class="language-c++">    // is full triangle?
-    bool isAddVertex = (tempVertices.size() + mustAddVertexCount) &lt; MAX_VERTICES;
-    bool isAddTriangle = (tempTriangles.size() + 1) &lt; MAX_TRIANGLES;
-</code></pre>
-<p>そして突っ込めるかを確かめて、突っ込める場合を見ていく.<br />
+そして、追加できる頂点数を数えておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="w">    </span><span class="c1">// hou much add vertex to temp vertex list?</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isVert1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">tempVertices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">vert1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isVert2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">tempVertices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">vert2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isVert3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">tempVertices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">vert3</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">mustAddVertexCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isVert1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mustAddVertexCount</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isVert2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mustAddVertexCount</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isVert3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">mustAddVertexCount</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+次に追加予定の個数分の空きがあるかを確認する.<br />
+meshletは最大数の縛りがあるので、ちゃんとここを満たすように分割する必要があるためである.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="w">    </span><span class="c1">// is full triangle?</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isAddVertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tempVertices</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mustAddVertexCount</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_VERTICES</span><span class="p">;</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isAddTriangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tempTriangles</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_TRIANGLES</span><span class="p">;</span>
+</span></code></pre></div>
+そして突っ込めるかを確かめて、突っ込める場合を見ていく.<br />
 突っ込める場合は頂点はまだ追加してない分のみ追加するようにする.<br />
 Triangleもそのまま突っ込むが、triangleはここで訪れたマークを付けておく.<br />
 Triangle自体はこれ以上別のところで追加されることはないからだね.<br />
-頂点は複数のTriangleと結びついているため、ここで訪れたことにすることはできません.  </p>
-<pre><code class="language-c++">    if (!isAddVertex || !isAddTriangle)
-    {
-        // ...
-    }
-    else
-    {
-        // Add Vertex
-        if (isVert1) { tempVertices.push_back(vert1); }
-        if (isVert2) { tempVertices.push_back(vert2); }
-        if (isVert3) { tempVertices.push_back(vert3); }
-
-        // Add Triangle and flag on
-        tempTriangles.push_back(triangle);
-        triangle-&gt;m_isVisited = true;
-    }
-</code></pre>
-<p>これで三角形に関しては訪れたことになったので、青にしておこう.<br />
+頂点は複数のTriangleと結びついているため、ここで訪れたことにすることはできません.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isAddVertex</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">isAddTriangle</span><span class="p">)</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">        </span><span class="c1">// ...</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">        </span><span class="c1">// Add Vertex</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isVert1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">vert1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isVert2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">vert2</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isVert3</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">vert3</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">        </span><span class="c1">// Add Triangle and flag on</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">        </span><span class="n">tempTriangles</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">triangle</span><span class="p">);</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">        </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_isVisited</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+これで三角形に関しては訪れたことになったので、青にしておこう.<br />
 <img alt="meshlet_004_05" src="../Image/meshlet_004_05.webp" /><br />
 さて、今の処理を何度も何度も行うと、段々と広がっていくことになる.<br />
 <img alt="meshlet_004_06" src="../Image/meshlet_004_06.webp" /><br />
-そしてTriangleが全部tempに突っ込めた状態になったとき,初めて頂点は訪問した状態にできる.  </p>
-<pre><code class="language-c++">    for (Triangle* triangle : currentVertex-&gt;m_neighbors)
-    {
-        // ...
-    }
-
-    // if all triangle is registered, vertex don't have to search.
-    // so flag on.
-    currentVertex-&gt;m_isVisited = true;
-</code></pre>
-<p>こんな感じで片っ端に近いものを貪欲(Greedy)に突っ込んでいくので、Greedy法なんだね.<br />
+そしてTriangleが全部tempに突っ込めた状態になったとき,初めて頂点は訪問した状態にできる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Triangle</span><span class="o">*</span><span class="w"> </span><span class="n">triangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">currentVertex</span><span class="o">-&gt;</span><span class="n">m_neighbors</span><span class="p">)</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">        </span><span class="c1">// ...</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="c1">// if all triangle is registered, vertex don&#39;t have to search.</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="c1">// so flag on.</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="n">currentVertex</span><span class="o">-&gt;</span><span class="n">m_isVisited</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span></code></pre></div>
+こんな感じで片っ端に近いものを貪欲(Greedy)に突っ込んでいくので、Greedy法なんだね.<br />
 <img alt="meshlet_004_07" src="../Image/meshlet_004_07.webp" />  </p>
 <p>さて、ではtempが全部埋まったときがそのうち来る.<br />
 tempが埋まっているということはMeshletが全部埋まって分割できる状態になったということになる.<br />
 なので、この場合は<code>Construct</code>関数を呼び出してmeshletの構築を行う.<br />
-構築後は単純に現在のQueueを空にして、現在の頂点のみにしてやり直すだけ.  </p>
-<pre><code class="language-c++">    if (!isAddVertex || !isAddTriangle)
-    {
-        Construct();
-
-        // init for next loop.
-        std::queue&lt;Vertex*&gt;().swap(verticesQueue);
-        verticesQueue.push(currentVertex);
-        tempVertices.clear();
-        tempTriangles.clear();
-
-        break;
-    }
-</code></pre>
+構築後は単純に現在のQueueを空にして、現在の頂点のみにしてやり直すだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isAddVertex</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">isAddTriangle</span><span class="p">)</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">        </span><span class="n">Construct</span><span class="p">();</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">        </span><span class="c1">// init for next loop.</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="n">Vertex</span><span class="o">*&gt;</span><span class="p">().</span><span class="n">swap</span><span class="p">(</span><span class="n">verticesQueue</span><span class="p">);</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">        </span><span class="n">verticesQueue</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">currentVertex</span><span class="p">);</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">        </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">        </span><span class="n">tempTriangles</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>さて,ということで<code>Construct</code>を見ていこう.<br />
 Constructではまず現状のオフセットの位置を確定させる.<br />
-今までに突っ込まれたmeshletのデータ数をOffsetにするだけ.  </p>
-<pre><code class="language-c++">auto Construct = [&amp;]()
-    {
-        // calculate prev start point.
-        ResourceMeshlet meshlet;
-        meshlet.m_vertexOffset = mesh-&gt;m_uniqueVertexIndices.size();
-        meshlet.m_primitiveOffset = mesh-&gt;m_primitiveIndices.size();
-
-        // ...
-    };
-</code></pre>
+今までに突っ込まれたmeshletのデータ数をOffsetにするだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">Construct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">        </span><span class="c1">// calculate prev start point.</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">        </span><span class="n">ResourceMeshlet</span><span class="w"> </span><span class="n">meshlet</span><span class="p">;</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">        </span><span class="n">meshlet</span><span class="p">.</span><span class="n">m_vertexOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_uniqueVertexIndices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">        </span><span class="n">meshlet</span><span class="p">.</span><span class="n">m_primitiveOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_primitiveIndices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">        </span><span class="c1">// ...</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div></p>
 <p>そしたらまずは頂点、こいつはデータをそのまま突っ込むだけでOK.<br />
-Offsetはすでに取ってあるので無心で突っ込む!  </p>
-<pre><code class="language-c++">        // Add Vertex
-        for (const Vertex* vertex : tempVertices)
-        {
-            mesh-&gt;m_uniqueVertexIndices.push_back(vertex-&gt;m_index);
-        }
-</code></pre>
+Offsetはすでに取ってあるので無心で突っ込む!<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="w">        </span><span class="c1">// Add Vertex</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">)</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">            </span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_uniqueVertexIndices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">vertex</span><span class="o">-&gt;</span><span class="n">m_index</span><span class="p">);</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">        </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>ポリゴンの場合はちょっと面倒.<br />
 まず最初にポリゴンの頂点が頂点のどの位置にあるかを計算する.<br />
 これは<code>find</code>で位置を確定させて、<code>distance</code>で距離を求めればOK.<br />
-あとはpackして突っ込めばOK.  </p>
-<pre><code class="language-c++">        for (const Triangle* triangle : tempTriangles)
-        {
-            auto vertexIter = std::find(tempVertices.begin(), tempVertices.end(), triangle-&gt;m_vertices[0]);
-            uint32_t vi0 = std::distance(tempVertices.begin(), vertexIter);
-            vertexIter = std::find(tempVertices.begin(), tempVertices.end(), triangle-&gt;m_vertices[1]);
-            uint32_t vi1 = std::distance(tempVertices.begin(), vertexIter);
-            vertexIter = std::find(tempVertices.begin(), tempVertices.end(), triangle-&gt;m_vertices[2]);
-            uint32_t vi2 = std::distance(tempVertices.begin(), vertexIter);
-
-            uint32_t packed =
-                ((static_cast&lt;uint32_t&gt;(vi0) &amp; 0xFF) &lt;&lt; 0) |
-                ((static_cast&lt;uint32_t&gt;(vi1) &amp; 0xFF) &lt;&lt; 8) |
-                ((static_cast&lt;uint32_t&gt;(vi2) &amp; 0xFF) &lt;&lt; 16);
-
-            mesh-&gt;m_primitiveIndices.push_back(packed);
-        }
-</code></pre>
-<p>頂点に対するIndexはあくまで<code>m_uniqueVertexIndices</code>.<br />
+あとはpackして突っ込めばOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Triangle</span><span class="o">*</span><span class="w"> </span><span class="n">triangle</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">tempTriangles</span><span class="p">)</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">vertexIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">tempVertices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">            </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">vi0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">tempVertices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">vertexIter</span><span class="p">);</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">            </span><span class="n">vertexIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">tempVertices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">            </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">vi1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">tempVertices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">vertexIter</span><span class="p">);</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">            </span><span class="n">vertexIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">tempVertices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="n">triangle</span><span class="o">-&gt;</span><span class="n">m_vertices</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">            </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">vi2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">tempVertices</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">vertexIter</span><span class="p">);</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">            </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">packed</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">                </span><span class="p">((</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">vi0</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="w">                </span><span class="p">((</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">vi1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">|</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="w">                </span><span class="p">((</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">vi2</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">);</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="w">            </span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_primitiveIndices</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">packed</span><span class="p">);</span>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="w">        </span><span class="p">}</span>
+</span></code></pre></div>
+頂点に対するIndexはあくまで<code>m_uniqueVertexIndices</code>.<br />
 この<code>m_uniqueVertexIndices</code>のOffset位置からのIndexを入れてるのが<code>m_primitiveIndices</code>.<br />
 二段階のindex構造というのがここのデータの突っ込み方を見るとちょっと理解が深まるかと思う,自分は深まった.  </p>
-<p>ということで最後にCountで数を設定して、このデータをmeshletとして保存すれば終わり！！  </p>
-<pre><code class="language-c++">        // calculate size and store it.
-        meshlet.m_vertexCount = tempVertices.size();
-        meshlet.m_primitiveCount = tempTriangles.size();
-        mesh-&gt;m_meshlets.push_back(meshlet);
-</code></pre>
-<p>さて、ここで注意、頂点のループの終わりにも<code>construct</code>は必要.  </p>
-<pre><code class="language-c++">
-for (Vertex* vertex : vertices)
-{
-    // ...
-}
-
-// when loop finished and triangle remained, make meshlet.
-if (tempTriangles.size() &gt; 0)
-{
-    Construct();
-}
-</code></pre>
-<p>理由は簡単で、満タンになる前に全部の処理が終わる場合もあるからである.<br />
+<p>ということで最後にCountで数を設定して、このデータをmeshletとして保存すれば終わり！！<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="w">        </span><span class="c1">// calculate size and store it.</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">        </span><span class="n">meshlet</span><span class="p">.</span><span class="n">m_vertexCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempVertices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">        </span><span class="n">meshlet</span><span class="p">.</span><span class="n">m_primitiveCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempTriangles</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">        </span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_meshlets</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">meshlet</span><span class="p">);</span>
+</span></code></pre></div></p>
+<p>さて、ここで注意、頂点のループの終わりにも<code>construct</code>は必要.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Vertex</span><span class="o">*</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">vertices</span><span class="p">)</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="p">{</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="p">}</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="c1">// when loop finished and triangle remained, make meshlet.</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tempTriangles</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="p">{</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">    </span><span class="n">Construct</span><span class="p">();</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="p">}</span>
+</span></code></pre></div>
+理由は簡単で、満タンになる前に全部の処理が終わる場合もあるからである.<br />
 例えば頂点が700個だとしたら、<code>MAX_VERTICES=64</code>なので、meshletは10個は埋まるけど最後のmeshletは60頂点で満タンではない.<br />
 でも、データとしては確定させる必要があるので、Constructの呼び出しが必要ってことだね.  </p>
 <p>meshletのデータが完全にできた後は4bitalignを忘れずにやっておく.<br />
-GPU上のデータは綺麗に揃える心が大事.  </p>
-<pre><code class="language-c++">ResourceMeshlet&amp; last = mesh-&gt;m_meshlets[meshletCount - 1];
-    mesh-&gt;m_primitiveIndices.resize(last.m_primitiveOffset + ((last.m_primitiveCount * 3 + 3) &amp; ~3));
-</code></pre>
+GPU上のデータは綺麗に揃える心が大事.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">ResourceMeshlet</span><span class="o">&amp;</span><span class="w"> </span><span class="n">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_meshlets</span><span class="p">[</span><span class="n">meshletCount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_primitiveIndices</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">last</span><span class="p">.</span><span class="n">m_primitiveOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="n">last</span><span class="p">.</span><span class="n">m_primitiveCount</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">~</span><span class="mi">3</span><span class="p">));</span>
+</span></code></pre></div></p>
 <p>さて、そしたら結果.<br />
 <img alt="meshlet_004_09" src="../Image/meshlet_004_09.png" /><br />
 うん、いい感じで描画されてる！  </p>

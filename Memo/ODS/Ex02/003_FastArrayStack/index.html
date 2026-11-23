@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7695,27 +7716,27 @@
 
 
 <h1 id="fastarraystack">FastArrayStack</h1>
-<p>前回の<code>ArrayStack</code>ではコピーをこうしてた.  </p>
-<pre><code class="language-c++">for (int i = 0; i &lt; m_size; i++)
-{
-    temp[i] = m_data[i];
-}
-</code></pre>
-<p>悪いわけではないけど、速度的には良くはない.<br />
-Standard Libraryを使えば以下のように書ける.  </p>
-<pre><code class="language-c++">std::copy((&amp;m_data[0]), (&amp;m_data[0]) + m_size, &amp;temp[0]);
-</code></pre>
-<p>なんか<code>memcpy</code>してる気分になるね.<br />
-また、追加の時は以下のようなコードを書いてた.  </p>
-<pre><code class="language-c++">for (int j = m_size; i &lt; j; j--)
-{
-    m_data[j] = m_data[j - 1];
-}
-</code></pre>
-<p>この逆側の操作に関してもStandard Libraryにある.  </p>
-<pre><code class="language-c++">std::copy_backward((&amp;m_data[0]) + i, (&amp;m_data[0]) + m_size, (&amp;m_data[0]) + m_size + 1);
-</code></pre>
-<p>こうして書き換えるだけで、ちょっと速くなる.<br />
+<p>前回の<code>ArrayStack</code>ではコピーをこうしてた.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
+</span></code></pre></div>
+悪いわけではないけど、速度的には良くはない.<br />
+Standard Libraryを使えば以下のように書ける.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">((</span><span class="o">&amp;</span><span class="n">m_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_size</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">temp</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span></code></pre></div>
+なんか<code>memcpy</code>してる気分になるね.<br />
+また、追加の時は以下のようなコードを書いてた.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_size</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">j</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">--</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">m_data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_data</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
+</span></code></pre></div>
+この逆側の操作に関してもStandard Libraryにある.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">std</span><span class="o">::</span><span class="n">copy_backward</span><span class="p">((</span><span class="o">&amp;</span><span class="n">m_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_size</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span></code></pre></div>
+こうして書き換えるだけで、ちょっと速くなる.<br />
 移動のメモリ操作はライブラリに頼るとよいって感じでしょうか.<br />
 こうして書き換えたら<code>FastArrayStack</code>の出来上がり.  </p>
 

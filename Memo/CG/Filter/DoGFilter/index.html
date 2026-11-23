@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7760,30 +7781,30 @@ LoG(X,Y) = \Delta G(x,y)
 <p>どうもこのPaper<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>を参考にしたっぽいが、個人的にはLoGの部分は上記のような感じになり、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>はLoGではない気がする.<br />
 とはいえ<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><msup><mi>σ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">(k-1)\sigma^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>の数値は小さいので、DoGとLoGが近似関係というのは結局いえると思う.  </p>
 <p>さて、実装は簡単だ.<br />
-まず<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>の部分を2パターン用意する.  </p>
-<pre><code class="language-c++">// sigmaを用意
-double sigmaK = sigma * K;
-double sigma2 = sigma * sigma;
-double sigma2K = sigmaK * sigmaK;
-</code></pre>
-<p>そして、各々でGaussianを計算.  </p>
-<pre><code class="language-c++">// SigmaのGaussian
-double exp1 = Exp(-(i * i + j * j) / (2.0f * sigma2));
-double denom1 = 2.0 * Math::Pi * sigma2;
-double conv = exp1 / denom1;
-
-// Sigma*KのGaussian
-double denomK = 2.0 * Math::Pi * sigma2K;
-double expK = Exp(-(i * i + j * j) / (2.0f * sigma2K));
-double convK = expK / denomK;
-</code></pre>
-<p>最後に引いてDoGを計算し、これを重みとして使えば終わり.  </p>
-<pre><code class="language-c++">// DoGの重みへ
-double convResult = convK - conv;
-
-result += convResult * next;
-sum += convResult;
-</code></pre>
+まず<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>σ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\sigma^{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>の部分を2パターン用意する.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// sigmaを用意</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kt">double</span><span class="w"> </span><span class="n">sigmaK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">K</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">double</span><span class="w"> </span><span class="n">sigma2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kt">double</span><span class="w"> </span><span class="n">sigma2K</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigmaK</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigmaK</span><span class="p">;</span>
+</span></code></pre></div>
+そして、各々でGaussianを計算.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// SigmaのGaussian</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kt">double</span><span class="w"> </span><span class="n">exp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2</span><span class="p">));</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kt">double</span><span class="w"> </span><span class="n">denom1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Math</span><span class="o">::</span><span class="n">Pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kt">double</span><span class="w"> </span><span class="n">conv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exp1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">denom1</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">// Sigma*KのGaussian</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="kt">double</span><span class="w"> </span><span class="n">denomK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Math</span><span class="o">::</span><span class="n">Pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2K</span><span class="p">;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kt">double</span><span class="w"> </span><span class="n">expK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2K</span><span class="p">));</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="kt">double</span><span class="w"> </span><span class="n">convK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expK</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">denomK</span><span class="p">;</span>
+</span></code></pre></div>
+最後に引いてDoGを計算し、これを重みとして使えば終わり.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// DoGの重みへ</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kt">double</span><span class="w"> </span><span class="n">convResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convK</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">conv</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">convResult</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">convResult</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>今回の結果を見てみよう.  </p>
 <p><img alt="DoG_01" src="../Image/DoG_01.jpg" /></p>
 <p>うん、DoGの場合もちゃんとそれっぽい値が取れてそうだね.<br />

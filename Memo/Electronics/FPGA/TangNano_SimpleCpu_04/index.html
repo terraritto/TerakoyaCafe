@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7711,52 +7732,52 @@
 <p><img alt="MakeSimpleCpu_04_01" src="../Image/MakeSimpleCpu_04_01.webp" />  </p>
 <p>制御バスはクロックとボタンというメンバを持っており、両方入力方向.<br />
 そのため、このメンバをまずinterfaceで用意.<br />
-その後、ポートに関しては入力として定義すればＯＫ.  </p>
-<pre><code class="language-verilog">// 制御用バスのインターフェース
-interface ctrl_bus_if();
-    logic clk;      // クロック
-    logic n_reset;  // リセットボタン
-
-    // 両方入力として定義
-    modport master(input clk, input n_reset);
-endinterface
-</code></pre>
+その後、ポートに関しては入力として定義すればＯＫ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 制御用バスのインターフェース</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">interface</span><span class="w"> </span><span class="n">ctrl_bus_if</span><span class="p">();</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">clk</span><span class="p">;</span><span class="w">      </span><span class="c1">// クロック</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">n_reset</span><span class="p">;</span><span class="w">  </span><span class="c1">// リセットボタン</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="c1">// 両方入力として定義</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="n">modport</span><span class="w"> </span><span class="n">master</span><span class="p">(</span><span class="k">input</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="k">input</span><span class="w"> </span><span class="n">n_reset</span><span class="p">);</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">endinterface</span>
+</span></code></pre></div></p>
 <p>I/Oバスについて.<br />
 こちらはメンバとしてledのみ.<br />
 そして、方向は出力となるように設定すればよい.<br />
 今回のLEDは4つなので、4本のワイヤーが必要.<br />
 そのため、<code>WIDTH</code>というパラメータで指定できるようにする.  </p>
-<pre><code class="language-verilog">// 入力用バスのインターフェース
-// 入力としてビット数をWIDTHとして設定できるように
-interface io_bus_if #(parameter WIDTH) ();
-    logic [WIDTH-1:0] led;      // LED
-
-    // LEDは出力
-    modport master(output led);
-endinterface
-</code></pre>
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// 入力用バスのインターフェース</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// 入力としてビット数をWIDTHとして設定できるように</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">interface</span><span class="w"> </span><span class="n">io_bus_if</span><span class="w"> </span><span class="p">#(</span><span class="k">parameter</span><span class="w"> </span><span class="n">WIDTH</span><span class="p">)</span><span class="w"> </span><span class="p">();</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="n">WIDTH</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">led</span><span class="p">;</span><span class="w">      </span><span class="c1">// LED</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="c1">// LEDは出力</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">modport</span><span class="w"> </span><span class="n">master</span><span class="p">(</span><span class="k">output</span><span class="w"> </span><span class="n">led</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">endinterface</span>
+</span></code></pre></div>
 <p>ここまで2つのバスが書けた！  </p>
 <p>次はバスを適用させていく.<br />
 まずはtopにバスを書いて、mother_boardに渡す.<br />
-<code>WIDTH</code>は4bit CPUなので、4を指定すればよい.  </p>
-<pre><code class="language-verilog">    // 制御用バス
-    ctrl_bus_if ctrl_bus();
-    assign ctrl_bus.clk = clk;
-    assign ctrl_bus.n_reset = pin_n_reset;
-
-    // 入力用バス
-    io_bus_if #(.WIDTH(4)) io_bus();
-    assign pin_led = io_bus.led;
-
-    mother_board mother_board(.ctrl_bus, .io_bus);
-</code></pre>
-<p>マザーボード側もちょっとだけ変更.  </p>
-<pre><code class="language-verilog">module mother_board
-(
-    ctrl_bus_if.master ctrl_bus,    // 制御用バス
-    io_bus_if.master io_bus         // 入力用バス
-);
-</code></pre>
+<code>WIDTH</code>は4bit CPUなので、4を指定すればよい.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="c1">// 制御用バス</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">ctrl_bus_if</span><span class="w"> </span><span class="n">ctrl_bus</span><span class="p">();</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">ctrl_bus</span><span class="p">.</span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clk</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">ctrl_bus</span><span class="p">.</span><span class="n">n_reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pin_n_reset</span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="c1">// 入力用バス</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">io_bus_if</span><span class="w"> </span><span class="p">#(.</span><span class="n">WIDTH</span><span class="p">(</span><span class="mh">4</span><span class="p">))</span><span class="w"> </span><span class="n">io_bus</span><span class="p">();</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">pin_led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io_bus</span><span class="p">.</span><span class="n">led</span><span class="p">;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="n">mother_board</span><span class="w"> </span><span class="n">mother_board</span><span class="p">(.</span><span class="n">ctrl_bus</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">io_bus</span><span class="p">);</span>
+</span></code></pre></div>
+マザーボード側もちょっとだけ変更.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">module</span><span class="w"> </span><span class="n">mother_board</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">(</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">ctrl_bus_if</span><span class="p">.</span><span class="n">master</span><span class="w"> </span><span class="n">ctrl_bus</span><span class="p">,</span><span class="w">    </span><span class="c1">// 制御用バス</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">io_bus_if</span><span class="p">.</span><span class="n">master</span><span class="w"> </span><span class="n">io_bus</span><span class="w">         </span><span class="c1">// 入力用バス</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">);</span>
+</span></code></pre></div></p>
 <p>いったんここまでで次はメモリバスを見ていく.  </p>
 <p>メモリバスは単純にCPUとROM側で今まで渡しあってた  </p>
 <ul>
@@ -7771,66 +7792,66 @@ endinterface
 <p>これつまりメンバは同じだけど、方向が真逆というものがものなわけだ.<br />
 こういう時はポート側で方向を真逆にした2つを用意すればよい.<br />
 今回はこれを「マスター」と「スレイブ」で用意する.  </p>
-<pre><code class="language-verilog">// メモリ用バスのインターフェース
-interface mem_bus_if #(parameter ADDR_WIDTH, DATA_WIDTH) ();
-    logic [ADDR_WIDTH-1:0] address;     // アドレス
-    logic [DATA_WIDTH-1:0] data;        // データ
-
-    modport master(output address, input data); // マスターポート
-    modport slave(input address, output data);  // スレーブポート
-endinterface
-</code></pre>
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// メモリ用バスのインターフェース</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">interface</span><span class="w"> </span><span class="n">mem_bus_if</span><span class="w"> </span><span class="p">#(</span><span class="k">parameter</span><span class="w"> </span><span class="n">ADDR_WIDTH</span><span class="p">,</span><span class="w"> </span><span class="n">DATA_WIDTH</span><span class="p">)</span><span class="w"> </span><span class="p">();</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="n">ADDR_WIDTH</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">address</span><span class="p">;</span><span class="w">     </span><span class="c1">// アドレス</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="n">DATA_WIDTH</span><span class="o">-</span><span class="mh">1</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w">        </span><span class="c1">// データ</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">modport</span><span class="w"> </span><span class="n">master</span><span class="p">(</span><span class="k">output</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="k">input</span><span class="w"> </span><span class="n">data</span><span class="p">);</span><span class="w"> </span><span class="c1">// マスターポート</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="n">modport</span><span class="w"> </span><span class="n">slave</span><span class="p">(</span><span class="k">input</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="n">data</span><span class="p">);</span><span class="w">  </span><span class="c1">// スレーブポート</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">endinterface</span>
+</span></code></pre></div>
 <p>さて、そしたらこれをmother_board側に埋め込む.<br />
 アドレスは4bit,命令はopecodeで8bitなので、そのように設定.<br />
 あとはcpuとromに波及するようにすればOK!!<br />
 cpuに関しては制御バスとI/Oバスを入れるのを忘れずに.  </p>
-<pre><code class="language-verilog">    // メモリ用バス
-    mem_bus_if #(.ADDR_WIDTH(4), .DATA_WIDTH(8)) mem_bus();
-
-    // モジュールの埋め込み
-    cpu cpu(.ctrl_bus, .io_bus, .mem_bus);
-    rom rom(.mem_bus);
-</code></pre>
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="c1">// メモリ用バス</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">mem_bus_if</span><span class="w"> </span><span class="p">#(.</span><span class="n">ADDR_WIDTH</span><span class="p">(</span><span class="mh">4</span><span class="p">),</span><span class="w"> </span><span class="p">.</span><span class="n">DATA_WIDTH</span><span class="p">(</span><span class="mh">8</span><span class="p">))</span><span class="w"> </span><span class="n">mem_bus</span><span class="p">();</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="c1">// モジュールの埋め込み</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">cpu</span><span class="w"> </span><span class="n">cpu</span><span class="p">(.</span><span class="n">ctrl_bus</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">io_bus</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">mem_bus</span><span class="p">);</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="n">rom</span><span class="w"> </span><span class="n">rom</span><span class="p">(.</span><span class="n">mem_bus</span><span class="p">);</span>
+</span></code></pre></div>
 <p>そしたらCPUとROMも渡すものを変えちゃおう.<br />
 ここで<code>.master</code>と<code>.slave</code>で使い分けるだけでOK！<br />
-非常に簡単ですね.  </p>
-<pre><code class="language-verilog">module cpu
-(
-    ctrl_bus_if.master ctrl_bus,    // 制御用バス
-    io_bus_if.master io_bus,        // 入力用バス
-    mem_bus_if.master mem_bus       // メモリ用バス
-);
-
-module rom
-(
-    mem_bus_if.slave mem_bus    // メモリ用バス
-);
-</code></pre>
-<p>これでバスの設定も完了！  </p>
+非常に簡単ですね.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">module</span><span class="w"> </span><span class="n">cpu</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">(</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">ctrl_bus_if</span><span class="p">.</span><span class="n">master</span><span class="w"> </span><span class="n">ctrl_bus</span><span class="p">,</span><span class="w">    </span><span class="c1">// 制御用バス</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="n">io_bus_if</span><span class="p">.</span><span class="n">master</span><span class="w"> </span><span class="n">io_bus</span><span class="p">,</span><span class="w">        </span><span class="c1">// 入力用バス</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="n">mem_bus_if</span><span class="p">.</span><span class="n">master</span><span class="w"> </span><span class="n">mem_bus</span><span class="w">       </span><span class="c1">// メモリ用バス</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">);</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">module</span><span class="w"> </span><span class="n">rom</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">(</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="n">mem_bus_if</span><span class="p">.</span><span class="n">slave</span><span class="w"> </span><span class="n">mem_bus</span><span class="w">    </span><span class="c1">// メモリ用バス</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">);</span>
+</span></code></pre></div>
+これでバスの設定も完了！  </p>
 <p>さて、次にやるのはROMを別ファイルに移す対応.<br />
-前回までは以下のように直書きしていた.  </p>
-<pre><code class="language-verilog">    always_comb begin
-        case (address)                    // address  data  operate
-            4'b0000: data = 8'b0111_1010; // 0        7A    mov B, 10
-        // ...
-</code></pre>
+前回までは以下のように直書きしていた.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">    </span><span class="k">always_comb</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="w">                    </span><span class="c1">// address  data  operate</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0000</span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">8</span><span class="mb">&#39;b0111</span><span class="n">_1010</span><span class="p">;</span><span class="w"> </span><span class="c1">// 0        7A    mov B, 10</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="c1">// ...</span>
+</span></code></pre></div></p>
 <p>これだとプログラムを書く毎にverilogに書いてて、ちょっと気持ち悪い...<br />
 そのため、ファイルから読み込むようにする.<br />
 ファイルの読み込みは簡単で、まず<code>rom_array</code>で読み込み先の配列を用意.<br />
 その後、<code>readmemh</code>でファイルを指定して読み込めばOK.<br />
-最後にこの配列に対して、アドレスを使ってアクセスすればデータを取得できるわけだ.  </p>
-<pre><code class="language-verilog">    logic [7:0] rom_array [16]; // 8bitワイヤーx16本
-    initial $readmemh(&quot;rom_data.mem&quot;, rom_array); // romの読み込み
-    assign mem_bus.data = rom_array[mem_bus.address]; // 繋ぐ
-endmodule
-</code></pre>
+最後にこの配列に対して、アドレスを使ってアクセスすればデータを取得できるわけだ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">7</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">rom_array</span><span class="w"> </span><span class="p">[</span><span class="mh">16</span><span class="p">];</span><span class="w"> </span><span class="c1">// 8bitワイヤーx16本</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">initial</span><span class="w"> </span><span class="nb">$readmemh</span><span class="p">(</span><span class="s">&quot;rom_data.mem&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rom_array</span><span class="p">);</span><span class="w"> </span><span class="c1">// romの読み込み</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">mem_bus</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rom_array</span><span class="p">[</span><span class="n">mem_bus</span><span class="p">.</span><span class="n">address</span><span class="p">];</span><span class="w"> </span><span class="c1">// 繋ぐ</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">endmodule</span>
+</span></code></pre></div></p>
 <p>書いてみると非常に単純なものだ.  </p>
-<p>ファイルの中身は次のような感じ.  </p>
-<pre><code class="language-verilog">        // address  data  operate
-7F      // 0        7F    mov B, 15
-90      // 1        90    OUT B
-</code></pre>
-<p>うん、直書きだ.<br />
+<p>ファイルの中身は次のような感じ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">        </span><span class="c1">// address  data  operate</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="mf">7F</span><span class="w">      </span><span class="c1">// 0        7F    mov B, 15</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="mh">90</span><span class="w">      </span><span class="c1">// 1        90    OUT B</span>
+</span></code></pre></div>
+うん、直書きだ.<br />
 ここまでくればコンパイラで生成したのをアセンブリにして機械語に...という流れも漠然と見えてくるものである.  </p>
 <p>今回の最後はCPUの分割を行うことである.<br />
 処理の単位で書き換えていくが、次のような部品に分ける.  </p>
@@ -7850,173 +7871,173 @@ ALUはWire_regからレジスタの現在の値を取り、計算をする.<br /
 今までのワイヤーを構造体にまとめてしまう.<br />
 こういうのはC/C++とか、そういうのと同じようなもんだね.<br />
 最初によくあるifdefで定義を行い、パッケージを<code>lib_cpu</code>としておく.<br />
-パッケージはnamespaceに近い感じ.  </p>
-<pre><code class="language-verilog">`ifndef LIB_CPU_SVH
-`define LIB_CPU_SVH
-package lib_cpu;
-
-typedef struct packed
-{
-    logic [3:0] a, b, ip, out;
-    logic cf;
-} REGS;
-
-endpackage
-`endif
-</code></pre>
-<p>これで一旦<code>REGS</code>というワイヤーをまとめた構造体を作ったわけだけど、使う際は</p>
-<pre><code class="language-verilog">`include &quot;lib_cpu.svh&quot;
-
-//...
-    output lib_cpu::REGS current,
-</code></pre>
-<p>とすれば使えるわけだ.  </p>
+パッケージはnamespaceに近い感じ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="no">`ifndef</span><span class="w"> </span><span class="n">LIB_CPU_SVH</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="cp">`define LIB_CPU_SVH</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="kn">package</span> <span class="n">lib_cpu</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="k">packed</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">{</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">ip</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">cf</span><span class="p">;</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="p">}</span><span class="w"> </span><span class="n">REGS</span><span class="p">;</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="k">endpackage</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="no">`endif</span>
+</span></code></pre></div>
+これで一旦<code>REGS</code>というワイヤーをまとめた構造体を作ったわけだけど、使う際は</p>
+<p><div class="language-verilog highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="no">`include</span><span class="w"> </span><span class="s">&quot;lib_cpu.svh&quot;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1">//...</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="n">lib_cpu</span><span class="o">::</span><span class="n">REGS</span><span class="w"> </span><span class="n">current</span><span class="p">,</span>
+</span></code></pre></div>
+とすれば使えるわけだ.  </p>
 <p>面倒な場合は<code>using namespace std;</code>と似たような感じなものも用意されてる.<br />
 今回は<code>write_reg</code>というモジュールに全部の要素を突っ込む.<br />
-これによって<code>lib_cpu::</code>を省略できる.  </p>
-<pre><code class="language-verilog">`include &quot;lib_cpu.svh&quot;
-
-module write_reg import lib_cpu :: *;
-//...
-    output REGS current,
-</code></pre>
+これによって<code>lib_cpu::</code>を省略できる.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="no">`include</span><span class="w"> </span><span class="s">&quot;lib_cpu.svh&quot;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">module</span><span class="w"> </span><span class="n">write_reg</span><span class="w"> </span><span class="n">import</span><span class="w"> </span><span class="n">lib_cpu</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1">//...</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="n">REGS</span><span class="w"> </span><span class="n">current</span><span class="p">,</span>
+</span></code></pre></div></p>
 <p>これで楽ができた！  </p>
 <p>さて、そしたら実際にこの構造体をcpuに埋め込む.<br />
-そして、ALUとwrite_regに流す.  </p>
-<pre><code class="language-verilog">    REGS current, next;
-    assign mem_bus.address = current.ip;
-    assign io_bus.led = current.out;
-
-    alu alu(.opecode, .imm, .current, .next);
-    write_reg write_reg(.ctrl_bus, .current, .next);
-</code></pre>
+そして、ALUとwrite_regに流す.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w">    </span><span class="n">REGS</span><span class="w"> </span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">mem_bus</span><span class="p">.</span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="n">ip</span><span class="p">;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">io_bus</span><span class="p">.</span><span class="n">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">.</span><span class="n">out</span><span class="p">;</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="n">alu</span><span class="w"> </span><span class="n">alu</span><span class="p">(.</span><span class="n">opecode</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">imm</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">next</span><span class="p">);</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="n">write_reg</span><span class="w"> </span><span class="n">write_reg</span><span class="p">(.</span><span class="n">ctrl_bus</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">next</span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>まずwrite_regはシンプル.<br />
 currentはALUに出力するのでoutput.<br />
 nextはALUの計算結果を格納するのでinput.<br />
-あとはクロック毎にcurrentをnextで更新するだけである.  </p>
-<pre><code class="language-verilog">`include &quot;lib_cpu.svh&quot;
-
-module write_reg import lib_cpu :: *;
-(
-    ctrl_bus_if.master ctrl_bus,
-    output REGS current,
-    input REGS next
-);
-    // リセットされてなければnextのものを入れる
-    always_ff @(posedge ctrl_bus.clk) begin
-        if (~ctrl_bus.n_reset)  current &lt;= '0;
-        else                    current &lt;= next;
-    end
-endmodule
-</code></pre>
-<p>図の中の4と6と7がこれで完成したことになる.  </p>
+あとはクロック毎にcurrentをnextで更新するだけである.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="no">`include</span><span class="w"> </span><span class="s">&quot;lib_cpu.svh&quot;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">module</span><span class="w"> </span><span class="n">write_reg</span><span class="w"> </span><span class="n">import</span><span class="w"> </span><span class="n">lib_cpu</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">(</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="n">ctrl_bus_if</span><span class="p">.</span><span class="n">master</span><span class="w"> </span><span class="n">ctrl_bus</span><span class="p">,</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="n">REGS</span><span class="w"> </span><span class="n">current</span><span class="p">,</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="k">input</span><span class="w"> </span><span class="n">REGS</span><span class="w"> </span><span class="n">next</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="p">);</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="c1">// リセットされてなければnextのものを入れる</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="k">always_ff</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">ctrl_bus</span><span class="p">.</span><span class="n">clk</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">~</span><span class="n">ctrl_bus</span><span class="p">.</span><span class="n">n_reset</span><span class="p">)</span><span class="w">  </span><span class="n">current</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">&#39;0</span><span class="p">;</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">        </span><span class="k">else</span><span class="w">                    </span><span class="n">current</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="k">endmodule</span>
+</span></code></pre></div>
+図の中の4と6と7がこれで完成したことになる.  </p>
 <p>次にDecoderに行く前にenumで命令をまとめて定義.<br />
-これもCとかと同じように書ける.  </p>
-<pre><code class="language-verilog">typedef enum logic [3:0]
-{
-    MOV_A_B,            // mov a, b
-    MOV_B_A,            // mov b, a
-    MOV_A_IMM,          // mov a, imm
-    MOV_B_IMM,          // mov b, imm
-    OUT_B,              // out b
-    OUT_IMM,            // out imm
-    ADD_A_IMM,          // add a, imm
-    ADD_B_IMM,          // add b, imm
-    JMP_IMM,            // jmp imm
-    JNC_IMM,            // jnc imm
-    INVALID             // NOP
-} OPECODE;
-</code></pre>
+これもCとかと同じように書ける.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="n">MOV_A_B</span><span class="p">,</span><span class="w">            </span><span class="c1">// mov a, b</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="n">MOV_B_A</span><span class="p">,</span><span class="w">            </span><span class="c1">// mov b, a</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="n">MOV_A_IMM</span><span class="p">,</span><span class="w">          </span><span class="c1">// mov a, imm</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="n">MOV_B_IMM</span><span class="p">,</span><span class="w">          </span><span class="c1">// mov b, imm</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="n">OUT_B</span><span class="p">,</span><span class="w">              </span><span class="c1">// out b</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="n">OUT_IMM</span><span class="p">,</span><span class="w">            </span><span class="c1">// out imm</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span><span class="n">ADD_A_IMM</span><span class="p">,</span><span class="w">          </span><span class="c1">// add a, imm</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">    </span><span class="n">ADD_B_IMM</span><span class="p">,</span><span class="w">          </span><span class="c1">// add b, imm</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">    </span><span class="n">JMP_IMM</span><span class="p">,</span><span class="w">            </span><span class="c1">// jmp imm</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">    </span><span class="n">JNC_IMM</span><span class="p">,</span><span class="w">            </span><span class="c1">// jnc imm</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">    </span><span class="n">INVALID</span><span class="w">             </span><span class="c1">// NOP</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="p">}</span><span class="w"> </span><span class="n">OPECODE</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>そしたらDecoderを書く.<br />
 入力はデータ、ROMから流れてくるもの.<br />
-これを命令と即値に分けるので、出力はこの2つである.  </p>
-<pre><code class="language-verilog">`include &quot;lib_cpu.svh&quot;
-
-module decoder import lib_cpu :: *;
-(
-    input logic [7:0] data,
-    output OPECODE opecode,
-    output logic[3:0] imm
-);
-</code></pre>
-<p>即値は前回やった通り下位4bit.<br />
-命令は上位4bitで取るようにすればOK.  </p>
-<pre><code class="language-verilog">    assign imm = data[3:0];
-
-    always_comb begin
-        unique case (data[7:4])
-            4'b0000: opecode = ADD_A_IMM;       // 0: add A, imm
-            4'b0101: opecode = ADD_B_IMM;       // 5: add B, imm
-            4'b0011: opecode = MOV_A_IMM;       // 3: mov A, imm
-            4'b0111: opecode = MOV_B_IMM;       // 7: mov B, imm
-            4'b0001: opecode = MOV_A_B;         // 1: mov A, B
-            4'b0100: opecode = MOV_B_A;         // 4: mov B, A
-            4'b1111: opecode = JMP_IMM;         // 15: jmp imm
-            4'b1110: opecode = JNC_IMM;         // 14: jnc imm
-            4'b1001: opecode = OUT_B;           // 9: OUT B
-            4'b1011: opecode = OUT_IMM;         // 11: OUT imm
-            default: opecode = INVALID;         // NOP
-        endcase
-    end
-endmodule
-</code></pre>
+これを命令と即値に分けるので、出力はこの2つである.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="no">`include</span><span class="w"> </span><span class="s">&quot;lib_cpu.svh&quot;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">module</span><span class="w"> </span><span class="n">decoder</span><span class="w"> </span><span class="n">import</span><span class="w"> </span><span class="n">lib_cpu</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="p">(</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="k">input</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">7</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="n">OPECODE</span><span class="w"> </span><span class="n">opecode</span><span class="p">,</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">imm</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="p">);</span>
+</span></code></pre></div>
+即値は前回やった通り下位4bit.<br />
+命令は上位4bitで取るようにすればOK.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">imm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">];</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">always_comb</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">        </span><span class="n">unique</span><span class="w"> </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mh">7</span><span class="o">:</span><span class="mh">4</span><span class="p">])</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0000</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ADD_A_IMM</span><span class="p">;</span><span class="w">       </span><span class="c1">// 0: add A, imm</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0101</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ADD_B_IMM</span><span class="p">;</span><span class="w">       </span><span class="c1">// 5: add B, imm</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0011</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MOV_A_IMM</span><span class="p">;</span><span class="w">       </span><span class="c1">// 3: mov A, imm</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0111</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MOV_B_IMM</span><span class="p">;</span><span class="w">       </span><span class="c1">// 7: mov B, imm</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0001</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MOV_A_B</span><span class="p">;</span><span class="w">         </span><span class="c1">// 1: mov A, B</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b0100</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MOV_B_A</span><span class="p">;</span><span class="w">         </span><span class="c1">// 4: mov B, A</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b1111</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JMP_IMM</span><span class="p">;</span><span class="w">         </span><span class="c1">// 15: jmp imm</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b1110</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JNC_IMM</span><span class="p">;</span><span class="w">         </span><span class="c1">// 14: jnc imm</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b1001</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OUT_B</span><span class="p">;</span><span class="w">           </span><span class="c1">// 9: OUT B</span>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">            </span><span class="mh">4</span><span class="mb">&#39;b1011</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OUT_IMM</span><span class="p">;</span><span class="w">         </span><span class="c1">// 11: OUT imm</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">            </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="n">opecode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">INVALID</span><span class="p">;</span><span class="w">         </span><span class="c1">// NOP</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">        </span><span class="k">endcase</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="k">endmodule</span>
+</span></code></pre></div></p>
 <p>これで図の1,2,3ができたことになる.  </p>
 <p>最後にALU.<br />
 ALUの計算は<code>lib_operation</code>にまとめる.<br />
-関数をまとめてるだけ,今回はnopだけ載せるがほかにも色々まとまってる.  </p>
-<pre><code class="language-verilog">`ifndef LIB_OPERATION_SVH
-`define LIB_OPERATION_SVH
-`include &quot;lib_cpu.svh&quot;
-
-package lib_operation;
-    import lib_cpu :: REGS;
-
-    function automatic REGS nop(REGS regs);
-        nop = regs;
-        nop.cf = 1'b0;
-        nop.ip = regs.ip + 4'd1;
-    endfunction
-
-    // ...
-
-endpackage
-`endif
-</code></pre>
+関数をまとめてるだけ,今回はnopだけ載せるがほかにも色々まとまってる.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="no">`ifndef</span><span class="w"> </span><span class="n">LIB_OPERATION_SVH</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="cp">`define LIB_OPERATION_SVH</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="no">`include</span><span class="w"> </span><span class="s">&quot;lib_cpu.svh&quot;</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="kn">package</span> <span class="n">lib_operation</span><span class="p">;</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span><span class="n">import</span><span class="w"> </span><span class="n">lib_cpu</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="n">REGS</span><span class="p">;</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">    </span><span class="k">function</span><span class="w"> </span><span class="k">automatic</span><span class="w"> </span><span class="n">REGS</span><span class="w"> </span><span class="n">nop</span><span class="p">(</span><span class="n">REGS</span><span class="w"> </span><span class="n">regs</span><span class="p">);</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">        </span><span class="n">nop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">regs</span><span class="p">;</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">        </span><span class="n">nop</span><span class="p">.</span><span class="n">cf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">        </span><span class="n">nop</span><span class="p">.</span><span class="n">ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">regs</span><span class="p">.</span><span class="n">ip</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">4</span><span class="mi">&#39;d1</span><span class="p">;</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">    </span><span class="k">endfunction</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="k">endpackage</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="no">`endif</span>
+</span></code></pre></div></p>
 <p>そしたら実際にALUを書いていく.<br />
 <code>lib_operation</code>と<code>lib_cpu</code>を導入.<br />
 そして、入力はCPUから<code>opecode</code>と<code>imm</code>.<br />
 write_Regから<code>current</code>でレジスタを得る.<br />
-こうして現在のレジスタと命令が分かれば計算をして、<code>next</code>のレジスタを出力するだけとなる.  </p>
-<pre><code class="language-verilog">`include &quot;lib_cpu.svh&quot;
-`include &quot;lib_operation.svh&quot;
-
-module alu import lib_cpu :: *, lib_operation :: *;
-(
-    input OPECODE opecode,
-    input logic[3:0] imm,
-    input REGS current,
-    output REGS next
-);
-</code></pre>
-<p>実際の計算としてはopecodeを見て、命令を確定.<br />
-current,immを関数に渡して、nextを出力すればOK.  </p>
-<pre><code class="language-verilog">    always_comb begin
-        unique case (opecode)
-            MOV_A_B: next = mov_a_b(current);                   // mov A, B
-            MOV_B_A: next = mov_b_a(current);                   // mov B, A
-            MOV_A_IMM: next = mov_a_imm(current, imm);          // mov A, imm
-            MOV_B_IMM: next = mov_b_imm(current, imm);          // mov B, imm
-            OUT_B: next = out_b(current);                       // out B
-            OUT_IMM: next = out_imm(current, imm);              // out imm
-            ADD_A_IMM: next = add_a_imm(current, imm);          // add A, imm
-            ADD_B_IMM: next = add_b_imm(current, imm);          // add B, imm
-            JMP_IMM: next = jmp_imm(current, imm);              // jmp imm
-            JNC_IMM: next = jnc_imm(current, imm);              // jnc imm
-            default: next = nop(current);                       // NOP
-        endcase
-    end
-endmodule
-</code></pre>
+こうして現在のレジスタと命令が分かれば計算をして、<code>next</code>のレジスタを出力するだけとなる.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="no">`include</span><span class="w"> </span><span class="s">&quot;lib_cpu.svh&quot;</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="no">`include</span><span class="w"> </span><span class="s">&quot;lib_operation.svh&quot;</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="k">module</span><span class="w"> </span><span class="n">alu</span><span class="w"> </span><span class="n">import</span><span class="w"> </span><span class="n">lib_cpu</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">lib_operation</span><span class="w"> </span><span class="o">::</span><span class="w"> </span><span class="o">*</span><span class="p">;</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">(</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="k">input</span><span class="w"> </span><span class="n">OPECODE</span><span class="w"> </span><span class="n">opecode</span><span class="p">,</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="k">input</span><span class="w"> </span><span class="kt">logic</span><span class="p">[</span><span class="mh">3</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">imm</span><span class="p">,</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="k">input</span><span class="w"> </span><span class="n">REGS</span><span class="w"> </span><span class="n">current</span><span class="p">,</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="n">REGS</span><span class="w"> </span><span class="n">next</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="p">);</span>
+</span></code></pre></div>
+実際の計算としてはopecodeを見て、命令を確定.<br />
+current,immを関数に渡して、nextを出力すればOK.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="w">    </span><span class="k">always_comb</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">        </span><span class="n">unique</span><span class="w"> </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="n">opecode</span><span class="p">)</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">            </span><span class="nl">MOV_A_B:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mov_a_b</span><span class="p">(</span><span class="n">current</span><span class="p">);</span><span class="w">                   </span><span class="c1">// mov A, B</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">            </span><span class="nl">MOV_B_A:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mov_b_a</span><span class="p">(</span><span class="n">current</span><span class="p">);</span><span class="w">                   </span><span class="c1">// mov B, A</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">            </span><span class="nl">MOV_A_IMM:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mov_a_imm</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="n">imm</span><span class="p">);</span><span class="w">          </span><span class="c1">// mov A, imm</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">            </span><span class="nl">MOV_B_IMM:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mov_b_imm</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="n">imm</span><span class="p">);</span><span class="w">          </span><span class="c1">// mov B, imm</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">            </span><span class="nl">OUT_B:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out_b</span><span class="p">(</span><span class="n">current</span><span class="p">);</span><span class="w">                       </span><span class="c1">// out B</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">            </span><span class="nl">OUT_IMM:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out_imm</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="n">imm</span><span class="p">);</span><span class="w">              </span><span class="c1">// out imm</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">            </span><span class="nl">ADD_A_IMM:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_a_imm</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="n">imm</span><span class="p">);</span><span class="w">          </span><span class="c1">// add A, imm</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">            </span><span class="nl">ADD_B_IMM:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">add_b_imm</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="n">imm</span><span class="p">);</span><span class="w">          </span><span class="c1">// add B, imm</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">            </span><span class="nl">JMP_IMM:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jmp_imm</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="n">imm</span><span class="p">);</span><span class="w">              </span><span class="c1">// jmp imm</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">            </span><span class="nl">JNC_IMM:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jnc_imm</span><span class="p">(</span><span class="n">current</span><span class="p">,</span><span class="w"> </span><span class="n">imm</span><span class="p">);</span><span class="w">              </span><span class="c1">// jnc imm</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="w">            </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nop</span><span class="p">(</span><span class="n">current</span><span class="p">);</span><span class="w">                       </span><span class="c1">// NOP</span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">        </span><span class="k">endcase</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="k">endmodule</span>
+</span></code></pre></div></p>
 <p>これで図の5ができたことになる.  </p>
 <p>つまり、</p>
 <ul>

@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -8324,107 +8345,107 @@ Bが求まったら、<span class="katex"><span class="katex-mathml"><math xmlns
 ここまでの変換をすべて施せば、やっと終わりな訳です.<br />
 数式が出揃えば後は実際に組んでみるだけ.<br />
 今回はStanford Bunnyを自力で出してみよう.  </p>
-<p>まずはWorld行列,今回はスケールだけ入力するようにしてみる.  </p>
-<pre><code class="language-c++">    // ワールド座標変換行列
-    Mat4x4 worldMatrix = Mat4x4::Scale(0.9);
-</code></pre>
+<p>まずはWorld行列,今回はスケールだけ入力するようにしてみる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="c1">// ワールド座標変換行列</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">Mat4x4</span><span class="w"> </span><span class="n">worldMatrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mat4x4</span><span class="o">::</span><span class="n">Scale</span><span class="p">(</span><span class="mf">0.9</span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>次にビュー変換行列.<br />
 カメラのパラメータとしてはカメラ位置の<code>origin</code>,見てる位置の<code>lookPoint</code>,上ベクトル<code>up</code>の3つ.<br />
-そして、これを使って3軸を作れば、あとは行列を作るだけ.  </p>
-<pre><code class="language-c++">    // ビュー変換行列
-    Vec3 origin = { 0.2,0.8,-1.5 };
-    Vec3 up = { 0.0, 1.0, 0.0 };
-    Vec3 lookPoint = { 0.0,0.8,0.0 };
-    Vec3 z = (origin - lookPoint).normalize();
-    Vec3 x = up.cross(z).normalize();
-    Vec3 y = z.cross(x).normalize();
-
-    Mat4x4 tempMat1 = Mat4x4::Set
-    (
-        x.x, x.y, x.z, 0,
-        y.x, y.y, y.z, 0,
-        z.x, z.y, z.z, 0,
-        0, 0, 0, 1
-    );
-
-    Mat4x4 tempMat2 = Mat4x4::Set
-    (
-        1, 0, 0, -origin.x,
-        0, 1, 0, -origin.y,
-        0, 0, 1, -origin.z,
-        0, 0, 0, 1
-    );
-
-    Mat4x4 viewMat = tempMat1 * tempMat2;
-</code></pre>
+そして、これを使って3軸を作れば、あとは行列を作るだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="c1">// ビュー変換行列</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">Vec3</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">-1.5</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">Vec3</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">Vec3</span><span class="w"> </span><span class="n">lookPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.0</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">Vec3</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">origin</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lookPoint</span><span class="p">).</span><span class="n">normalize</span><span class="p">();</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">Vec3</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">up</span><span class="p">.</span><span class="n">cross</span><span class="p">(</span><span class="n">z</span><span class="p">).</span><span class="n">normalize</span><span class="p">();</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">Vec3</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="p">.</span><span class="n">cross</span><span class="p">(</span><span class="n">x</span><span class="p">).</span><span class="n">normalize</span><span class="p">();</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="n">Mat4x4</span><span class="w"> </span><span class="n">tempMat1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mat4x4</span><span class="o">::</span><span class="n">Set</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="p">(</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="n">x</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="n">y</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="n">z</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="n">Mat4x4</span><span class="w"> </span><span class="n">tempMat2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mat4x4</span><span class="o">::</span><span class="n">Set</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="p">(</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">origin</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">origin</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">origin</span><span class="p">.</span><span class="n">z</span><span class="p">,</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="n">Mat4x4</span><span class="w"> </span><span class="n">viewMat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempMat1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tempMat2</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>透視投影は<code>near,far</code>を用意.<br />
 スクリーンのサイズから<code>aspect</code>を用意.<br />
 そして、<code>fov</code>を用意して<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>tan</mi><mo>⁡</mo><mfrac><mrow><mi>f</mi><mi>o</mi><mi>v</mi></mrow><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\tan{\frac{fov}{2}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2772em;vertical-align:-0.345em;"></span><span class="mop">tan</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4461em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>を計算.<br />
 今回は別段<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>での除算はせずに定数の方で組み込んだ.<br />
-後は式通りに入れるだけ.  </p>
-<pre><code class="language-c++">    // 透視投影行列
-    double near = -1.0, fov = Math::Pi / 6.0;
-    double aspect = Scene::Size().x / static_cast&lt;double&gt;(Scene::Size().y);
-    double far = 10.0;
-    double f = Cos(fov) / Sin(fov);
-    Mat4x4 perspectiveMat = Mat4x4::Set
-    (
-        f / aspect, 0, 0, 0,
-        0, f, 0, 0,
-        0, 0, (far + near) / (far - near), (2.0 * near * far) / (far - near),
-        0, 0, -1.0, 0
-    );
-</code></pre>
+後は式通りに入れるだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="c1">// 透視投影行列</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">,</span><span class="w"> </span><span class="n">fov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="o">::</span><span class="n">Pi</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">6.0</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">aspect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Scene</span><span class="o">::</span><span class="n">Size</span><span class="p">().</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Scene</span><span class="o">::</span><span class="n">Size</span><span class="p">().</span><span class="n">y</span><span class="p">);</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">far</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cos</span><span class="p">(</span><span class="n">fov</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Sin</span><span class="p">(</span><span class="n">fov</span><span class="p">);</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="n">Mat4x4</span><span class="w"> </span><span class="n">perspectiveMat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mat4x4</span><span class="o">::</span><span class="n">Set</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="p">(</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="n">f</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">aspect</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">far</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">near</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">far</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">near</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">near</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">far</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">far</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">near</span><span class="p">),</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>スクリーン行列は定数のみで用意,いらない計算はしないようにする.<br />
-今回は深度の計算とかは別にいらないので、XYの変換だけするように用意.  </p>
-<pre><code class="language-c++">    float wx = Scene::Size().x / 2.0f, ox = 0.0f;
-    float wy = Scene::Size().y / 2.0f, oy = 0.0f;
-</code></pre>
+今回は深度の計算とかは別にいらないので、XYの変換だけするように用意.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">wx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Scene</span><span class="o">::</span><span class="n">Size</span><span class="p">().</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">,</span><span class="w"> </span><span class="n">ox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">wy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Scene</span><span class="o">::</span><span class="n">Size</span><span class="p">().</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.0f</span><span class="p">,</span><span class="w"> </span><span class="n">oy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>そしたら片っ端から行列を掛ける.<br />
 World-&gt;View-&gt;Projectの順に掛けて、z値除算により正規化をする.<br />
 ここで範囲外になってるなら外側なので弾く.<br />
-最後にScreen空間にXYだけ持っていけば終わり.  </p>
-<pre><code class="language-c++">    for (auto&amp; v : vertices)
-    {
-        // world
-        auto tempV = DirectX::XMVector4Transform(DirectX::XMVectorSet(v.x, v.y, v.z, v.w), worldMatrix);
-
-        //view
-        tempV = DirectX::XMVector4Transform(tempV, viewMat.transposed());
-
-        // proj
-        tempV = DirectX::XMVector4Transform(tempV, perspectiveMat.transposed());
-
-        // 正規化デバイス座標へ
-        tempV.m128_f32[0] = tempV.m128_f32[0] / tempV.m128_f32[3];
-        tempV.m128_f32[1] = tempV.m128_f32[1] / tempV.m128_f32[3];
-        tempV.m128_f32[2] = tempV.m128_f32[2] / tempV.m128_f32[3];
-        tempV.m128_f32[3] = 1.0f;
-
-        // -1 &lt;= x &lt;= 1,-1 &lt;= y &lt;= 1となってない場合は画面外なので早めに除外
-        if (tempV.m128_f32[0] &lt; -1.0 || tempV.m128_f32[0] &gt; 1.0) { continue; }
-        if (tempV.m128_f32[1] &lt; -1.0 || tempV.m128_f32[1] &gt; 1.0) { continue; }
-
-        // スクリーン座標へ
-        tempV.m128_f32[0] = tempV.m128_f32[0] * wx + wx + ox;
-        tempV.m128_f32[1] = tempV.m128_f32[1] * -wy + wy + oy;
-
-        // 保存！
-        v = Vec4{ tempV.m128_f32[0], tempV.m128_f32[1],tempV.m128_f32[2],tempV.m128_f32[3] };
-    }
-</code></pre>
-<p>あとは点の位置が正しいならTexture内に点を打つ,これで終わり!!</p>
-<pre><code class="language-c++">    int count = 0;
-    for (int i = 0; i &lt; vertices.size(); i++)
-    {
-        auto&amp; v = vertices[i];
-
-        if (v.x &gt;= image.width() || v.x &lt; 0) { continue; }
-        if (v.y &gt;= image.height() || v.y &lt; 0) { continue; }
-        if (IsNaN(v.x) || IsNaN(v.y)) { continue; }
-        image[static_cast&lt;int&gt;(v.y)][static_cast&lt;int&gt;(v.x)] = Palette::White;
-    }
-</code></pre>
+最後にScreen空間にXYだけ持っていけば終わり.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">vertices</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="c1">// world</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">tempV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVector4Transform</span><span class="p">(</span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVectorSet</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">w</span><span class="p">),</span><span class="w"> </span><span class="n">worldMatrix</span><span class="p">);</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="c1">//view</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="n">tempV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVector4Transform</span><span class="p">(</span><span class="n">tempV</span><span class="p">,</span><span class="w"> </span><span class="n">viewMat</span><span class="p">.</span><span class="n">transposed</span><span class="p">());</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="c1">// proj</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="n">tempV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVector4Transform</span><span class="p">(</span><span class="n">tempV</span><span class="p">,</span><span class="w"> </span><span class="n">perspectiveMat</span><span class="p">.</span><span class="n">transposed</span><span class="p">());</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="c1">// 正規化デバイス座標へ</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">        </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">;</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="c1">// -1 &lt;= x &lt;= 1,-1 &lt;= y &lt;= 1となってない場合は画面外なので早めに除外</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">-1.0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">-1.0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">        </span><span class="c1">// スクリーン座標へ</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">        </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">wx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ox</span><span class="p">;</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">        </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="n">wy</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">wy</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">oy</span><span class="p">;</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">        </span><span class="c1">// 保存！</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec4</span><span class="p">{</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">tempV</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+あとは点の位置が正しいならTexture内に点を打つ,これで終わり!!
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">vertices</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vertices</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">width</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">height</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsNaN</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">IsNaN</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="n">image</span><span class="p">[</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">y</span><span class="p">)][</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">x</span><span class="p">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Palette</span><span class="o">::</span><span class="n">White</span><span class="p">;</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>結果を見てみよう.  </p>
 <p><img alt="trans_10" src="../Image/trans_10.webp" />  </p>
 <p>うん、いい感じだ.<br />

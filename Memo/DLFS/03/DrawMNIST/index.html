@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7717,83 +7738,83 @@
 <p>ただ、このライブラリちょっと面倒なことにBoostを使っている...<br />
 それくらいどうにかしなさいと言われたらごめんなさいと土下座をする必要があるが、どうも<code>define</code>でBoostなしにもできるっぽい.<br />
 自分は<code>NumCpp.hpp</code>の一番上に</p>
-<pre><code class="language-c++">#define NUMCPP_NO_USE_BOOST
-</code></pre>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#define NUMCPP_NO_USE_BOOST</span>
+</span></code></pre></div>
 <p>を書き込むことで回避した.<br />
 これで無事使用の準備完了！実際に組み込んでいこう.  </p>
 <p>まずはデータのダウンロードが必要.<br />
 ということでMNISTをダウンロードしていく.<br />
-まずラベルのKeyと拡張子を定義しておく.  </p>
-<pre><code class="language-c++">    protected:
-        const String TRAIN_IMAGE = U&quot;TrainImage&quot;;
-        const String TRAIN_LABEL = U&quot;TrainLabel&quot;;
-        const String TEST_IMAGE = U&quot;TestImage&quot;;
-        const String TEST_LABEL = U&quot;TestLabel&quot;;
-        const String IMAGE_EXTENSION = U&quot;.idx3-ubyte&quot;;
-        const String LABEL_EXTENSION = U&quot;.idx1-ubyte&quot;;
-</code></pre>
-<p>画像は<code>idx3</code>でラベルは<code>idx1</code>となる.<br />
+まずラベルのKeyと拡張子を定義しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="k">protected</span><span class="o">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">TRAIN_IMAGE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;TrainImage&quot;</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">TRAIN_LABEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;TrainLabel&quot;</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">TEST_IMAGE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;TestImage&quot;</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">TEST_LABEL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;TestLabel&quot;</span><span class="p">;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">IMAGE_EXTENSION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;.idx3-ubyte&quot;</span><span class="p">;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">LABEL_EXTENSION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;.idx1-ubyte&quot;</span><span class="p">;</span>
+</span></code></pre></div>
+画像は<code>idx3</code>でラベルは<code>idx1</code>となる.<br />
 画像は画像の枚数,画像のWidth,Heightの3次元なので3.<br />
 ラベルは0~9の1つのデータがずらっと並んでるだけの1次元なので1.<br />
 というわけだ.  </p>
 <p>そしたら初期化.  </p>
-<pre><code class="language-c++">TestMNIST::TestMNIST()
-    : m_baseURL(U&quot;https://ossci-datasets.s3.amazonaws.com/mnist/&quot;)
-{
-    m_resourceDir = FileSystem::CurrentDirectory() + U&quot;Resource/&quot;;
-
-    m_keyFileMap[TRAIN_IMAGE] = U&quot;train-images-idx3-ubyte.gz&quot;;
-    m_keyFileMap[TRAIN_LABEL] = U&quot;train-labels-idx1-ubyte.gz&quot;;
-    m_keyFileMap[TEST_IMAGE] = U&quot;t10k-images-idx3-ubyte.gz&quot;;
-    m_keyFileMap[TEST_LABEL] = U&quot;t10k-labels-idx1-ubyte.gz&quot;;
-}
-</code></pre>
-<p>ダウンロードするURLとキーを保存.<br />
+<p><div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">TestMNIST</span><span class="o">::</span><span class="n">TestMNIST</span><span class="p">()</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">m_baseURL</span><span class="p">(</span><span class="sa">U</span><span class="s">&quot;https://ossci-datasets.s3.amazonaws.com/mnist/&quot;</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">m_resourceDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FileSystem</span><span class="o">::</span><span class="n">CurrentDirectory</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;Resource/&quot;</span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="n">m_keyFileMap</span><span class="p">[</span><span class="n">TRAIN_IMAGE</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;train-images-idx3-ubyte.gz&quot;</span><span class="p">;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">m_keyFileMap</span><span class="p">[</span><span class="n">TRAIN_LABEL</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;train-labels-idx1-ubyte.gz&quot;</span><span class="p">;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="n">m_keyFileMap</span><span class="p">[</span><span class="n">TEST_IMAGE</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;t10k-images-idx3-ubyte.gz&quot;</span><span class="p">;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="n">m_keyFileMap</span><span class="p">[</span><span class="n">TEST_LABEL</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;t10k-labels-idx1-ubyte.gz&quot;</span><span class="p">;</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">}</span>
+</span></code></pre></div>
+ダウンロードするURLとキーを保存.<br />
 リソースは現在のディレクトリに<code>Resource</code>というフォルダを作って、そこに放り込むことにする.  </p>
-<p>そしたら初期化の処理.  </p>
-<pre><code class="language-c++">    bool TestMNIST::Initialize()
-    {
-        // Resourceフォルダの生成
-        if (FileSystem::Exists(m_resourceDir))
-        {
-            FileSystem::CreateDirectories(m_resourceDir);
-        }
-
-        if (!DownloadMNIST()) { return false; }
-
-        if (!LoadData()) { return false; }
-
-        return true;
-    }
-</code></pre>
-<p>リソースフォルダがなければまずリソースフォルダを用意する.<br />
+<p>そしたら初期化の処理.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">TestMNIST::Initialize</span><span class="p">()</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="c1">// Resourceフォルダの生成</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FileSystem</span><span class="o">::</span><span class="n">Exists</span><span class="p">(</span><span class="n">m_resourceDir</span><span class="p">))</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">            </span><span class="n">FileSystem</span><span class="o">::</span><span class="n">CreateDirectories</span><span class="p">(</span><span class="n">m_resourceDir</span><span class="p">);</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">DownloadMNIST</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">LoadData</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+リソースフォルダがなければまずリソースフォルダを用意する.<br />
 次にデータをダウンロードしてなければダウンロード.<br />
 そして、データをメモリに乗せる.<br />
 これをやってるだけ.  </p>
 <p>まずはデータのダウンロードから見てみる.<br />
 先ほどkeymapに入れた<code>.gz</code>の名前を取り出し、それを使ってファイルパスを構築.<br />
 もしデータが存在している場合はファイルが存在してるのでスキップ.<br />
-なければダウンロードを行う.  </p>
-<pre><code class="language-c++">    bool TestMNIST::DownloadMNIST()
-    {
-        for (auto&amp; [key, value] : m_keyFileMap)
-        {
-            auto filePath = m_resourceDir + value;
-
-            // ファイルがある場合はすでにダウンロードされてる
-            if (FileSystem::Exists(filePath)) { continue; }
-
-            // MNISTをダウンロード
-            auto downloadUrl = m_baseURL + value;
-            if (!SimpleHTTP::Save(downloadUrl, filePath))
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-</code></pre>
+なければダウンロードを行う.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">TestMNIST::DownloadMNIST</span><span class="p">()</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="p">[</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_keyFileMap</span><span class="p">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_resourceDir</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">            </span><span class="c1">// ファイルがある場合はすでにダウンロードされてる</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FileSystem</span><span class="o">::</span><span class="n">Exists</span><span class="p">(</span><span class="n">filePath</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">            </span><span class="c1">// MNISTをダウンロード</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="n">downloadUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_baseURL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">SimpleHTTP</span><span class="o">::</span><span class="n">Save</span><span class="p">(</span><span class="n">downloadUrl</span><span class="p">,</span><span class="w"> </span><span class="n">filePath</span><span class="p">))</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>ダウンロードは<code>SimpleHTTP::Save</code>でSiv3Dでは簡単にできる.ここはありがたい.<br />
 だが、<code>.gz</code>の解凍はないっぽい...？<br />
 なんとかしてできないかなぁ...と思ったけど、無理だったのであきらめて手動で解凍しました.<br />
@@ -7801,110 +7822,110 @@
 <code>.zip</code>とかならできるっぽいです.Siv3Dの名誉のためにこれは言いたかった.ただそれだけ.  </p>
 <p>次はデータをメモリに乗せる処理.<br />
 機械学習ではトレーニング用のデータとどれくらい学習できてるかを試すためのテストデータがある.<br />
-そのため、この2つを読み込むようにする.  </p>
-<pre><code class="language-c++">    bool TestMNIST::LoadData()
-    {
-        auto filePath = m_resourceDir + TRAIN_IMAGE + IMAGE_EXTENSION;
-        if (!LoadImageData(filePath, m_trainImages)) { return false; }
-
-        filePath = m_resourceDir + TRAIN_LABEL + LABEL_EXTENSION;
-        if (!LoadLabelData(filePath, m_trainLabels)) { return false; }
-
-        filePath = m_resourceDir + TEST_IMAGE + IMAGE_EXTENSION;
-        if (!LoadImageData(filePath, m_testImages)) { return false; }
-
-        filePath = m_resourceDir + TEST_LABEL + LABEL_EXTENSION;
-        if (!LoadLabelData(filePath, m_testLabels)) { return false; }
-
-        return true;
-    }
-</code></pre>
-<p>読み込むのはMNISTの場合は数字の描かれたデータとその数字が何番かを表すラベルの2つを読み込む.<br />
+そのため、この2つを読み込むようにする.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">TestMNIST::LoadData</span><span class="p">()</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_resourceDir</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TRAIN_IMAGE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">IMAGE_EXTENSION</span><span class="p">;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">LoadImageData</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="w"> </span><span class="n">m_trainImages</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_resourceDir</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TRAIN_LABEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">LABEL_EXTENSION</span><span class="p">;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">LoadLabelData</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="w"> </span><span class="n">m_trainLabels</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_resourceDir</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TEST_IMAGE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">IMAGE_EXTENSION</span><span class="p">;</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">LoadImageData</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="w"> </span><span class="n">m_testImages</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="n">filePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_resourceDir</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">TEST_LABEL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">LABEL_EXTENSION</span><span class="p">;</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">LoadLabelData</span><span class="p">(</span><span class="n">filePath</span><span class="p">,</span><span class="w"> </span><span class="n">m_testLabels</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+読み込むのはMNISTの場合は数字の描かれたデータとその数字が何番かを表すラベルの2つを読み込む.<br />
 次はこの読み込みをしていく.  </p>
-<p>まずはBinaryReaderでデータを読み込みを行う.  </p>
-<pre><code class="language-c++">    bool TestMNIST::LoadLabelData(const String&amp; path, nc::NdArray&lt;unsigned&gt;&amp; data)
-    {
-        BinaryReader reader = BinaryReader{ path };
-        if (!reader) { return false; }
-</code></pre>
-<p>データの並びは正しい状態は<code>1234</code>なんだけど、入ってるデータは<code>4321</code>なので、ひっくり返すようにする.<br />
-リトルインディアンってやつだね,頑張ってひっくり返せ～.  </p>
-<pre><code class="language-c++">        auto reverse = [](int32 i)
-            {
-                // Convert from c4 c3 c2 c1 to c1 c2 c3 c4
-                unsigned char c1, c2, c3, c4;
-
-                c1 = i &amp; 255;
-                c2 = (i &gt;&gt; 8) &amp; 255;
-                c3 = (i &gt;&gt; 16) &amp; 255;
-                c4 = (i &gt;&gt; 24) &amp; 255;
-
-                return ((int)c1 &lt;&lt; 24) + ((int)c2 &lt;&lt; 16) + ((int)c3 &lt;&lt; 8) + c4;
-            };
-</code></pre>
+<p>まずはBinaryReaderでデータを読み込みを行う.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">TestMNIST::LoadLabelData</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">nc</span><span class="o">::</span><span class="n">NdArray</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="n">BinaryReader</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BinaryReader</span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">reader</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+データの並びは正しい状態は<code>1234</code>なんだけど、入ってるデータは<code>4321</code>なので、ひっくり返すようにする.<br />
+リトルインディアンってやつだね,頑張ってひっくり返せ～.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="n">int32</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">                </span><span class="c1">// Convert from c4 c3 c2 c1 to c1 c2 c3 c4</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">                </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="n">c3</span><span class="p">,</span><span class="w"> </span><span class="n">c4</span><span class="p">;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">                </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">                </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">                </span><span class="n">c3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">                </span><span class="n">c4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">24</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">c1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">24</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">c2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">c3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c4</span><span class="p">;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">            </span><span class="p">};</span>
+</span></code></pre></div></p>
 <p>今回のデータはまず最初にマジックナンバーがあるため4byteを飛ばす.<br />
 そして、その次の4byteにデータの枚数が入ってる.<br />
-そのため、この枚数を<code>labelNum</code>に入れておく.  </p>
-<pre><code class="language-c++">        int32 labelNum;
-
-        reader.skip(4); // MagicNumber
-        reader.read(&amp;labelNum, 4); labelNum = reverse(labelNum);
-</code></pre>
-<p><code>data</code>はNumCppの<code>nc::NdArray&lt;unsigned&gt;</code>というデータ構造を使用する.<br />
-こいつは最初は<code>std::vector</code>で<code>resize</code>とかをしてない状態と同じなので、<code>resizeFast</code>で<code>labelNum</code>のサイズに確定しておく.  </p>
-<pre><code class="language-c++">        data.resizeFast(1, labelNum);
-</code></pre>
-<p>あとは地道にデータを取っていくだけ.  </p>
-<pre><code class="language-c++">        for (int j = 0; j &lt; labelNum; j++)
-        {
-            unsigned char v;
-            reader.read(&amp;v, 1);
-            data[j] = v;
-        }
-
-        return true;
-    }
-</code></pre>
-<p>これでLabelに関しては完了！<br />
+そのため、この枚数を<code>labelNum</code>に入れておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">        </span><span class="n">int32</span><span class="w"> </span><span class="n">labelNum</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="n">reader</span><span class="p">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// MagicNumber</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">        </span><span class="n">reader</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">labelNum</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="n">labelNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reverse</span><span class="p">(</span><span class="n">labelNum</span><span class="p">);</span>
+</span></code></pre></div>
+<code>data</code>はNumCppの<code>nc::NdArray&lt;unsigned&gt;</code>というデータ構造を使用する.<br />
+こいつは最初は<code>std::vector</code>で<code>resize</code>とかをしてない状態と同じなので、<code>resizeFast</code>で<code>labelNum</code>のサイズに確定しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">resizeFast</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">labelNum</span><span class="p">);</span>
+</span></code></pre></div>
+あとは地道にデータを取っていくだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">labelNum</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">            </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">            </span><span class="n">reader</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">            </span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+これでLabelに関しては完了！<br />
 ちゃんと読み込める.  </p>
-<p>次は画像の読み込み、ほぼラベルと同じなので、まずは一気に流れを見よう.  </p>
-<pre><code class="language-c++">    bool TestMNIST::LoadImageData(const String&amp; path, nc::NdArray&lt;float&gt;&amp; data)
-    {       
-        BinaryReader reader = BinaryReader{ path };
-        if (!reader) { return false; }
-
-        auto reverse = [](int32 i)
-        {
-                // Convert from c4 c3 c2 c1 to c1 c2 c3 c4
-                unsigned char c1, c2, c3, c4;
-
-                c1 = i &amp; 255;
-                c2 = (i &gt;&gt; 8) &amp; 255;
-                c3 = (i &gt;&gt; 16) &amp; 255;
-                c4 = (i &gt;&gt; 24) &amp; 255;
-
-                return ((int)c1 &lt;&lt; 24) + ((int)c2 &lt;&lt; 16) + ((int)c3 &lt;&lt; 8) + c4;
-        };
-
-        int32 imageNum, row, col;
-
-        reader.skip(4); // MagicNumber
-        reader.read(&amp;imageNum, 4); imageNum = reverse(imageNum);
-        reader.read(&amp;row, 4); row = reverse(row);
-        reader.read(&amp;col, 4); col = reverse(col);
-
-        data.resizeFast(imageNum, row * col);
-        for (int j = 0; j &lt; row * col * imageNum; j++)
-        {
-            unsigned char v;
-            reader.read(&amp;v, 1);
-            data[j] = v;
-        }
-
-        return true;
-    }
-</code></pre>
-<p>違う点はまずデータの入り方.<br />
+<p>次は画像の読み込み、ほぼラベルと同じなので、まずは一気に流れを見よう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">TestMNIST::LoadImageData</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">nc</span><span class="o">::</span><span class="n">NdArray</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="p">{</span><span class="w">       </span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">        </span><span class="n">BinaryReader</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BinaryReader</span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">reader</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="n">int32</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">                </span><span class="c1">// Convert from c4 c3 c2 c1 to c1 c2 c3 c4</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">                </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="n">c3</span><span class="p">,</span><span class="w"> </span><span class="n">c4</span><span class="p">;</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">                </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">                </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">                </span><span class="n">c3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">                </span><span class="n">c4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">24</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">255</span><span class="p">;</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">c1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">24</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">c2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">c3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c4</span><span class="p">;</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">        </span><span class="p">};</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">        </span><span class="n">int32</span><span class="w"> </span><span class="n">imageNum</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="p">;</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">        </span><span class="n">reader</span><span class="p">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// MagicNumber</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">        </span><span class="n">reader</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">imageNum</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="n">imageNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reverse</span><span class="p">(</span><span class="n">imageNum</span><span class="p">);</span>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">        </span><span class="n">reader</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reverse</span><span class="p">(</span><span class="n">row</span><span class="p">);</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">        </span><span class="n">reader</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reverse</span><span class="p">(</span><span class="n">col</span><span class="p">);</span>
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">        </span><span class="n">data</span><span class="p">.</span><span class="n">resizeFast</span><span class="p">(</span><span class="n">imageNum</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">col</span><span class="p">);</span>
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">imageNum</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">            </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="w">            </span><span class="n">reader</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="o">&amp;</span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="w">            </span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a>
+</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+違う点はまずデータの入り方.<br />
 マジックナンバーと画像の枚数までは同じ.<br />
 その次に画像の縦のサイズと横のサイズも入っているので、ここれもParseしている.  </p>
 <p>また、データリサイズは</p>
@@ -7915,80 +7936,79 @@
 <p>という感じのデータを構築.<br />
 NumCppは多次元配列を使えるのが魅力.  </p>
 <p>さて、そしたら次はデータを画面上に出すようにしよう.<br />
-まず画面サイズに合わせてデータを用意する.  </p>
-<pre><code class="language-c++">    void TestMNIST::Process(Array&lt;double&gt;&amp; result)
-    {
-        ClearPrint();
-
-        auto sceneSize = Scene::Size();
-        result.resize(sceneSize.x * sceneSize.y, 1.0);
-</code></pre>
-<p>今回のMNISTはサイズとして<code>28x28</code>というサイズになっている.<br />
+まず画面サイズに合わせてデータを用意する.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">TestMNIST::Process</span><span class="p">(</span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">result</span><span class="p">)</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">        </span><span class="n">ClearPrint</span><span class="p">();</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">sceneSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Scene</span><span class="o">::</span><span class="n">Size</span><span class="p">();</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">        </span><span class="n">result</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">sceneSize</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sceneSize</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+</span></code></pre></div>
+今回のMNISTはサイズとして<code>28x28</code>というサイズになっている.<br />
 これを敷き詰めるようにデータを配置する.<br />
 そのためにオフセットを使って調整を行う.  </p>
 <p><code>xOffset</code>はラベルを表示したいのでちょっとずらしてるだけ.<br />
-そして、描画できる量を28で割って求める.  </p>
-<pre><code class="language-c++">        constexpr int xOffset = 300;
-        const int xPlaceNum = (sceneSize.x - xOffset) / 28;
-        const int yPlaceNum = (sceneSize.y) / 28;
-
-</code></pre>
+そして、描画できる量を28で割って求める.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w">        </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">xOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">300</span><span class="p">;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">xPlaceNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">sceneSize</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xOffset</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">28</span><span class="p">;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">yPlaceNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">sceneSize</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">28</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>まず画像を適当に引っ張り出して、画像のデータを</p>
 <ul>
 <li>row:画像のwidth</li>
 <li>col:画像のheight</li>
 </ul>
-<p>となるように加工.  </p>
-<pre><code class="language-c++">        // Testデータを試しに描画してみる
-        for (auto y = 0; y &lt; yPlaceNum; y++)
-        {
-            for (auto x = 0; x &lt; xPlaceNum; x++)
-            {
-                auto data = m_trainImages.row(y * xPlaceNum + x);
-                data.reshape(28, 28);
-</code></pre>
-<p>後はベース位置を求めてデータを敷き詰めればOK.  </p>
-<pre><code class="language-c++">                auto basePoint = xOffset + x * 28;
-                basePoint += sceneSize.x * 28 * y;
-                for (int r = 0; r &lt; 28; r++)
-                {
-                    for (int c = 0; c &lt; 28; c++)
-                    {
-                        result[basePoint + (c + r * sceneSize.x)] = data.row(r)[c];
-                    }
-                }
-            }
-        }
-</code></pre>
-<p>これで画像の描画をするための用意が終わった.  </p>
-<p>次はラベル,これはデータを取り出して<code>labels</code>に詰め込む.  </p>
-<pre><code class="language-c++">        // Testのラベルも列枚に描画してみる
-        Array&lt;unsigned&gt; labels;
-        for (auto y = 0; y &lt; yPlaceNum; y++)
-        {
-            for (auto x = 0; x &lt; xPlaceNum; x++)
-            {
-                auto data = m_trainLabels.column(y * xPlaceNum + x);
-                labels.push_back(data[0]);
-            }
-</code></pre>
-<p>あとは今回は<code>Print</code>関数で描画するだけにしよう.  </p>
-<pre><code class="language-c++">            Print &lt;&lt; labels;
-            labels.clear();
-        }
-    }
-</code></pre>
+<p>となるように加工.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="w">        </span><span class="c1">// Testデータを試しに描画してみる</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">yPlaceNum</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">xPlaceNum</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_trainImages</span><span class="p">.</span><span class="n">row</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">xPlaceNum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">                </span><span class="n">data</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">);</span>
+</span></code></pre></div>
+後はベース位置を求めてデータを敷き詰めればOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">basePoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">28</span><span class="p">;</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">                </span><span class="n">basePoint</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sceneSize</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">28</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">28</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">                </span><span class="p">{</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">28</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">                    </span><span class="p">{</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">                        </span><span class="n">result</span><span class="p">[</span><span class="n">basePoint</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sceneSize</span><span class="p">.</span><span class="n">x</span><span class="p">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">row</span><span class="p">(</span><span class="n">r</span><span class="p">)[</span><span class="n">c</span><span class="p">];</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">                    </span><span class="p">}</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">        </span><span class="p">}</span>
+</span></code></pre></div>
+これで画像の描画をするための用意が終わった.  </p>
+<p>次はラベル,これはデータを取り出して<code>labels</code>に詰め込む.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="w">        </span><span class="c1">// Testのラベルも列枚に描画してみる</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">        </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="o">&gt;</span><span class="w"> </span><span class="n">labels</span><span class="p">;</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">yPlaceNum</span><span class="p">;</span><span class="w"> </span><span class="n">y</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">xPlaceNum</span><span class="p">;</span><span class="w"> </span><span class="n">x</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">                </span><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_trainLabels</span><span class="p">.</span><span class="n">column</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">xPlaceNum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">                </span><span class="n">labels</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">            </span><span class="p">}</span>
+</span></code></pre></div>
+あとは今回は<code>Print</code>関数で描画するだけにしよう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="w">            </span><span class="n">Print</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">labels</span><span class="p">;</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">            </span><span class="n">labels</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>一応画像に書き込むところも見ておこうか.  </p>
-<pre><code class="language-c++">for (int h = 0; h &lt; m_image-&gt;height(); h++)
-{
-    for (int w = 0; w &lt; m_image-&gt;width(); w++)
-    {
-        double value = result[w + m_image-&gt;width() * h] / 255.0;
-        (*m_image)[h][w] = ColorF{ value, value, value, 1.0 };
-    }
-}
-</code></pre>
-<p>先ほど作ったデータは<code>result</code>に入っているため、ここの値を取り出す.<br />
+<p><div class="language-c++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_image</span><span class="o">-&gt;</span><span class="n">height</span><span class="p">();</span><span class="w"> </span><span class="n">h</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="p">{</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_image</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">();</span><span class="w"> </span><span class="n">w</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">[</span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_image</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">h</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">255.0</span><span class="p">;</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">        </span><span class="p">(</span><span class="o">*</span><span class="n">m_image</span><span class="p">)[</span><span class="n">h</span><span class="p">][</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ColorF</span><span class="p">{</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="p">}</span>
+</span></code></pre></div>
+先ほど作ったデータは<code>result</code>に入っているため、ここの値を取り出す.<br />
 取り出した値は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mi>a</mi><mi>l</mi><mi>u</mi><mi>e</mi><mo>∈</mo><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>255</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">value \in [0,255]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">u</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">255</span><span class="mclose">]</span></span></span></span>なので、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[0,1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">]</span></span></span></span>になるように調整をする.<br />
 その後、その値を<code>m_image</code>に書き込めば終わり.<br />
 この画像を描画すれば結果が見れる寸法.では実際に見てみようか.  </p>

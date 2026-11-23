@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7733,25 +7754,25 @@ Arduinoを始めて弄ったときもこれをやった気がする、あれも�
 実際の入力はボタンだったり、出力ならLEDとか具体的なものがあるけども、プログラム内ではあくまで<code>input</code>,<code>output</code>であるということが大事っぽい.<br />
 とはいえ、今回はLチカである程度具体的なものはわかってる.<br />
 <code>sys_clk</code>はクロック、<code>sys_rst_n</code>はリセット用のボタン,<code>led</code>はLEDとなる.<br />
-Tang Nano 9KはLEDが6個あるので、配列で書いている.  </p>
-<pre><code class="language-verilog">module top(
-    input sys_clk,          // clk input
-    input sys_rst_n,        // reset input
-    output reg [5:0] led    // 6 LEDS pin
-);
-</code></pre>
+Tang Nano 9KはLEDが6個あるので、配列で書いている.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">module</span><span class="w"> </span><span class="n">top</span><span class="p">(</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">input</span><span class="w"> </span><span class="n">sys_clk</span><span class="p">,</span><span class="w">          </span><span class="c1">// clk input</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">input</span><span class="w"> </span><span class="n">sys_rst_n</span><span class="p">,</span><span class="w">        </span><span class="c1">// reset input</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">reg</span><span class="w"> </span><span class="p">[</span><span class="mh">5</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">led</span><span class="w">    </span><span class="c1">// 6 LEDS pin</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">);</span>
+</span></code></pre></div></p>
 <p>そして、<code>reg</code>で値を保持するためのデータを用意しておく.<br />
 <code>always</code>文を書く際はこれで変数宣言するっぽい.<br />
 <code>[23:0]</code>とあるが、<code>[MSB:LSB]</code>という形らしく、最上位ビットと最下位ビットを指定してるっぽい.<br />
 今回は24ビットを設定している感じかな？
-<code>[2:2]</code>とかなら1ビットで<code>[2:1]</code>なら2ビットとかになるという認識.  </p>
-<pre><code class="language-verilog">reg [23:0] counter;
-</code></pre>
+<code>[2:2]</code>とかなら1ビットで<code>[2:1]</code>なら2ビットとかになるという認識.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">reg</span><span class="w"> </span><span class="p">[</span><span class="mh">23</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">counter</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>そしたら<code>always</code>文.<br />
-何か信号に変更があったときにイベントを発行する処理.  </p>
-<pre><code class="language-verilog">always @(posedge sys_clk or negedge sys_rst_n) begin
-</code></pre>
-<p>イベントは<code>posedge sys_clk or negedge sys_rst_n</code>の二つ.<br />
+何か信号に変更があったときにイベントを発行する処理.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">always</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">sys_clk</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">negedge</span><span class="w"> </span><span class="n">sys_rst_n</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+</span></code></pre></div>
+イベントは<code>posedge sys_clk or negedge sys_rst_n</code>の二つ.<br />
 まず<code>posedge</code>は<code>0-&gt;1</code>の変化が起こったときに発行.<br />
 <code>negedge</code>は<code>1-&gt;0</code>の変化が起こったときに発行.<br />
 今回は</p>
@@ -7766,17 +7787,17 @@ Tang Nano 9KはLEDが6個あるので、配列で書いている.  </p>
 <p>そしたら処理を見ていこう.<br />
 まずリセットボタンが押されている場合、つまり<code>0</code>となっているときはcounterをリセットする.<br />
 <code>24'd0</code>は<code>24</code>はビット数, <code>'</code>は単純に区切り文字,<code>d</code>は10進数,<code>0</code>は代入する値となる.<br />
-つまり簡潔に言えば<code>counter = 0;</code>ということだ.  </p>
-<pre><code class="language-verilog">    if (!sys_rst_n)
-        counter &lt;= 24'd0;
-</code></pre>
-<p>次はcounter周りの処理.  </p>
-<pre><code class="language-verilog">    else if (counter &lt; 24'd1349_9999)       // 0.5s delay
-        counter &lt;= counter + 1'b1;
-    else
-        counter &lt;= 24'd0;
-end
-</code></pre>
+つまり簡潔に言えば<code>counter = 0;</code>ということだ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">sys_rst_n</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">        </span><span class="n">counter</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">24</span><span class="mi">&#39;d0</span><span class="p">;</span>
+</span></code></pre></div></p>
+<p>次はcounter周りの処理.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mh">24</span><span class="mi">&#39;d1349</span><span class="n">_9999</span><span class="p">)</span><span class="w">       </span><span class="c1">// 0.5s delay</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">        </span><span class="n">counter</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="n">counter</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">24</span><span class="mi">&#39;d0</span><span class="p">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">end</span>
+</span></code></pre></div></p>
 <p>基本的にカウンタは<code>counter + 1'b1</code>にある通り+1をし続ける.<br />
 <code>counter++;</code>みたいなもんか.<br />
 そして奇怪な<code>1349_9999</code>.  </p>
@@ -7788,19 +7809,19 @@ verilogは上から下に順に処理を行うので,次に行う処理を書い
 まずリセットボタンを押したときの処理,この時はLEDを<code>1 0 0 0 0 0</code>に初期化.<br />
 0が点灯で1が消灯.<br />
 なので1つだけ消えた状態になる訳である.  </p>
-<pre><code class="language-verilog">always @(posedge sys_clk or negedge sys_rst_n) begin
-    if (!sys_rst_n)
-        led &lt;= 6'b100000;
-</code></pre>
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">always</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">sys_clk</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">negedge</span><span class="w"> </span><span class="n">sys_rst_n</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">sys_rst_n</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="n">led</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">6</span><span class="mb">&#39;b100000</span><span class="p">;</span>
+</span></code></pre></div>
 <p>次にカウンターが0.5sまで来たときにずらす.それ以外はLEDを継続.  </p>
-<pre><code class="language-verilog">    else if (counter == 24'd1349_9999)       // 0.5s delay
-        led[5:0] &lt;= {led[4:0],led[5]};
-    else
-        led &lt;= led;
-end
-
-endmodule
-</code></pre>
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mh">24</span><span class="mi">&#39;d1349</span><span class="n">_9999</span><span class="p">)</span><span class="w">       </span><span class="c1">// 0.5s delay</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">        </span><span class="n">led</span><span class="p">[</span><span class="mh">5</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">{</span><span class="n">led</span><span class="p">[</span><span class="mh">4</span><span class="o">:</span><span class="mh">0</span><span class="p">],</span><span class="n">led</span><span class="p">[</span><span class="mh">5</span><span class="p">]};</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">        </span><span class="n">led</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">led</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">end</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">endmodule</span>
+</span></code></pre></div>
 <p>ビットをずらしている.これhlslの<code>float3 v; v.xzy</code>みたいな感じができるってことですね.<br />
 処理としては  </p>
 <ul>

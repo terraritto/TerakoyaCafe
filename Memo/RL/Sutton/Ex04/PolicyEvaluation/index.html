@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7738,72 +7759,72 @@
 <img alt="dp_01" src="../Image/dp_01.png" /><br />
 一番端の緑色の部分にたどり着けば0、それ以外に移動を行った場合は-1の報酬となる.<br />
 また、緑の部分にたどり着いた場合はそれ以降移動はできない状態.<br />
-今回はこんな感じでこの状態を定義してみた.  </p>
-<pre><code class="language-c++">auto IsTerminal = [&amp;](const Vec2i&amp; state)
-    {
-        int maxSize = WORLD_SIZE - 1;
-        bool isLeftSection = state.x == 0 &amp;&amp; state.y == 0;
-        bool isRightSection = state.x == maxSize &amp;&amp; state.y == maxSize;
-
-        return isLeftSection || isRightSection;
-    };
-</code></pre>
-<p>まず緑の位置かどうかを判定するコードを用意.<br />
-leftが左上,rightが右下となる.  </p>
-<pre><code class="language-c++">auto Step = [&amp;](const Vec2i&amp; state, const Vec2i action)
-    {
-        if (IsTerminal(state))
-        {
-            return std::tuple{ state, 0 };
-        }
-
-        auto nextState = state + action;
-        if (nextState.x &lt; 0 || WORLD_SIZE &lt;= nextState.x ||
-            nextState.y &lt; 0 || WORLD_SIZE &lt;= nextState.y)
-        {
-            nextState = state; // 範囲外には移動しないように
-        }
-
-        // 基本的に行動は-1の評価
-        return std::tuple{ nextState, -1 };
-    };
-</code></pre>
-<p>後は今までのグリッドワールドと同じように行動を定義してあげればOK.<br />
+今回はこんな感じでこの状態を定義してみた.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">IsTerminal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">Vec2i</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">maxSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">isLeftSection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">isRightSection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">maxSize</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">maxSize</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">isLeftSection</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">isRightSection</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div>
+まず緑の位置かどうかを判定するコードを用意.<br />
+leftが左上,rightが右下となる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">Step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">Vec2i</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec2i</span><span class="w"> </span><span class="n">action</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsTerminal</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="p">{</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">nextState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">action</span><span class="p">;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nextState</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">nextState</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">||</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">            </span><span class="n">nextState</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">nextState</span><span class="p">.</span><span class="n">y</span><span class="p">)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">            </span><span class="n">nextState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="w"> </span><span class="c1">// 範囲外には移動しないように</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="c1">// 基本的に行動は-1の評価</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="p">{</span><span class="w"> </span><span class="n">nextState</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div>
+後は今までのグリッドワールドと同じように行動を定義してあげればOK.<br />
 停止位置の場合は移動せずに0の報酬、それ以外は-1の報酬で外に出ないようにするだけ.<br />
 そして、あとは実際に計算するだけ.<br />
-DPの場合の違いを見ていきましょうか.  </p>
-<pre><code class="language-c++">// 前回
-for (int i = 0; i &lt; WORLD_SIZE; i++)
-{
-    for (int j = 0; j &lt; WORLD_SIZE; j++)
-    {
-        for (const auto&amp; action : actions)
-        {
-            auto [nextState, reward] = Step(Vec2i{ i,j }, GetMoveDirection(action));
-            // ベルマン方程式
-            newValues[i * WORLD_SIZE + j] += PROB * (reward + DISCOUNT * worlds[nextState.x * WORLD_SIZE + nextState.y]);
-        }
-    }
-}
-
-// 今回
-for (int i = 0; i &lt; WORLD_SIZE; i++)
-{
-    for (int j = 0; j &lt; WORLD_SIZE; j++)
-    {
-        double value = 0.0;
-        for (const auto&amp; action : actions)
-        {
-            auto [nextState, reward] = Step(Vec2i{ i,j }, GetMoveDirection(action));
-            // ベルマン方程式
-            value += PROB * (reward + DISCOUNT * worlds[nextState.x * WORLD_SIZE + nextState.y]);
-        }
-
-        worlds[i * WORLD_SIZE + j] = value;
-    }
-}
-</code></pre>
-<p>今までは<code>newValues</code>というものに保存して、その後に一気に<code>worlds</code>を更新という手を取っていた.<br />
+DPの場合の違いを見ていきましょうか.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// 前回</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">actions</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">nextState</span><span class="p">,</span><span class="w"> </span><span class="n">reward</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Step</span><span class="p">(</span><span class="n">Vec2i</span><span class="p">{</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="n">GetMoveDirection</span><span class="p">(</span><span class="n">action</span><span class="p">));</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">            </span><span class="c1">// ベルマン方程式</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">            </span><span class="n">newValues</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">PROB</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">reward</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DISCOUNT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">worlds</span><span class="p">[</span><span class="n">nextState</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nextState</span><span class="p">.</span><span class="n">y</span><span class="p">]);</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1">// 今回</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="p">{</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">actions</span><span class="p">)</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">            </span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">nextState</span><span class="p">,</span><span class="w"> </span><span class="n">reward</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Step</span><span class="p">(</span><span class="n">Vec2i</span><span class="p">{</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="n">GetMoveDirection</span><span class="p">(</span><span class="n">action</span><span class="p">));</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">            </span><span class="c1">// ベルマン方程式</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">PROB</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">reward</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DISCOUNT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">worlds</span><span class="p">[</span><span class="n">nextState</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nextState</span><span class="p">.</span><span class="n">y</span><span class="p">]);</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">        </span><span class="n">worlds</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">WORLD_SIZE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="p">}</span>
+</span></code></pre></div>
+今までは<code>newValues</code>というものに保存して、その後に一気に<code>worlds</code>を更新という手を取っていた.<br />
 今回は<code>worlds</code>を順次更新している.これが先ほど言った上書き更新であり、DPと言われている部分である.<br />
 この計算を実際に行った結果が以下のような感じ.<br />
 <img alt="dp_02" src="../Image/dp_02.png" /><br />

@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7705,12 +7726,12 @@ GPUのスレッドはWaveという単位で処理を行う.<br />
 このLaneが最小単位となるわけだけど、WaveはこのLaneを32/64単位で持つのが基本的.<br />
 NVIDIAは32Laneで、AMDは32/64Laneで切り替えれるっぽい.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><br />
 よくよく見たら自分が作った動画<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>だとWaveで記入してました、なんというミス...<br />
-さて、このLaneに関しては起動数を決めることができ、これは前回のhlslのコードでも見た<code>numthreads</code>の部分.  </p>
-<pre><code class="language-c++">[outputtopology(&quot;triangle&quot;)]
-[numthreads(128, 1, 1)]
-void main
-</code></pre>
-<p>今回は128と指定してあるが、これは次のような感じで4つのWaveがあるのと同じことになる.<br />
+さて、このLaneに関しては起動数を決めることができ、これは前回のhlslのコードでも見た<code>numthreads</code>の部分.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">[</span><span class="n">outputtopology</span><span class="p">(</span><span class="s">&quot;triangle&quot;</span><span class="p">)]</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">[</span><span class="n">numthreads</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">void</span><span class="w"> </span><span class="n">main</span>
+</span></code></pre></div>
+今回は128と指定してあるが、これは次のような感じで4つのWaveがあるのと同じことになる.<br />
 <img alt="meshlet_002_02" src="../Image/meshlet_002_02.webp" /><br />
 今回は32laneの4Waveだけど、64laneのWaveなら2Waveということになる.<br />
 こうやって<code>numthreads</code>を定義してLaneを定義することで、Waveの起動も決まるということになる.  </p>
@@ -7721,15 +7742,15 @@ void main
 そのため、Waveは32Lane単位で起動しちゃうため、<code>InActive Lane</code>があるとGPUをフル活用できていないということになっちゃう.<br />
 そのため、指定はできるけどもし必要な場合はちゃんと90ではなく96と指定する必要があるということになる.  </p>
 <p>さて、Waveが持つLane自体のIndexを取りたいというのは結構あると思う.<br />
-例えば頂点を32個処理したいとすると、Indexが分かれば頂点の配列があるとすると、  </p>
-<pre><code class="language-c++">    int index = GetLaneIndex();
-    Vertex v = Vertices[offset + index];
-</code></pre>
-<p>のような感じでまとめて処理することができるようになる.<br />
-実際にこういう処理を書くことが今後あるためにIndexが欲しいんだけど、ちゃんとこれを取ることは簡単に可能.  </p>
-<pre><code class="language-c++">    uint groupThreadIndex : SV_GroupThreadID
-</code></pre>
-<p>これでLaneに対応したIndexが取れるということになる.  </p>
+例えば頂点を32個処理したいとすると、Indexが分かれば頂点の配列があるとすると、<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetLaneIndex</span><span class="p">();</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">Vertex</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vertices</span><span class="p">[</span><span class="n">offset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">index</span><span class="p">];</span>
+</span></code></pre></div>
+のような感じでまとめて処理することができるようになる.<br />
+実際にこういう処理を書くことが今後あるためにIndexが欲しいんだけど、ちゃんとこれを取ることは簡単に可能.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">groupThreadIndex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">SV_GroupThreadID</span>
+</span></code></pre></div>
+これでLaneに対応したIndexが取れるということになる.  </p>
 <p>さて、ここでLaneの最大数として設定できるのは128となります.<br />
 なので、最大の単位は128個となる.Compute Shaderみたいなサイズ数よりは小さいね.<br />
 128個では頂点を処理するのには全く足りないね.<br />
@@ -7737,16 +7758,16 @@ void main
 1000頂点を設定するのであれば、1000Laneが必要となる.<br />
 つまり128Lane単位が8個あれば、128x8=1024Laneで処理が可能になりそう.<br />
 ではこの8個というところを設定する場所がある.<br />
-そう,<code>DispatchMesh</code>の処理である!!  </p>
-<pre><code class="language-c++">    // Draw
-    command-&gt;DispatchMesh(8, 1, 1);
-</code></pre>
-<p>ShaderのLaneの処理単位が決まれば、あとは<code>DispatchMesh</code>で何個起動するかを決めるという手順になるってことになる.<br />
+そう,<code>DispatchMesh</code>の処理である!!<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="c1">// Draw</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">command</span><span class="o">-&gt;</span><span class="n">DispatchMesh</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span></code></pre></div>
+ShaderのLaneの処理単位が決まれば、あとは<code>DispatchMesh</code>で何個起動するかを決めるという手順になるってことになる.<br />
 面倒ではあるけど、ここまで設定してやっと全頂点の処理が可能になるわけだね.<br />
 さて、この8という数字はShader側でも勿論参照は可能.<br />
-これに関しては以下のような感じで行ける.   </p>
-<pre><code class="language-c++">    uint groupIndex : SV_GroupID,
-</code></pre>
+これに関しては以下のような感じで行ける. <br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">groupIndex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">SV_GroupID</span><span class="p">,</span>
+</span></code></pre></div></p>
 <p>さて、ここまで見てくると漠然ではあるけど、mesh shaderでやらなきゃいけないことというのが見えてくる.<br />
 まずVertex Shaderの処理について考えると、Vertex Shaderでは大量の頂点を処理する必要がある.<br />
 この時の頂点の処理の仕方はプログラマが今まではそこまで考える必要がなかったわけです.<br />
@@ -7774,13 +7795,13 @@ Vertex Shader-&gt;頂点単位で処理するだけ Mesh Shader-&gt;頂点単位
 このMeshletはIndexに関する情報を持った構造体のようなものである.<br />
 Indexを表すためにOffsetとCountという情報を持っている.<br />
 これがあればArrayの中を自在に参照できる.<br />
-簡単に考えるのであれば、  </p>
-<pre><code class="language-c++">if (i &lt; meshlet.count)
-{
-    foo = indices[meshlet.offset + i];
-}
-</code></pre>
-<p>といったように連続したメモリを取ることができるからだね.  </p>
+簡単に考えるのであれば、<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">meshlet</span><span class="p">.</span><span class="n">count</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">indices</span><span class="p">[</span><span class="n">meshlet</span><span class="p">.</span><span class="n">offset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">];</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
+</span></code></pre></div>
+といったように連続したメモリを取ることができるからだね.  </p>
 <p>さてこのMeshletは2つのIndexによる情報を持っているが、このIndexももちろん2つのリソースと関連づいている.<br />
 この二つのリソースを見ていこう.  </p>
 <p>一つ目はVertexIndicesというリソース.<br />

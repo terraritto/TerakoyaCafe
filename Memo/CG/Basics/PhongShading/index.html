@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7702,31 +7723,31 @@
 <p><img alt="PhongShading_01" src="../Image/PhongShading_01.png" />  </p>
 <p>さて、そうなると今回大事なのは手順だけで、あとは今までやってきたことの組み合わせだ.  </p>
 <p>まず最初は前回のグローシェーディングをちょっと改造して、法線を渡すようにする.  </p>
-<pre><code class="language-c++">Vec4 normal{ input-&gt;normal, 1.0f };
-
-// 移動方向を消してWorld行列の逆行列を計算
-auto mat = input-&gt;worldMatrix;
-mat.value.r[3] = DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f);
-DirectX::XMVECTOR determinant;
-mat.value = DirectX::XMMatrixInverse(&amp;determinant, mat.value);
-mat.value = DirectX::XMMatrixTranspose(mat.value);
-
-auto tempN = DirectX::XMVector4Transform(DirectX::XMVectorSet(normal.x, normal.y, normal.z, normal.w), mat);
-
-output-&gt;worldNormal = Vec3{ tempN.m128_f32[0], tempN.m128_f32[1], tempN.m128_f32[2] };
-</code></pre>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Vec4</span><span class="w"> </span><span class="n">normal</span><span class="p">{</span><span class="w"> </span><span class="n">input</span><span class="o">-&gt;</span><span class="n">normal</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// 移動方向を消してWorld行列の逆行列を計算</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">auto</span><span class="w"> </span><span class="n">mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="o">-&gt;</span><span class="n">worldMatrix</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">mat</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVectorSet</span><span class="p">(</span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVECTOR</span><span class="w"> </span><span class="n">determinant</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">mat</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMMatrixInverse</span><span class="p">(</span><span class="o">&amp;</span><span class="n">determinant</span><span class="p">,</span><span class="w"> </span><span class="n">mat</span><span class="p">.</span><span class="n">value</span><span class="p">);</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">mat</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMMatrixTranspose</span><span class="p">(</span><span class="n">mat</span><span class="p">.</span><span class="n">value</span><span class="p">);</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">auto</span><span class="w"> </span><span class="n">tempN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVector4Transform</span><span class="p">(</span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVectorSet</span><span class="p">(</span><span class="n">normal</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">normal</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">normal</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">normal</span><span class="p">.</span><span class="n">w</span><span class="p">),</span><span class="w"> </span><span class="n">mat</span><span class="p">);</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">output</span><span class="o">-&gt;</span><span class="n">worldNormal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec3</span><span class="p">{</span><span class="w"> </span><span class="n">tempN</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">tempN</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">tempN</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="p">};</span>
+</span></code></pre></div>
 <p>前回はライティング結果を渡していたけど、今回は法線を渡すだけ.  </p>
 <p>そしたら次に法線を重心座標で補間する.<br />
-重心座標に関しては詳しくはこっちの記事<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>を見てほしい.  </p>
-<pre><code class="language-c++">const Vec3 normal = w * vert1-&gt;worldNormal + v * vert2-&gt;worldNormal + u * vert3-&gt;worldNormal;
-shaderInput-&gt;normal = normal.normalized();
-</code></pre>
+重心座標に関しては詳しくはこっちの記事<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>を見てほしい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Vec3</span><span class="w"> </span><span class="n">normal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vert1</span><span class="o">-&gt;</span><span class="n">worldNormal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vert2</span><span class="o">-&gt;</span><span class="n">worldNormal</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">vert3</span><span class="o">-&gt;</span><span class="n">worldNormal</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">shaderInput</span><span class="o">-&gt;</span><span class="n">normal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">normal</span><span class="p">.</span><span class="n">normalized</span><span class="p">();</span>
+</span></code></pre></div></p>
 <p>これで各ピクセルでの滑らかな法線が求まった！  </p>
 <p>あとはこれを使ってライティングを計算するだけである.<br />
-Pixel Shaderであとはランバート反射を計算して、適用をしてやるだけでよい.  </p>
-<pre><code class="language-c++">double NoL = Abs(Dot(-input-&gt;directionalLight, input-&gt;normal));
-(*m_image)[input-&gt;screenPos.y][input-&gt;screenPos.x] = ColorF({ NoL * input-&gt;lightColor,1.0 });
-</code></pre>
+Pixel Shaderであとはランバート反射を計算して、適用をしてやるだけでよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">NoL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abs</span><span class="p">(</span><span class="n">Dot</span><span class="p">(</span><span class="o">-</span><span class="n">input</span><span class="o">-&gt;</span><span class="n">directionalLight</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">-&gt;</span><span class="n">normal</span><span class="p">));</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">(</span><span class="o">*</span><span class="n">m_image</span><span class="p">)[</span><span class="n">input</span><span class="o">-&gt;</span><span class="n">screenPos</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">input</span><span class="o">-&gt;</span><span class="n">screenPos</span><span class="p">.</span><span class="n">x</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ColorF</span><span class="p">({</span><span class="w"> </span><span class="n">NoL</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="o">-&gt;</span><span class="n">lightColor</span><span class="p">,</span><span class="mf">1.0</span><span class="w"> </span><span class="p">});</span>
+</span></code></pre></div></p>
 <p>これで完成！<br />
 あとは結果を見てみよう.  </p>
 <p><img alt="PhongShading_03" src="../Image/PhongShading_03.webp" />  </p>

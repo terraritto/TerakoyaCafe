@@ -2164,6 +2164,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7853,12 +7874,12 @@ OSについても久々にちょっとだけ書いた、FATを進め中.<br />
 とはいえ29巻で一旦止まろうかとは思ってる、といったところで今回はここまで.  </p>
 <h2 id="20260127">2026/01/27</h2>
 <p>今日のmeshshader,ついにバグを全部取り除いて三角形を出すところまで来た.<br />
-PSOのバグは単純で  </p>
-<pre><code class="language-c++">struct hoo { int p*; }
-hoo h; // 初期化されておらずp*が変なアドレスを差す、0xcccccccとかになってた
-hoo h = {}; // 初期化される
-</code></pre>
-<p>超大雑把に書くとこんな感じのことが起きてた.<br />
+PSOのバグは単純で<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">hoo</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p</span><span class="o">*</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">hoo</span><span class="w"> </span><span class="n">h</span><span class="p">;</span><span class="w"> </span><span class="c1">// 初期化されておらずp*が変なアドレスを差す、0xcccccccとかになってた</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">hoo</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"> </span><span class="c1">// 初期化される</span>
+</span></code></pre></div>
+超大雑把に書くとこんな感じのことが起きてた.<br />
 なので、無効なメモリのアクセスしてPSOの構築に失敗してただけだった,気づけば簡単ね.<br />
 とりあえず、切りがいいところまで来たので、ついに一旦動画にまとめられそう.<br />
 何とか1月でちょっと進展が出たのでよかった.<br />

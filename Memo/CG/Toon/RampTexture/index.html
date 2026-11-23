@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7730,19 +7751,19 @@
 色に関してはテクスチャに焼き付けてもいいし、shaderのパラメータで用意してもよい.<br />
 そこに関しては好みの問題かな～と思う、まあとはいえ二影であまりにも色変えたいとかならテクスチャに書き込んで都度用意してとかした方が速いのかもしれない.   </p>
 <p>さて、今回はDirectX12で実装をしてみよう.<br />
-まずテクスチャのサンプル方式だが、これは<code>Clamp</code>にしておく.  </p>
-<pre><code class="language-c++">samplers.push_back(PARAM_STATIC_SAMPLER{ D3D12_SHADER_VISIBILITY_PIXEL, 0, 0, 
-    PARAM_STATIC_SAMPLER::SamplerType::LinearClamp });
-</code></pre>
-<p>折り返す必要は全くないのでこれが安牌.<br />
+まずテクスチャのサンプル方式だが、これは<code>Clamp</code>にしておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">samplers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">PARAM_STATIC_SAMPLER</span><span class="p">{</span><span class="w"> </span><span class="n">D3D12_SHADER_VISIBILITY_PIXEL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">PARAM_STATIC_SAMPLER</span><span class="o">::</span><span class="n">SamplerType</span><span class="o">::</span><span class="n">LinearClamp</span><span class="w"> </span><span class="p">});</span>
+</span></code></pre></div>
+折り返す必要は全くないのでこれが安牌.<br />
 <code>saturate</code>とかで保証してもいいとは思うけど、shader側の不手際でwrapしないようにここで調整してしまうのが一番いいと思う.  </p>
 <p>後はShaderだけどやることはシンプル.<br />
 内積を計算後、これを<code>uv</code>の<code>u</code>に適用.<code>v</code>は関係ないので0を入れとく.<br />
-あとはサンプルすれば終わり.  </p>
-<pre><code class="language-c++">    float NoL = saturate(dot(N,L));
-    float2 uv = float2(NoL, 0);
-    output.Color.rgb = RampTexture.Sample(RampTextureSample, uv).rgb;
-</code></pre>
+あとはサンプルすれば終わり.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">NoL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">saturate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">L</span><span class="p">));</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">float2</span><span class="w"> </span><span class="n">uv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float2</span><span class="p">(</span><span class="n">NoL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">output</span><span class="p">.</span><span class="n">Color</span><span class="p">.</span><span class="n">rgb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RampTexture</span><span class="p">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">RampTextureSample</span><span class="p">,</span><span class="w"> </span><span class="n">uv</span><span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>結果を見てみよう.<br />
 今回はこちら<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>からテクスチャを拝借した.<br />
 これくらい自分で作りなさいよ...という感じではあるけど...怠惰...  </p>

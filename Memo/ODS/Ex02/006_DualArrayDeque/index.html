@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7696,147 +7717,147 @@
 
 <h1 id="dualarraydeque">DualArrayDeque</h1>
 <p>次のArrayは2つの配列を使って構成する配列である.<br />
-つまり、まずは変数としてArrayを2つ用意する.  </p>
-<pre><code class="language-c++">ArrayStack&lt;T&gt; m_front;
-ArrayStack&lt;T&gt; m_back;
-</code></pre>
-<p>配列の大きさは2つのArrayのサイズを合計するだけでOK.  </p>
-<pre><code class="language-c++">int Size() const
-{
-    return m_front.Size() + m_back.Size();
-}
-</code></pre>
-<p>まずはGetから見ていこう.<br />
+つまり、まずは変数としてArrayを2つ用意する.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">ArrayStack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_front</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">ArrayStack</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_back</span><span class="p">;</span>
+</span></code></pre></div>
+配列の大きさは2つのArrayのサイズを合計するだけでOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">Size</span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_back</span><span class="p">.</span><span class="n">Size</span><span class="p">();</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
+</span></code></pre></div>
+まずはGetから見ていこう.<br />
 今回の配列はfrontとbackという二つの配列がくっついてるような形.<br />
 なので、indexで参照する際はfrontのsize内ならfrontから取得.<br />
 それよりも後ろならbackから取得するだけでOK.<br />
 ただし、backから取得する際はindexはfrontから引いた形になる.<br />
-ここは間違えると配列範囲外となっちゃうので注意.  </p>
-<pre><code class="language-c++">// 取得
-T Get(int i)
-{
-    if (i &lt; m_front.Size())
-    {
-        // front内に収まってる場合
-        // 後ろから先頭に埋めるので、配列の後ろを先頭にするように取得
-        return m_front.Get(m_front.Size() - i - 1);
-    }
-    else
-    {
-        // frontをあふれる場合、backにデータが入ってる
-        // こちらは先頭から入ってるので、先頭のindexが0からなるように調整して取得
-        return m_back.Get(i - m_front.Size());
-    }
-}
-</code></pre>
-<p>これが分かればsetは簡単、値を入れるようにするだけでよい.  </p>
-<pre><code class="language-c++">T Set(int i, T x)
-{
-    if (i &lt; m_front.Size())
-    {
-        // front内に収まってる場合
-        // 後ろから先頭に埋めるので、配列の後ろを先頭にしてセット
-        return m_front.Set(m_front.Size() - i - 1, x);
-    }
-    else
-    {
-        // frontをあふれる場合、backにデータが入ってる
-        // こちらは先頭から入ってるので、先頭のindexが0からなるように調整してセット
-        return m_back.Set(i - m_front.Size(), x);
-    }
-}
-</code></pre>
-<p>データの追加に関してもGetとSetと同じような感じでOK.<br />
+ここは間違えると配列範囲外となっちゃうので注意.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// 取得</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">T</span><span class="w"> </span><span class="nf">Get</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">())</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="c1">// front内に収まってる場合</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="c1">// 後ろから先頭に埋めるので、配列の後ろを先頭にするように取得</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="c1">// frontをあふれる場合、backにデータが入ってる</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="c1">// こちらは先頭から入ってるので、先頭のindexが0からなるように調整して取得</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m_back</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">());</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="p">}</span>
+</span></code></pre></div>
+これが分かればsetは簡単、値を入れるようにするだけでよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">T</span><span class="w"> </span><span class="nf">Set</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">())</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="c1">// front内に収まってる場合</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="c1">// 後ろから先頭に埋めるので、配列の後ろを先頭にしてセット</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="c1">// frontをあふれる場合、backにデータが入ってる</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="c1">// こちらは先頭から入ってるので、先頭のindexが0からなるように調整してセット</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">m_back</span><span class="p">.</span><span class="n">Set</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">(),</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
+</span></code></pre></div>
+データの追加に関してもGetとSetと同じような感じでOK.<br />
 ただし、配列自体のサイズに関しては今まではResizeでやっていたけど、今回はBalanceという関数で行う.<br />
 やりたいこととしてはResizeと変わらないけど、配列が2つなのでちょっと面倒.<br />
-Balanceは先にやるとして、とりあえずコードを載せておく.  </p>
-<pre><code class="language-c++">void Add(int i, T x)
-{
-    // 位置に応じて前か後ろかを決定後に追加
-    if (i &lt; m_front.Size())
-    {
-        m_front.Add(m_front.Size() - i, x);
-    }
-    else
-    {
-        m_back.Add(i - m_front.Size(), x);
-    }
-
-    // 調整
-    Balance();
-}
-</code></pre>
-<p>そしてRemoveの場合、これもAddとほぼ同じ.<br />
-削除してBalanceするだけ.  </p>
-<pre><code class="language-c++">T Remove(int i)
-{
-    T current;
-
-    // 前後どちらなのかを決定後削除
-    if (i &lt; m_front.Size())
-    {
-        current = m_front.Remove(m_front.Size() - i - 1);
-    }
-    else
-    {
-        current = m_back.Remove(i - m_front.Size());
-    }
-
-    // 調整
-    Balance();
-
-    // 消したものを返す
-    return current;
-}
-</code></pre>
-<p>そしたら最後にBalanceの処理を見ていく.<br />
+Balanceは先にやるとして、とりあえずコードを載せておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="c1">// 位置に応じて前か後ろかを決定後に追加</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">())</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="n">m_front</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="n">m_back</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">(),</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="c1">// 調整</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="n">Balance</span><span class="p">();</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="p">}</span>
+</span></code></pre></div>
+そしてRemoveの場合、これもAddとほぼ同じ.<br />
+削除してBalanceするだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">T</span><span class="w"> </span><span class="nf">Remove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="c1">// 前後どちらなのかを決定後削除</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">())</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_back</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">());</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="c1">// 調整</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="n">Balance</span><span class="p">();</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">    </span><span class="c1">// 消したものを返す</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">current</span><span class="p">;</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="p">}</span>
+</span></code></pre></div>
+そしたら最後にBalanceの処理を見ていく.<br />
 まずは前と後ろの配列に均等に分配されてるかを判定する.<br />
-分配されてない場合はデータの確保を行う.  </p>
-<pre><code class="language-c++">int frontSize = m_front.Size();
-int backSize = m_back.Size();
-
-// 前と後ろで三倍の差がついていない場合は処理しない
-// そこまでの差がなければデータが均等に分けられているという判断
-if (!(3 * frontSize &lt; backSize || 3 * backSize &lt; frontSize))
-{
-    return;
-}
-</code></pre>
-<p>もし確保が必要な場合は半分のサイズを計算しておく.  </p>
-<pre><code class="language-c++">// 半分を算出
-int fullSize = frontSize + backSize;
-int halfSize = fullSize / 2;
-</code></pre>
-<p>まずは新しく設定するfront側に前方からデータを詰める.  </p>
-<pre><code class="language-c++">// 前に半分詰めたデータを用意
-TArray&lt;T&gt; tempFront{ Max(2 * halfSize, 1) };
-const int nextFrontSize = halfSize;
-for (int i = 0; i &lt; nextFrontSize; i++)
-{
-    // Getで取得して後方から詰めていく
-    // ただあくまで先頭はindex=0になるようにする
-    // (でないとTArrayのアクセス的に範囲外になる)
-    tempFront[halfSize - i - 1] = Get(i);
-}
-</code></pre>
-<p>そして、back側に後方からデータを詰める.  </p>
-<pre><code class="language-c++">// 後に半分詰めたデータを用意
-TArray&lt;T&gt; tempBack{ Max(2 * halfSize, 1) };
-const int nextBackSize = fullSize - halfSize;
-for (int i = 0; i &lt; nextBackSize; i++)
-{
-    // Getで取得して前方から詰めていく
-    tempBack[i] = Get(halfSize + i);
-}
-</code></pre>
-<p>こうしてできたデータを新しく突っ込めばOK.  </p>
-<pre><code class="language-c++">//最後にデータを設定
-m_front.m_data = tempFront;
-m_front.m_size = nextFrontSize;
-m_back.m_data = tempBack;
-m_back.m_size = nextBackSize;
-</code></pre>
-<p>これでDualArrayDequeも終わり!!  </p>
+分配されてない場合はデータの確保を行う.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">frontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_front</span><span class="p">.</span><span class="n">Size</span><span class="p">();</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">backSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_back</span><span class="p">.</span><span class="n">Size</span><span class="p">();</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">// 前と後ろで三倍の差がついていない場合は処理しない</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">// そこまでの差がなければデータが均等に分けられているという判断</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">frontSize</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">backSize</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">backSize</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">frontSize</span><span class="p">))</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">{</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">}</span>
+</span></code></pre></div>
+もし確保が必要な場合は半分のサイズを計算しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// 半分を算出</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">fullSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frontSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">backSize</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kt">int</span><span class="w"> </span><span class="n">halfSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fullSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span></code></pre></div>
+まずは新しく設定するfront側に前方からデータを詰める.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// 前に半分詰めたデータを用意</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">TArray</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tempFront</span><span class="p">{</span><span class="w"> </span><span class="n">Max</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">halfSize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nextFrontSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">halfSize</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nextFrontSize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">{</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="c1">// Getで取得して後方から詰めていく</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="c1">// ただあくまで先頭はindex=0になるようにする</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="c1">// (でないとTArrayのアクセス的に範囲外になる)</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="n">tempFront</span><span class="p">[</span><span class="n">halfSize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">}</span>
+</span></code></pre></div>
+そして、back側に後方からデータを詰める.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// 後に半分詰めたデータを用意</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">TArray</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tempBack</span><span class="p">{</span><span class="w"> </span><span class="n">Max</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">halfSize</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nextBackSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fullSize</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">halfSize</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nextBackSize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">{</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="c1">// Getで取得して前方から詰めていく</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="n">tempBack</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get</span><span class="p">(</span><span class="n">halfSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">}</span>
+</span></code></pre></div>
+こうしてできたデータを新しく突っ込めばOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">//最後にデータを設定</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">m_front</span><span class="p">.</span><span class="n">m_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempFront</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">m_front</span><span class="p">.</span><span class="n">m_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nextFrontSize</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">m_back</span><span class="p">.</span><span class="n">m_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tempBack</span><span class="p">;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">m_back</span><span class="p">.</span><span class="n">m_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nextBackSize</span><span class="p">;</span>
+</span></code></pre></div>
+これでDualArrayDequeも終わり!!  </p>
 
 
 

@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7719,56 +7740,56 @@ K-腕バンディット問題というやつで、問題としては非常にシ
 スロットマシンを引くことで、ランダムな得点を得られる.<br />
 この際の得点は2~3,2~5,1~2というような分布になっているとすると、2~5のスロットマシンを引き続ければ一番得点が得られるというのは直感的にわかると思う.<br />
 これを実際にプログラムとして解くことが目標となる.<br />
-まずはバンデット問題用のパラメータを用意していこう.  </p>
-<pre><code class="language-c++">class Bandit
-{
-//...
-
-public:
-    int m_arm = 10; // 腕の数
-    int m_stepCount = 0; // ステップ回数
-
-private:
-    // Seed関係
-    std::random_device m_seedGen;
-    std::default_random_engine m_engine = std::default_random_engine(m_seedGen());
-    std::normal_distribution&lt;&gt; m_distribution = std::normal_distribution&lt;&gt;(0.0, 1.0);
-    Array&lt;double&gt; m_realRewards; // rewardの真値
-    Array&lt;double&gt; m_estimates; // rewardの予測
-    Array&lt;int&gt; m_actionCounts; // 各腕でactionが行われた回数
-};
-</code></pre>
-<p>腕の数とステップ数はわかりやすい.<br />
-今回は10個のスロットマシンがあるのと同じ想定で考える.  </p>
-<pre><code class="language-c++">    // Seed関係
-    std::random_device m_seedGen;
-    std::default_random_engine m_engine = std::default_random_engine(m_seedGen());
-    std::normal_distribution&lt;&gt; m_distribution = std::normal_distribution&lt;&gt;(0.0, 1.0);
-</code></pre>
-<p>この辺は乱数を得るためのパラメータ、要はスロットマシンにおける得られる得点の乱数に相当する.  </p>
-<pre><code class="language-c++">    Array&lt;double&gt; m_realRewards; // rewardの真値
-    Array&lt;double&gt; m_estimates; // rewardの予測
-    Array&lt;int&gt; m_actionCounts; // 各腕でactionが行われた回数
-</code></pre>
-<p>報酬の実際の値,報酬の予測値,そしてどのスロットマシンが何回押されたかのカウントの三つ、配列だけど腕の数なので10個想定.<br />
-そしたらまずは初期化から見ておこう.  </p>
-<pre><code class="language-c++">void Reset()
-{
-    m_realRewards.clear(); m_realRewards.resize(m_arm);
-    m_estimates.clear(); m_estimates.resize(m_arm);
-    m_actionCounts.clear(); m_actionCounts.resize(m_arm);
-
-    for (int i = 0; i &lt; m_arm; i++)
-    {
-        m_realRewards[i] = m_distribution(m_engine);
-        m_estimates[i] = 0.0;
-        m_actionCounts[i] = 0;
-    }
-
-    m_stepCount = 0;
-}
-</code></pre>
-<p>腕の数だけ初期化をしておき、書く腕の値を0で初期化する.<br />
+まずはバンデット問題用のパラメータを用意していこう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Bandit</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">//...</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_arm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// 腕の数</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_stepCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// ステップ回数</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">private</span><span class="o">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="c1">// Seed関係</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">random_device</span><span class="w"> </span><span class="n">m_seedGen</span><span class="p">;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span><span class="w"> </span><span class="n">m_engine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span><span class="p">(</span><span class="n">m_seedGen</span><span class="p">());</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">normal_distribution</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">m_distribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">normal_distribution</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_realRewards</span><span class="p">;</span><span class="w"> </span><span class="c1">// rewardの真値</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_estimates</span><span class="p">;</span><span class="w"> </span><span class="c1">// rewardの予測</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_actionCounts</span><span class="p">;</span><span class="w"> </span><span class="c1">// 各腕でactionが行われた回数</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">};</span>
+</span></code></pre></div>
+腕の数とステップ数はわかりやすい.<br />
+今回は10個のスロットマシンがあるのと同じ想定で考える.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="c1">// Seed関係</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">random_device</span><span class="w"> </span><span class="n">m_seedGen</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span><span class="w"> </span><span class="n">m_engine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span><span class="p">(</span><span class="n">m_seedGen</span><span class="p">());</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">normal_distribution</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">m_distribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">normal_distribution</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+</span></code></pre></div>
+この辺は乱数を得るためのパラメータ、要はスロットマシンにおける得られる得点の乱数に相当する.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_realRewards</span><span class="p">;</span><span class="w"> </span><span class="c1">// rewardの真値</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_estimates</span><span class="p">;</span><span class="w"> </span><span class="c1">// rewardの予測</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m_actionCounts</span><span class="p">;</span><span class="w"> </span><span class="c1">// 各腕でactionが行われた回数</span>
+</span></code></pre></div>
+報酬の実際の値,報酬の予測値,そしてどのスロットマシンが何回押されたかのカウントの三つ、配列だけど腕の数なので10個想定.<br />
+そしたらまずは初期化から見ておこう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">Reset</span><span class="p">()</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">m_realRewards</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="w"> </span><span class="n">m_realRewards</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">m_arm</span><span class="p">);</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">m_estimates</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="w"> </span><span class="n">m_estimates</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">m_arm</span><span class="p">);</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">m_actionCounts</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="w"> </span><span class="n">m_actionCounts</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">m_arm</span><span class="p">);</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">m_arm</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="n">m_realRewards</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_distribution</span><span class="p">(</span><span class="n">m_engine</span><span class="p">);</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="n">m_estimates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="n">m_actionCounts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="n">m_stepCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
+</span></code></pre></div>
+腕の数だけ初期化をしておき、書く腕の値を0で初期化する.<br />
 rewardに関しては乱数としておく.<br />
 ステップ数は0に初期化しておく.これで終わり.<br />
 さて、バンディット問題の評価に関しては以下のような手順で行う.<br />
@@ -7811,76 +7832,76 @@ rewardに関しては乱数としておく.<br />
 現状の報酬に対して、R-Qという値で計算する.<br />
 これは現在の推定値Qと今回の取得したRが近ければ更新値は小さくなり,QとRの差が大きければ更新値は大きくなる.<br />
 もしNが大きい、つまり試行回数が多ければ、その分影響値は小さくなる.要は更新回数が多くなるほど影響は小さくなるというわけ.<br />
-これをコードにしていこう,まずは(2)の処理から.  </p>
-<pre><code class="language-c++">// バンデットでのアクションを行うIndexを返す
-int Action() const
-{
-    // 予測の最大値
-    double best = *std::max_element(m_estimates.begin(), m_estimates.end());
-
-    // 最大値のものを取り出す
-    Array&lt;int&gt; index;
-    for (int count = 0; const auto&amp; value : m_estimates)
-    {
-        if (best == value) { index.push_back(count); }
-        count++;
-    }
-
-    // 一つ選ぶ
-    return index.choice();
-}
-</code></pre>
-<p>最大値を取得して、その値と同じIndexを取り出す.<br />
+これをコードにしていこう,まずは(2)の処理から.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// バンデットでのアクションを行うIndexを返す</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kt">int</span><span class="w"> </span><span class="nf">Action</span><span class="p">()</span><span class="w"> </span><span class="k">const</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">{</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="c1">// 予測の最大値</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">best</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">max_element</span><span class="p">(</span><span class="n">m_estimates</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">m_estimates</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="c1">// 最大値のものを取り出す</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">index</span><span class="p">;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">m_estimates</span><span class="p">)</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">best</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">count</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="c1">// 一つ選ぶ</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">index</span><span class="p">.</span><span class="n">choice</span><span class="p">();</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="p">}</span>
+</span></code></pre></div>
+最大値を取得して、その値と同じIndexを取り出す.<br />
 最大値が複数ある場合もあるため、その中からchoiceで選択するようにする.<br />
 例えば初回なんかは推定値はすべて同じである.<br />
 そのため、すべての腕の中からランダムで選択する、といった具合である.<br />
-次に実際に(3)~(4)の処理を行う.  </p>
-<pre><code class="language-c++">double Step(int action)
-{
-    // (3): R
-    // Rewardの取得
-    double reward = m_distribution(m_engine) + m_realRewards[action];
-
-    // (3): N
-    // ステップを一つ足しておく
-    m_stepCount++;
-    m_actionCounts[action]++;
-
-    // (4): Q
-    // 推定を更新
-    m_estimates[action] += (reward - m_estimates[action]) / m_actionCounts[action];
-
-    return reward;
-}
-</code></pre>
-<p>Rは乱数で取る,Nはincrementするだけ.<br />
+次に実際に(3)~(4)の処理を行う.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kt">double</span><span class="w"> </span><span class="nf">Step</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">action</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="c1">// (3): R</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="c1">// Rewardの取得</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">reward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_distribution</span><span class="p">(</span><span class="n">m_engine</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">m_realRewards</span><span class="p">[</span><span class="n">action</span><span class="p">];</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="c1">// (3): N</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="c1">// ステップを一つ足しておく</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="n">m_stepCount</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="n">m_actionCounts</span><span class="p">[</span><span class="n">action</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="c1">// (4): Q</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="c1">// 推定を更新</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">    </span><span class="n">m_estimates</span><span class="p">[</span><span class="n">action</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">reward</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m_estimates</span><span class="p">[</span><span class="n">action</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">m_actionCounts</span><span class="p">[</span><span class="n">action</span><span class="p">];</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">reward</span><span class="p">;</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="p">}</span>
+</span></code></pre></div>
+Rは乱数で取る,Nはincrementするだけ.<br />
 Qも式通りに計算するだけなので、特に難しくはないね.<br />
-最後に今回は図を描くための処理を行っていこう.  </p>
-<pre><code class="language-c++">constexpr int runs = 2000; // 10本腕x2000
-constexpr int times = 1000; // 1000回試行
-
-Bandit bandit;
-
-Array&lt;double&gt; meanRewards; meanRewards.resize(times, 0.0);
-
-// Simulate
-for (int r = 0; r &lt; runs; r++)
-{
-    bandit.Reset();
-    for (int i = 0; i &lt; times; i++)
-    {
-        int action = bandit.Action();
-        meanRewards[i] += bandit.Step(action);
-    }
-}
-</code></pre>
-<p>今回は10本腕バンディットを2000個動かす.<br />
+最後に今回は図を描くための処理を行っていこう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">runs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 10本腕x2000</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">times</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1000回試行</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">Bandit</span><span class="w"> </span><span class="n">bandit</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">meanRewards</span><span class="p">;</span><span class="w"> </span><span class="n">meanRewards</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">times</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1">// Simulate</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">runs</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">{</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="n">bandit</span><span class="p">.</span><span class="n">Reset</span><span class="p">();</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">times</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bandit</span><span class="p">.</span><span class="n">Action</span><span class="p">();</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">        </span><span class="n">meanRewards</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">bandit</span><span class="p">.</span><span class="n">Step</span><span class="p">(</span><span class="n">action</span><span class="p">);</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="p">}</span>
+</span></code></pre></div>
+今回は10本腕バンディットを2000個動かす.<br />
 更に各試行回数は1000回,つまり2000個x1000回の思考となる.<br />
 シミュレーションはバンディットをリセットして、Action/Stepで試行するだけ.<br />
-結果はmeanRewardで結果を足しておく.  </p>
-<pre><code class="language-c++">std::for_each(meanRewards.begin(), meanRewards.end(), [runs](double&amp; value) {value /= runs; });
-</code></pre>
-<p>後は最後にruns,つまり2000個で割れば平均値となる.<br />
+結果はmeanRewardで結果を足しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">meanRewards</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">meanRewards</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[</span><span class="n">runs</span><span class="p">](</span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">value</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">runs</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
+</span></code></pre></div>
+後は最後にruns,つまり2000個で割れば平均値となる.<br />
 これをグラフにすればタイトルの画像が得られる.  </p>
 
 

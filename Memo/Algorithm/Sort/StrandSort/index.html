@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7697,139 +7718,139 @@
 <h1 id="_1">ストランドソート</h1>
 <p>ストランドソート<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>はソートした配列を作って少しずつマージしていくようなソート.<br />
 流れとしては非常に簡単なので見ていこう.  </p>
-<pre><code>初期状態: 10 5 30 40 30 2 4 9
-sorted: {} temp: {}
-
-1回目: 
-5 30 40 30 2 4 9 temp: {10} 初期位置をそのままうつす
-
-5 30 40 30 2 4 9 temp: {10} 5は10より小さいので何もしないで次へ
-↑
-
-5 30 40 30 2 4 9 temp: {10} 30は10より大きいので取り出し
-  ↑
-
-5 40 30 2 4 9 temp: {10 30} 40は30より大きいので取り出し
-  ↑
-
-5 30 2 4 9 temp: {10 30 40} 30は40より小さいので何もしないで次へ
-  ↑  
-
-5 30 2 4 9 temp: {10 30 40} 2は40より小さいので何もしないで次へ
-     ↑
-
-5 30 2 4 9 temp: {10 30 40} 4は40より小さいので何もしないで次へ
-       ↑
-
-5 30 2 4 9 temp: {10 30 40} 9は40より小さいので何もしないで次へ
-         ↑
-
-最後尾まで来たので終了
-
-sorted: {} temp: {10 30 40}
--&gt; sorted{10 30 40} temp{}  小さい順に取り出して移す
-
-2回目:
-30 2 4 9 temp: {5} 初期位置をそのままうつす
-
-30 2 4 9 temp: {5} 30は5より大きいので取り出し
-↑
-
-2 4 9 temp: {5 30} 2は30より小さいので何もしないで次へ
-↑
-
-2 4 9 temp: {5 30} 4は30より小さいので何もしないで次へ
-  ↑
-
-2 4 9 temp: {5 30} 9は30より小さいので何もしないで次へ
-    ↑
-
-最後尾まで来たので終了
-
-sorted: {10 30 40} temp: {5 30}
--&gt; sorted{5 10 30 30 40} temp{}  小さい順に取り出して移す
-
-3回目:
-4 9 temp: {2} 初期位置をそのままうつす
-
-4 9 temp: {2} 4は2より大きいので取り出し
-↑
-
-9 temp: {2 4} 9は4より大きいので取り出し
-↑
-
-temp:{2 4 9} 
-何もなくなったので終了
-
-sorted: {5 10 30 30 40} temp: {2 4 9}
--&gt; sorted{2 4 5 9 10 30 30 40} temp{}  小さい順に取り出して移す
-
-完了！
-</code></pre>
-<p>あとはこの流れをコードに移すだけだ.<br />
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>初期状態: 10 5 30 40 30 2 4 9
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sorted: {} temp: {}
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>1回目: 
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>5 30 40 30 2 4 9 temp: {10} 初期位置をそのままうつす
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>5 30 40 30 2 4 9 temp: {10} 5は10より小さいので何もしないで次へ
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>↑
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>5 30 40 30 2 4 9 temp: {10} 30は10より大きいので取り出し
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  ↑
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>5 40 30 2 4 9 temp: {10 30} 40は30より大きいので取り出し
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>  ↑
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>5 30 2 4 9 temp: {10 30 40} 30は40より小さいので何もしないで次へ
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  ↑  
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>5 30 2 4 9 temp: {10 30 40} 2は40より小さいので何もしないで次へ
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>     ↑
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>5 30 2 4 9 temp: {10 30 40} 4は40より小さいので何もしないで次へ
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>       ↑
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>5 30 2 4 9 temp: {10 30 40} 9は40より小さいので何もしないで次へ
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>         ↑
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>最後尾まで来たので終了
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>sorted: {} temp: {10 30 40}
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>-&gt; sorted{10 30 40} temp{}  小さい順に取り出して移す
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>2回目:
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>30 2 4 9 temp: {5} 初期位置をそのままうつす
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>30 2 4 9 temp: {5} 30は5より大きいので取り出し
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>↑
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>2 4 9 temp: {5 30} 2は30より小さいので何もしないで次へ
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>↑
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>2 4 9 temp: {5 30} 4は30より小さいので何もしないで次へ
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>  ↑
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>2 4 9 temp: {5 30} 9は30より小さいので何もしないで次へ
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    ↑
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>最後尾まで来たので終了
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>sorted: {10 30 40} temp: {5 30}
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>-&gt; sorted{5 10 30 30 40} temp{}  小さい順に取り出して移す
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>3回目:
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>4 9 temp: {2} 初期位置をそのままうつす
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>4 9 temp: {2} 4は2より大きいので取り出し
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>↑
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>9 temp: {2 4} 9は4より大きいので取り出し
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>↑
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>temp:{2 4 9} 
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>何もなくなったので終了
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>sorted: {5 10 30 30 40} temp: {2 4 9}
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>-&gt; sorted{2 4 5 9 10 30 30 40} temp{}  小さい順に取り出して移す
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>完了！
+</span></code></pre></div>
+あとはこの流れをコードに移すだけだ.<br />
 まずは終了条件.<br />
-空になってる場合のみが終わりの合図.  </p>
-<pre><code class="language-c++">Array&lt;Data&gt; sorted;
-while (true)
-{
-    if (dataList.size() == 0) { break; }
-</code></pre>
-<p>そしたら次にデータを移す.<br />
+空になってる場合のみが終わりの合図.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Array</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sorted</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dataList</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+そしたら次にデータを移す.<br />
 先頭から順に見て、基準より大きい場合はデータを移動.<br />
-基準より小さい場合は次へすすむというのを最後尾に行くまでやる.  </p>
-<pre><code class="language-c++">    // まずサブツリーに分けていく
-    Array&lt;Data&gt; subTree; subTree.push_back(dataList[0]);
-    dataList = dataList.removed_at(0);
-
-    int index = 0;
-    while (true)
-    {
-        if (index == dataList.size()) { break; }
-
-        if (subTree.back().weight &lt;= dataList[index].weight)
-        {
-            // 基準より大きいなら追加
-            subTree.push_back(dataList[index]);
-            dataList = dataList.removed_at(index);
-        }
-        else
-        {
-            index++;
-        }
-    }
-</code></pre>
-<p>あとは二つの配列を先頭から走査して、小さい順に取り出して並べるだけ.  </p>
-<pre><code class="language-c++">    // 最小のものを選択していくだけ
-    Array&lt;Data&gt; temp;
-    auto treeIterator = subTree.begin();
-    auto targetIterator = sorted.begin();
-    while (true)
-    {
-        bool isTreeFinished = treeIterator == subTree.end();
-        bool isTargetFinished = targetIterator == sorted.end();
-
-        if (isTreeFinished &amp;&amp; isTargetFinished) { break; }
-
-        if (!isTreeFinished &amp;&amp; isTargetFinished)
-        {
-            temp.push_back(*treeIterator); treeIterator++; continue;
-
-        }
-        if (isTreeFinished &amp;&amp; !isTargetFinished)
-        {
-            temp.push_back(*targetIterator); targetIterator++; continue;
-        }
-
-        auto&amp; iter = (*treeIterator).weight &lt; (*targetIterator).weight ?
-            treeIterator : targetIterator;
-        temp.push_back(*iter); iter++;
-    }
-    sorted = temp;
-
-    // 結果を積み込んでおく
-    result.push_back(sorted);
-}
-</code></pre>
+基準より小さい場合は次へすすむというのを最後尾に行くまでやる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="c1">// まずサブツリーに分けていく</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"> </span><span class="n">subTree</span><span class="p">;</span><span class="w"> </span><span class="n">subTree</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">dataList</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">dataList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataList</span><span class="p">.</span><span class="n">removed_at</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">dataList</span><span class="p">.</span><span class="n">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">subTree</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">weight</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">dataList</span><span class="p">[</span><span class="n">index</span><span class="p">].</span><span class="n">weight</span><span class="p">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">            </span><span class="c1">// 基準より大きいなら追加</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">            </span><span class="n">subTree</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">dataList</span><span class="p">[</span><span class="n">index</span><span class="p">]);</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">            </span><span class="n">dataList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataList</span><span class="p">.</span><span class="n">removed_at</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">        </span><span class="k">else</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">            </span><span class="n">index</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+あとは二つの配列を先頭から走査して、小さい順に取り出して並べるだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="c1">// 最小のものを選択していくだけ</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">treeIterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">subTree</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">targetIterator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sorted</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">isTreeFinished</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">treeIterator</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">subTree</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">isTargetFinished</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">targetIterator</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">sorted</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isTreeFinished</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isTargetFinished</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isTreeFinished</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isTargetFinished</span><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">            </span><span class="n">temp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">treeIterator</span><span class="p">);</span><span class="w"> </span><span class="n">treeIterator</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isTreeFinished</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">isTargetFinished</span><span class="p">)</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">            </span><span class="n">temp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">targetIterator</span><span class="p">);</span><span class="w"> </span><span class="n">targetIterator</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">        </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">treeIterator</span><span class="p">).</span><span class="n">weight</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">targetIterator</span><span class="p">).</span><span class="n">weight</span><span class="w"> </span><span class="o">?</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">            </span><span class="nl">treeIterator</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">targetIterator</span><span class="p">;</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">        </span><span class="n">temp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">iter</span><span class="p">);</span><span class="w"> </span><span class="n">iter</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">    </span><span class="n">sorted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">    </span><span class="c1">// 結果を積み込んでおく</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">    </span><span class="n">result</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">sorted</span><span class="p">);</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>結果は以下のようになる.  </p>
 <p><img alt="StrandSort_01" src="../Image/StrandSort_01.webp" /> </p>
 <p>うん、ちゃんとソートできていそう！<br />

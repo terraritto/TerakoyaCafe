@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7782,48 +7803,48 @@ G(x,y) = \frac{1}{2 \pi \sigma^2} \exp{(-\frac{x^2+y^2}{2 \sigma^2})}
 <p>これで求めたい式が求まった！<br />
 あとはこれをフィルタとして利用するだけである.<br />
 計算の部分のみ示す、本当に式の通り計算するだけ.<br />
-まずは左の定数項を求めた後、右の<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>exp</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\exp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mop">exp</span></span></span></span>部分を計算し、それを組み合わせている.  </p>
-<pre><code class="language-c++">// 重み計算
-double sigma2 = sigma * sigma;
-double sigma4 = sigma2 * sigma2;
-
-double factor1 = (i * i + j * j) - 2.0 * sigma2; // 分子
-double factor2 = 2.0 * Math::Pi * sigma4 * sigma2; // 分母
-double factor = factor1 / factor2;
-
-double exp1 = Exp(-(i * i + j * j) / (2.0f * sigma2)); // exp
-
-double conv = factor * exp1; // 合成
-
-result += conv * next;
-sum += conv;
-</code></pre>
-<p>これで計算完了！<br />
+まずは左の定数項を求めた後、右の<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>exp</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\exp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mop">exp</span></span></span></span>部分を計算し、それを組み合わせている.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 重み計算</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kt">double</span><span class="w"> </span><span class="n">sigma2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kt">double</span><span class="w"> </span><span class="n">sigma4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kt">double</span><span class="w"> </span><span class="n">factor1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2</span><span class="p">;</span><span class="w"> </span><span class="c1">// 分子</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kt">double</span><span class="w"> </span><span class="n">factor2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Math</span><span class="o">::</span><span class="n">Pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2</span><span class="p">;</span><span class="w"> </span><span class="c1">// 分母</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kt">double</span><span class="w"> </span><span class="n">factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">factor2</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kt">double</span><span class="w"> </span><span class="n">exp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0f</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sigma2</span><span class="p">));</span><span class="w"> </span><span class="c1">// exp</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kt">double</span><span class="w"> </span><span class="n">conv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">exp1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 合成</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">conv</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">next</span><span class="p">;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">conv</span><span class="p">;</span>
+</span></code></pre></div>
+これで計算完了！<br />
 今回は試しにエッジ検出をやってみよう.<br />
 エッジ検出においては「ゼロ交差」という処理が必要.<br />
 これは周囲の情報で符号が変わった場合、そこにエッジがあるとみなすわけだ.  </p>
 <p>ちょっと真面目にやるとめんどくさそう...と思って調べてたらStackOverflowに簡単な実装が載ってた<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.<br />
-内容としては非常に簡単で、フィルタ内の最大値と最小値をまず求める.  </p>
-<pre><code class="language-c++">auto ZeroCrossProcess = [&amp;](int w, int h)
-    {
-        double current = resultImage[h][w];
-        double minLoG = 1.0e+10, maxLoG = -1.0e+10;
-        for (int i = -1; i &lt;= 1; i++)
-        {
-            for (int j = -1; j &lt;= 1; j++)
-            {
-                int filterW = Clamp(w + j, 0, image.width() - 1);
-                int filterH = Clamp(h + i, 0, image.height() - 1);
-
-                double next = resultImage[filterH][filterW];
-
-                // 最小最大を求める
-                minLoG = Min(minLoG, next);
-                maxLoG = Max(maxLoG, next);
-            }
-        }
-</code></pre>
-<p>これに対して、現在対象となってるピクセルが正か負かを判断.<br />
+内容としては非常に簡単で、フィルタ内の最大値と最小値をまず求める.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">ZeroCrossProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">h</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultImage</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">w</span><span class="p">];</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">minLoG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0e+10</span><span class="p">,</span><span class="w"> </span><span class="n">maxLoG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-1.0e+10</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">filterW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Clamp</span><span class="p">(</span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">width</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">filterH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Clamp</span><span class="p">(</span><span class="n">h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">height</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">                </span><span class="kt">double</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultImage</span><span class="p">[</span><span class="n">filterH</span><span class="p">][</span><span class="n">filterW</span><span class="p">];</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">                </span><span class="c1">// 最小最大を求める</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">                </span><span class="n">minLoG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Min</span><span class="p">(</span><span class="n">minLoG</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p">);</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">                </span><span class="n">maxLoG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Max</span><span class="p">(</span><span class="n">maxLoG</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="p">);</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">        </span><span class="p">}</span>
+</span></code></pre></div>
+これに対して、現在対象となってるピクセルが正か負かを判断.<br />
 そのうえで、</p>
 <ul>
 <li>対象Pixelが正で周辺Pixelに負がある</li>
@@ -7832,12 +7853,12 @@ sum += conv;
 <p>この2パターンを探索する.<br />
 正負がひっくり返るところは急激な変化がある証拠で、これをエッジと見なせばよい.<br />
 今回はこれが起こる部分を<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>,そうでない部分を<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>とした.  </p>
-<pre><code class="language-c++">        bool isCross = minLoG &lt; 0.0 &amp;&amp; current &gt; 0.0;
-        isCross |= maxLoG &gt; 0.0 &amp;&amp; current &lt;= 0.0;
-
-        image[h][w] = ColorF(Vec3::One() * static_cast&lt;double&gt;(isCross), 1.0);
-    };
-</code></pre>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">isCross</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">minLoG</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">        </span><span class="n">isCross</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">maxLoG</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ColorF</span><span class="p">(</span><span class="n">Vec3</span><span class="o">::</span><span class="n">One</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">isCross</span><span class="p">),</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div>
 <p>これで結果を見てみよう.  </p>
 <p><img alt="" src="../Image/LoG_01.jpg" /></p>
 <p>蓮の部分は取れてるかな？エッジ検出自体はできてるっぽい. <br />

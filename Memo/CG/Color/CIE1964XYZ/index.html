@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7722,42 +7743,42 @@ Stiles&amp;BurchとSperanskayaの実験によって得られたものである.<
 <p>さて、実際に描画して比較してみようか.<br />
 CIE1964 XYZのデータは<code>CVRL DataBase/CMFs/CIE functions/CIE 1964 10-deg, XYZ CMFs</code>というので手に入る.<br />
 自分「ここの<code>deg</code>って何なんだ...？」と思ってたけど、今気づいた.これ角度か.  </p>
-<p>そしたら今回はCIE1964とCIE1931で比べたいので、読み込み周りを関数化してしまう.  </p>
-<pre><code class="language-c++">auto LoadCIEData = [](const String&amp; path, int rows, Array&lt;double&gt;* wave, Array&lt;double&gt;&amp; X, Array&lt;double&gt;&amp; Y, Array&lt;double&gt;&amp; Z)
-    {
-        CSV csvData{ path };
-        if (!csvData) { throw Error(U&quot;Failed to load csv.&quot;); }
-
-        while (true)
-        {
-            const double waveLength = Parse&lt;double&gt;(csvData[rows][0]);
-            if (800 &lt; waveLength) { break; }
-
-            // データの抽出
-            if (wave) { wave-&gt;push_back(waveLength); }
-            Float3 entry{ Parse&lt;double&gt;(csvData[rows][1]),Parse&lt;double&gt;(csvData[rows][2]), Parse&lt;double&gt;(csvData[rows][3]) };
-
-            // XYZなので、そのまま突っ込む
-            X.push_back(entry.x);
-            Y.push_back(entry.y);
-            Z.push_back(entry.z);
-
-            rows++;
-        }
-    };
-</code></pre>
-<p>波長は片方から取れればいいので、ポインタで見分ける力技実装.<br />
+<p>そしたら今回はCIE1964とCIE1931で比べたいので、読み込み周りを関数化してしまう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">LoadCIEData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">wave</span><span class="p">,</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">Z</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="n">CSV</span><span class="w"> </span><span class="n">csvData</span><span class="p">{</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">csvData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">Error</span><span class="p">(</span><span class="sa">U</span><span class="s">&quot;Failed to load csv.&quot;</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">waveLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Parse</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">csvData</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">800</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">waveLength</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">            </span><span class="c1">// データの抽出</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">wave</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">wave</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="n">waveLength</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">            </span><span class="n">Float3</span><span class="w"> </span><span class="n">entry</span><span class="p">{</span><span class="w"> </span><span class="n">Parse</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">csvData</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="mi">1</span><span class="p">]),</span><span class="n">Parse</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">csvData</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="mi">2</span><span class="p">]),</span><span class="w"> </span><span class="n">Parse</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">csvData</span><span class="p">[</span><span class="n">rows</span><span class="p">][</span><span class="mi">3</span><span class="p">])</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">            </span><span class="c1">// XYZなので、そのまま突っ込む</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">            </span><span class="n">X</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">            </span><span class="n">Y</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">            </span><span class="n">Z</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">            </span><span class="n">rows</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div>
+波長は片方から取れればいいので、ポインタで見分ける力技実装.<br />
 そして、rowsを指定するようにしてある.<br />
 なんかよくわからんけど、CIE1931は2行目までコメントが入ってたのに、CIE1964の方はないっぽい...<br />
 なので、指定できるようにしてあります.<br />
-CIE1964の場合のみ貼りますが、以下のようにルックアップ可能.  </p>
-<pre><code class="language-c++">    // CIE1964 XYZ 10Deg
-    Array&lt;double&gt; CIE1964_X;
-    Array&lt;double&gt; CIE1964_Y;
-    Array&lt;double&gt; CIE1964_Z;
-    // ここはrowsが0から読みこむ必要有
-    LoadCIEData(U&quot;example/csv/ciexyz64.csv&quot;, 0, &amp;wavelengthes, CIE1964_X, CIE1964_Y, CIE1964_Z);
-</code></pre>
+CIE1964の場合のみ貼りますが、以下のようにルックアップ可能.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="c1">// CIE1964 XYZ 10Deg</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CIE1964_X</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CIE1964_Y</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CIE1964_Z</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="c1">// ここはrowsが0から読みこむ必要有</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">LoadCIEData</span><span class="p">(</span><span class="sa">U</span><span class="s">&quot;example/csv/ciexyz64.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wavelengthes</span><span class="p">,</span><span class="w"> </span><span class="n">CIE1964_X</span><span class="p">,</span><span class="w"> </span><span class="n">CIE1964_Y</span><span class="p">,</span><span class="w"> </span><span class="n">CIE1964_Z</span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>さて、そしたら結果を見てみよう.  </p>
 <p><img alt="CIE1964XYZ_04" src="../Image/CIE1964XYZ_04.webp" /></p>
 <p>ドット側がCIE1931で通常の線がCIE1964である.<br />

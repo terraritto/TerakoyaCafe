@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7713,30 +7734,30 @@
 <p>ヒルベルト曲線<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>もフラクタル図形の一つで、空間を覆いつくすような「空間充填曲線」という部類になるっぽい.<br />
 同じ手順を繰り返すことで模様が出来ていくわけだが、繰り返しとしてはこの記事<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>が分かりやすく一定の処理を再帰させることで構築が可能.  </p>
 <p>まず最初に方向を選んだら勝手に<code>Offset</code>分を現在の位置から伸ばすような関数を用意.<br />
-上下左右に対応しており、この方向に対して線が伸びていくことになる.  </p>
-<pre><code class="language-c++">// 方向に沿ってLineを伸ばすだけ
-auto OffsetLine = [&amp;](Direction dir)
-{
-    Vec2 temp = currentPos;
-    switch (dir)
-    {
-    case Direction::up:
-        currentPos.y -= LineOffset; break;
-
-    case Direction::right:
-        currentPos.x += LineOffset; break;
-
-    case Direction::down:
-        currentPos.y += LineOffset; break;
-
-    case Direction::left:
-        currentPos.x -= LineOffset; break;
-    }
-
-    lineList.push_back(Line{ temp, currentPos });
-};
-</code></pre>
-<p>感覚としてはタートルグラフィックス<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>に近い感じだね.<br />
+上下左右に対応しており、この方向に対して線が伸びていくことになる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 方向に沿ってLineを伸ばすだけ</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">OffsetLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">Direction</span><span class="w"> </span><span class="n">dir</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">Vec2</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentPos</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">dir</span><span class="p">)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">Direction</span><span class="o">::</span><span class="no">up</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="n">currentPos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">LineOffset</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">Direction</span><span class="o">::</span><span class="no">right</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="n">currentPos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">LineOffset</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">Direction</span><span class="o">::</span><span class="no">down</span><span class="p">:</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="n">currentPos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">LineOffset</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">Direction</span><span class="o">::</span><span class="no">left</span><span class="p">:</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="n">currentPos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">LineOffset</span><span class="p">;</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="n">lineList</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">Line</span><span class="p">{</span><span class="w"> </span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="n">currentPos</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">};</span>
+</span></code></pre></div>
+感覚としてはタートルグラフィックス<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>に近い感じだね.<br />
 <code>dir</code>で命令を投げると、移動を行いその際の軌跡を<code>lineList</code>に蓄積するわけだ.  </p>
 <p>さて、ここまで考えれば後は命令を投げるだけ.<br />
 ヒルベルト曲線は以下の規則に基づいて処理を行う.  </p>

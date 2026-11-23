@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7697,30 +7718,30 @@
 <h1 id="contor3d">Contor3D</h1>
 <p><img alt="Contor3D" src="../Image/Cantor3D.webp" /><br />
 カントール集合をブロックでも作れる.<br />
-集合の作り方は他と同じで、ブロックの場合もどうやって置いていくかを考えるだけ！  </p>
-<pre><code class="language-c++">auto contorData = contorSet.back();
-for (int i = 0; i + 1 &lt;= contorData.size() - 1; i += 2)
-{
-    // X軸
-    double startX = contorData[i], endX = contorData[i + 1];
-    double rectSize = (endX - startX) * MaxSize; // sizeは確定なので保持
-
-    for (int j = 0; j + 1 &lt;= contorData.size() - 1; j += 2)
-    {
-        // Y軸
-        double startY = contorData[j], endY = contorData[j + 1];
-
-        for (int k = 0; k + 1 &lt;= contorData.size() - 1; k += 2)
-        {
-            // Z軸
-            double startZ = contorData[k], endZ = contorData[k + 1];
-            Vec3 boxStart = StartPos + Vec3{startX, startY, startZ} * MaxSize;
-
-            Box::FromPoints(boxStart, boxStart + Vec3::One() * rectSize).draw(Palette::Red);
-        }
-    }
-}
-</code></pre>
+集合の作り方は他と同じで、ブロックの場合もどうやって置いていくかを考えるだけ！<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">contorData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contorSet</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">contorData</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="c1">// X軸</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">startX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contorData</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">endX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contorData</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">rectSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">endX</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">startX</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MaxSize</span><span class="p">;</span><span class="w"> </span><span class="c1">// sizeは確定なので保持</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">contorData</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="c1">// Y軸</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">startY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contorData</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">endY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contorData</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">contorData</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">            </span><span class="c1">// Z軸</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">startZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contorData</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="w"> </span><span class="n">endZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contorData</span><span class="p">[</span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">            </span><span class="n">Vec3</span><span class="w"> </span><span class="n">boxStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StartPos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Vec3</span><span class="p">{</span><span class="n">startX</span><span class="p">,</span><span class="w"> </span><span class="n">startY</span><span class="p">,</span><span class="w"> </span><span class="n">startZ</span><span class="p">}</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">MaxSize</span><span class="p">;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">            </span><span class="n">Box</span><span class="o">::</span><span class="n">FromPoints</span><span class="p">(</span><span class="n">boxStart</span><span class="p">,</span><span class="w"> </span><span class="n">boxStart</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Vec3</span><span class="o">::</span><span class="n">One</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rectSize</span><span class="p">).</span><span class="n">draw</span><span class="p">(</span><span class="n">Palette</span><span class="o">::</span><span class="n">Red</span><span class="p">);</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="p">}</span>
+</span></code></pre></div></p>
 
 
 

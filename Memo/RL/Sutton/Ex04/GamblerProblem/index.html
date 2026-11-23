@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7737,42 +7758,42 @@
 <li>裏: 掛けた額と同じ額失う</li>
 </ul>
 <p>今回は1ドル単位で掛けることができるとし、100ドル稼げれば勝利、0ドルになったら負けで終了とする.<br />
-まずはこの100ドルを定義しておく.  </p>
-<pre><code class="language-c++">    constexpr int GOAL = 100;
-</code></pre>
-<p>次にあり得る状態、これは終了してしまう0と100を除いた状態なので、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mn>99</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">s \in \{1,2, ..., 99\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">99</span><span class="mclose">}</span></span></span></span>となる.<br />
-これをコードで表すと以下のようになる.  </p>
-<pre><code class="language-c++">    Array&lt;int&gt; states;
-    for (int value = 1; value &lt; GOAL; value++)
-    {
-        states.push_back(value);
-    }
-</code></pre>
-<p>さて、どんな確率でもいいけども、本に合わせて表になる確率は0.4にする.  </p>
-<pre><code class="language-c++">constexpr double HEAD_PROBABILITY = 0.4;
-</code></pre>
-<p>さて、そして今回の報酬だがギャンブラーは勝てれば+1の報酬を得るようにする.<br />
-つまり、100ドルを稼げたときのみ+1でそれ以外は0になるようにすればよい.  </p>
-<pre><code class="language-c++">    // [0,100]を生成
-    Array&lt;double&gt; values; values.resize(GOAL + 1, 0.0);
-    // 100のみ+1にしておく
-    values[GOAL] = 1.0;
-</code></pre>
-<p>そしたら次に実際に方策評価をしていく.これはいつも通りの流れだけど、まずは古い値を保持しておく.  </p>
-<pre><code class="language-c++">    while (true)
-    {
-        Array&lt;double&gt; oldValues = values;
-
-        //...
-    }
-</code></pre>
-<p>そしたら全状態で評価を行っていく.  </p>
-<pre><code class="language-c++">    for (auto&amp; state : states)
-    {
-        // ...
-    }
-</code></pre>
-<p>次に今掛けられる掛け金を定義する.<br />
+まずはこの100ドルを定義しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">GOAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</span></code></pre></div>
+次にあり得る状態、これは終了してしまう0と100を除いた状態なので、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mn>99</mn><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">s \in \{1,2, ..., 99\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">...</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">99</span><span class="mclose">}</span></span></span></span>となる.<br />
+これをコードで表すと以下のようになる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">states</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">GOAL</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="n">states</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+さて、どんな確率でもいいけども、本に合わせて表になる確率は0.4にする.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">HEAD_PROBABILITY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.4</span><span class="p">;</span>
+</span></code></pre></div>
+さて、そして今回の報酬だがギャンブラーは勝てれば+1の報酬を得るようにする.<br />
+つまり、100ドルを稼げたときのみ+1でそれ以外は0になるようにすればよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="c1">// [0,100]を生成</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">values</span><span class="p">;</span><span class="w"> </span><span class="n">values</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">GOAL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="c1">// 100のみ+1にしておく</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">values</span><span class="p">[</span><span class="n">GOAL</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+</span></code></pre></div>
+そしたら次に実際に方策評価をしていく.これはいつも通りの流れだけど、まずは古い値を保持しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">oldValues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">values</span><span class="p">;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="c1">//...</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+そしたら全状態で評価を行っていく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">states</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="c1">// ...</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+次に今掛けられる掛け金を定義する.<br />
 これは持っているお金を<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span>ドルとすると、掛け金は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mn>100</mn><mo>−</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">min(s, 100-s)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">min</span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">100</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mclose">)</span></span></span></span>となる.<br />
 なんでこうなってるかは50という境界を考えるとわかりやすい.<br />
 50ドル未満はどれだけ賭けても100ドルには到達できない.<br />
@@ -7781,83 +7802,83 @@
 逆に50ドル以上は100ドルに到達可能になる.<br />
 例えば75ドル持ってるとすれば、25ドル賭ければすでに勝ちとなる.<br />
 であれば、25ドル以上かけるのは無駄であることが分かるので、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mo>−</mo><mi>s</mi></mrow><annotation encoding="application/x-tex">100-s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">100</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span>といった感じで状態を制限してると考えれば分かりやすいかもしれない.<br />
-さて、この状態は以下のようにすれば定義できる.簡単だね.  </p>
-<pre><code class="language-c++">    Array&lt;int&gt; actions;
-    // stateは現在の状態=今持ってるドル:sのこと
-    int minAction = Min(state, GOAL - state);
-    for (int value = 1; value &lt;= minAction; value++)
-    {
-        actions.push_back(value);
-    }
-</code></pre>
-<p>行える行動を取ったら実際に評価を行う.<br />
-0.4の確率で表が出るので、表の場合を確率とその際の報酬で計算.  </p>
-<pre><code class="language-c++">double left = HEAD_PROBABILITY * values[state + action];
-</code></pre>
-<p>逆に0.6の確率で裏が出るので、表の場合と同様に計算.<br />
-ドルが減る方向なので、こっちアstateからマイナスにしてるね.  </p>
-<pre><code class="language-c++">double right = (1.0 - HEAD_PROBABILITY) * values[state - action];
-</code></pre>
-<p>この結果を足し合わせたものを評価として保存しておく.<br />
-ここまでをまとめると以下のようになる.  </p>
-<pre><code class="language-c++">Array&lt;double&gt; returns;
-for (auto&amp; action : actions)
-{
-    double left = HEAD_PROBABILITY * values[state + action];
-    double right = (1.0 - HEAD_PROBABILITY) * values[state - action];
-    double result = left + right;
-    returns.push_back(result);
-}
-</code></pre>
-<p>最後にこの値の中で最大となるものを選ぶ.  </p>
-<pre><code class="language-c++">// 良い値で更新
-double newValue = *std::max_element(returns.begin(), returns.end());
-values[state] = newValue;
-</code></pre>
-<p>ここまで出来たらいつも通り収束しているかの判断を行う.  </p>
-<pre><code class="language-c++">double maxValue = std::numeric_limits&lt;double&gt;::lowest();
-for (int i = 0; i &lt; values.size(); i++)
-{
-    maxValue = Max(maxValue, Abs(oldValues[i] - values[i]));
-}
-
-// 収束と判断したら終了
-if (maxValue &lt; 1e-9)
-{
-    histories.push_back(values);
-    break;
-}
-</code></pre>
-<p>最後に方策改善と同様のことを行う.<br />
+さて、この状態は以下のようにすれば定義できる.簡単だね.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">actions</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="c1">// stateは現在の状態=今持ってるドル:sのこと</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">minAction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Min</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">GOAL</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">state</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">minAction</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="n">actions</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div>
+行える行動を取ったら実際に評価を行う.<br />
+0.4の確率で表が出るので、表の場合を確率とその際の報酬で計算.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HEAD_PROBABILITY</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="n">state</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">action</span><span class="p">];</span>
+</span></code></pre></div>
+逆に0.6の確率で裏が出るので、表の場合と同様に計算.<br />
+ドルが減る方向なので、こっちアstateからマイナスにしてるね.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">HEAD_PROBABILITY</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="n">state</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">action</span><span class="p">];</span>
+</span></code></pre></div>
+この結果を足し合わせたものを評価として保存しておく.<br />
+ここまでをまとめると以下のようになる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">returns</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">actions</span><span class="p">)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">{</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HEAD_PROBABILITY</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="n">state</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">action</span><span class="p">];</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">HEAD_PROBABILITY</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="n">state</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">action</span><span class="p">];</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="n">returns</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">}</span>
+</span></code></pre></div>
+最後にこの値の中で最大となるものを選ぶ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// 良い値で更新</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kt">double</span><span class="w"> </span><span class="n">newValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">std</span><span class="o">::</span><span class="n">max_element</span><span class="p">(</span><span class="n">returns</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">returns</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">values</span><span class="p">[</span><span class="n">state</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newValue</span><span class="p">;</span>
+</span></code></pre></div>
+ここまで出来たらいつも通り収束しているかの判断を行う.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">lowest</span><span class="p">();</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">values</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">{</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Max</span><span class="p">(</span><span class="n">maxValue</span><span class="p">,</span><span class="w"> </span><span class="n">Abs</span><span class="p">(</span><span class="n">oldValues</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">}</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1">// 収束と判断したら終了</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxValue</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1e-9</span><span class="p">)</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">{</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="n">histories</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">values</span><span class="p">);</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="p">}</span>
+</span></code></pre></div>
+最後に方策改善と同様のことを行う.<br />
 前回はこの方策改善ではちゃんと収束しているかを判定したが、今回は価値改善の通り反復を打ち切ってしまう.<br />
 なので、最大のものを取って終わりとなる.<br />
-最初にやることは簡単で、最大の値を取るまではさっきと同じである.  </p>
-<pre><code class="language-c++">Array&lt;double&gt; policies; policies.resize(GOAL + 1, 0.0);
-for (auto&amp; state : states)
-{
-    if (state == GOAL) { continue; }
-    // 可能な行動を生成
-    Array&lt;int&gt; actions;
-    int minAction = Min(state, GOAL - state);
-    for (int value = 1; value &lt;= minAction; value++)
-    {
-        actions.push_back(value);
-    }
-
-    // 評価
-    Array&lt;double&gt; returns;
-    for (auto&amp; action : actions)
-    {
-        double left = HEAD_PROBABILITY * values[state + action];
-        double right = (1.0 - HEAD_PROBABILITY) * values[state - action];
-        double result = left + right;
-        returns.push_back(result);
-    }
-
-    // ...
-}
-</code></pre>
-<p>そしたら最大値の選択をする際にちょっと調整を行う.<br />
+最初にやることは簡単で、最大の値を取るまではさっきと同じである.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">policies</span><span class="p">;</span><span class="w"> </span><span class="n">policies</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">GOAL</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">states</span><span class="p">)</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">{</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GOAL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="c1">// 可能な行動を生成</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">actions</span><span class="p">;</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">minAction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Min</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="n">GOAL</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">state</span><span class="p">);</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">minAction</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">        </span><span class="n">actions</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">    </span><span class="c1">// 評価</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">returns</span><span class="p">;</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">actions</span><span class="p">)</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HEAD_PROBABILITY</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="n">state</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">action</span><span class="p">];</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">HEAD_PROBABILITY</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="n">state</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">action</span><span class="p">];</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="w">        </span><span class="n">returns</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="p">}</span>
+</span></code></pre></div>
+そしたら最大値の選択をする際にちょっと調整を行う.<br />
 これはここで<a href="https://github.com/ShangtongZhang/reinforcement-learning-an-introduction/issues/83">議論されてる</a>のが分かりやすい.<br />
 ここでは0を省く処理をしているが、今回はactionの生成時に0は除いてるので大丈夫.<br />
 そもそも元コードは0も計算に入れてるけど、0は何も賭けないということになるのでそもそも賭けになってない.<br />
@@ -7866,19 +7887,19 @@ for (auto&amp; state : states)
 これがやりたいのは同点の場合が評価がおかしくなることがある.<br />
 そもそも得られる結果は整数のはずだけど、小数で計算をしてるため、場合によっては同点なのに差が出る可能性がある.<br />
 そのため、丸め込みを行って同点として比較を行うことで、配列内の最小のものが確実に選ばれるようになるわけである.<br />
-基本的に最小の配列内探索は同じ値があれば、配列の小さい方が選択されるのでこれは言えるはず.<code>std::max_element</code>もそうなはず.  </p>
-<pre><code class="language-c++">auto RoundN = [](double value, int n)
-    {
-        double p = Pow(10, n);
-        return Round(value * p) / p;
-    };
-
-std::for_each(returns.begin(), returns.end(), [&amp;](double&amp; value) { value = RoundN(value, 5); });
-auto maxElement = std::max_element(returns.begin(), returns.end());
-auto distance = std::distance(returns.begin(), maxElement);
-policies[state] = actions[distance];
-</code></pre>
-<p>これで用意は完了!!<br />
+基本的に最小の配列内探索は同じ値があれば、配列の小さい方が選択されるのでこれは言えるはず.<code>std::max_element</code>もそうなはず.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">RoundN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="kt">double</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Round</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="p">};</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">returns</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">returns</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RoundN</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="k">auto</span><span class="w"> </span><span class="n">maxElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max_element</span><span class="p">(</span><span class="n">returns</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">returns</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="k">auto</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">returns</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">maxElement</span><span class="p">);</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="n">policies</span><span class="p">[</span><span class="n">state</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actions</span><span class="p">[</span><span class="n">distance</span><span class="p">];</span>
+</span></code></pre></div>
+これで用意は完了!!<br />
 今回は2つのグラフを出力して、結果を比較してみよう.<br />
 <img alt="gambler_01" src="../Image/Gamblers_01.webp" /><br />
 これは横軸が所持金で、縦軸が価値を表している.<br />

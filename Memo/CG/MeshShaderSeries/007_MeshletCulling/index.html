@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7728,59 +7749,59 @@
 視錐台の中かどうかの判定は何でもいいっちゃいいんだけど、今回はシンプルにBounding Sphereを使ってやっていくことにする.<br />
 そのため、MeshletのBounding Sphereをまずは作るところから.  </p>
 <p>Meshletのデータをまずは拡張.<br />
-float4のようなデータで用意をしておく.  </p>
-<pre><code class="language-c++">struct ResourceMeshlet
-{
-    uint32_t m_vertexOffset;
-    uint32_t m_vertexCount;
-    uint32_t m_primitiveOffset;
-    uint32_t m_primitiveCount;
-    uint32_t m_normalCone;
-    XMFLOAT4 m_boundingSphere; // これを追加
-};
-</code></pre>
+float4のようなデータで用意をしておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">ResourceMeshlet</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">m_vertexOffset</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">m_vertexCount</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">m_primitiveOffset</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">m_primitiveCount</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">m_normalCone</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">XMFLOAT4</span><span class="w"> </span><span class="n">m_boundingSphere</span><span class="p">;</span><span class="w"> </span><span class="c1">// これを追加</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">};</span>
+</span></code></pre></div></p>
 <p>meshletのBounding Sphereはmeshoptimizerを使えば簡単に作成可能.<br />
 <code>meshopt_buildMeshlets</code>でMeshletを作成した後であれば、Meshletのデータに参照が可能.<br />
-これを<code>meshopt_computeMeshletBounds</code>に頂点データと一緒に渡してあげれば、勝手にBuonding Sphereを作ってくれる.  </p>
-<pre><code class="language-c++">    // Create Bounding Sphere
-    std::vector&lt;XMFLOAT4&gt; meshletBounds;
-    std::vector&lt;uint32_t&gt; meshletCones;
-    for (meshopt_Meshlet&amp; meshlet : meshlets)
-    {
-        auto bounds = meshopt_computeMeshletBounds
-        (
-            &amp;mesh-&gt;m_uniqueVertexIndices[meshlet.vertex_offset],        // start vertex index
-            &amp;meshletTriangles[meshlet.triangle_offset],                 // start triangle
-            meshlet.triangle_count,                                     // num of triangle
-            reinterpret_cast&lt;const float*&gt;(mesh-&gt;m_positions.data()),   // pointer to vertex positions
-            mesh-&gt;GetVerticesNum(),                                     // num of vertex positions
-            sizeof(XMFLOAT3)                                            // vertex stride
-            );
-
-        // ...
-</code></pre>
-<p>ここで<code>bounds</code>にはBounding Sphereの中心と半径が入っている.<br />
-そのため、これをXYZが中心,Wが半径となるようにデータを構築すればOK.  </p>
-<pre><code class="language-c++">        // store sphere. Structure: XYZ=Center, W=Radius.
-        meshletBounds.push_back(XMFLOAT4(bounds.center[0], bounds.center[1], bounds.center[2], bounds.radius));
-
-        // ...
-    }
-</code></pre>
-<p>後は最後にResource側に渡してやってあげればOK.  </p>
-<pre><code class="language-c++">        meshletResource.m_boundingSphere = meshletBounds[count];
-</code></pre>
-<p>あとはhlsl側にちゃんとデータの枠を忘れずに.  </p>
-<pre><code class="language-c++">struct Meshlet
-{
-    uint VertexOffset;
-    uint VertexCount;
-    uint TriangleOffset;
-    uint TriangleCount;
-    uint NormalCone;
-    float4 BoundingSphere; // 追加
-};
-</code></pre>
+これを<code>meshopt_computeMeshletBounds</code>に頂点データと一緒に渡してあげれば、勝手にBuonding Sphereを作ってくれる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="c1">// Create Bounding Sphere</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">XMFLOAT4</span><span class="o">&gt;</span><span class="w"> </span><span class="n">meshletBounds</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">meshletCones</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">meshopt_Meshlet</span><span class="o">&amp;</span><span class="w"> </span><span class="n">meshlet</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">meshlets</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">bounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">meshopt_computeMeshletBounds</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="p">(</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">            </span><span class="o">&amp;</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_uniqueVertexIndices</span><span class="p">[</span><span class="n">meshlet</span><span class="p">.</span><span class="n">vertex_offset</span><span class="p">],</span><span class="w">        </span><span class="c1">// start vertex index</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">            </span><span class="o">&amp;</span><span class="n">meshletTriangles</span><span class="p">[</span><span class="n">meshlet</span><span class="p">.</span><span class="n">triangle_offset</span><span class="p">],</span><span class="w">                 </span><span class="c1">// start triangle</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">            </span><span class="n">meshlet</span><span class="p">.</span><span class="n">triangle_count</span><span class="p">,</span><span class="w">                                     </span><span class="c1">// num of triangle</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">            </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">m_positions</span><span class="p">.</span><span class="n">data</span><span class="p">()),</span><span class="w">   </span><span class="c1">// pointer to vertex positions</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">            </span><span class="n">mesh</span><span class="o">-&gt;</span><span class="n">GetVerticesNum</span><span class="p">(),</span><span class="w">                                     </span><span class="c1">// num of vertex positions</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">            </span><span class="k">sizeof</span><span class="p">(</span><span class="n">XMFLOAT3</span><span class="p">)</span><span class="w">                                            </span><span class="c1">// vertex stride</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">            </span><span class="p">);</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="c1">// ...</span>
+</span></code></pre></div>
+ここで<code>bounds</code>にはBounding Sphereの中心と半径が入っている.<br />
+そのため、これをXYZが中心,Wが半径となるようにデータを構築すればOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">        </span><span class="c1">// store sphere. Structure: XYZ=Center, W=Radius.</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">        </span><span class="n">meshletBounds</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">XMFLOAT4</span><span class="p">(</span><span class="n">bounds</span><span class="p">.</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">bounds</span><span class="p">.</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">bounds</span><span class="p">.</span><span class="n">center</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">bounds</span><span class="p">.</span><span class="n">radius</span><span class="p">));</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="c1">// ...</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
+<p>後は最後にResource側に渡してやってあげればOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">        </span><span class="n">meshletResource</span><span class="p">.</span><span class="n">m_boundingSphere</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">meshletBounds</span><span class="p">[</span><span class="n">count</span><span class="p">];</span>
+</span></code></pre></div></p>
+<p>あとはhlsl側にちゃんとデータの枠を忘れずに.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Meshlet</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">VertexOffset</span><span class="p">;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">VertexCount</span><span class="p">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">TriangleOffset</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">TriangleCount</span><span class="p">;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">NormalCone</span><span class="p">;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">BoundingSphere</span><span class="p">;</span><span class="w"> </span><span class="c1">// 追加</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">};</span>
+</span></code></pre></div></p>
 <p>なんか<code>NormalCone</code>とかあるけど気にしないでください.<br />
 これは次回にやる予定.  </p>
 <p>さて、ここまでできればBounding Sphereは求まった！<br />
@@ -7954,124 +7975,124 @@ Rightに関しては逆に右のクリップ平面よりも左側にいる必要
 今回<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span>というのは頂点情報なので、shader側であればいいだけなのでCPUからPlaneの情報として送るのにはいらない.<br />
 なので<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>o</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">col</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">co</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span></span></span></span>の部分の情報さえ送ることができれば何とかなるという訳である.<br />
 各<code>col</code>は行列内に配列として参照できるため、ここまでの式が理解できていればシンプルに書ける.  </p>
-<pre><code class="language-c++">XMVECTOR&amp;&amp; NormalizePlane(const XMVECTOR&amp; value)
-{
-    auto* data = value.m128_f32;
-    float magnitude = std::sqrt(data[0] * data[0] + data[1] * data[1] + data[2] * data[2]);
-    return DirectX::XMVectorDivide(value, DirectX::g_XMOne * magnitude);
-}
-
-void CalculateFrustumPlanes(const XMMATRIX&amp; view, const XMMATRIX&amp; proj, XMVECTOR* planes)
-{
-    auto vp = DirectX::XMMatrixMultiplyTranspose(view, proj);
-
-    planes[PLANE_LEFT] = NormalizePlane(DirectX::XMVectorAdd(vp.r[3], vp.r[0]));
-    planes[PLANE_RIGHT] = NormalizePlane(DirectX::XMVectorSubtract(vp.r[3], vp.r[0]));
-    planes[PLANE_BOTTOM] = NormalizePlane(DirectX::XMVectorAdd(vp.r[3], vp.r[1]));
-    planes[PLANE_TOP] = NormalizePlane(DirectX::XMVectorSubtract(vp.r[3], vp.r[1]));
-    planes[PLANE_NEAR] = NormalizePlane(vp.r[2]);
-    planes[PLANE_FAR] = NormalizePlane(DirectX::XMVectorSubtract(vp.r[3], vp.r[2]));
-}
-</code></pre>
-<p>今回は<code>plane</code>という配列にデータを収めるような関数を取った.<br />
+<p><div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">XMVECTOR</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nf">NormalizePlane</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">XMVECTOR</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">auto</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">.</span><span class="n">m128_f32</span><span class="p">;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">magnitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVectorDivide</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">DirectX</span><span class="o">::</span><span class="n">g_XMOne</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">magnitude</span><span class="p">);</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">CalculateFrustumPlanes</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">XMMATRIX</span><span class="o">&amp;</span><span class="w"> </span><span class="n">view</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">XMMATRIX</span><span class="o">&amp;</span><span class="w"> </span><span class="n">proj</span><span class="p">,</span><span class="w"> </span><span class="n">XMVECTOR</span><span class="o">*</span><span class="w"> </span><span class="n">planes</span><span class="p">)</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="p">{</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">vp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMMatrixMultiplyTranspose</span><span class="p">(</span><span class="n">view</span><span class="p">,</span><span class="w"> </span><span class="n">proj</span><span class="p">);</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="n">planes</span><span class="p">[</span><span class="n">PLANE_LEFT</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NormalizePlane</span><span class="p">(</span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVectorAdd</span><span class="p">(</span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="n">planes</span><span class="p">[</span><span class="n">PLANE_RIGHT</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NormalizePlane</span><span class="p">(</span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVectorSubtract</span><span class="p">(</span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">    </span><span class="n">planes</span><span class="p">[</span><span class="n">PLANE_BOTTOM</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NormalizePlane</span><span class="p">(</span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVectorAdd</span><span class="p">(</span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="n">planes</span><span class="p">[</span><span class="n">PLANE_TOP</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NormalizePlane</span><span class="p">(</span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVectorSubtract</span><span class="p">(</span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]));</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="n">planes</span><span class="p">[</span><span class="n">PLANE_NEAR</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NormalizePlane</span><span class="p">(</span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">    </span><span class="n">planes</span><span class="p">[</span><span class="n">PLANE_FAR</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NormalizePlane</span><span class="p">(</span><span class="n">DirectX</span><span class="o">::</span><span class="n">XMVectorSubtract</span><span class="p">(</span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="w"> </span><span class="n">vp</span><span class="p">.</span><span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]));</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="p">}</span>
+</span></code></pre></div>
+今回は<code>plane</code>という配列にデータを収めるような関数を取った.<br />
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mi>V</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">M=VP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>を計算後、あとは上の対応に当てはめて<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi><mi>o</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">col</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">co</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span></span></span></span>をAdd,Subtractで足し引きするだけである.<br />
 一応ちゃんと正規化するのを忘れずに.<br />
 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mi>V</mi><mi>P</mi></mrow><annotation encoding="application/x-tex">M=VP</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span></span></span></span>なので、ワールド空間のFrustum Planeなわけだ.  </p>
-<p>あとはこれを呼び出すだけ、それだけでFrustum Planeの完成！  </p>
-<pre><code class="language-c++">    CalculateFrustumPlanes(view, proj, param.m_planes);
-</code></pre>
+<p>あとはこれを呼び出すだけ、それだけでFrustum Planeの完成！<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span><span class="n">CalculateFrustumPlanes</span><span class="p">(</span><span class="n">view</span><span class="p">,</span><span class="w"> </span><span class="n">proj</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">.</span><span class="n">m_planes</span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>Shader側もちゃんとデータを取るだけで終わる.簡単.<br />
-今回はデバッグ用に別データ用意してますが、あくまで大事なのは<code>Planes</code>です.  </p>
-<pre><code class="language-c++">struct SceneProperties
-{
-    float4x4 MVP;
-    float4 Planes[6]; // これ
-    float4 DebugPlanes[6];
-    float DebugFrustum;
-};
-
-ConstantBuffer&lt;SceneProperties&gt; Scene : register(b1);
-</code></pre>
+今回はデバッグ用に別データ用意してますが、あくまで大事なのは<code>Planes</code>です.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">SceneProperties</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">float4x4</span><span class="w"> </span><span class="n">MVP</span><span class="p">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">Planes</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span><span class="w"> </span><span class="c1">// これ</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">DebugPlanes</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">DebugFrustum</span><span class="p">;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">};</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">ConstantBuffer</span><span class="o">&lt;</span><span class="n">SceneProperties</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Scene</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">register</span><span class="p">(</span><span class="n">b1</span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>さて、今回はASのみ書き換えていく.<br />
-今回もIndexを取っていくところは同じ.  </p>
-<pre><code class="language-c++">void main
-(
-    uint groupThreadIndex : SV_GroupThreadID,
-    uint dispatchThreadIndex : SV_DispatchThreadID,
-    uint groupIndex : SV_GroupID
-)
-{
-    bool visible = false;
-    bool isInside = false;
-
-    // calculate index
-    uint instanceIndex = dispatchThreadIndex / Constant.MeshletCount;
-    uint meshletIndex  = dispatchThreadIndex % Constant.MeshletCount;
-
-    // if not exceed count, set index.
-    if ((instanceIndex &lt; Constant.InstanceCount) &amp;&amp; (meshletIndex &lt; Constant.MeshletCount))
-    {   
-        Meshlet meshlet = Meshlets[meshletIndex];
-        Instance instance = Instances[instanceIndex];
-</code></pre>
+今回もIndexを取っていくところは同じ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">main</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">(</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">groupThreadIndex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">SV_GroupThreadID</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">dispatchThreadIndex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">SV_DispatchThreadID</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">groupIndex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">SV_GroupID</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">)</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">{</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isInside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="c1">// calculate index</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">instanceIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dispatchThreadIndex</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Constant</span><span class="p">.</span><span class="n">MeshletCount</span><span class="p">;</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">meshletIndex</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">dispatchThreadIndex</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">Constant</span><span class="p">.</span><span class="n">MeshletCount</span><span class="p">;</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">    </span><span class="c1">// if not exceed count, set index.</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">instanceIndex</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Constant</span><span class="p">.</span><span class="n">InstanceCount</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">meshletIndex</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Constant</span><span class="p">.</span><span class="n">MeshletCount</span><span class="p">))</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">    </span><span class="p">{</span><span class="w">   </span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">        </span><span class="n">Meshlet</span><span class="w"> </span><span class="n">meshlet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Meshlets</span><span class="p">[</span><span class="n">meshletIndex</span><span class="p">];</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">        </span><span class="n">Instance</span><span class="w"> </span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Instances</span><span class="p">[</span><span class="n">instanceIndex</span><span class="p">];</span>
+</span></code></pre></div></p>
 <p>今回のコードは<code>IsVisible</code>という関数で内部かどうかを判定する.<br />
 そのためこれを呼び出す.<br />
-デバッグ用で余計な処理を付けているが、大事なのは1行のみ.  </p>
-<pre><code class="language-c++">        if (Scene.DebugFrustum &lt; 0.5f)
-        {
-            // 今回の核心
-            visible = IsVisible(meshlet, Scene.Planes, instance.Mat, Scene.MVP); 
-        }
-        else
-        {
-            // debug
-            isInside = IsVisible(meshlet, Scene.DebugPlanes, instance.Mat, Scene.MVP);
-            visible = true;
-        }
-    }
-</code></pre>
+デバッグ用で余計な処理を付けているが、大事なのは1行のみ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Scene</span><span class="p">.</span><span class="n">DebugFrustum</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">            </span><span class="c1">// 今回の核心</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">            </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IsVisible</span><span class="p">(</span><span class="n">meshlet</span><span class="p">,</span><span class="w"> </span><span class="n">Scene</span><span class="p">.</span><span class="n">Planes</span><span class="p">,</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="n">Mat</span><span class="p">,</span><span class="w"> </span><span class="n">Scene</span><span class="p">.</span><span class="n">MVP</span><span class="p">);</span><span class="w"> </span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="k">else</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">            </span><span class="c1">// debug</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">            </span><span class="n">isInside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IsVisible</span><span class="p">(</span><span class="n">meshlet</span><span class="p">,</span><span class="w"> </span><span class="n">Scene</span><span class="p">.</span><span class="n">DebugPlanes</span><span class="p">,</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="n">Mat</span><span class="p">,</span><span class="w"> </span><span class="n">Scene</span><span class="p">.</span><span class="n">MVP</span><span class="p">);</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">            </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>そしたらまずは<code>IsVisible</code>を見ていこう.<br />
-この関数は後々色々なカリング手法をやってくが、それをまとめる場所.  </p>
-<pre><code class="language-c++">bool IsVisible(Meshlet meshlet, float4 planes[6], float4x4 world, float4x4 viewProj)
-{
-    float4 sphere = TransformSphere(meshlet.BoundingSphere, world);
-
-    // frustum culling
-    if (!Contains(planes, sphere))
-    {
-        return false;
-    }
-
-    return true;
-}
-</code></pre>
-<p>今はフラスタムカリングをやるだけなので、非常に単純.<br />
+この関数は後々色々なカリング手法をやってくが、それをまとめる場所.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">IsVisible</span><span class="p">(</span><span class="n">Meshlet</span><span class="w"> </span><span class="n">meshlet</span><span class="p">,</span><span class="w"> </span><span class="n">float4</span><span class="w"> </span><span class="n">planes</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="n">float4x4</span><span class="w"> </span><span class="n">world</span><span class="p">,</span><span class="w"> </span><span class="n">float4x4</span><span class="w"> </span><span class="n">viewProj</span><span class="p">)</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="p">{</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">sphere</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TransformSphere</span><span class="p">(</span><span class="n">meshlet</span><span class="p">.</span><span class="n">BoundingSphere</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">);</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="c1">// frustum culling</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Contains</span><span class="p">(</span><span class="n">planes</span><span class="p">,</span><span class="w"> </span><span class="n">sphere</span><span class="p">))</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="p">}</span>
+</span></code></pre></div>
+今はフラスタムカリングをやるだけなので、非常に単純.<br />
 MeshletのBounding SphereをWorld座標系に持ってきてカリング判定を行うだけ！  </p>
 <p>一つずつ処理を見ていこう.<br />
 まずはWorld座標系に持っていくところを見よう.<br />
 World座標系に持ってくのは非常に簡単.<br />
 MeshletのBounidngSphereのデータは<code>XYZ-&gt;position</code>だった.<br />
-そのため、このデータにWorld行列を掛けるだけである.  </p>
-<pre><code class="language-c++">float4 TransformSphere(float4 sphere, float4x4 world)
-{
-    // convert world coordinate.
-    float4 value = mul(world, float4(sphere.xyz, 1.0f));
-</code></pre>
+そのため、このデータにWorld行列を掛けるだけである.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">float4</span><span class="w"> </span><span class="nf">TransformSphere</span><span class="p">(</span><span class="n">float4</span><span class="w"> </span><span class="n">sphere</span><span class="p">,</span><span class="w"> </span><span class="n">float4x4</span><span class="w"> </span><span class="n">world</span><span class="p">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="p">{</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="c1">// convert world coordinate.</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mul</span><span class="p">(</span><span class="n">world</span><span class="p">,</span><span class="w"> </span><span class="n">float4</span><span class="p">(</span><span class="n">sphere</span><span class="p">.</span><span class="n">xyz</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">));</span>
+</span></code></pre></div></p>
 <p>そしたら次に各軸に対して二乗した値を求める.<br />
 その後、最大の長さを採用して平方根を取って距離を算出.<br />
-あとはこれを使って、半径を補正しておく.  </p>
-<pre><code class="language-c++">    // calculate Length Square per axis
-    float sx = dot(world._11_12_13, world._11_12_13);
-    float sy = dot(world._21_22_23, world._21_22_23);
-    float sz = dot(world._31_32_33, world._31_32_33);
-
-    // adopt max length sq
-    float scale = sqrt(max(sx, max(sy, sz)));
-
-    return float4(value.xyz, sphere.w * scale);
-}
-</code></pre>
-<p>これ単純にXYZのスケールが等倍の場合は問題ないけど、全部のスケールが等倍ではない場合はこうやって最大のスケール値で補正必要らしい.<br />
+あとはこれを使って、半径を補正しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="w">    </span><span class="c1">// calculate Length Square per axis</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">sx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dot</span><span class="p">(</span><span class="n">world</span><span class="p">.</span><span class="n">_11_12_13</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">_11_12_13</span><span class="p">);</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">sy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dot</span><span class="p">(</span><span class="n">world</span><span class="p">.</span><span class="n">_21_22_23</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">_21_22_23</span><span class="p">);</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">sz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dot</span><span class="p">(</span><span class="n">world</span><span class="p">.</span><span class="n">_31_32_33</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">_31_32_33</span><span class="p">);</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="c1">// adopt max length sq</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">sx</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">sy</span><span class="p">,</span><span class="w"> </span><span class="n">sz</span><span class="p">)));</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">float4</span><span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">xyz</span><span class="p">,</span><span class="w"> </span><span class="n">sphere</span><span class="p">.</span><span class="n">w</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">scale</span><span class="p">);</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="p">}</span>
+</span></code></pre></div>
+これ単純にXYZのスケールが等倍の場合は問題ないけど、全部のスケールが等倍ではない場合はこうやって最大のスケール値で補正必要らしい.<br />
 まあ気持ちはわからんでもない.<br />
 とはいえ別段必要ない場合は使わなくてもよい、普通に等倍で問題ないなら普通に通常のradiusを使うのでもよい.  </p>
 <p>さて、そしたら実際にフラスタムカリングを行う.<br />
@@ -8090,34 +8111,34 @@ MeshletのBounidngSphereのデータは<code>XYZ-&gt;position</code>だった.<b
 今回出たかどうかの判定は一番下のようにRadius分ずらした状態、こうすることで完全に出た状態といえるようになる.  </p>
 <p>ここまで分かればは中心とPlaneの情報で内積を取って計算、そして<code>-radius</code>で判定を取ればよい.<br />
 これで外側と分かれば、内にはないとわかるため、<code>false</code>を返して終了.<br />
-今回はPlane上に関しては内側と同じとしておいた.分けたい人は分けても良い.  </p>
-<pre><code class="language-c++">bool Contains(float4 planes[6], float4 sphere)
-{
-    float4 center = float4(sphere.xyz, 1.0f);
-
-    for (int i = 0; i &lt; 6; ++i)
-    {
-        if (dot(center, planes[i]) &lt; -sphere.w) // もしPlane上も弾きたい場合は` &lt;= `に変えればOK
-        {
-            return false;
-        }
-    }
-
-    return true;
-}
-</code></pre>
-<p>さて、そしたらあとは前回通り起動するだけ！！  </p>
-<pre><code class="language-c++">    if (visible)
-    {
-        sPayload.InstanceIndices[groupThreadIndex] = instanceIndex;
-        sPayload.MeshletIndices[groupThreadIndex] = meshletIndex;
-        sPayload.DebugColor[groupThreadIndex] = isInside ? 1 : 2;
-    }
-
-    uint visibleCount = WaveActiveCountBits(visible);
-    DispatchMesh(visibleCount, 1, 1, sPayload);
-}
-</code></pre>
+今回はPlane上に関しては内側と同じとしておいた.分けたい人は分けても良い.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">Contains</span><span class="p">(</span><span class="n">float4</span><span class="w"> </span><span class="n">planes</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="n">float4</span><span class="w"> </span><span class="n">sphere</span><span class="p">)</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="p">{</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">float4</span><span class="p">(</span><span class="n">sphere</span><span class="p">.</span><span class="n">xyz</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">planes</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="n">sphere</span><span class="p">.</span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="c1">// もしPlane上も弾きたい場合は` &lt;= `に変えればOK</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p>さて、そしたらあとは前回通り起動するだけ！！<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visible</span><span class="p">)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">        </span><span class="n">sPayload</span><span class="p">.</span><span class="n">InstanceIndices</span><span class="p">[</span><span class="n">groupThreadIndex</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instanceIndex</span><span class="p">;</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">        </span><span class="n">sPayload</span><span class="p">.</span><span class="n">MeshletIndices</span><span class="p">[</span><span class="n">groupThreadIndex</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">meshletIndex</span><span class="p">;</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">        </span><span class="n">sPayload</span><span class="p">.</span><span class="n">DebugColor</span><span class="p">[</span><span class="n">groupThreadIndex</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isInside</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="n">uint</span><span class="w"> </span><span class="n">visibleCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WaveActiveCountBits</span><span class="p">(</span><span class="n">visible</span><span class="p">);</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="n">DispatchMesh</span><span class="p">(</span><span class="n">visibleCount</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">sPayload</span><span class="p">);</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>さて、実はここには問題がある.<br />
 カリングされてしまったら前回とは違ってデータの統一が取れていない.  </p>
 <p><img alt="meshlet_007_04" src="../Image/meshlet_007_04.webp" />  </p>
@@ -8133,15 +8154,15 @@ MS側では先頭からデータがあると思ってアクセスする.<br />
 <p><img alt="meshlet_007_05" src="../Image/meshlet_007_05.webp" />  </p>
 <p><code>WavePrefixCountBits</code>を使ったことで、ASのLaneの緑の部分が先頭から<code>0,1,2</code>と分かった！<br />
 このIndexを使って書き込みを行えば、ちゃんと整合性の取れるデータになるわけだ.<br />
-後はこのIndexを使って書き込みを行うように修正するだけ.  </p>
-<pre><code class="language-c++">    if (visible)
-    {
-        uint index = WavePrefixCountBits(visible);
-        sPayload.InstanceIndices[index] = instanceIndex;
-        sPayload.MeshletIndices[index] = meshletIndex;
-        sPayload.DebugColor[index] = isInside ? 1 : 2;
-    }
-</code></pre>
+後はこのIndexを使って書き込みを行うように修正するだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visible</span><span class="p">)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">        </span><span class="n">uint</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WavePrefixCountBits</span><span class="p">(</span><span class="n">visible</span><span class="p">);</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">        </span><span class="n">sPayload</span><span class="p">.</span><span class="n">InstanceIndices</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">instanceIndex</span><span class="p">;</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">        </span><span class="n">sPayload</span><span class="p">.</span><span class="n">MeshletIndices</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">meshletIndex</span><span class="p">;</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">        </span><span class="n">sPayload</span><span class="p">.</span><span class="n">DebugColor</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isInside</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>結果を見てみよう.  </p>
 <p><img alt="meshlet_007_06" src="../Image/meshlet_007_06.png" />  </p>
 <p>赤い部分が内側判定,青い部分が外側判定となっている.<br />

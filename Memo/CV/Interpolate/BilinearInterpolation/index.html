@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7755,49 +7776,49 @@ Q^{col} = (1-\beta)Q_{y{1}}^{col}+ \beta Q_{y_{2}}^{col}  &amp; \alpha = \frac{y
 ちょっと式だけで見ると厄介だけど、Lerpを3回やってるだけと考えると、直感的に分かりやすいかもしれない.  </p>
 <p>さて、実際にコードで書いてみよう.<br />
 まずは移した際の位置を計算.<br />
-前回みたいに<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.5</mn></mrow><annotation encoding="application/x-tex">0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.5</span></span></span></span>ずらしたりする必要はない.ただし、doubleで取るようにする.  </p>
-<pre><code class="language-c++">// 点の位置を計算
-Vec2 pos = Vec2{ w,h } / scale;
-</code></pre>
-<p>つぎにfloorとceilで周囲の4点を取るための位置を計算しておく.  </p>
-<pre><code class="language-c++">// 矩形の最小最大を計算
-Point minPos, maxPos;
-minPos.x = Floor(pos.x); minPos.y = Floor(pos.y);
-maxPos.x = Ceil(pos.x); maxPos.y = Ceil(pos.y);
-
-// 画像内に限定
-minPos.x = Clamp(minPos.x, 0, image.size().x);
-minPos.y = Clamp(minPos.y, 0, image.size().y);
-maxPos.x = Clamp(maxPos.x, 0, image.size().x);
-maxPos.y = Clamp(maxPos.y, 0, image.size().y);
-</code></pre>
-<p>そしたら、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo separator="true">,</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha,\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>を計算.<br />
+前回みたいに<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.5</mn></mrow><annotation encoding="application/x-tex">0.5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.5</span></span></span></span>ずらしたりする必要はない.ただし、doubleで取るようにする.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 点の位置を計算</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Vec2</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vec2</span><span class="p">{</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">scale</span><span class="p">;</span>
+</span></code></pre></div>
+つぎにfloorとceilで周囲の4点を取るための位置を計算しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// 矩形の最小最大を計算</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">Point</span><span class="w"> </span><span class="n">minPos</span><span class="p">,</span><span class="w"> </span><span class="n">maxPos</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">minPos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Floor</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="n">minPos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Floor</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">maxPos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ceil</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="n">maxPos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ceil</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">// 画像内に限定</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">minPos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Clamp</span><span class="p">(</span><span class="n">minPos</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">size</span><span class="p">().</span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">minPos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Clamp</span><span class="p">(</span><span class="n">minPos</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">size</span><span class="p">().</span><span class="n">y</span><span class="p">);</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">maxPos</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Clamp</span><span class="p">(</span><span class="n">maxPos</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">size</span><span class="p">().</span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">maxPos</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Clamp</span><span class="p">(</span><span class="n">maxPos</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">size</span><span class="p">().</span><span class="n">y</span><span class="p">);</span>
+</span></code></pre></div>
+そしたら、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo separator="true">,</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha,\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>を計算.<br />
 ほほ同じ計算なのでVec2のまま行い、それを分解してやればよい.<br />
-ただし<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>と<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>の値が同じなら0になって、0除算によりnanになるため切り分けておく.  </p>
-<pre><code class="language-c++">// 閾値を計算
-auto [alpha, beta] = (pos - minPos) / (maxPos - minPos);
-if (isnan(alpha)) { alpha = 0.0; }
-if (isnan(beta)) { beta = 0.0; }
-</code></pre>
+ただし<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span>と<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span></span></span></span>の値が同じなら0になって、0除算によりnanになるため切り分けておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// 閾値を計算</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">alpha</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">pos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">minPos</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">maxPos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">minPos</span><span class="p">);</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isnan</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isnan</span><span class="p">(</span><span class="n">beta</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div></p>
 <p>点のカラー値はそのまま取ればOK.  </p>
-<pre><code class="language-C++">// Qを用意
-ColorF Q1 = image[minPos.y][minPos.x];
-ColorF Q2 = image[minPos.y][maxPos.x];
-ColorF Q3 = image[maxPos.y][minPos.x];
-ColorF Q4 = image[maxPos.y][maxPos.x];
-</code></pre>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Qを用意</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">ColorF</span><span class="w"> </span><span class="n">Q1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">image</span><span class="p">[</span><span class="n">minPos</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">minPos</span><span class="p">.</span><span class="n">x</span><span class="p">];</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">ColorF</span><span class="w"> </span><span class="n">Q2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">image</span><span class="p">[</span><span class="n">minPos</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">maxPos</span><span class="p">.</span><span class="n">x</span><span class="p">];</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">ColorF</span><span class="w"> </span><span class="n">Q3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">image</span><span class="p">[</span><span class="n">maxPos</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">minPos</span><span class="p">.</span><span class="n">x</span><span class="p">];</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">ColorF</span><span class="w"> </span><span class="n">Q4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">image</span><span class="p">[</span><span class="n">maxPos</span><span class="p">.</span><span class="n">y</span><span class="p">][</span><span class="n">maxPos</span><span class="p">.</span><span class="n">x</span><span class="p">];</span>
+</span></code></pre></div>
 <p>補間を3回行えばバイリニア補間は完了する.<br />
 Siv3Dにはカラーの線形補間関数がああるので、これを拝借する.<br />
 やってることは先程の式と全く同じ.<br />
 最後に結果を代入すれば終了！  </p>
-<pre><code class="language-c++">// 線形補間
-auto Q_y1 = Q1.lerp(Q2, alpha);
-auto Q_y2 = Q3.lerp(Q4, alpha);
-auto Q = Q_y1.lerp(Q_y2, beta);
-
-// 格納
-result[h][w] = Q;
-</code></pre>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// 線形補間</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">Q_y1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q1</span><span class="p">.</span><span class="n">lerp</span><span class="p">(</span><span class="n">Q2</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="p">);</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">auto</span><span class="w"> </span><span class="n">Q_y2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q3</span><span class="p">.</span><span class="n">lerp</span><span class="p">(</span><span class="n">Q4</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="p">);</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">auto</span><span class="w"> </span><span class="n">Q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q_y1</span><span class="p">.</span><span class="n">lerp</span><span class="p">(</span><span class="n">Q_y2</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">);</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">// 格納</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">result</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">w</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Q</span><span class="p">;</span>
+</span></code></pre></div>
 <p>さて、結果を見てみよう.  </p>
 <p><img alt="BilinearInterpolation_02" src="../Image/BilinearInterpolation_02.png" /></p>
 <p>うん、いい感じ.  </p>

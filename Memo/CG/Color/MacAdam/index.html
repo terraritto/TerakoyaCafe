@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7754,8 +7775,8 @@ ColorDiffrence = \sqrt{(C_{A}.r - C_{B}.r)^2 + (C_{A}.g - C_{B}.g)^2 + (C_{A}.b 
 どうもObserveとCalculateの2つがあるが、Calculateの方が正確らしい.<br />
 一応コード上ではどちらも定義しておいたが、今回はCalculateの方を描画してみよう.  </p>
 <p>まず最初に今回のデータは楕円のデータとその回転値で構成することにする.  </p>
-<pre><code class="language-c++">Array&lt;std::pair&lt;double, Ellipse&gt;&gt; m_calculate;
-</code></pre>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">Ellipse</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">m_calculate</span><span class="p">;</span>
+</span></code></pre></div>
 <p>Siv3DではEllipseに楕円の中心位置、そして長軸短軸の2つを定義可能.<br />
 今回のMacAdamのデータも</p>
 <ul>
@@ -7766,32 +7787,32 @@ ColorDiffrence = \sqrt{(C_{A}.r - C_{B}.r)^2 + (C_{A}.g - C_{B}.g)^2 + (C_{A}.b 
 </ul>
 <p>で構成されているため、これを代入してあげればよい.  </p>
 <p>実際の描画は以下の手順で行う.<br />
-まず楕円の中心はxy空間なので、事前にシーン空間に移しておく.  </p>
-<pre><code class="language-c++">for (auto&amp; v : macAdam.m_calculate)
-{
-    // CenterをScene座標にしておく
-    Vec2 center = v.second.center;
-    center.x = (center.x - X_BOUND.x) / (X_BOUND.y - X_BOUND.x);
-    center.y = 1.0 - (center.y - Y_BOUND.x) / (Y_BOUND.y - Y_BOUND.x);
-    center.x = Math::Lerp(sceneMin.x, sceneMax.x, center.x);
-    center.y = Math::Lerp(sceneMin.y, sceneMax.y, center.y);
-
-    v.second.setCenter(center);
-}
-</code></pre>
-<p>描画時には回転値と楕円を取り出す.  </p>
-<pre><code class="language-c++">for (const auto&amp; v : macAdam.m_calculate)
-{
-    double angle = v.first;
-    auto ellipse = v.second;
-</code></pre>
+まず楕円の中心はxy空間なので、事前にシーン空間に移しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">macAdam</span><span class="p">.</span><span class="n">m_calculate</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="c1">// CenterをScene座標にしておく</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">Vec2</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">center</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">center</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X_BOUND</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">X_BOUND</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X_BOUND</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">center</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">center</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y_BOUND</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">Y_BOUND</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Y_BOUND</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">center</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="n">sceneMin</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">sceneMax</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="n">center</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="o">::</span><span class="n">Lerp</span><span class="p">(</span><span class="n">sceneMin</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">sceneMax</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">setCenter</span><span class="p">(</span><span class="n">center</span><span class="p">);</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p>描画時には回転値と楕円を取り出す.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">macAdam</span><span class="p">.</span><span class="n">m_calculate</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ellipse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>回転値はマイナスしているのに注意.<br />
 どうも回転行列が時計回りを正としてるっぽいので、今回は反時計回りが欲しいためマイナスにしてるだけ.<br />
-あとは楕円の縁が欲しいので<code>drawFrame</code>で描画すればよい.  </p>
-<pre><code class="language-c++">    const Transformer2D transformer{ Mat3x2::Rotate(ToRadians(-angle), ellipse.center) };
-    ellipse.drawFrame(1.0, Palette::Black);
-}
-</code></pre>
+あとは楕円の縁が欲しいので<code>drawFrame</code>で描画すればよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Transformer2D</span><span class="w"> </span><span class="n">transformer</span><span class="p">{</span><span class="w"> </span><span class="n">Mat3x2</span><span class="o">::</span><span class="n">Rotate</span><span class="p">(</span><span class="n">ToRadians</span><span class="p">(</span><span class="o">-</span><span class="n">angle</span><span class="p">),</span><span class="w"> </span><span class="n">ellipse</span><span class="p">.</span><span class="n">center</span><span class="p">)</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">ellipse</span><span class="p">.</span><span class="n">drawFrame</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">Palette</span><span class="o">::</span><span class="n">Black</span><span class="p">);</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>さて、ここまで来たら描画をしてみる.結果は以下だ.  </p>
 <p><img alt="MacAdam_02" src="../Image/MacAdam_02.webp" />  </p>
 <p>う～ん...あまりにも小さい...<br />
@@ -7829,80 +7850,80 @@ LMS視錐体<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>�
 有名なのはドロネー三角形分割とかだけど、これに関してはSiv3Dでは機能として入ってる.<br />
 自分で実装するのは面倒なので、機能を使わせてもらおう.  </p>
 <p>やることは簡単で、楕円の頂点を<code>SubDivision2D</code>に突っ込む.<br />
-追加後は<code>calculateTriangles</code>を呼び出すのみ.  </p>
-<pre><code class="language-c++">Subdivision2D div{ Scene::Rect()};
-
-// 楕円の全頂点を突っ込む
-for (const auto&amp; v : macAdam.m_calculate)
-{
-    auto ellipse = v.second;
-    div.addPoint(ellipse.center);
-}
-
-// ドロネー三角形分割
-div.calculateTriangles(triangles);
-</code></pre>
+追加後は<code>calculateTriangles</code>を呼び出すのみ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Subdivision2D</span><span class="w"> </span><span class="n">div</span><span class="p">{</span><span class="w"> </span><span class="n">Scene</span><span class="o">::</span><span class="n">Rect</span><span class="p">()};</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">// 楕円の全頂点を突っ込む</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">macAdam</span><span class="p">.</span><span class="n">m_calculate</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">{</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">ellipse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="n">div</span><span class="p">.</span><span class="n">addPoint</span><span class="p">(</span><span class="n">ellipse</span><span class="p">.</span><span class="n">center</span><span class="p">);</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1">// ドロネー三角形分割</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">div</span><span class="p">.</span><span class="n">calculateTriangles</span><span class="p">(</span><span class="n">triangles</span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>これで三角形が完成！<br />
 自分で定義したVertexに対して作って参照とかにしてくれると嬉しくはあるんだけど、まあそこは言っても仕方ない.  </p>
 <p>あとは頑張って補間していく.<br />
 まず、<code>contains</code>関数でどの三角形の内側かを判定する.<br />
-全ての三角形において外側の場合は終了としてしまう.  </p>
-<pre><code class="language-c++">// 三角形の内側にあるものを探す
-bool isInside = false;
-Triangle* target = nullptr;
-for (auto&amp; t : triangles)
-{
-    if (t.contains(targetPos))
-    {
-        isInside = true;
-        target = &amp;t;
-    }
-}
-isDrawTarget = isInside;
-if (!isInside) { return; }
-</code></pre>
-<p>次に重心座標系を計算.<br />
-これは以前Depth Buffer<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>でやったのと同じ処理を書けばよいだけ.  </p>
-<pre><code class="language-c++">// 重心座標系uvwを計算
-auto p0 = target-&gt;p0, p1 = target-&gt;p1, p2 = target-&gt;p2;
-double polyArea = Cross(p1 - p0, p2 - p0);
-const double u = Abs(Cross(p1 - p0, targetPos - p0) / polyArea);
-const double v = Abs(Cross(p2 - p0, targetPos - p0) / polyArea);
-const double w = Abs(Cross(p2 - p1, targetPos - p1) / polyArea);
-</code></pre>
-<p>現状三角形の頂点は位置しか持っていないため、その頂点がどの楕円と対応してるかが分からない...<br />
+全ての三角形において外側の場合は終了としてしまう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// 三角形の内側にあるものを探す</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kt">bool</span><span class="w"> </span><span class="n">isInside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">Triangle</span><span class="o">*</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">triangles</span><span class="p">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">{</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">targetPos</span><span class="p">))</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="n">isInside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="p">;</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">}</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="n">isDrawTarget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isInside</span><span class="p">;</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isInside</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+次に重心座標系を計算.<br />
+これは以前Depth Buffer<sup id="fnref:8"><a class="footnote-ref" href="#fn:8">8</a></sup>でやったのと同じ処理を書けばよいだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// 重心座標系uvwを計算</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">p0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="o">-&gt;</span><span class="n">p0</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="o">-&gt;</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="o">-&gt;</span><span class="n">p2</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kt">double</span><span class="w"> </span><span class="n">polyArea</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cross</span><span class="p">(</span><span class="n">p1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p0</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p0</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abs</span><span class="p">(</span><span class="n">Cross</span><span class="p">(</span><span class="n">p1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p0</span><span class="p">,</span><span class="w"> </span><span class="n">targetPos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">polyArea</span><span class="p">);</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abs</span><span class="p">(</span><span class="n">Cross</span><span class="p">(</span><span class="n">p2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p0</span><span class="p">,</span><span class="w"> </span><span class="n">targetPos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">polyArea</span><span class="p">);</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Abs</span><span class="p">(</span><span class="n">Cross</span><span class="p">(</span><span class="n">p2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">targetPos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">polyArea</span><span class="p">);</span>
+</span></code></pre></div>
+現状三角形の頂点は位置しか持っていないため、その頂点がどの楕円と対応してるかが分からない...<br />
 そのため、三角形の頂点と対応する楕円を見つける.<br />
 見つけ方は単純に一番近い距離のものを採用.<br />
-ついでに角度も保持しておく.  </p>
-<pre><code class="language-c++">// 点を持つ楕円を探索
-auto FindPoints = [&amp;](Vec2 p, Ellipse&amp; e, double&amp; a)
-    {
-        double distance = 1e+10;
-        for (const auto&amp; d : macAdam.m_calculate)
-        {
-            const auto&amp; ellipse = d.second;
-            const double length = (ellipse.center - p).length();
-            if (length &lt; distance)
-            {
-                distance = length;
-                e = ellipse;
-                a = d.first;
-            }
-        }
-    };
-
-Ellipse e0, e1, e2; double a0, a1, a2;
-FindPoints(p0, e0, a0); FindPoints(p1, e1, a1); FindPoints(p2, e2, a2);
-</code></pre>
-<p>最後に重心座標系を使って補間すれば終わり.<br />
-こうして完成した<code>targetEllipse</code>を描画すればよい.  </p>
-<pre><code class="language-c++">// 補間
-auto center = e0.center * w + e1.center * v + e2.center * u;
-auto axes = e0.axes * w + e1.axes * v + e2.axes * u;
-targetAngle = a0 * w + a1 * v + a2 * u;
-targetEllipse.setCenter(center);
-targetEllipse.setAxes(axes);
-</code></pre>
+ついでに角度も保持しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// 点を持つ楕円を探索</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">FindPoints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="n">Vec2</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">Ellipse</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e+10</span><span class="p">;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">macAdam</span><span class="p">.</span><span class="n">m_calculate</span><span class="p">)</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ellipse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ellipse</span><span class="p">.</span><span class="n">center</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">p</span><span class="p">).</span><span class="n">length</span><span class="p">();</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">length</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">distance</span><span class="p">)</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">            </span><span class="p">{</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">                </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">                </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ellipse</span><span class="p">;</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">                </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="p">};</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="n">Ellipse</span><span class="w"> </span><span class="n">e0</span><span class="p">,</span><span class="w"> </span><span class="n">e1</span><span class="p">,</span><span class="w"> </span><span class="n">e2</span><span class="p">;</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">;</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="n">FindPoints</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span><span class="w"> </span><span class="n">e0</span><span class="p">,</span><span class="w"> </span><span class="n">a0</span><span class="p">);</span><span class="w"> </span><span class="n">FindPoints</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">e1</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">);</span><span class="w"> </span><span class="n">FindPoints</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span><span class="w"> </span><span class="n">e2</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">);</span>
+</span></code></pre></div>
+最後に重心座標系を使って補間すれば終わり.<br />
+こうして完成した<code>targetEllipse</code>を描画すればよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// 補間</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e0</span><span class="p">.</span><span class="n">center</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">center</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">center</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">auto</span><span class="w"> </span><span class="n">axes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e0</span><span class="p">.</span><span class="n">axes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">axes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">axes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">targetAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="p">;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">targetEllipse</span><span class="p">.</span><span class="n">setCenter</span><span class="p">(</span><span class="n">center</span><span class="p">);</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">targetEllipse</span><span class="p">.</span><span class="n">setAxes</span><span class="p">(</span><span class="n">axes</span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>実際に描画した結果が以下である.  </p>
 <p><img alt="MacAdam_04" src="../Image/MacAdam_04.webp" />  </p>
 <p>うん、実際にそれっぽく補間されてるのが分かる.<br />

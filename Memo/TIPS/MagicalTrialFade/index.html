@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7700,124 +7721,124 @@
 普通のフェードと言えばだんだん暗くなる的なのが多いけど、このゲームでのフェードは基本的に左から右に冊状に区分をしつつ、速度を変えて暗くしていく方式.<br />
 これならSiv3Dでも再現が簡単にできるため、実際にコードを書いて検証をしてみる.  </p>
 <p>まず最初はshader側から.<br />
-今回はcbuffer側でパラメータでまとめてパラメータを用意することにした.  </p>
-<pre><code class="language-c++">cbuffer Resource : register(b1)
-{
-    float g_modScale;
-    float g_fadeScale;
-    float g_gapScale;
-    bool g_isFadeIn;
-}
-</code></pre>
-<p>これを使って上手く冊状にフェードを行えばよい.  </p>
+今回はcbuffer側でパラメータでまとめてパラメータを用意することにした.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">cbuffer</span><span class="w"> </span><span class="n">Resource</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">register</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">g_modScale</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">g_fadeScale</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">g_gapScale</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">g_isFadeIn</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">}</span>
+</span></code></pre></div>
+これを使って上手く冊状にフェードを行えばよい.  </p>
 <p>実際の処理はPixel Shaderに記述していく.<br />
 Vertex Shaderに関しては特に書かずにSiv3D側にあるもので任せる.<br />
 理由は単純で特に頂点毎に処理したいものはないからである.<br />
-要はポストプロセス的要領で掛けていくことになるわけだね.  </p>
-<pre><code class="language-c++">float4 PS(s3d::PSInput input) : SV_TARGET
-{
-    // ...
-}
-</code></pre>
-<p>まず最初はTexture Sampling,現状の描画物を拾って来るだけ.  </p>
-<pre><code class="language-c++">    float2 uv = input.uv;
-    float4 texColor = g_texture0.Sample(g_sampler0, uv);
-</code></pre>
+要はポストプロセス的要領で掛けていくことになるわけだね.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">float4</span><span class="w"> </span><span class="nf">PS</span><span class="p">(</span><span class="n">s3d</span><span class="o">::</span><span class="n">PSInput</span><span class="w"> </span><span class="n">input</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">SV_TARGET</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p>まず最初はTexture Sampling,現状の描画物を拾って来るだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="n">float2</span><span class="w"> </span><span class="n">uv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">uv</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">texColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_texture0</span><span class="p">.</span><span class="n">Sample</span><span class="p">(</span><span class="n">g_sampler0</span><span class="p">,</span><span class="w"> </span><span class="n">uv</span><span class="p">);</span>
+</span></code></pre></div></p>
 <p>そしたら次に黒の領域を計算.<br />
 これはuvの位置に対してmodで冊状に分離.<br />
 このmod処理だけであれば全部の冊が同じ速度でfadeすることになるが、今回は冊毎に速度の変更が必要.<br />
 ということで何をするかというと、uvに対してscaleを掛けてあげて速度差をつけてあげる.<br />
 例えば0.25でmodをしてるとして、<code>mod(0.1,0.25) = 0.1</code>, <code>mod(0.35, 0.25)=0.1</code>となる.<br />
-けど、uvだけで見れば前者は0.1,後者は0.35という差がついてるので、これを利用して速度を変えてあげようという目論見.  </p>
-<pre><code class="language-c++">    // make black region
-    float modifiedU = fmod(uv.x, g_modScale) + uv.x * g_gapScale;
-</code></pre>
+けど、uvだけで見れば前者は0.1,後者は0.35という差がついてるので、これを利用して速度を変えてあげようという目論見.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="c1">// make black region</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">modifiedU</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fmod</span><span class="p">(</span><span class="n">uv</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">g_modScale</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">uv</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">g_gapScale</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>後はLiner Interplateで上手くFadeをしてあげるだけ.<br />
 黒になるかどうかはまのさばの場合ぱっきり別れてそうなので、step関数で処理.<br />
 また<code>g_isFadeIn</code>で反転、何しているかというとフェードイン/フェードアウトの切り替えができますよくらいのもの.<br />
-最後にLerpしてあげれば終了.これでshader側は終わり.  </p>
-<pre><code class="language-c++">    float scale = step(modifiedU, g_fadeScale);
-    scale = g_isFadeIn ? 1.0f - scale : scale;
-    texColor.rgb = lerp(texColor.rgb, 0.0f, scale);
-    return (texColor * input.color) + g_colorAdd;
-</code></pre>
+最後にLerpしてあげれば終了.これでshader側は終わり.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">step</span><span class="p">(</span><span class="n">modifiedU</span><span class="p">,</span><span class="w"> </span><span class="n">g_fadeScale</span><span class="p">);</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_isFadeIn</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mf">1.0f</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">scale</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">texColor</span><span class="p">.</span><span class="n">rgb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lerp</span><span class="p">(</span><span class="n">texColor</span><span class="p">.</span><span class="n">rgb</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">);</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">texColor</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">g_colorAdd</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>次はC++側を見ていく.<br />
 まずはShader側の用意から.<br />
-struct定義をしておき、Shader自体の用意とConstant Bufferを用意する.  </p>
-<pre><code class="language-c++">    struct ShaderParam
-    {
-        float m_mod = 0.1f;
-        float m_scale = 0.0f;
-        float m_gapScale = 0.1f;
-        bool m_isFadeIn = false;
-    };
-
-    const PixelShader pixelShader = HLSL{ U&quot;example/shader/hlsl/magical_trial_fade.hlsl&quot;, U&quot;PS&quot; };
-    ConstantBuffer&lt;ShaderParam&gt; cb;
-</code></pre>
+struct定義をしておき、Shader自体の用意とConstant Bufferを用意する.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">ShaderParam</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">m_mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">m_scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">m_gapScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">m_isFadeIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="p">};</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">PixelShader</span><span class="w"> </span><span class="n">pixelShader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HLSL</span><span class="p">{</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;example/shader/hlsl/magical_trial_fade.hlsl&quot;</span><span class="p">,</span><span class="w"> </span><span class="sa">U</span><span class="s">&quot;PS&quot;</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="n">ConstantBuffer</span><span class="o">&lt;</span><span class="n">ShaderParam</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cb</span><span class="p">;</span>
+</span></code></pre></div></p>
 <p>また、今回はテストでフェードイン/フェードアウトをしたい.<br />
-そのためFade用のパラメータとタイマーを用意.  </p>
-<pre><code class="language-c++">    enum class Fade { In, Out };
-    Fade fadeState = Fade::Out;
-    bool isAnim = false;
-    Timer timer{ 1.0s };
-</code></pre>
-<p>PixelShaderはRenderTextureの描画時に行うようにすればOK!  </p>
-<pre><code class="language-c++">// Pixel Shader
-{
-    Graphics2D::SetPSConstantBuffer(1, cb);
-    const ScopedCustomShader2D shader{ pixelShader };
-    renderTexture.draw();
-}
-</code></pre>
+そのためFade用のパラメータとタイマーを用意.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Fade</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">In</span><span class="p">,</span><span class="w"> </span><span class="n">Out</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">Fade</span><span class="w"> </span><span class="n">fadeState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fade</span><span class="o">::</span><span class="n">Out</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isAnim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="n">Timer</span><span class="w"> </span><span class="n">timer</span><span class="p">{</span><span class="w"> </span><span class="mf">1.0</span><span class="n">s</span><span class="w"> </span><span class="p">};</span>
+</span></code></pre></div></p>
+<p>PixelShaderはRenderTextureの描画時に行うようにすればOK!<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Pixel Shader</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">Graphics2D</span><span class="o">::</span><span class="n">SetPSConstantBuffer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">cb</span><span class="p">);</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">ScopedCustomShader2D</span><span class="w"> </span><span class="n">shader</span><span class="p">{</span><span class="w"> </span><span class="n">pixelShader</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">renderTexture</span><span class="p">.</span><span class="n">draw</span><span class="p">();</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>今回のパラメータの設定はsliderでmodとgapを設定できるようにする.<br />
 SimpleGUIってdoubleしか渡せないのでちょっと冗長な書き方に...<br />
 もう少しシンプルにfloat渡せる方法あれば誰か教えてください...<br />
 アニメーションの開始はボタンで制御.<br />
-押したらフェードイン、フェードアウトが発生します.  </p>
-<pre><code class="language-c++">double v = cb-&gt;m_mod;
-SimpleGUI::Slider(U&quot;mod&quot;, v, 0.01, 1.0, Vec2{ 10, 10 }); cb-&gt;m_mod = static_cast&lt;float&gt;(v);
-v = cb-&gt;m_gapScale;
-SimpleGUI::Slider(U&quot;gap&quot;, v, 0.001, 0.1, Vec2{ 10, 90 }); cb-&gt;m_gapScale = static_cast&lt;float&gt;(v);
-
-if (SimpleGUI::Button(U&quot;Fade&quot;, Vec2{10,140}))
-{
-    if (!timer.isRunning())
-    {
-        timer.restart();
-        isAnim = true;
-    }
-}
-</code></pre>
+押したらフェードイン、フェードアウトが発生します.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cb</span><span class="o">-&gt;</span><span class="n">m_mod</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">SimpleGUI</span><span class="o">::</span><span class="n">Slider</span><span class="p">(</span><span class="sa">U</span><span class="s">&quot;mod&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="n">Vec2</span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="n">cb</span><span class="o">-&gt;</span><span class="n">m_mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cb</span><span class="o">-&gt;</span><span class="n">m_gapScale</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">SimpleGUI</span><span class="o">::</span><span class="n">Slider</span><span class="p">(</span><span class="sa">U</span><span class="s">&quot;gap&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">Vec2</span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">90</span><span class="w"> </span><span class="p">});</span><span class="w"> </span><span class="n">cb</span><span class="o">-&gt;</span><span class="n">m_gapScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SimpleGUI</span><span class="o">::</span><span class="n">Button</span><span class="p">(</span><span class="sa">U</span><span class="s">&quot;Fade&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Vec2</span><span class="p">{</span><span class="mi">10</span><span class="p">,</span><span class="mi">140</span><span class="p">}))</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">{</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">timer</span><span class="p">.</span><span class="n">isRunning</span><span class="p">())</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">        </span><span class="n">timer</span><span class="p">.</span><span class="n">restart</span><span class="p">();</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="n">isAnim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>タイマーが発生すると以下のような処理が走る.<br />
 基本的にタイマーが作動中は<code>m_scale</code>を0~0.4に変換.<br />
-アニメーションが終わるとFadeInならFadeOutに,FadeOutならFadeInになるように移行して、アニメーションを止めておく.  </p>
-<pre><code class="language-c++">if (isAnim)
-{
-    if (timer.reachedZero())
-    {
-        isAnim = false;
-        switch (fadeState)
-        {
-        case Fade::In:
-            fadeState = Fade::Out;
-            cb-&gt;m_isFadeIn = false;
-            break;
-
-        case Fade::Out:
-            fadeState = Fade::In;
-            cb-&gt;m_isFadeIn = true;
-            break;
-        }
-
-        cb-&gt;m_scale = 0.0f;
-    }
-    else
-    {
-        cb-&gt;m_scale = timer.progress0_1() * 0.4;
-    }
-}
-</code></pre>
+アニメーションが終わるとFadeInならFadeOutに,FadeOutならFadeInになるように移行して、アニメーションを止めておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isAnim</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timer</span><span class="p">.</span><span class="n">reachedZero</span><span class="p">())</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="n">isAnim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">fadeState</span><span class="p">)</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">Fade</span><span class="o">::</span><span class="no">In</span><span class="p">:</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">            </span><span class="n">fadeState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fade</span><span class="o">::</span><span class="n">Out</span><span class="p">;</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">            </span><span class="n">cb</span><span class="o">-&gt;</span><span class="n">m_isFadeIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">            </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">Fade</span><span class="o">::</span><span class="no">Out</span><span class="p">:</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">            </span><span class="n">fadeState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fade</span><span class="o">::</span><span class="n">In</span><span class="p">;</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">            </span><span class="n">cb</span><span class="o">-&gt;</span><span class="n">m_isFadeIn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">            </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">        </span><span class="n">cb</span><span class="o">-&gt;</span><span class="n">m_scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">;</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">        </span><span class="n">cb</span><span class="o">-&gt;</span><span class="n">m_scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">timer</span><span class="p">.</span><span class="n">progress0_1</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.4</span><span class="p">;</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>これで終わったので結果を見てみよう.  </p>
 <blockquote class="bluesky-embed" data-bluesky-uri="at://did:plc:dymg72hugpzndmgyqhyhgx2i/app.bsky.feed.post/3mveoefho7c2a" data-bluesky-cid="bafyreifg7nrjp2iydermt25axj7mbeaktrtlqy3y2ql2h5axgc3lfr5tpi" data-bluesky-embed-color-mode="system"><p lang="ja">まのさばを最後までやったので、まのさばで印象に残ってるFadeをそれっぽく遊びで作ってみたやつ
 雑なpixel shaderを生産しました<br><br><a href="https://bsky.app/profile/did:plc:dymg72hugpzndmgyqhyhgx2i/post/3mveoefho7c2a?ref_src=embed">[image or embed]</a></p>&mdash; tera (<a href="https://bsky.app/profile/did:plc:dymg72hugpzndmgyqhyhgx2i?ref_src=embed">@terakoya-cafe-terrace.net</a>) <a href="https://bsky.app/profile/did:plc:dymg72hugpzndmgyqhyhgx2i/post/3mveoefho7c2a?ref_src=embed">2026年9月13日 12:40</a></blockquote>

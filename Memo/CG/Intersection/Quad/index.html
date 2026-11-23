@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7781,25 +7802,25 @@
 まず変数は<code>m_q,m_u,m_v</code>の3つを用意.<br />
 法線を計算した後に正規化しておく.<br />
 あとは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi></mrow><annotation encoding="application/x-tex">Q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span></span></span></span>と<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>n</mi><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{n}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.714em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.714em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">n</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2355em;"><span class="overlay" style="height:0.714em;width:0.471em;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPScwLjQ3MWVtJyBoZWlnaHQ9JzAuNzE0ZW0nIHN0eWxlPSd3aWR0aDowLjQ3MWVtJyB2aWV3Qm94PScwIDAgNDcxIDcxNCcgcHJlc2VydmVBc3BlY3RSYXRpbz0neE1pbllNaW4nPjxwYXRoIGQ9J00zNzcgMjBjMC01LjMzMyAxLjgzMy0xMCA1LjUtMTRTMzkxIDAgMzk3IDBjNC42NjcgMCA4LjY2NyAxLjY2NyAxMiA1CjMuMzMzIDIuNjY3IDYuNjY3IDkgMTAgMTkgNi42NjcgMjQuNjY3IDIwLjMzMyA0My42NjcgNDEgNTcgNy4zMzMgNC42NjcgMTEKMTAuNjY3IDExIDE4IDAgNi0xIDEwLTMgMTJzLTYuNjY3IDUtMTQgOWMtMjguNjY3IDE0LjY2Ny01My42NjcgMzUuNjY3LTc1IDYzCi0xLjMzMyAxLjMzMy0zLjE2NyAzLjUtNS41IDYuNXMtNCA0LjgzMy01IDUuNWMtMSAuNjY3LTIuNSAxLjMzMy00LjUgMnMtNC4zMzMgMQotNyAxYy00LjY2NyAwLTkuMTY3LTEuODMzLTEzLjUtNS41UzMzNyAxODQgMzM3IDE3OGMwLTEyLjY2NyAxNS42NjctMzIuMzMzIDQ3LTU5CkgyMTNsLTE3MS0xYy04LjY2Ny02LTEzLTEyLjMzMy0xMy0xOSAwLTQuNjY3IDQuMzMzLTExLjMzMyAxMy0yMGgzNTkKYy0xNi0yNS4zMzMtMjQtNDUtMjQtNTl6Jy8+PC9zdmc+"/></span></span></span></span></span></span></span></span></span></span>の内積で<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span>を計算するだけ.<br />
-これで役者はそろった.  </p>
-<pre><code class="language-c++">Quad(const Vec3&amp; q, const Vec3&amp; u, const Vec3&amp; v)
-    : m_q(q)
-    , m_u(u)
-    , m_v(v)
-{
-    Vec3 n = Cross(m_u, m_v);
-    m_normal = n.normalized();
-    m_d = Dot(m_normal, m_q);
-}
-</code></pre>
-<p>あとは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span>を計算してあげればOK.  </p>
-<pre><code class="language-c++">double denom = Dot(m_normal, ray.direction.xyz());
-if (Abs(denom) &lt; EPSILON_VALUE) { return false; }
-
-double t = (m_d - Dot(m_normal, ray.origin.xyz())) / denom;
-if (!interval.Contains(t)) { return false; }
-</code></pre>
-<p>これで結果を見てみる.<br />
+これで役者はそろった.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Quad</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Vec3</span><span class="o">&amp;</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3</span><span class="o">&amp;</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Vec3</span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">m_q</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="n">m_u</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="n">m_v</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">Vec3</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cross</span><span class="p">(</span><span class="n">m_u</span><span class="p">,</span><span class="w"> </span><span class="n">m_v</span><span class="p">);</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="n">m_normal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">normalized</span><span class="p">();</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">m_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dot</span><span class="p">(</span><span class="n">m_normal</span><span class="p">,</span><span class="w"> </span><span class="n">m_q</span><span class="p">);</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
+</span></code></pre></div>
+あとは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span>を計算してあげればOK.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">denom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dot</span><span class="p">(</span><span class="n">m_normal</span><span class="p">,</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">direction</span><span class="p">.</span><span class="n">xyz</span><span class="p">());</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Abs</span><span class="p">(</span><span class="n">denom</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">EPSILON_VALUE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">m_d</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Dot</span><span class="p">(</span><span class="n">m_normal</span><span class="p">,</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">.</span><span class="n">xyz</span><span class="p">()))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">denom</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">interval</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+これで結果を見てみる.<br />
 <img alt="quad_03" src="../Image/quad_03.webp" /><br />
 見た目が平面と変わらない...<br />
 範囲指定をしていないので当たり前ではある.<br />
@@ -7886,24 +7907,24 @@ if (!interval.Contains(t)) { return false; }
 これであとは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo separator="true">,</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha,\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>が求まったので、これが範囲に収まってるかを調べるだけ!!<br />
 これをコードに落とし込もう！<br />
 まずは<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>w</mi><mo>⃗</mo></mover></mrow><annotation encoding="application/x-tex">\vec{w}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.714em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.714em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1522em;"><span class="overlay" style="height:0.714em;width:0.471em;"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPScwLjQ3MWVtJyBoZWlnaHQ9JzAuNzE0ZW0nIHN0eWxlPSd3aWR0aDowLjQ3MWVtJyB2aWV3Qm94PScwIDAgNDcxIDcxNCcgcHJlc2VydmVBc3BlY3RSYXRpbz0neE1pbllNaW4nPjxwYXRoIGQ9J00zNzcgMjBjMC01LjMzMyAxLjgzMy0xMCA1LjUtMTRTMzkxIDAgMzk3IDBjNC42NjcgMCA4LjY2NyAxLjY2NyAxMiA1CjMuMzMzIDIuNjY3IDYuNjY3IDkgMTAgMTkgNi42NjcgMjQuNjY3IDIwLjMzMyA0My42NjcgNDEgNTcgNy4zMzMgNC42NjcgMTEKMTAuNjY3IDExIDE4IDAgNi0xIDEwLTMgMTJzLTYuNjY3IDUtMTQgOWMtMjguNjY3IDE0LjY2Ny01My42NjcgMzUuNjY3LTc1IDYzCi0xLjMzMyAxLjMzMy0zLjE2NyAzLjUtNS41IDYuNXMtNCA0LjgzMy01IDUuNWMtMSAuNjY3LTIuNSAxLjMzMy00LjUgMnMtNC4zMzMgMQotNyAxYy00LjY2NyAwLTkuMTY3LTEuODMzLTEzLjUtNS41UzMzNyAxODQgMzM3IDE3OGMwLTEyLjY2NyAxNS42NjctMzIuMzMzIDQ3LTU5CkgyMTNsLTE3MS0xYy04LjY2Ny02LTEzLTEyLjMzMy0xMy0xOSAwLTQuNjY3IDQuMzMzLTExLjMzMyAxMy0yMGgzNTkKYy0xNi0yNS4zMzMtMjQtNDUtMjQtNTl6Jy8+PC9zdmc+"/></span></span></span></span></span></span></span></span></span></span>を計算しておく.<br />
-これはコンストラクタで行っておく.  </p>
-<pre><code class="language-c++">Vec3 n = Cross(m_u, m_v);
-m_normal = n.normalized();
-m_d = Dot(m_normal, m_q);
-m_w = n / Dot(n, n);
-</code></pre>
-<p>次に<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo separator="true">,</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha,\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>を計算しておく.  </p>
-<pre><code class="language-c++">Vec3 p = ray.point_at(t);
-Vec3 planarHitPointVector = p - m_q;
-double alpha = Dot(m_w, Cross(planarHitPointVector, m_v));
-double beta = Dot(m_w, Cross(m_u, planarHitPointVector));
-</code></pre>
-<p>最後にこれが範囲内かを判定すればOK!!  </p>
-<pre><code class="language-c++">// 範囲内？
-Interval unit{ 0.0,1.0 };
-if (!unit.Contains(alpha) || !unit.Contains(beta)) { return false; }
-</code></pre>
-<p>ここまで出来たら結果を見てみよう.<br />
+これはコンストラクタで行っておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">Vec3</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cross</span><span class="p">(</span><span class="n">m_u</span><span class="p">,</span><span class="w"> </span><span class="n">m_v</span><span class="p">);</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">m_normal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">normalized</span><span class="p">();</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">m_d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dot</span><span class="p">(</span><span class="n">m_normal</span><span class="p">,</span><span class="w"> </span><span class="n">m_q</span><span class="p">);</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">m_w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Dot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">);</span>
+</span></code></pre></div>
+次に<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo separator="true">,</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">\alpha,\beta</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.05278em;">β</span></span></span></span>を計算しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Vec3</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ray</span><span class="p">.</span><span class="n">point_at</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">Vec3</span><span class="w"> </span><span class="n">planarHitPointVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">m_q</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kt">double</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dot</span><span class="p">(</span><span class="n">m_w</span><span class="p">,</span><span class="w"> </span><span class="n">Cross</span><span class="p">(</span><span class="n">planarHitPointVector</span><span class="p">,</span><span class="w"> </span><span class="n">m_v</span><span class="p">));</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kt">double</span><span class="w"> </span><span class="n">beta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dot</span><span class="p">(</span><span class="n">m_w</span><span class="p">,</span><span class="w"> </span><span class="n">Cross</span><span class="p">(</span><span class="n">m_u</span><span class="p">,</span><span class="w"> </span><span class="n">planarHitPointVector</span><span class="p">));</span>
+</span></code></pre></div>
+最後にこれが範囲内かを判定すればOK!!<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// 範囲内？</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">Interval</span><span class="w"> </span><span class="n">unit</span><span class="p">{</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="w"> </span><span class="p">};</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">unit</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">unit</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">beta</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+ここまで出来たら結果を見てみよう.<br />
 <img alt="Quad_01" src="../Image/quad_01.webp" /><br />
 描画できてるね.<br />
 この平面が6個あればBoxを作ることができる.<br />

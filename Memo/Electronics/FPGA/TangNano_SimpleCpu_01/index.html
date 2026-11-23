@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7736,90 +7757,89 @@ CPUの詳しい構造は次のような感じ.  </p>
 <p><img alt="make_simple_cpu_01_02" src="../Image/MakeSimpleCpu_01_02.webp" />  </p>
 <p>まず入力はリセットボタンとクロック.<br />
 出力はLEDに出す.<br />
-これをもとにしたmodule定義が以下.  </p>
-<pre><code class="language-verilog">module cpu
-(
-    input  logic clk,               // input: クロック
-    input  logic n_reset,           // input: リセットボタン
-    output logic led                // output: LED 
-);
-</code></pre>
-<p>そして、モジュール内のワイヤーである<code>a</code>と<code>next_a</code>を定義</p>
-<pre><code class="language-verilog">    logic a, next_a;  // モジュール内のワイヤー
-</code></pre>
+これをもとにしたmodule定義が以下.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">module</span><span class="w"> </span><span class="n">cpu</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">(</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">clk</span><span class="p">,</span><span class="w">               </span><span class="c1">// input: クロック</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">n_reset</span><span class="p">,</span><span class="w">           </span><span class="c1">// input: リセットボタン</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="n">led</span><span class="w">                </span><span class="c1">// output: LED </span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">);</span>
+</span></code></pre></div>
+そして、モジュール内のワイヤーである<code>a</code>と<code>next_a</code>を定義
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">next_a</span><span class="p">;</span><span class="w">  </span><span class="c1">// モジュール内のワイヤー</span>
+</span></code></pre></div></p>
 <p>さて、DFFはフリップフロップで基本的に値を記録するわけだが,aが記録した値.<br />
 基本的にリセットボタンが押されたら強制1.<br />
 押されてないならクロックの立ち上がり毎に<code>next_a</code>を注入する.<br />
-クロックが立ち上がって<code>next_a</code>が注入されるまで、値の変化は起きないので問題ないというわけだ.  </p>
-<pre><code class="language-verilog">    // DFF
-    always_ff @(posedge clk) begin
-        if (~n_reset) a &lt;= 1'b0; // リセットされてたら1を注入
-        else a &lt;= next_a; // クロック立ち上がり時に反転したものを注入
-    end
-</code></pre>
-<p>LEDは<code>a</code>の値を出力すればよい.<br />
-クロック立ち上がり毎に0,1,0,1と変化するので、Lチカになるわけだ.  </p>
-<pre><code class="language-verilog">    assign led = a; // aの状態を出力
-</code></pre>
-<p>not演算子は真理値表で定義.<br />
-<code>~</code>が<code>not</code>に相当なので、普通に<code>~a</code>を放り込めばOK.  </p>
-<pre><code class="language-verilog">    always_comb begin
-        next_a = ~a; // notゲートによる接続
-    end
-endmodule
-</code></pre>
-<p>これがCPUの全貌、そこまで難しくないですね.  </p>
+クロックが立ち上がって<code>next_a</code>が注入されるまで、値の変化は起きないので問題ないというわけだ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="c1">// DFF</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">always_ff</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">clk</span><span class="p">)</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">~</span><span class="n">n_reset</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span><span class="w"> </span><span class="c1">// リセットされてたら1を注入</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next_a</span><span class="p">;</span><span class="w"> </span><span class="c1">// クロック立ち上がり時に反転したものを注入</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">end</span>
+</span></code></pre></div>
+LEDは<code>a</code>の値を出力すればよい.<br />
+クロック立ち上がり毎に0,1,0,1と変化するので、Lチカになるわけだ.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">led</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// aの状態を出力</span>
+</span></code></pre></div>
+not演算子は真理値表で定義.<br />
+<code>~</code>が<code>not</code>に相当なので、普通に<code>~a</code>を放り込めばOK.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="k">always_comb</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">        </span><span class="n">next_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// notゲートによる接続</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">endmodule</span>
+</span></code></pre></div>
+これがCPUの全貌、そこまで難しくないですね.  </p>
 <p>次にPrescalerを見よう.  </p>
 <p><img alt="make_simple_cpu_03" src="../Image/MakeSimpleCpu_01_03.webp" />  </p>
 <p>本にはなかったので自分で読み解きつつそれっぽく図を作ってみた.<br />
-やってることは簡単で、まず入力と出力を用意.  </p>
-<pre><code class="language-verilog">module prescaler #(parameter RATIO = 2)
-(
-    input  logic quick_clock,
-    output logic slow_clock 
-);
-</code></pre>
-<p>次に配線となる<code>counter,next_counter,inv</code>の用意.<br />
+やってることは簡単で、まず入力と出力を用意.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">module</span><span class="w"> </span><span class="n">prescaler</span><span class="w"> </span><span class="p">#(</span><span class="k">parameter</span><span class="w"> </span><span class="n">RATIO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">2</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">(</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">quick_clock</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="n">slow_clock</span><span class="w"> </span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">);</span>
+</span></code></pre></div>
+次に配線となる<code>counter,next_counter,inv</code>の用意.<br />
 この後に<code>==</code>で値が<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>R</mi><mi>A</mi><mi>T</mi><mi>I</mi><mi>O</mi></mrow><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{RATIO}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span><span class="mord mathnormal mtight">A</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">O</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>になってるか確認を<code>inv</code>に入れた後、マルチプレクサに流し込んでカウントするかを決定.<br />
 基本的には<code>inv=false</code>なので、カウントするだけだが,<code>inv=true</code>となったときのみ<code>0</code>にリセットする.<br />
 これで高速なクロックではなく、ある程度の時間でクロックするように調整しているわけである.<br />
 因みに<code>0-&gt;1</code>と<code>1-&gt;0</code>で1クロックなので、RATIOを2で割ってるものだと思う.<br />
-最後にDFFでcounterの値を保持すれば終わり.  </p>
-<pre><code class="language-verilog">    logic [31:0] counter, next_counter;
-    logic inv;
-    assign inv = (counter == (RATIO/2 - 1));
-
-    assign next_counter = inv ? 32'd0 : counter + 32'd1;
-    always_ff @(posedge quick_clock) counter &lt;= next_counter;
-
-</code></pre>
-<p>出力する<code>slow_clock</code>は単純に<code>inv=true</code>になるときのみクロックを反転させる.<br />
+最後にDFFでcounterの値を保持すれば終わり.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="p">[</span><span class="mh">31</span><span class="o">:</span><span class="mh">0</span><span class="p">]</span><span class="w"> </span><span class="n">counter</span><span class="p">,</span><span class="w"> </span><span class="n">next_counter</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">inv</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">inv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">counter</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">RATIO</span><span class="o">/</span><span class="mh">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mh">1</span><span class="p">));</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">next_counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inv</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mh">32</span><span class="mi">&#39;d0</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">32</span><span class="mi">&#39;d1</span><span class="p">;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="k">always_ff</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">quick_clock</span><span class="p">)</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next_counter</span><span class="p">;</span>
+</span></code></pre></div>
+出力する<code>slow_clock</code>は単純に<code>inv=true</code>になるときのみクロックを反転させる.<br />
 これで高速なクロックを遅くしてるわけだ.<br />
-最後に<code>slow_clock</code>自体はDFFで保持すればOK.  </p>
-<pre><code class="language-verilog">    logic next_slow_clock;
-    assign next_slow_clock = inv ? ~slow_clock : slow_clock;
-    always_ff @(posedge quick_clock) slow_clock &lt;= next_slow_clock;
-endmodule
-</code></pre>
+最後に<code>slow_clock</code>自体はDFFで保持すればOK.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">next_slow_clock</span><span class="p">;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">assign</span><span class="w"> </span><span class="n">next_slow_clock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inv</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="o">~</span><span class="n">slow_clock</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">slow_clock</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="k">always_ff</span><span class="w"> </span><span class="p">@(</span><span class="k">posedge</span><span class="w"> </span><span class="n">quick_clock</span><span class="p">)</span><span class="w"> </span><span class="n">slow_clock</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">next_slow_clock</span><span class="p">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">endmodule</span>
+</span></code></pre></div></p>
 <p>Topは簡単、つなげるだけ.<br />
-ただ、TangNano9kのクロック数は27MHzなので、そこは注意.  </p>
-<pre><code class="language-verilog">module top
-(
-    input  logic pin_clock,     // input: クロック
-    input  logic pin_n_reset,   // input: リセットボタン
-    output logic pin_led        // output: LED
-);
-    logic clk;
-    prescaler #(.RATIO(27_000_000)) prescaler
-    (
-        .quick_clock(pin_clock),
-        .slow_clock(clk)
-    );
-
-    cpu cpu(.clk, .n_reset(pin_n_reset), .led(pin_led));
-endmodule
-</code></pre>
-<p>そしたら配線、ほぼ前回と変わらない.<br />
+ただ、TangNano9kのクロック数は27MHzなので、そこは注意.<br />
+<div class="language-verilog highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">module</span><span class="w"> </span><span class="n">top</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p">(</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">pin_clock</span><span class="p">,</span><span class="w">     </span><span class="c1">// input: クロック</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">input</span><span class="w">  </span><span class="kt">logic</span><span class="w"> </span><span class="n">pin_n_reset</span><span class="p">,</span><span class="w">   </span><span class="c1">// input: リセットボタン</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="k">output</span><span class="w"> </span><span class="kt">logic</span><span class="w"> </span><span class="n">pin_led</span><span class="w">        </span><span class="c1">// output: LED</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">);</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="kt">logic</span><span class="w"> </span><span class="n">clk</span><span class="p">;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="n">prescaler</span><span class="w"> </span><span class="p">#(.</span><span class="n">RATIO</span><span class="p">(</span><span class="mh">27</span><span class="n">_000_000</span><span class="p">))</span><span class="w"> </span><span class="n">prescaler</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="p">(</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">        </span><span class="p">.</span><span class="n">quick_clock</span><span class="p">(</span><span class="n">pin_clock</span><span class="p">),</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="p">.</span><span class="n">slow_clock</span><span class="p">(</span><span class="n">clk</span><span class="p">)</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="n">cpu</span><span class="w"> </span><span class="n">cpu</span><span class="p">(.</span><span class="n">clk</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">n_reset</span><span class="p">(</span><span class="n">pin_n_reset</span><span class="p">),</span><span class="w"> </span><span class="p">.</span><span class="n">led</span><span class="p">(</span><span class="n">pin_led</span><span class="p">));</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="k">endmodule</span>
+</span></code></pre></div>
+そしたら配線、ほぼ前回と変わらない.<br />
 LEDの数が減ったくらい.  </p>
 <p><img alt="make_simple_cpu_01_04" src="../Image/MakeSimpleCpu_01_04.png" />  </p>
 <p>次に書き込みだけど、以前に行ってた1の設定の奴はこれ.  </p>

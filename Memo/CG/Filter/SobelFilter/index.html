@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7732,23 +7753,23 @@
 差があるのであれば何かしら差が出てくることになる.<br />
 この差がエッジ検出の閾値となる.<br />
 あとはこれを丁寧にフィルタの通りに計算するだけ.<br />
-まずは横方向はこんな感じ.  </p>
-<pre><code class="language-c++">sum = static_cast&lt;ColorF&gt;(image[h - 1][w - 1]).rgb() * -1.0;
-sum += static_cast&lt;ColorF&gt;(image[h - 1][w + 1]).rgb() * 1.0;
-sum += static_cast&lt;ColorF&gt;(image[h][w - 1]).rgb() * -2.0;
-sum += static_cast&lt;ColorF&gt;(image[h][w + 1]).rgb() * 2.0;
-sum += static_cast&lt;ColorF&gt;(image[h + 1][w - 1]).rgb() * -1.0;
-sum += static_cast&lt;ColorF&gt;(image[h + 1][w + 1]).rgb() * 1.0;
-</code></pre>
-<p>縦方向はこんな感じでやればよい.  </p>
-<pre><code class="language-c++">sum = static_cast&lt;ColorF&gt;(image[h - 1][w - 1]).rgb() * 1.0;
-sum += static_cast&lt;ColorF&gt;(image[h - 1][w]).rgb() * 2.0;
-sum += static_cast&lt;ColorF&gt;(image[h - 1][w + 1]).rgb() * 1.0;
-sum += static_cast&lt;ColorF&gt;(image[h + 1][w - 1]).rgb() * -1.0;
-sum += static_cast&lt;ColorF&gt;(image[h + 1][w]).rgb() * -2.0;
-sum += static_cast&lt;ColorF&gt;(image[h + 1][w + 1]).rgb() * -1.0;
-</code></pre>
-<p>ちょっと強引な実装なので、フィルタとしてはもう少し凝った方がいいのかも？  </p>
+まずは横方向はこんな感じ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">-2.0</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+</span></code></pre></div>
+縦方向はこんな感じでやればよい.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">-2.0</span><span class="p">;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ColorF</span><span class="o">&gt;</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">h</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">][</span><span class="n">w</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]).</span><span class="n">rgb</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">-1.0</span><span class="p">;</span>
+</span></code></pre></div>
+ちょっと強引な実装なので、フィルタとしてはもう少し凝った方がいいのかも？  </p>
 
 
 

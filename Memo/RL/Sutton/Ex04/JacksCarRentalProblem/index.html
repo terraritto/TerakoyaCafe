@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7737,11 +7758,11 @@
 </ul>
 <p>という条件で報酬がもらえることになる.<br />
 そして、一つのレンタカー屋では20台の車を置ける.<br />
-まずはここまでの定数を用意してみよう.  </p>
-<pre><code class="language-c++">constexpr int MAX_CARS = 20; // 車の最大数
-constexpr double RENTAL_CREDIT = 10.0; // レンタルした際の報酬
-</code></pre>
-<p>さて、ではどれくらいの頻度で車を借りに来るかだけど、これはポアソン分布に沿うとする.<br />
+まずはここまでの定数を用意してみよう.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_CARS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span><span class="c1">// 車の最大数</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">RENTAL_CREDIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="p">;</span><span class="w"> </span><span class="c1">// レンタルした際の報酬</span>
+</span></code></pre></div>
+さて、ではどれくらいの頻度で車を借りに来るかだけど、これはポアソン分布に沿うとする.<br />
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnspacing="1em"><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mtable rowspacing="0.25em" columnalign="right" columnspacing=""><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mfrac><msup><mi>λ</mi><mi>n</mi></msup><mrow><mi>n</mi><mo stretchy="false">!</mo></mrow></mfrac><msup><mi>e</mi><mrow><mo>−</mo><mi>λ</mi></mrow></msup></mrow></mstyle></mtd></mtr></mtable></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{equation}
     \begin{split}
@@ -7751,231 +7772,231 @@ constexpr double RENTAL_CREDIT = 10.0; // レンタルした際の報酬
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.3574em;vertical-align:-0.9287em;"></span><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4287em;"><span style="top:-3.4287em;"><span class="pstrut" style="height:3.4287em;"></span><span class="mord"><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4287em;"><span style="top:-3.4287em;"><span class="pstrut" style="height:3.3714em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="mclose">!</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathnormal mtight">λ</span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9287em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9287em;"><span></span></span></span></span></span></span></span><span class="tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4287em;"><span style="top:-3.4287em;"><span class="pstrut" style="height:3.4287em;"></span><span class="eqn-num"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9287em;"><span></span></span></span></span></span></span></span></span></p>
 これがポアソン分布.<br />
 今回はポアソン分布がどんなものかは置いといて、この確率分布に沿って人が来るんだなくらいで考えとく.<br />
-このポアソン分布は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span>で決まるが、今回はそれぞれ<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>=</mo><mn>3</mn><mo separator="true">,</mo><msub><mi>λ</mi><mn>2</mn></msub><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">\lambda_{1}=3, \lambda_{2}=4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>とする.  </p>
-<pre><code class="language-c++">constexpr int RENTAL_REQUEST_FIRST_LOCATION = 3; // 最初の位置でのレンタル要望の期待値
-constexpr int RENTAL_REQUEST_SECOND_LOCATION = 4; // 次の位置でのレンタル要望の期待値
-</code></pre>
-<p>借りに来る人数はポアソン分布だが、その日に返しにくる人数もポアソン分布に従うとする.<br />
-こちらはそれぞれ<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>=</mo><mn>3</mn><mo separator="true">,</mo><msub><mi>λ</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\lambda_{1}=3, \lambda_{2}=2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>とする.  </p>
-<pre><code class="language-c++">constexpr int RETURN_FIRST_LOCATION = 3; // 最初の位置での車返却の期待値
-constexpr int RETURN_SECOND_LOCATION = 2; // 次の位置での車返却の期待値
-</code></pre>
-<p>また、車は夜に動かすことができる.<br />
+このポアソン分布は<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span>で決まるが、今回はそれぞれ<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>=</mo><mn>3</mn><mo separator="true">,</mo><msub><mi>λ</mi><mn>2</mn></msub><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">\lambda_{1}=3, \lambda_{2}=4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>とする.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RENTAL_REQUEST_FIRST_LOCATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 最初の位置でのレンタル要望の期待値</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RENTAL_REQUEST_SECOND_LOCATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="c1">// 次の位置でのレンタル要望の期待値</span>
+</span></code></pre></div>
+借りに来る人数はポアソン分布だが、その日に返しにくる人数もポアソン分布に従うとする.<br />
+こちらはそれぞれ<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>=</mo><mn>3</mn><mo separator="true">,</mo><msub><mi>λ</mi><mn>2</mn></msub><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\lambda_{1}=3, \lambda_{2}=2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>とする.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RETURN_FIRST_LOCATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 最初の位置での車返却の期待値</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">RETURN_SECOND_LOCATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// 次の位置での車返却の期待値</span>
+</span></code></pre></div>
+また、車は夜に動かすことができる.<br />
 ジャックは2ドルかかるが、片方のレンタカー屋からもう片方のレンタカー屋に移せる.<br />
 2ドルかかっても、次の日に車を貸し出せれば0ドルのところが10ドル入るので、結果8ドル得することになる.<br />
 なので、車がない場合は移動するのも重要な戦略となる.<br />
-ただし、夜の間に動かせる車の数は最大5台である点には注意が必要である.  </p>
-<pre><code class="language-c++">constexpr int MAX_MOVE_CARS = 5; // 夜の間に動かす車の数
-constexpr double MOVE_CAR_COST = 2.0; // 1台の車を動かす際のコスト
-</code></pre>
-<p>これでジャックのカーレンタル問題の問題設定は終了だけど、一応制約はかけておく.<br />
+ただし、夜の間に動かせる車の数は最大5台である点には注意が必要である.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_MOVE_CARS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">// 夜の間に動かす車の数</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">MOVE_CAR_COST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1台の車を動かす際のコスト</span>
+</span></code></pre></div>
+これでジャックのカーレンタル問題の問題設定は終了だけど、一応制約はかけておく.<br />
 ベルマン方程式の割引率は0.9としておく.<br />
-また、ポアソン分布のnに関しては11が最大としておく.  </p>
-<pre><code class="language-c++">constexpr double DISCOUNT = 0.9; // 割引率
-constexpr double POISSON_UPPER_BOUND = 11; // ポアソン分布のnの上界
-</code></pre>
-<p>これで定数の準備が終わった、実際にこの条件を元に方策反復をしていこう.<br />
+また、ポアソン分布のnに関しては11が最大としておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">DISCOUNT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.9</span><span class="p">;</span><span class="w"> </span><span class="c1">// 割引率</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">POISSON_UPPER_BOUND</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span><span class="w"> </span><span class="c1">// ポアソン分布のnの上界</span>
+</span></code></pre></div>
+これで定数の準備が終わった、実際にこの条件を元に方策反復をしていこう.<br />
 まずは夜に動かせる全行動を定義しておく.<br />
 正の値は1つ目のレンタカー屋からの車の移動.<br />
-逆に負の値は2つ目のレンタカー屋からの車の移動を表す点は意識しておくとよいかも.  </p>
-<pre><code class="language-c++">// 全てのあり得る行動
-std::vector&lt;int&gt; actions;
-for (int value = -MAX_MOVE_CARS; value &lt;= MAX_MOVE_CARS; value++)
-{
-    actions.push_back(value);
-}
-</code></pre>
-<p>そしてポアソン分布の確率の計算、式通りにするだけ.  </p>
-<pre><code class="language-c++">// ポアソン分布の確率
-auto CalculatePoissonProbability = [&amp;](int n, double lambda)
-    {
-        double factorial = 1.0;
-        for (int i = n; i &gt; 0; i--)
-        {
-            factorial *= i;
-        }
-        return std::pow(lambda, n) * std::exp(-lambda) / factorial;
-    };
-</code></pre>
-<p>今回は最適な夜の車の移動はどうかというのを可視化することを目標とする.<br />
-そのため、まずは現状の各支所の車の台数とそこの評価値を定義しておく.  </p>
-<pre><code class="language-c++">Array&lt;double&gt; values; values.resize((MAX_CARS + 1) * (MAX_CARS + 1), 0.0);
-Array&lt;double&gt; policies; policies = values;
-</code></pre>
-<p>そしたらまずは方策評価から、これは単純で今までやってたことと何も変わらない.  </p>
-<pre><code class="language-c++">// policy evaluation
-while (true)
-{
-    Array&lt;double&gt; oldValues = values;
-    for (int i = 0; i &lt; MAX_CARS + 1; i++)
-    {
-        for (int j = 0; j &lt; MAX_CARS + 1; j++)
-        {
-            int index = i * (MAX_CARS + 1) + j;
-            values[index] = ReturnExpected({i,j}, policies[index], values);
-        }
-    }
-
-    double maxValue = std::numeric_limits&lt;double&gt;::lowest();
-    for (int i = 0; i &lt; values.size(); i++)
-    {
-        maxValue = Max(maxValue, Abs(oldValues[i] - values[i]));
-    }
-
-    // 収束と判断したら終了
-    if (maxValue &lt; 1e-4)
-    {
-        break;
-    }
-}
-</code></pre>
-<p>今までと同様でDP方式で<code>ReturnExpected</code>で更新を行う、そして収束してたら終了するだけ.<br />
+逆に負の値は2つ目のレンタカー屋からの車の移動を表す点は意識しておくとよいかも.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// 全てのあり得る行動</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">actions</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">MAX_MOVE_CARS</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">MAX_MOVE_CARS</span><span class="p">;</span><span class="w"> </span><span class="n">value</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">actions</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">}</span>
+</span></code></pre></div>
+そしてポアソン分布の確率の計算、式通りにするだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// ポアソン分布の確率</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">CalculatePoissonProbability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">lambda</span><span class="p">)</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">factorial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">            </span><span class="n">factorial</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pow</span><span class="p">(</span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">lambda</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">factorial</span><span class="p">;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="p">};</span>
+</span></code></pre></div>
+今回は最適な夜の車の移動はどうかというのを可視化することを目標とする.<br />
+そのため、まずは現状の各支所の車の台数とそこの評価値を定義しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">values</span><span class="p">;</span><span class="w"> </span><span class="n">values</span><span class="p">.</span><span class="n">resize</span><span class="p">((</span><span class="n">MAX_CARS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">MAX_CARS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">policies</span><span class="p">;</span><span class="w"> </span><span class="n">policies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">values</span><span class="p">;</span>
+</span></code></pre></div>
+そしたらまずは方策評価から、これは単純で今までやってたことと何も変わらない.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// policy evaluation</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">{</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">oldValues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">values</span><span class="p">;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_CARS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_CARS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">MAX_CARS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">            </span><span class="n">values</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ReturnExpected</span><span class="p">({</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">},</span><span class="w"> </span><span class="n">policies</span><span class="p">[</span><span class="n">index</span><span class="p">],</span><span class="w"> </span><span class="n">values</span><span class="p">);</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">lowest</span><span class="p">();</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">values</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">        </span><span class="n">maxValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Max</span><span class="p">(</span><span class="n">maxValue</span><span class="p">,</span><span class="w"> </span><span class="n">Abs</span><span class="p">(</span><span class="n">oldValues</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span><span class="c1">// 収束と判断したら終了</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxValue</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1e-4</span><span class="p">)</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="p">}</span>
+</span></code></pre></div>
+今までと同様でDP方式で<code>ReturnExpected</code>で更新を行う、そして収束してたら終了するだけ.<br />
 つまり違う点は<code>ReturnExpected</code>の更新が書ければ前と同じとなる.<br />
 次はこれを見ていこう.  </p>
-<p>まず最初は夜に車を動かす際のコストを計算する.   </p>
-<pre><code class="language-c++">auto ReturnExpected = [&amp;](const Vec2&amp; state, double action, const Array&lt;double&gt;&amp; currentValue)
-    {
-        double returnValue = 0.0;
-
-        // 車を動かすためのコスト
-        returnValue -= MOVE_CAR_COST * Abs(action);
-</code></pre>
-<p><code>action</code>が動かす台数で、<code>MOVE_CAR_COST=2</code>は動かす際のコスト
+<p>まず最初は夜に車を動かす際のコストを計算する. <br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">ReturnExpected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">Vec2</span><span class="o">&amp;</span><span class="w"> </span><span class="n">state</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">currentValue</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">returnValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="c1">// 車を動かすためのコスト</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="n">returnValue</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">MOVE_CAR_COST</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Abs</span><span class="p">(</span><span class="n">action</span><span class="p">);</span>
+</span></code></pre></div>
+<code>action</code>が動かす台数で、<code>MOVE_CAR_COST=2</code>は動かす際のコスト
 5台動かすなら2x5で10コスト、3台なら2x3で6コストみたいな感じ.<br />
-次に車の台数を動かすので、その分を考慮していく.  </p>
-<pre><code class="language-c++">// 車を動かす
-double firstLocationCars = Min(state.x - action, static_cast&lt;double&gt;(MAX_CARS));
-double secondLocationCars = Min(state.y + action, static_cast&lt;double&gt;(MAX_CARS));
-</code></pre>
-<p>先ほど言った通り、正の場合は1つ目のレンタカー屋から動かす、負の場合は2つ目のレンタカー屋から動かすということだった.<br />
+次に車の台数を動かすので、その分を考慮していく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// 車を動かす</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kt">double</span><span class="w"> </span><span class="n">firstLocationCars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Min</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">MAX_CARS</span><span class="p">));</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="kt">double</span><span class="w"> </span><span class="n">secondLocationCars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Min</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">MAX_CARS</span><span class="p">));</span>
+</span></code></pre></div>
+先ほど言った通り、正の場合は1つ目のレンタカー屋から動かす、負の場合は2つ目のレンタカー屋から動かすということだった.<br />
 一つ目のレンタカー屋から動かす場合を試しに考えてみよう.<br />
 <code>state.x - action</code>なので、actionが正の場合は車を確かに動かしてるのが分かる.<br />
 そして、もしactionが負の場合は車の数が増えることになる.2つ目のレンタカー屋から持ってくる感じだね.  </p>
 <p>さて、次に車を貸し出す方を考えてみよう.<br />
 まずはポアソン分布で使う<code>n</code>を全部列挙する.<br />
-ベルマン方程式の計算をするので、全パターンを列挙する必要があるからだね.  </p>
-<pre><code class="language-c++">for (int first = 0; first &lt; POISSON_UPPER_BOUND; first++)
-{
-    for (int second = 0; second &lt; POISSON_UPPER_BOUND; second++)
-    {
-        //...
-    }
-}
-</code></pre>
-<p>そしたら次に貸し出す台数<code>n</code>と変数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span>から確率を計算する.  </p>
-<pre><code class="language-c++">// 確率
-double firstProb = CalculatePoissonProbability(first, RENTAL_REQUEST_FIRST_LOCATION);
-double secondProb = CalculatePoissonProbability(second, RENTAL_REQUEST_SECOND_LOCATION);
-double probability = firstProb * secondProb;
-</code></pre>
-<p>そして、現在ある車の台数から変数を用意しておく.  </p>
-<pre><code class="language-c++">double firstLocation = firstLocationCars;
-double secondLocation = secondLocationCars;
-</code></pre>
-<p>次に貸し出す台数を決定する.<br />
+ベルマン方程式の計算をするので、全パターンを列挙する必要があるからだね.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">POISSON_UPPER_BOUND</span><span class="p">;</span><span class="w"> </span><span class="n">first</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="p">{</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">second</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">POISSON_UPPER_BOUND</span><span class="p">;</span><span class="w"> </span><span class="n">second</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">        </span><span class="c1">//...</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">}</span>
+</span></code></pre></div>
+そしたら次に貸し出す台数<code>n</code>と変数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">λ</span></span></span></span>から確率を計算する.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">// 確率</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kt">double</span><span class="w"> </span><span class="n">firstProb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CalculatePoissonProbability</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">RENTAL_REQUEST_FIRST_LOCATION</span><span class="p">);</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="kt">double</span><span class="w"> </span><span class="n">secondProb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CalculatePoissonProbability</span><span class="p">(</span><span class="n">second</span><span class="p">,</span><span class="w"> </span><span class="n">RENTAL_REQUEST_SECOND_LOCATION</span><span class="p">);</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="kt">double</span><span class="w"> </span><span class="n">probability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstProb</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">secondProb</span><span class="p">;</span>
+</span></code></pre></div>
+そして、現在ある車の台数から変数を用意しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">firstLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstLocationCars</span><span class="p">;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kt">double</span><span class="w"> </span><span class="n">secondLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">secondLocationCars</span><span class="p">;</span>
+</span></code></pre></div>
+次に貸し出す台数を決定する.<br />
 台数はfirstとsecondじゃない？となるかもだけど、レンタカー屋にあるだけの台数しか貸し出しはできない.<br />
 3台の貸し出しをしたいという客がいても、2台しかレンタカー屋にしかないのと同じである.<br />
 なので、<code>min</code>関数を駆使して貸し出せる台数よりは超えないようにしておく.<br />
-そして貸し出した総計に関しても用意しておく.  </p>
-<pre><code class="language-c++">double validRentalFirstLocation = Min(firstLocation, static_cast&lt;double&gt;(first));
-double validRentalSecondLocation = Min(secondLocation, static_cast&lt;double&gt;(second));
-double totalRentalValidLocation = validRentalFirstLocation + validRentalSecondLocation;
-</code></pre>
-<p>最後に報酬の計算と車の台数を反映させておく.<br />
+そして貸し出した総計に関しても用意しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">validRentalFirstLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Min</span><span class="p">(</span><span class="n">firstLocation</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">first</span><span class="p">));</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kt">double</span><span class="w"> </span><span class="n">validRentalSecondLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Min</span><span class="p">(</span><span class="n">secondLocation</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">second</span><span class="p">));</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="kt">double</span><span class="w"> </span><span class="n">totalRentalValidLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">validRentalFirstLocation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">validRentalSecondLocation</span><span class="p">;</span>
+</span></code></pre></div>
+最後に報酬の計算と車の台数を反映させておく.<br />
 トータル貸し出し台数は計算してあるので、これに報酬分を掛けるだけである.<br />
-そして、台数はそのまま貸し出し分を引くだけ、何も難しいことはない.  </p>
-<pre><code class="language-c++">double reward = totalRentalValidLocation * RENTAL_CREDIT;
-firstLocation -= validRentalFirstLocation;
-secondLocation -= validRentalSecondLocation;
-</code></pre>
-<p>これで貸し出しの方は終わった.<br />
+そして、台数はそのまま貸し出し分を引くだけ、何も難しいことはない.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">reward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">totalRentalValidLocation</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">RENTAL_CREDIT</span><span class="p">;</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">firstLocation</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">validRentalFirstLocation</span><span class="p">;</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">secondLocation</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">validRentalSecondLocation</span><span class="p">;</span>
+</span></code></pre></div>
+これで貸し出しの方は終わった.<br />
 次は客からの返却の方を考える.  </p>
 <p>まず最初の確率の計算までは貸し出しの時と同じ.<br />
-ただし最終結果は貸し出し時のモノも合わせたものとなる.  </p>
-<pre><code class="language-c++">for (int returnedFirst = 0; returnedFirst &lt; POISSON_UPPER_BOUND; returnedFirst++)
-{
-    for (int returnedSecond = 0; returnedSecond &lt; POISSON_UPPER_BOUND; returnedSecond++)
-    {
-        // return時の確率も考慮
-        firstProb = CalculatePoissonProbability(returnedFirst, RETURN_FIRST_LOCATION);
-        secondProb = CalculatePoissonProbability(returnedSecond, RETURN_SECOND_LOCATION);
-        double returnProbability = probability * firstProb * secondProb;
-
-        // ...
-    }
-}
-</code></pre>
-<p>そして返却時の台数計算.<br />
+ただし最終結果は貸し出し時のモノも合わせたものとなる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">returnedFirst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">returnedFirst</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">POISSON_UPPER_BOUND</span><span class="p">;</span><span class="w"> </span><span class="n">returnedFirst</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="p">{</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">returnedSecond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">returnedSecond</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">POISSON_UPPER_BOUND</span><span class="p">;</span><span class="w"> </span><span class="n">returnedSecond</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">        </span><span class="c1">// return時の確率も考慮</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">        </span><span class="n">firstProb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CalculatePoissonProbability</span><span class="p">(</span><span class="n">returnedFirst</span><span class="p">,</span><span class="w"> </span><span class="n">RETURN_FIRST_LOCATION</span><span class="p">);</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">        </span><span class="n">secondProb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CalculatePoissonProbability</span><span class="p">(</span><span class="n">returnedSecond</span><span class="p">,</span><span class="w"> </span><span class="n">RETURN_SECOND_LOCATION</span><span class="p">);</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">returnProbability</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">probability</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">firstProb</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">secondProb</span><span class="p">;</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">        </span><span class="c1">// ...</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="p">}</span>
+</span></code></pre></div>
+そして返却時の台数計算.<br />
 返却されてもおける台数は決まっている.<br />
-そのため、置ける最大台数を超えないようにするのを忘れずにする.  </p>
-<pre><code class="language-c++">int returnedFirstLocation = firstLocation + returnedFirst;
-returnedFirstLocation = Min(returnedFirstLocation, static_cast&lt;int&gt;(MAX_CARS));
-int returnedSecondLocation = secondLocation + returnedSecond;
-returnedSecondLocation = Min(returnedSecondLocation, static_cast&lt;int&gt;(MAX_CARS));
-</code></pre>
-<p>最後にいつも通りベルマン方程式を計算すれば終わりとなる.  </p>
-<pre><code class="language-c++">returnValue += returnProbability * (reward + DISCOUNT * currentValue[returnedFirstLocation * (MAX_CARS + 1) + returnedSecondLocation]);
-</code></pre>
-<p>これで実際のベルマン方程式で計算もできたので、評価もできた.<br />
+そのため、置ける最大台数を超えないようにするのを忘れずにする.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">returnedFirstLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstLocation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">returnedFirst</span><span class="p">;</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">returnedFirstLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Min</span><span class="p">(</span><span class="n">returnedFirstLocation</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">MAX_CARS</span><span class="p">));</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="kt">int</span><span class="w"> </span><span class="n">returnedSecondLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">secondLocation</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">returnedSecond</span><span class="p">;</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="n">returnedSecondLocation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Min</span><span class="p">(</span><span class="n">returnedSecondLocation</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">MAX_CARS</span><span class="p">));</span>
+</span></code></pre></div>
+最後にいつも通りベルマン方程式を計算すれば終わりとなる.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">returnValue</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">returnProbability</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">reward</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DISCOUNT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">currentValue</span><span class="p">[</span><span class="n">returnedFirstLocation</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">MAX_CARS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">returnedSecondLocation</span><span class="p">]);</span>
+</span></code></pre></div>
+これで実際のベルマン方程式で計算もできたので、評価もできた.<br />
 次は方策反復における大事な処理、方策改善に入る.  </p>
 <p>さて方策の更新を行っていく.<br />
-方策が安定していれば終わりとなるので、方策が安定しているかを判定するbool値を用意しておく.  </p>
-<pre><code class="language-c++">// policyが安定しているかの判定
-bool isPolicyStable = true;
-for (int i = 0; i &lt; MAX_CARS + 1; i++)
-{
-    for (int j = 0; j &lt; MAX_CARS + 1; j++)
-    {
-        // ...
-    }
-}
-</code></pre>
-<p>まずは変数の用意.<br />
+方策が安定していれば終わりとなるので、方策が安定しているかを判定するbool値を用意しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">// policyが安定しているかの判定</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="kt">bool</span><span class="w"> </span><span class="n">isPolicyStable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_CARS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="p">{</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MAX_CARS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">        </span><span class="c1">// ...</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="p">}</span>
+</span></code></pre></div>
+まずは変数の用意.<br />
 一つ目はポリシーのindex.<br />
 1つ目のレンタカー屋に存在できる車の台数の0から20.<br />
 2つ目のレンタカー屋に存在できる車の台数の0から20.<br />
 この20x20の400パターンの中のindexの位置を決定する.<br />
-各パターンにおける台数を動かす最適解を今回求めようとしてるので、まあそうなるよねという感じ.  </p>
-<pre><code class="language-c++">int index = i * (MAX_CARS + 1) + j;
-</code></pre>
-<p>次にポリシーが安定してるかを決定するために、前回に何台を動かしたかを保持しておく.  </p>
-<pre><code class="language-c++">double oldAction = policies[index];
-</code></pre>
-<p>最後に現在のベルマン方程式で計算した期待値を算出したものを保持するために、保持できるリストも用意しておく.  </p>
-<pre><code class="language-c++">Array&lt;double&gt; actionReturns;
-</code></pre>
-<p>そしたら次に評価は安定しているので、安定した期待値を計算して値を保持する.<br />
+各パターンにおける台数を動かす最適解を今回求めようとしてるので、まあそうなるよねという感じ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">MAX_CARS</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+</span></code></pre></div>
+次にポリシーが安定してるかを決定するために、前回に何台を動かしたかを保持しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">oldAction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">policies</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+</span></code></pre></div>
+最後に現在のベルマン方程式で計算した期待値を算出したものを保持するために、保持できるリストも用意しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">Array</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">actionReturns</span><span class="p">;</span>
+</span></code></pre></div>
+そしたら次に評価は安定しているので、安定した期待値を計算して値を保持する.<br />
 ただし、存在する台数よりも多くは動かせないため、その場合は最小の期待値を保持するようにしておく.<br />
-最小の期待値は<code>std::numeric_limit&lt;T&gt;().lowest()</code>を使って計算を行う.  </p>
-<pre><code class="language-c++">for (const double&amp; action : actions)
-{
-    bool isRangeX = ((0 &lt;= action) &amp;&amp; (action &lt;= i));
-    bool isRangeY = ((-j &lt;= action) &amp;&amp; (action &lt;= 0));
-    if (isRangeX || isRangeY)
-    {
-        actionReturns.push_back(ReturnExpected({ i,j }, action, values));
-    }
-    else
-    {
-        actionReturns.push_back(std::numeric_limits&lt;double&gt;().lowest());
-    }
-}
-</code></pre>
-<p>これで各アクションの期待値の計算が終わった.<br />
+最小の期待値は<code>std::numeric_limit&lt;T&gt;().lowest()</code>を使って計算を行う.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">&amp;</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">actions</span><span class="p">)</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="p">{</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isRangeX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">action</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">action</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">i</span><span class="p">));</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">isRangeY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="o">-</span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">action</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">action</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isRangeX</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">isRangeY</span><span class="p">)</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">        </span><span class="n">actionReturns</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">ReturnExpected</span><span class="p">({</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">));</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">    </span><span class="k">else</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">        </span><span class="n">actionReturns</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">numeric_limits</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">().</span><span class="n">lowest</span><span class="p">());</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="p">}</span>
+</span></code></pre></div>
+これで各アクションの期待値の計算が終わった.<br />
 なので、期待値の中で最大のもの、つまり一番夜に台数を動かした際に収益の高いものを選択する.<br />
-そして、一番収益の高い台数を保持しておく.  </p>
-<pre><code class="language-c++">int newAction = actions[std::distance(actionReturns.begin(), std::max_element(actionReturns.begin(), actionReturns.end()))];
-policies[index] = newAction;
-</code></pre>
-<p>最後にポリシーが安定しているかを前回の値と比較して確認する.<br />
-安定していなければ、フラグをおろしておく.  </p>
-<pre><code class="language-c++">if (isPolicyStable &amp;&amp; oldAction != newAction)
-{
-    // まだ安定してない
-    isPolicyStable = false;
-}
-</code></pre>
-<p>最後に安定していれば終わり、もし安定してなければまた評価と更新をすることになる.<br />
+そして、一番収益の高い台数を保持しておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">newAction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actions</span><span class="p">[</span><span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">actionReturns</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max_element</span><span class="p">(</span><span class="n">actionReturns</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">actionReturns</span><span class="p">.</span><span class="n">end</span><span class="p">()))];</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">policies</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newAction</span><span class="p">;</span>
+</span></code></pre></div>
+最後にポリシーが安定しているかを前回の値と比較して確認する.<br />
+安定していなければ、フラグをおろしておく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPolicyStable</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">oldAction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">newAction</span><span class="p">)</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="p">{</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="c1">// まだ安定してない</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">    </span><span class="n">isPolicyStable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="p">}</span>
+</span></code></pre></div>
+最後に安定していれば終わり、もし安定してなければまた評価と更新をすることになる.<br />
 最後に結果を見てみる.<br />
 <img alt="Jacks Car Rental" src="../Image/JacksCarRental_01.png" />
 結果を見ていこう.これが安定状態の場合の車の移動の可視化.<br />

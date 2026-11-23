@@ -2064,6 +2064,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../Diary/2026/11/2026_1123_1130/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2026/11/23 ~ 2026/11/30
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7698,231 +7719,231 @@
 <p>分布数え上げソートは出現回数側を記録するバケットソート、計数ソートともいう.<br />
 日本語のWikiではバケットソート<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>に説明があるが、EnのWikiは独自の記事があるっぽい<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.  </p>
 <p>さて、これも流れを見るのが速い.<br />
-鳩の巣ソート<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>の際と同じ例で見てみる.  </p>
-<pre><code>初期値: 1 4 2 2 6 2 6 4 6 4 5 6 6
-
-最小値:1 最大値:6なので、1から6の箱を用意
-1: 0 2: 0 3: 0 4: 0 5: 0 6: 0
-
-Phase.1 頭からデータを数えていく.
-4 2 2 6 2 6 4 6 4 5 6 6
-1: 0+1 2: 0 3: 0 4: 0 5: 0 6: 0
-
-2 2 6 2 6 4 6 4 5 6 6
-1: 1 2: 0 3: 0 4: 0+1 5: 0 6: 0
-
-2 6 2 6 4 6 4 5 6 6
-1: 1 2: 0+1 3: 0 4: 1 5: 0 6: 0
-
-6 2 6 4 6 4 5 6 6
-1: 1 2: 1+1 3: 0 4: 1 5: 0 6: 0
-
-2 6 4 6 4 5 6 6
-1: 1 2: 2 3: 0 4: 1 5: 0 6: 0+1
-
-6 4 6 4 5 6 6
-1: 1 2: 2+1 3: 0 4: 1 5: 0 6: 1
-
-4 6 4 5 6 6
-1: 1 2: 3 3: 0 4: 1 5: 0 6: 1+1
-
-6 4 5 6 6
-1: 1 2: 3 3: 0 4: 1+1 5: 0 6: 2
-
-4 5 6 6
-1: 1 2: 3 3: 0 4: 2 5: 0 6: 2+1
-
-5 6 6
-1: 1 2: 3 3: 0 4: 2+1 5: 0 6: 3
-
-6 6
-1: 1 2: 3 3: 0 4: 3 5: 0+1 6: 3
-
-6
-1: 1 2: 3 3: 0 4: 3 5: 1 6: 3+1
-
-1: 1 2: 3 3: 0 4: 3 5: 1 6: 4+1
-
-1: 1 2: 3 3: 0 4: 3 5: 1 6: 5 完了！
-
-Phase.2 累積式に変換
-1: 1 2: 3 3: 0 4: 3 5: 1 6: 5
--&gt;
-1: 1 2: 1+3 3: 1+3+0 4: 1+3+0+3 5: 1+3+0+3+1 6: 1+3+0+3+1+5
--&gt;
-1: 1 2: 4 3: 4 4: 7 5: 8 6: 13
-
-Phase3. 累積分布の値を減らしながら追加をしていく
-初期値:1 4 2 2 6 2 6 4 6 4 5 6 6
-sorted:{0 0 0 0 0 0 0 0 0 0 0 0 0}
-
-1週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-↑
-
-1より、index:1を1下げて参照
-1: 1-1=0 2: 4 3: 4 4: 7 5: 8 6: 13
-
-つまりソートに突っ込む位置は 0
-sorted:{1 0 0 0 0 0 0 0 0 0 0 0 0}
-
-2週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-  ↑
-
-4より、index:4を1下げて参照
-1: 0 2: 4 3: 4 4: 7-1=6 5: 8 6: 13
-
-つまりソートに突っ込む位置は 6
-sorted:{1 0 0 0 0 0 4 0 0 0 0 0 0}
-
-3週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-    ↑
-
-2より、index:2を1下げて参照
-1: 0 2: 4-1=3 3: 4 4: 6 5: 8 6: 13
-
-つまりソートに突っ込む位置は 3
-sorted:{1 0 0 2 0 0 4 0 0 0 0 0 0}
-
-4週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-      ↑
-
-2より、index:2を1下げて参照
-1: 0 2: 3-1=2 3: 4 4: 6 5: 8 6: 13
-
-つまりソートに突っ込む位置は 2
-sorted:{1 0 2 2 0 0 4 0 0 0 0 0 0}
-
-5週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-        ↑
-
-6より、index:6を1下げて参照
-1: 0 2: 2 3: 4 4: 6 5: 8 6: 13-1=12
-
-つまりソートに突っ込む位置は 12
-sorted:{1 0 2 2 0 0 4 0 0 0 0 0 6}
-
-6週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-          ↑
-
-2より、index:2を1下げて参照
-1: 0 2: 2-1=1 3: 4 4: 6 5: 8 6: 12
-
-つまりソートに突っ込む位置は 1
-sorted:{1 2 2 2 0 0 4 0 0 0 0 0 6}
-
-7週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-            ↑
-
-6より、index:6を1下げて参照
-1: 0 2: 1 3: 4 4: 6 5: 8 6: 12-1=11
-
-つまりソートに突っ込む位置は 11
-sorted:{1 2 2 2 0 0 4 0 0 0 0 6 6}
-
-8週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-              ↑
-
-4より、index:4を1下げて参照
-1: 0 2: 1 3: 4 4: 6-1=5 5: 8 6: 11
-
-つまりソートに突っ込む位置は 5
-sorted:{1 2 2 2 0 4 4 0 0 0 0 6 6}
-
-9週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-                ↑
-
-6より、index:6を1下げて参照
-1: 0 2: 1 3: 4 4: 5 5: 8 6: 11-1=10
-
-つまりソートに突っ込む位置は 10
-sorted:{1 2 2 2 0 4 4 0 0 0 6 6 6}
-
-10週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-                  ↑
-
-4より、index:4を1下げて参照
-1: 0 2: 1 3: 4 4: 5-1=4 5: 8 6: 10
-
-つまりソートに突っ込む位置は 4
-sorted:{1 2 2 2 4 4 4 0 0 0 6 6 6}
-
-11週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-                    ↑
-
-5より、index:5を1下げて参照
-1: 0 2: 1 3: 4 4: 4 5: 8-1=7 6: 10
-
-つまりソートに突っ込む位置は 7
-sorted:{1 2 2 2 4 4 4 5 0 0 6 6 6}
-
-12週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-                      ↑
-
-6より、index:6を1下げて参照
-1: 0 2: 1 3: 4 4: 4 5: 7 6: 10-1=9
-
-つまりソートに突っ込む位置は 9
-sorted:{1 2 2 2 4 4 4 5 0 6 6 6 6}
-
-13週目
-1 4 2 2 6 2 6 4 6 4 5 6 6
-                        ↑
-
-6より、index:6を1下げて参照
-1: 0 2: 1 3: 4 4: 4 5: 7 6: 9-1=8
-
-つまりソートに突っ込む位置は 8
-sorted:{1 2 2 2 4 4 4 5 6 6 6 6 6}
-
-完了！
-</code></pre>
-<p>やってることは簡単だ.<br />
+鳩の巣ソート<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>の際と同じ例で見てみる.<br />
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>初期値: 1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>最小値:1 最大値:6なので、1から6の箱を用意
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>1: 0 2: 0 3: 0 4: 0 5: 0 6: 0
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Phase.1 頭からデータを数えていく.
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>1: 0+1 2: 0 3: 0 4: 0 5: 0 6: 0
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>1: 1 2: 0 3: 0 4: 0+1 5: 0 6: 0
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>1: 1 2: 0+1 3: 0 4: 1 5: 0 6: 0
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>1: 1 2: 1+1 3: 0 4: 1 5: 0 6: 0
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>2 6 4 6 4 5 6 6
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>1: 1 2: 2 3: 0 4: 1 5: 0 6: 0+1
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>6 4 6 4 5 6 6
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>1: 1 2: 2+1 3: 0 4: 1 5: 0 6: 1
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>4 6 4 5 6 6
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>1: 1 2: 3 3: 0 4: 1 5: 0 6: 1+1
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>6 4 5 6 6
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>1: 1 2: 3 3: 0 4: 1+1 5: 0 6: 2
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>4 5 6 6
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>1: 1 2: 3 3: 0 4: 2 5: 0 6: 2+1
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>5 6 6
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>1: 1 2: 3 3: 0 4: 2+1 5: 0 6: 3
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>6 6
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>1: 1 2: 3 3: 0 4: 3 5: 0+1 6: 3
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>6
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>1: 1 2: 3 3: 0 4: 3 5: 1 6: 3+1
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>1: 1 2: 3 3: 0 4: 3 5: 1 6: 4+1
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>1: 1 2: 3 3: 0 4: 3 5: 1 6: 5 完了！
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>Phase.2 累積式に変換
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>1: 1 2: 3 3: 0 4: 3 5: 1 6: 5
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>-&gt;
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>1: 1 2: 1+3 3: 1+3+0 4: 1+3+0+3 5: 1+3+0+3+1 6: 1+3+0+3+1+5
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>-&gt;
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>1: 1 2: 4 3: 4 4: 7 5: 8 6: 13
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>Phase3. 累積分布の値を減らしながら追加をしていく
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>初期値:1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>sorted:{0 0 0 0 0 0 0 0 0 0 0 0 0}
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>1週目
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>↑
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>1より、index:1を1下げて参照
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>1: 1-1=0 2: 4 3: 4 4: 7 5: 8 6: 13
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>つまりソートに突っ込む位置は 0
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>sorted:{1 0 0 0 0 0 0 0 0 0 0 0 0}
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>2週目
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>  ↑
+</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>4より、index:4を1下げて参照
+</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>1: 0 2: 4 3: 4 4: 7-1=6 5: 8 6: 13
+</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>
+</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>つまりソートに突っ込む位置は 6
+</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a>sorted:{1 0 0 0 0 0 4 0 0 0 0 0 0}
+</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a>
+</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a>3週目
+</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a>    ↑
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a>
+</span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a>2より、index:2を1下げて参照
+</span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a>1: 0 2: 4-1=3 3: 4 4: 6 5: 8 6: 13
+</span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a>
+</span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a>つまりソートに突っ込む位置は 3
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a>sorted:{1 0 0 2 0 0 4 0 0 0 0 0 0}
+</span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a>
+</span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a>4週目
+</span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a>      ↑
+</span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a>
+</span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a>2より、index:2を1下げて参照
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a>1: 0 2: 3-1=2 3: 4 4: 6 5: 8 6: 13
+</span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a>
+</span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a>つまりソートに突っ込む位置は 2
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a>sorted:{1 0 2 2 0 0 4 0 0 0 0 0 0}
+</span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a>
+</span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a>5週目
+</span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-100"><a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a>        ↑
+</span><span id="__span-0-101"><a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a>
+</span><span id="__span-0-102"><a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a>6より、index:6を1下げて参照
+</span><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a>1: 0 2: 2 3: 4 4: 6 5: 8 6: 13-1=12
+</span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a>
+</span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a>つまりソートに突っ込む位置は 12
+</span><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a>sorted:{1 0 2 2 0 0 4 0 0 0 0 0 6}
+</span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>
+</span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a>6週目
+</span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-110"><a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a>          ↑
+</span><span id="__span-0-111"><a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a>
+</span><span id="__span-0-112"><a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a>2より、index:2を1下げて参照
+</span><span id="__span-0-113"><a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a>1: 0 2: 2-1=1 3: 4 4: 6 5: 8 6: 12
+</span><span id="__span-0-114"><a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a>
+</span><span id="__span-0-115"><a id="__codelineno-0-115" name="__codelineno-0-115" href="#__codelineno-0-115"></a>つまりソートに突っ込む位置は 1
+</span><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116" href="#__codelineno-0-116"></a>sorted:{1 2 2 2 0 0 4 0 0 0 0 0 6}
+</span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117" href="#__codelineno-0-117"></a>
+</span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118" href="#__codelineno-0-118"></a>7週目
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119" href="#__codelineno-0-119"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120" href="#__codelineno-0-120"></a>            ↑
+</span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121" href="#__codelineno-0-121"></a>
+</span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122" href="#__codelineno-0-122"></a>6より、index:6を1下げて参照
+</span><span id="__span-0-123"><a id="__codelineno-0-123" name="__codelineno-0-123" href="#__codelineno-0-123"></a>1: 0 2: 1 3: 4 4: 6 5: 8 6: 12-1=11
+</span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124" href="#__codelineno-0-124"></a>
+</span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125" href="#__codelineno-0-125"></a>つまりソートに突っ込む位置は 11
+</span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126" href="#__codelineno-0-126"></a>sorted:{1 2 2 2 0 0 4 0 0 0 0 6 6}
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127" href="#__codelineno-0-127"></a>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128" href="#__codelineno-0-128"></a>8週目
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129" href="#__codelineno-0-129"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130" href="#__codelineno-0-130"></a>              ↑
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131" href="#__codelineno-0-131"></a>
+</span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132" href="#__codelineno-0-132"></a>4より、index:4を1下げて参照
+</span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133" href="#__codelineno-0-133"></a>1: 0 2: 1 3: 4 4: 6-1=5 5: 8 6: 11
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134" href="#__codelineno-0-134"></a>
+</span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135" href="#__codelineno-0-135"></a>つまりソートに突っ込む位置は 5
+</span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136" href="#__codelineno-0-136"></a>sorted:{1 2 2 2 0 4 4 0 0 0 0 6 6}
+</span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137" href="#__codelineno-0-137"></a>
+</span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138" href="#__codelineno-0-138"></a>9週目
+</span><span id="__span-0-139"><a id="__codelineno-0-139" name="__codelineno-0-139" href="#__codelineno-0-139"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-140"><a id="__codelineno-0-140" name="__codelineno-0-140" href="#__codelineno-0-140"></a>                ↑
+</span><span id="__span-0-141"><a id="__codelineno-0-141" name="__codelineno-0-141" href="#__codelineno-0-141"></a>
+</span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142" href="#__codelineno-0-142"></a>6より、index:6を1下げて参照
+</span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143" href="#__codelineno-0-143"></a>1: 0 2: 1 3: 4 4: 5 5: 8 6: 11-1=10
+</span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144" href="#__codelineno-0-144"></a>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145" href="#__codelineno-0-145"></a>つまりソートに突っ込む位置は 10
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146" href="#__codelineno-0-146"></a>sorted:{1 2 2 2 0 4 4 0 0 0 6 6 6}
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147" href="#__codelineno-0-147"></a>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148" href="#__codelineno-0-148"></a>10週目
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149" href="#__codelineno-0-149"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150" href="#__codelineno-0-150"></a>                  ↑
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151" href="#__codelineno-0-151"></a>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152" href="#__codelineno-0-152"></a>4より、index:4を1下げて参照
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153" href="#__codelineno-0-153"></a>1: 0 2: 1 3: 4 4: 5-1=4 5: 8 6: 10
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154" href="#__codelineno-0-154"></a>
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155" href="#__codelineno-0-155"></a>つまりソートに突っ込む位置は 4
+</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156" href="#__codelineno-0-156"></a>sorted:{1 2 2 2 4 4 4 0 0 0 6 6 6}
+</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157" href="#__codelineno-0-157"></a>
+</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158" href="#__codelineno-0-158"></a>11週目
+</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159" href="#__codelineno-0-159"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160" href="#__codelineno-0-160"></a>                    ↑
+</span><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161" href="#__codelineno-0-161"></a>
+</span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162" href="#__codelineno-0-162"></a>5より、index:5を1下げて参照
+</span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163" href="#__codelineno-0-163"></a>1: 0 2: 1 3: 4 4: 4 5: 8-1=7 6: 10
+</span><span id="__span-0-164"><a id="__codelineno-0-164" name="__codelineno-0-164" href="#__codelineno-0-164"></a>
+</span><span id="__span-0-165"><a id="__codelineno-0-165" name="__codelineno-0-165" href="#__codelineno-0-165"></a>つまりソートに突っ込む位置は 7
+</span><span id="__span-0-166"><a id="__codelineno-0-166" name="__codelineno-0-166" href="#__codelineno-0-166"></a>sorted:{1 2 2 2 4 4 4 5 0 0 6 6 6}
+</span><span id="__span-0-167"><a id="__codelineno-0-167" name="__codelineno-0-167" href="#__codelineno-0-167"></a>
+</span><span id="__span-0-168"><a id="__codelineno-0-168" name="__codelineno-0-168" href="#__codelineno-0-168"></a>12週目
+</span><span id="__span-0-169"><a id="__codelineno-0-169" name="__codelineno-0-169" href="#__codelineno-0-169"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-170"><a id="__codelineno-0-170" name="__codelineno-0-170" href="#__codelineno-0-170"></a>                      ↑
+</span><span id="__span-0-171"><a id="__codelineno-0-171" name="__codelineno-0-171" href="#__codelineno-0-171"></a>
+</span><span id="__span-0-172"><a id="__codelineno-0-172" name="__codelineno-0-172" href="#__codelineno-0-172"></a>6より、index:6を1下げて参照
+</span><span id="__span-0-173"><a id="__codelineno-0-173" name="__codelineno-0-173" href="#__codelineno-0-173"></a>1: 0 2: 1 3: 4 4: 4 5: 7 6: 10-1=9
+</span><span id="__span-0-174"><a id="__codelineno-0-174" name="__codelineno-0-174" href="#__codelineno-0-174"></a>
+</span><span id="__span-0-175"><a id="__codelineno-0-175" name="__codelineno-0-175" href="#__codelineno-0-175"></a>つまりソートに突っ込む位置は 9
+</span><span id="__span-0-176"><a id="__codelineno-0-176" name="__codelineno-0-176" href="#__codelineno-0-176"></a>sorted:{1 2 2 2 4 4 4 5 0 6 6 6 6}
+</span><span id="__span-0-177"><a id="__codelineno-0-177" name="__codelineno-0-177" href="#__codelineno-0-177"></a>
+</span><span id="__span-0-178"><a id="__codelineno-0-178" name="__codelineno-0-178" href="#__codelineno-0-178"></a>13週目
+</span><span id="__span-0-179"><a id="__codelineno-0-179" name="__codelineno-0-179" href="#__codelineno-0-179"></a>1 4 2 2 6 2 6 4 6 4 5 6 6
+</span><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180" href="#__codelineno-0-180"></a>                        ↑
+</span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181" href="#__codelineno-0-181"></a>
+</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182" href="#__codelineno-0-182"></a>6より、index:6を1下げて参照
+</span><span id="__span-0-183"><a id="__codelineno-0-183" name="__codelineno-0-183" href="#__codelineno-0-183"></a>1: 0 2: 1 3: 4 4: 4 5: 7 6: 9-1=8
+</span><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184" href="#__codelineno-0-184"></a>
+</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185" href="#__codelineno-0-185"></a>つまりソートに突っ込む位置は 8
+</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186" href="#__codelineno-0-186"></a>sorted:{1 2 2 2 4 4 4 5 6 6 6 6 6}
+</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187" href="#__codelineno-0-187"></a>
+</span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188" href="#__codelineno-0-188"></a>完了！
+</span></code></pre></div>
+やってることは簡単だ.<br />
 数を数えて累積分布を作る.<br />
 あとはそれをindexとして参照する、これだけ.  </p>
-<p>そしたら実装に移ろう、まずは入れる箱を作り、そこに値を数えていく.  </p>
-<pre><code class="language-c++">// 今回は[0,99]を仮定
-const int range = 100;
-
-// 分布を作る
-Array&lt;int&gt; distribution; distribution.resize(range);
-
-for (const auto&amp; value : dataList)
-{
-    // まずは度数分布
-    distribution[value.weight]++;
-}
-</code></pre>
-<p>数え終わったら、これを累積分布に変換.  </p>
-<pre><code class="language-c++">for (int i = 1; i &lt; distribution.size(); i++)
-{
-    // 累積分布に変換
-    distribution[i] += distribution[i - 1];
-}
-</code></pre>
-<p>最後に累積分布を下げつつ<code>sorted</code>に突っ込んでいけばよいだけ.  </p>
-<pre><code class="language-c++">Array&lt;Data&gt; sorted(dataList.size());
-
-int index = 0;
-for (const auto&amp; value : dataList)
-{
-    int index = value.weight;
-    distribution[index]--;
-    sorted[distribution[index]].weight = index;
-    result.push_back(sorted);
-}
-</code></pre>
+<p>そしたら実装に移ろう、まずは入れる箱を作り、そこに値を数えていく.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// 今回は[0,99]を仮定</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">// 分布を作る</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">Array</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">distribution</span><span class="p">;</span><span class="w"> </span><span class="n">distribution</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">range</span><span class="p">);</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">dataList</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">{</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="c1">// まずは度数分布</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="n">distribution</span><span class="p">[</span><span class="n">value</span><span class="p">.</span><span class="n">weight</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
+</span></code></pre></div>
+数え終わったら、これを累積分布に変換.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">distribution</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="c1">// 累積分布に変換</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">distribution</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">distribution</span><span class="p">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
+</span></code></pre></div>
+最後に累積分布を下げつつ<code>sorted</code>に突っ込んでいけばよいだけ.<br />
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Array</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sorted</span><span class="p">(</span><span class="n">dataList</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">dataList</span><span class="p">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">{</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">.</span><span class="n">weight</span><span class="p">;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="n">distribution</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="n">sorted</span><span class="p">[</span><span class="n">distribution</span><span class="p">[</span><span class="n">index</span><span class="p">]].</span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">index</span><span class="p">;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="n">result</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">sorted</span><span class="p">);</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">}</span>
+</span></code></pre></div></p>
 <p>結果を見てみよう.  </p>
 <p><img alt="DistributionCounting_01" src="../Image/DistributionCounting_01.webp" />  </p>
 <p>中間あたりで撮ってみたけど、段々と並んで行ってるのが分かるね.<br />
