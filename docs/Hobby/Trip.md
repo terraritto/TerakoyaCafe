@@ -253,6 +253,7 @@
 | 正しい晩ごはん 白‐はく‐ | [GoogleMap](https://maps.app.goo.gl/xWgU7mBst7xaWRrg9) |
 | 地酒遊楽 裏や | [GoogleMap](https://maps.app.goo.gl/rvu3rXYQwP41jfTd9) |
 | 喃風 池袋駅前店 | [GoogleMap](https://maps.app.goo.gl/kSUEmeBEAyb7sVrq6) |
+| 鳥良商店 南池袋店 | [GoogleMap](https://maps.app.goo.gl/gJdJZoFYNWNmgeBd6) |
 | --------||
 | TurnTable Restaurant～ターンテーブルレストラン～ | [GoogleMap](https://maps.app.goo.gl/FCktCBijjT3EsQvv7) |
 | 上野 藪そば | [GoogleMap](https://maps.app.goo.gl/vTiXhMn8UDD9unkQ9) |
