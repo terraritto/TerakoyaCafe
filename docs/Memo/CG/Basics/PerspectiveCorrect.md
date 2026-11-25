@@ -178,7 +178,49 @@ vertex->m_uv0 = Vec2{ texCoord0s[i * 2 + i], texCoord0s[i * 2 + 1 + i] };
 細かいことを抜きにすればこれを行うだけで正しく描画できるようになる.  
 
 実際にコードでこれを適用していこう.  
+まず頂点シェーダの出力時に、スクリーン位置の`w`に$`\frac{1}{z}`$を格納する.  
+そして、uvに関しては`z`で割った値にしておく.  
+```c++
+		// 結果を格納
+		output->screenPos = Vec4{ tempV.m128_f32[0], tempV.m128_f32[1],tempV.m128_f32[2], 1.0 / z };
+		output->uv = input->uv / z;
+```
 
+これでshader側の用意は完了.  
+
+次はラスタライズ側.  
+UVの補間をしている部分までは一緒.  
+変わった部分は先ほど`w`に代入した$`\frac{1}{z}`$を補間している.  
+これを実際にuvで割ってやることで、上手く補間できることになる.  
+```c++
+// UVを補間
+const Vec2 uv = w * vert1->uv + v * vert2->uv + u * vert3->uv;
+const float posW = w * vert1->screenPos.w + v * vert2->screenPos.w + u * vert3->screenPos.w;
+shaderInput->uv = uv / posW;
+```
+
+pixel shader側のuvを$`uv_{p}`$とし、頂点shaderで出力されたuvを$`uv_{out}`$とする.  
+また、補間したzを$`\frac{1}{z_{lerp}}`$とすると、$`uv_{out}=\frac{uv}{z}`$より、
+
+```math
+uv_{p}=\frac{uv_{out}}{\frac{1}{z_{lerp}}}=uv \frac{z_{lerp}}{z}
+```
+
+となって、なんかそれっぽく補間されてるのは分かると思う.  
+もっと詳しく計算することもできるが、これはまた今度やる気が出たら書くかもしれない...  
+さて、結果は以下のような感じ.  
+
+![PerspectiveCorrect_04](Image/PerspectiveCorrect_04.webp)  
+
+うん、特に`0,1`のところが分かりやすいが、ちゃんとまがった表示になっている！  
+これは深度がちゃんと影響していると分かりやすいね.  
+
+さて、そしたら今までのモデルにもベースカラーを載せた結果が以下.  
+
+![PerspectiveCorrect_05](Image/PerspectiveCorrect_05.webp)  
+
+うん、いい感じ！  
+ここまでくると結構見た目も良くなってきたね.  
 
 [^1]: [グローシェーディング](./GourandShading.md)  
 [^2]: [glTF-Sample-Assets: Simple Texture]

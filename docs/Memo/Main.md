@@ -50,6 +50,10 @@
         - Phong Shading: [link](CG/Basics/PhongShading.md) 
         [Impl](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/Shading/PhongShadingApp.cpp) 
         [Movie](https://youtu.be/uW9xnKbCRAk)
+        
+        - パースペクティブコレクト: [link](CG/Basics/PerspectiveCorrect.md) 
+        [Impl](https://github.com/terraritto/Siv3DImplementZoo/tree/main/Renderer/App/UVTest/002) 
+        [Movie](https://youtu.be/wFNU9X65dd8)
 
     * フィルタ
         - べイヤーフィルタ: [link](CG/Filter/BayarFilter.md) 

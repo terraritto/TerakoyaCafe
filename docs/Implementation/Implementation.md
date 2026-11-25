@@ -6,11 +6,6 @@
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/SurtherlandHodgemanApp.cpp) 
     movie: [link](https://youtu.be/ttAN5tCy8_8)
 
-* Perspective Correct  
-    貼り付けるときはパースも考慮しようね  
-    Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/tree/main/Renderer/App/UVTest/002)
-    movie: [link](https://youtu.be/wFNU9X65dd8)
-
 * ガウシアンスプラッティング可視化  
     ガウシアンスプラッティングを可視化していく、SH以外はできてるはず  
     Impl: [link](https://github.com/terraritto/Siv3DImplementZoo/blob/main/Renderer/App/GS/GSVertexApp.cpp) 
